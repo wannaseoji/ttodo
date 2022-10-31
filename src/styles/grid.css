@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+}
+
+.parent {
+    height: 100%;
+    display: grid;
+    grid-template-areas:
+        "menu profile follower"
+        "menu content tasklist"
+        "menu content tasklist"
+        "menu content teamlist"
+        "menu content teamlist"
+    ;
+    gap: 1px;
+    grid-template-rows: 130px 250px 250px 150px 150px;
+    grid-template-columns: 15% 35% 50%;
+    /*
+    grid-template-rows: 20% 20% 20% 20% 20%
+    grid-template-rows: 100px 185px 185px 185px 185px
+    grid-template-rows: 100px;
+    grid-template-columns: 300px 1fr 200px;
+    */
+    /*
+        gap: px;   //간격을 준 css 코드
+    */
+}
+
+.box {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    text-align: center;
+    /*background-color: pink;*/
+}
+
+.menu {
+    grid-area: menu;
+
+    grid-column: auto;
+}
+
+.profile {
+    grid-area: profile;
+}
+
+.content {
+    grid-area: content;
+}
+
+.follower {
+    grid-area: follower;
+}
+
+.tasklist {
+    grid-area: tasklist;
+}
+
+.teamlist {
+    grid-area: teamlist;
+}
+
+#seo_nav {
+    margin-top: 200px;
+}
