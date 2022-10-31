@@ -5,36 +5,65 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
+
+import Box from '@mui/material/Box';
 import ListItemText from '@mui/material/ListItemText';
+
 const Home = () => {
     return (
 
 
         <div class="parent">
-            <div class="box menu">메뉴
+            <div class="box menu">
                 <nav id="seo_nav">
+                    <Box sx={{ width: '100%', maxWidth: 400, bgcolor: 'background.black', border: '1px solid white' }}>
+                        <List component="nav">
+                            <nav>
+                                <Link to="/" style={{ textDecoration: 'none' }}>
+                                    <ListItem >
+                                        <ListItemButton sx={{ height: 80, border: '1px solid white' }}>
+                                            <ListItemText>Home</ListItemText>
+                                        </ListItemButton>
 
-                    <List >
+                                    </ListItem>
+                                </Link>
+                            </nav>
+                            <nav>
+                                <Link to="/Goal" style={{ textDecoration: 'none' }} >
 
-                        <ListItem>
-                            <Link to="/" style={{ textDecoration: 'none' }}>
-                                <ListItemButton>
-                                    <ListItemText>Home</ListItemText>
-                                </ListItemButton>
-                            </Link>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemButton>
-                                <ListItemText ><Link to="/Goal" style={{ textDecoration: 'none' }} > Goal</Link></ListItemText>
-                            </ListItemButton>
-                        </ListItem>
-                        <ListItem>
-                            <Link to="/MyTask" style={{ textDecoration: 'none' }}> MyTask</Link>
-                        </ListItem>
-                        <ListItem>
-                            <Link to="/Team" style={{ textDecoration: 'none' }}> Team</Link>
-                        </ListItem>
-                    </List>
+                                    <ListItem>
+                                        <ListItemButton sx={{ height: 80, border: '1px solid white' }}>
+                                            <ListItemText > Goal</ListItemText>
+                                        </ListItemButton>
+                                    </ListItem>
+                                </Link>
+
+                            </nav>
+                            <nav>
+                                <Link to="/MyTask" style={{ textDecoration: 'none' }}>
+
+                                    <ListItem>
+
+                                        <ListItemButton sx={{ height: 80, border: '1px solid white' }}>
+                                            <ListItemText >  MyTask</ListItemText>
+                                        </ListItemButton>
+                                    </ListItem>
+                                </Link>
+
+                            </nav>
+                            <nav>
+                                <Link to="/Team" style={{ textDecoration: 'none' }}>
+                                    <ListItem>
+
+                                        <ListItemButton sx={{ height: 80, border: '1px solid white' }}>
+                                            <ListItemText > Team</ListItemText>
+                                        </ListItemButton>
+
+                                    </ListItem>
+                                </Link>
+                            </nav>
+                        </List>
+                    </Box>
                 </nav >
             </div >
             <div class="box profile">프로필</div>

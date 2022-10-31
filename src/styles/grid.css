@@ -42,7 +42,7 @@ body {
 
 .menu {
     grid-area: menu;
-
+    background-color: black;
     grid-column: auto;
 }
 
@@ -67,5 +67,8 @@ body {
 }
 
 #seo_nav {
+    display: block;
+    width: 200px;
+    height: 200px;
     margin-top: 200px;
 }
