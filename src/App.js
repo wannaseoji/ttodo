@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import MyTask from "./pages/MyTask";
-import Team from "./pages/Team";
+import TeamLink from "./pages/TeamLink";
 import Goal from "./pages/Goal";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="MyTask" element={<MyTask />} />
-          <Route path="Team" element={<Team />} />
+          <Route path="TeamLink" element={<TeamLink />} />
           <Route path="Goal" element={<Goal />} />
         </Route>
       </Routes>
