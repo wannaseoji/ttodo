@@ -1,6 +1,5 @@
-import StarRating from "../components/StarRating";
 const MyTask = () => {
-    return <StarRating />;
+    return <h1>MyTask</h1>;
 };
 
 export default MyTask;
