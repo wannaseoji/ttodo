@@ -52,11 +52,11 @@ const Home = () => {
 
                             </nav>
                             <nav>
-                                <Link to="/Team" style={{ textDecoration: 'none' }}>
+                                <Link to="/TeamLink" style={{ textDecoration: 'none' }}>
                                     <ListItem>
 
                                         <ListItemButton sx={{ height: 80, border: '1px solid white' }}>
-                                            <ListItemText > Team</ListItemText>
+                                            <ListItemText > TeamLink</ListItemText>
                                         </ListItemButton>
 
                                     </ListItem>
