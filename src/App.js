@@ -5,7 +5,6 @@ import Home from "./pages/Home";
 import MyTask from "./pages/MyTask";
 import TeamLink from "./pages/TeamLink";
 import Goal from "./pages/Goal";
-
 function App() {
   return (
     <BrowserRouter>
