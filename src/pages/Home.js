@@ -11,7 +11,41 @@ import ListItemText from '@mui/material/ListItemText';
 import Team from "./Team";
 import Profile from "./Profile";
 
+import React, {useState, useEffect} from "react";
+import TaskList from '../components/TaskList';
+import taskData from '../assets/task-data.json';
+import Modal from '../components/Modal';
+
+
+
 const Home = () => {
+
+    const [tasks,setTasks] = useState(taskData);
+    useEffect(()=> setTasks(taskData), [taskData]);
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const onCheckTask = (index) =>{
+        const newTasks = tasks.map( (task, i) => {
+        if(index === i){
+            task.check = !(task.check);
+        }
+        return task;
+        });
+        console.log(`newTasks : ${newTasks}`);
+        setTasks(newTasks);
+    }
+
+    const openModal = () => {
+        setModalOpen(true);
+    };
+    const closeModal = () => {
+        setModalOpen(false);
+    };
+
+    const onShowModal = () => {
+        openModal();
+    }
+
     return (
         <div className="parent">
             <div className="box menu">
@@ -69,7 +103,14 @@ const Home = () => {
             <div className="box profile"><Profile /></div>
             <div className="box content">타임라인/캘린더/차트</div>
             <div className="box follower">팔로워</div>
-            <div className="box tasklist">태스크</div>
+            <div className="box tasklist">
+            <TaskList
+            tasks={tasks}
+            onCheck={onCheckTask}
+            onModal={onShowModal}
+            />
+            <Modal open={modalOpen} close={closeModal} header="Options"/>
+            </div>
             <div className="box teamlist">
                 TeamList
                 <Team />

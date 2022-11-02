@@ -76,9 +76,6 @@ const Goal = () => {
             <div className="box tasklist">태스크</div>
             <div className="box teamlist">
                 TeamList
-                <Team />
-                <Team />
-                <Team />
             </div>
         </div >
 
