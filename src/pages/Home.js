@@ -50,7 +50,7 @@ const Home = () => {
         <div id="app" className="parent" >
             <div className="box menu" >
                 <nav id="seo_nav">
-                    <Box sx={{ width: '100%', maxWidth: 400, bgcolor: 'background.black', border: '1px solid white' }}>
+                    <Box sx={{ width: '100%', maxWidth: 400, bgcolor: 'background.black', border: '1px solid white', position: 'relative', top:'50%', left:'50%', transform: 'translate(-50%, -50%)'}}>
                         <List component="nav">
                             <nav>
                                 <Link to="/" style={{ textDecoration: 'none' }}>
