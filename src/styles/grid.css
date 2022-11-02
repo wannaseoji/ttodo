@@ -2,12 +2,26 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
 
+html,
 body {
-    position: relative;
+
+    margin: 0;
+
     height: 100%;
-    width: 100%;
+
+    overflow: hidden;
+
+}
+
+
+
+body {
+    position: sticky;
+    height: 100%;
+
 }
 
 .parent {
@@ -21,7 +35,7 @@ body {
         "menu content teamlist"
     ;
     gap: 1px;
-    grid-template-rows: 130px 250px 250px 150px 150px;
+    grid-template-rows: 13% 25% 25% 15% 15%;
     grid-template-columns: 15% 35% 50%;
     /*
     grid-template-rows: 20% 20% 20% 20% 20%
@@ -35,6 +49,7 @@ body {
 }
 
 .box {
+    height: 100%;
     display: flex;
     align-items: stretch;
     justify-content: center;
@@ -43,6 +58,7 @@ body {
 }
 
 .menu {
+    height: 100%;
     grid-area: menu;
     background-color: black;
     grid-column: auto;
@@ -72,5 +88,13 @@ body {
     display: block;
     width: 200px;
     height: 200px;
-    margin-top: 200px;
+    margin-top: 60%;
+}
+
+#root {
+    height: 100%;
+}
+
+#app {
+    height: 100%;
 }

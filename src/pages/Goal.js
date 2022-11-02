@@ -15,7 +15,7 @@ import Profile from "./Profile";
 
 const Goal = () => {
     return (
-        <div className="parent">
+        <div id="app" className="parent">
             <div className="box menu">
                 <nav id="seo_nav">
                     <Box sx={{ width: '100%', maxWidth: 400, bgcolor: 'background.black', border: '1px solid white' }}>
