@@ -13,8 +13,8 @@ import Profile from "./Profile";
 
 const Home = () => {
     return (
-        <div class="parent">
-            <div class="box menu">
+        <div className="parent">
+            <div className="box menu">
                 <nav id="seo_nav">
                     <Box sx={{ width: '100%', maxWidth: 400, bgcolor: 'background.black', border: '1px solid white' }}>
                         <List component="nav">
@@ -66,15 +66,15 @@ const Home = () => {
                     </Box>
                 </nav >
             </div >
-            <div class="box profile"><Profile/></div>
-            <div class="box content">타임라인/캘린더/차트</div>
-            <div class="box follower">팔로워</div>
-            <div class="box tasklist">태스크</div>
-            <div class="box teamlist">
+            <div className="box profile"><Profile /></div>
+            <div className="box content">타임라인/캘린더/차트</div>
+            <div className="box follower">팔로워</div>
+            <div className="box tasklist">태스크</div>
+            <div className="box teamlist">
                 TeamList
-                <Team/>
-                <Team/>
-                <Team/>
+                <Team />
+                <Team />
+                <Team />
             </div>
         </div >
 
