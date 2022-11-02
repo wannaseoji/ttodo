@@ -9,10 +9,10 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Box from '@mui/material/Box';
 import ListItemText from '@mui/material/ListItemText';
 import Team from "./Team";
+import Profile from "./Profile";
 
 const Home = () => {
     return (
-
         <div class="parent">
             <div class="box menu">
                 <nav id="seo_nav">
@@ -66,7 +66,7 @@ const Home = () => {
                     </Box>
                 </nav >
             </div >
-            <div class="box profile">프로필</div>
+            <div class="box profile"><Profile/></div>
             <div class="box content">타임라인/캘린더/차트</div>
             <div class="box follower">팔로워</div>
             <div class="box tasklist">태스크</div>
