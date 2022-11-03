@@ -16,7 +16,7 @@ export default function Profile() {
     <List sx={{ width: '100%', maxWidth: 500, bgcolor: 'background.paper' }}>
       <ListItem>
         <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg"/>
+          <Avatar alt="Remy Sharp" src="i3.jpg" />
         </ListItemAvatar>
         <ListItemText
           secondary={
