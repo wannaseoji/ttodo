@@ -4,7 +4,17 @@
         "category": "Study",
         "title": "설계패턴 대면",
         "date": "2022-10-31",
-        "time": "10:30",
+        "hour": "10",
+        "minute":"30",
+        "check":false
+    },
+    {
+        "id": "wannaseo", 
+        "category": "Study",
+        "title": "성공성공성공🍕",
+        "date": "2022-10-31",
+        "hour": "23",
+        "minute":"55",
         "check":false
     },
     {
@@ -12,7 +22,8 @@
         "category": "Study",
         "title": "쉬는 시간",
         "date": "2022-10-31",
-        "time": "12:30",
+        "hour": "12",
+        "minute":"30",
         "check":false
     },
     {
@@ -20,7 +31,8 @@
         "category": "Study",
         "title": "쉬는 시간22",
         "date": "2022-10-31",
-        "time": "21:45",
+        "hour": "14",
+        "minute":"45",
         "check":false
     },
     {
@@ -28,7 +40,8 @@
         "category": "Study",
         "title": "집 가는 시간",
         "date": "2022-10-31",
-        "time": "18:00",
+        "hour": "19",
+        "minute":"00",
         "check":false
     }
 ]

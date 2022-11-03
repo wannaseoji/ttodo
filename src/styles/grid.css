@@ -2,26 +2,18 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
 }
 
 html,
 body {
-
     margin: 0;
-
     height: 100%;
-
     overflow: hidden;
-
 }
-
-
 
 body {
     position: sticky;
     height: 100%;
-
 }
 
 .parent {
@@ -36,7 +28,7 @@ body {
     ;
     gap: 1px;
     grid-template-rows: 20% 25% 25% 15% 15%;
-    grid-template-columns: 15% 35% 50%;
+    grid-template-columns: 15% 40% 45%;
     /*
     grid-template-rows: 20% 20% 20% 20% 20%
     grid-template-rows: 100px 185px 185px 185px 185px

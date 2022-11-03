@@ -11,15 +11,14 @@ import ListItemText from '@mui/material/ListItemText';
 import Team from "./Team";
 import Profile from "./Profile";
 
+import CustomTimeLine from "../components/timeline/CustomTimeline";
+
 import React, { useState, useEffect } from "react";
 import TaskList from '../components/TaskList';
 import taskData from '../assets/task-data.json';
 import Modal from '../components/Modal';
 
-
-
 const Home = () => {
-
     const [tasks, setTasks] = useState(taskData);
     useEffect(() => setTasks(taskData), [taskData]);
     const [modalOpen, setModalOpen] = useState(false);
@@ -101,7 +100,9 @@ const Home = () => {
                 </nav >
             </div >
             <div className="box profile"><Profile /></div>
-            <div className="box content">타임라인/캘린더/차트</div>
+            <div className="box content">
+                <CustomTimeLine tasks={tasks}/>
+            </div>
             <div className="box follower">팔로워</div>
             <div className="box tasklist">
                 <TaskList
