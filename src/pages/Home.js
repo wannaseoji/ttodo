@@ -22,8 +22,9 @@ const Home = () => {
 
     const [tasks, setTasks] = useState(taskData);
     useEffect(() => setTasks(taskData), [taskData]);
-    const [modalOpen, setModalOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false); // Options Modal 창 open, close State 확인
 
+    // Task check 변경
     const onCheckTask = (index) => {
         const newTasks = tasks.map((task, i) => {
             if (index === i) {
@@ -35,6 +36,7 @@ const Home = () => {
         setTasks(newTasks);
     }
 
+    // Modal open close setting 하기
     const openModal = () => {
         setModalOpen(true);
     };
@@ -118,8 +120,6 @@ const Home = () => {
                 <Team />
             </div>
         </div >
-
-
     );
 };
 
