@@ -10,7 +10,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 
 import Box from '@mui/material/Box';
 import ListItemText from '@mui/material/ListItemText';
-import Team from "./Team";
+import Team from "../components/Team";
 import Profile from "./Profile";
 
 const Goal = () => {

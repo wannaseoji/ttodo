@@ -7,16 +7,22 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import {BiDotsVerticalRounded} from "react-icons/bi";
+import member from "../assets/Member.json";
+import { useState } from 'react';
+
 
 export default function Profile() {
-  let NickName = `Jang Hoon park`;
-  let email = `abc1234@naver.com`
-  let introText = `가슴을 데인 것 처럼 눈물에 배인 것 처럼 가슴을 데인 것 처럼 눈물에 배인 것 처럼`;
+    const [idx, setIdx] = useState(0);
+    const {name, image, intro, email} = member[idx];
+    console.log(image);
   return (
     <List sx={{ width: '100%', maxWidth: 500, bgcolor: 'background.paper' }}>
       <ListItem>
         <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg"/>
+          <Avatar 
+            alt="Remy Sharp" 
+            src={image}
+            sx={{ width: "50px", height: "50px" }}/>
         </ListItemAvatar>
         <ListItemText
           secondary={
@@ -27,11 +33,11 @@ export default function Profile() {
                 variant="body2"
                 color="text.primary"
               >
-                {introText}
+                {intro}
               </Typography>
             </React.Fragment>
           }>
-        {NickName}
+        {name}
         <React.Fragment>
               <Typography
                 sx={{ display: 'inline' }}
@@ -44,7 +50,8 @@ export default function Profile() {
             </React.Fragment>
         </ListItemText>
         <ListItemText>
-          <BiDotsVerticalRounded />
+          <BiDotsVerticalRounded 
+            onClick={ () => { setIdx(idx + 1); }}/>
         </ListItemText>
       </ListItem>
     </List>

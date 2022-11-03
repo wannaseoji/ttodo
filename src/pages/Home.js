@@ -8,7 +8,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 
 import Box from '@mui/material/Box';
 import ListItemText from '@mui/material/ListItemText';
-import Team from "./Team";
+import Team from "../components/Team";
 import Profile from "./Profile";
 
 import CustomTimeLine from "../components/timeline/CustomTimeline";
@@ -17,12 +17,16 @@ import React, { useState, useEffect } from "react";
 import TaskList from '../components/TaskList';
 import taskData from '../assets/task-data.json';
 import Modal from '../components/Modal';
+import teamData from "../assets/team.json"
 
 const Home = () => {
+    
+    const [teams, setTeams] = useState(teamData);
     const [tasks, setTasks] = useState(taskData);
     useEffect(() => setTasks(taskData), [taskData]);
-    const [modalOpen, setModalOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false); // Options Modal 창 open, close State 확인
 
+    // Task check 변경
     const onCheckTask = (index) => {
         const newTasks = tasks.map((task, i) => {
             if (index === i) {
@@ -34,6 +38,7 @@ const Home = () => {
         setTasks(newTasks);
     }
 
+    // Modal open close setting 하기
     const openModal = () => {
         setModalOpen(true);
     };
@@ -43,6 +48,13 @@ const Home = () => {
 
     const onShowModal = () => {
         openModal();
+    }
+    
+    const teamCard=[];
+    function initTeamCard() {
+        for(let i=0;i<teams.length && i<3;i++) {
+            teamCard[i] = <Team key={i} data={teams[i]} />;
+        }
     }
 
     return (
@@ -114,13 +126,10 @@ const Home = () => {
             </div>
             <div className="box teamlist">
                 TeamList
-                <Team />
-                <Team />
-                <Team />
+                {initTeamCard()}
+                {teamCard.map(v=>v)}
             </div>
         </div >
-
-
     );
 };
 
