@@ -29,6 +29,15 @@
     {
         "id": "wannaseo", 
         "category": "Study",
+        "title": "운동운동",
+        "date": "2022-10-31",
+        "hour": "7",
+        "minute":"50",
+        "check":false
+    },
+    {
+        "id": "wannaseo", 
+        "category": "Study",
         "title": "쉬는 시간22",
         "date": "2022-10-31",
         "hour": "14",
@@ -43,5 +52,15 @@
         "hour": "19",
         "minute":"00",
         "check":false
+    },    
+    {
+        "id": "wannaseo", 
+        "category": "Study",
+        "title": "잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,",
+        "date": "2022-10-31",
+        "hour": "7",
+        "minute":"47",
+        "check":false
     }
+
 ]
