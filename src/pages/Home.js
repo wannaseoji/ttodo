@@ -21,7 +21,10 @@ import teamData from "../assets/team.json"
 //import { Link } from "react-router-dom";
 import StyledLink from "../styles/linkStyle";
 import PinkLink from '../styles/pinkLink';
-
+import { VscHome } from 'react-icons/vsc' //GiStairsGoal
+import { GiStairsGoal } from 'react-icons/gi' //GiStairsGoal, IoPersonOutline
+import { IoPersonOutline } from 'react-icons/io5' //GiStairsGoal, IoPersonOutline,BsPeople
+import { BsPeople } from 'react-icons/bs' //GiStairsGoal, IoPersonOutline,BsPeople
 const Home = () => {
 
     const [teams, setTeams] = useState(teamData);
@@ -70,7 +73,7 @@ const Home = () => {
                                 <PinkLink to="/" style={{ textDecoration: 'none' }}>
                                     <ListItem >
                                         <ListItemButton sx={{ height: 80, }}>
-                                            <ListItemText>Home</ListItemText>
+                                            <VscHome /><ListItemText>Home</ListItemText>
                                         </ListItemButton>
 
                                     </ListItem>
@@ -81,7 +84,7 @@ const Home = () => {
 
                                     <ListItem>
                                         <ListItemButton sx={{ height: 80, }}>
-                                            <ListItemText > Goal</ListItemText>
+                                            <GiStairsGoal /><ListItemText >Goal</ListItemText>
                                         </ListItemButton>
                                     </ListItem>
                                 </StyledLink>
@@ -93,7 +96,7 @@ const Home = () => {
                                     <ListItem>
 
                                         <ListItemButton sx={{ height: 80, }}>
-                                            <ListItemText >  MyTask</ListItemText>
+                                            <IoPersonOutline /><ListItemText > MyTask</ListItemText>
                                         </ListItemButton>
                                     </ListItem>
                                 </StyledLink>
@@ -104,7 +107,7 @@ const Home = () => {
                                     <ListItem>
 
                                         <ListItemButton sx={{ height: 80, }}>
-                                            <ListItemText > TeamLink</ListItemText>
+                                            <BsPeople></BsPeople><ListItemText >  TeamLink</ListItemText>
                                         </ListItemButton>
 
                                     </ListItem>

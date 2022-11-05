@@ -14,19 +14,24 @@ import Team from "../components/Team";
 import Profile from "./Profile";
 import StyledLink from '../styles/linkStyle';
 import PinkLink from '../styles/pinkLink';
+import { VscHome } from 'react-icons/vsc' //GiStairsGoal
+import { GiStairsGoal } from 'react-icons/gi' //GiStairsGoal, IoPersonOutline
+import { IoPersonOutline } from 'react-icons/io5' //GiStairsGoal, IoPersonOutline,BsPeople
+import { BsPeople } from 'react-icons/bs' //GiStairsGoal, IoPersonOutline,BsPeople
+
 
 const Goal = () => {
     return (
-        <div id="app" className="parent">
-            <div className="box menu">
+        <div id="app" className="parent" >
+            <div className="box menu" >
                 <nav className="seo_nav">
-                    <Box sx={{ width: '100%', maxWidth: 400, bgcolor: 'background.black', bgcolor: 'background.black', position: 'relative', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
+                    <Box sx={{ width: '100%', maxWidth: 400, bgcolor: 'background.black', position: 'relative', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
                         <List component="nav">
                             <nav>
                                 <StyledLink to="/" style={{ textDecoration: 'none' }}>
                                     <ListItem >
-                                        <ListItemButton sx={{ height: 80 }}>
-                                            <ListItemText>Home</ListItemText>
+                                        <ListItemButton sx={{ height: 80, }}>
+                                            <VscHome /><ListItemText>Home</ListItemText>
                                         </ListItemButton>
 
                                     </ListItem>
@@ -36,8 +41,8 @@ const Goal = () => {
                                 <PinkLink to="/Goal" style={{ textDecoration: 'none' }} >
 
                                     <ListItem>
-                                        <ListItemButton sx={{ height: 80 }}>
-                                            <ListItemText > Goal</ListItemText>
+                                        <ListItemButton sx={{ height: 80, }}>
+                                            <GiStairsGoal /><ListItemText >Goal</ListItemText>
                                         </ListItemButton>
                                     </ListItem>
                                 </PinkLink>
@@ -48,8 +53,8 @@ const Goal = () => {
 
                                     <ListItem>
 
-                                        <ListItemButton sx={{ height: 80 }}>
-                                            <ListItemText >  MyTask</ListItemText>
+                                        <ListItemButton sx={{ height: 80, }}>
+                                            <IoPersonOutline /><ListItemText > MyTask</ListItemText>
                                         </ListItemButton>
                                     </ListItem>
                                 </StyledLink>
@@ -59,8 +64,8 @@ const Goal = () => {
                                 <StyledLink to="/TeamLink" style={{ textDecoration: 'none' }}>
                                     <ListItem>
 
-                                        <ListItemButton sx={{ height: 80 }}>
-                                            <ListItemText > TeamLink</ListItemText>
+                                        <ListItemButton sx={{ height: 80, }}>
+                                            <BsPeople></BsPeople><ListItemText >  TeamLink</ListItemText>
                                         </ListItemButton>
 
                                     </ListItem>
