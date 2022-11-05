@@ -10,6 +10,7 @@ import {BiDotsVerticalRounded} from "react-icons/bi";
 import member from "../assets/Member.json";
 import { useState } from 'react';
 import '../styles/Profile.css';
+import { createTheme, ThemeProvider } from '@mui/material';
 
 
 export default function Profile() {
@@ -29,10 +30,10 @@ export default function Profile() {
           primary= {
             <React.Fragment>
               <Typography
-                sx={{ display: 'inline' }}
+                sx={{ display: 'inline', fontWeight: 'bold'}}
                 component="span"
                 variant="h6"
-                color="pink"
+                color="#FF9AB5"
               >
                 {`${name}`}
               </Typography>
