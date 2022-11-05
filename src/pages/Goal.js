@@ -13,6 +13,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Team from "../components/Team";
 import Profile from "./Profile";
 import StyledLink from '../styles/linkStyle';
+import PinkLink from '../styles/pinkLink';
 
 const Goal = () => {
     return (
@@ -32,14 +33,14 @@ const Goal = () => {
                                 </StyledLink>
                             </nav>
                             <nav>
-                                <StyledLink to="/Goal" style={{ textDecoration: 'none' }} >
+                                <PinkLink to="/Goal" style={{ textDecoration: 'none' }} >
 
                                     <ListItem>
                                         <ListItemButton sx={{ height: 80 }}>
                                             <ListItemText > Goal</ListItemText>
                                         </ListItemButton>
                                     </ListItem>
-                                </StyledLink>
+                                </PinkLink>
 
                             </nav>
                             <nav>

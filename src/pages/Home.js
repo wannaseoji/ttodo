@@ -19,9 +19,8 @@ import taskData from '../assets/task-data.json';
 import Modal from '../components/Modal';
 import teamData from "../assets/team.json"
 //import { Link } from "react-router-dom";
-import styled, { css } from 'styled-components'
 import StyledLink from "../styles/linkStyle";
-
+import PinkLink from '../styles/pinkLink';
 
 const Home = () => {
 
@@ -68,14 +67,14 @@ const Home = () => {
                     <Box sx={{ width: '100%', maxWidth: 400, bgcolor: 'background.black', position: 'relative', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
                         <List component="nav">
                             <nav>
-                                <StyledLink to="/" style={{ textDecoration: 'none' }}>
+                                <PinkLink to="/" style={{ textDecoration: 'none' }}>
                                     <ListItem >
                                         <ListItemButton sx={{ height: 80, }}>
                                             <ListItemText>Home</ListItemText>
                                         </ListItemButton>
 
                                     </ListItem>
-                                </StyledLink>
+                                </PinkLink>
                             </nav>
                             <nav>
                                 <StyledLink to="/Goal" style={{ textDecoration: 'none' }} >
