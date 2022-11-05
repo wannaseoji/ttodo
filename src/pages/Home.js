@@ -18,9 +18,13 @@ import TaskList from '../components/TaskList';
 import taskData from '../assets/task-data.json';
 import Modal from '../components/Modal';
 import teamData from "../assets/team.json"
+//import { Link } from "react-router-dom";
+import styled, { css } from 'styled-components'
+import StyledLink from "../styles/linkStyle";
+
 
 const Home = () => {
-    
+
     const [teams, setTeams] = useState(teamData);
     const [tasks, setTasks] = useState(taskData);
     useEffect(() => setTasks(taskData), [taskData]);
@@ -49,10 +53,10 @@ const Home = () => {
     const onShowModal = () => {
         openModal();
     }
-    
-    const teamCard=[];
+
+    const teamCard = [];
     function initTeamCard() {
-        for(let i=0;i<teams.length && i<3;i++) {
+        for (let i = 0; i < teams.length && i < 3; i++) {
             teamCard[i] = <Team key={i} data={teams[i]} />;
         }
     }
@@ -60,52 +64,52 @@ const Home = () => {
     return (
         <div id="app" className="parent" >
             <div className="box menu" >
-                <nav id="seo_nav">
-                    <Box sx={{ width: '100%', maxWidth: 400, bgcolor: 'background.black', border: '1px solid white', position: 'relative', top:'50%', left:'50%', transform: 'translate(-50%, -50%)'}}>
+                <nav className="seo_nav">
+                    <Box sx={{ width: '100%', maxWidth: 400, bgcolor: 'background.black', position: 'relative', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
                         <List component="nav">
                             <nav>
-                                <Link to="/" style={{ textDecoration: 'none' }}>
+                                <StyledLink to="/" style={{ textDecoration: 'none' }}>
                                     <ListItem >
-                                        <ListItemButton sx={{ height: 80, border: '1px solid white' }}>
+                                        <ListItemButton sx={{ height: 80, }}>
                                             <ListItemText>Home</ListItemText>
                                         </ListItemButton>
 
                                     </ListItem>
-                                </Link>
+                                </StyledLink>
                             </nav>
                             <nav>
-                                <Link to="/Goal" style={{ textDecoration: 'none' }} >
+                                <StyledLink to="/Goal" style={{ textDecoration: 'none' }} >
 
                                     <ListItem>
-                                        <ListItemButton sx={{ height: 80, border: '1px solid white' }}>
+                                        <ListItemButton sx={{ height: 80, }}>
                                             <ListItemText > Goal</ListItemText>
                                         </ListItemButton>
                                     </ListItem>
-                                </Link>
+                                </StyledLink>
 
                             </nav>
                             <nav>
-                                <Link to="/MyTask" style={{ textDecoration: 'none' }}>
+                                <StyledLink to="/MyTask" style={{ textDecoration: 'none' }}>
 
                                     <ListItem>
 
-                                        <ListItemButton sx={{ height: 80, border: '1px solid white' }}>
+                                        <ListItemButton sx={{ height: 80, }}>
                                             <ListItemText >  MyTask</ListItemText>
                                         </ListItemButton>
                                     </ListItem>
-                                </Link>
+                                </StyledLink>
 
                             </nav>
                             <nav>
-                                <Link to="/TeamLink" style={{ textDecoration: 'none' }}>
+                                <StyledLink to="/TeamLink" style={{ textDecoration: 'none' }}>
                                     <ListItem>
 
-                                        <ListItemButton sx={{ height: 80, border: '1px solid white' }}>
+                                        <ListItemButton sx={{ height: 80, }}>
                                             <ListItemText > TeamLink</ListItemText>
                                         </ListItemButton>
 
                                     </ListItem>
-                                </Link>
+                                </StyledLink>
                             </nav>
                         </List>
                     </Box>
@@ -113,7 +117,7 @@ const Home = () => {
             </div >
             <div className="box profile"><Profile /></div>
             <div className="box content">
-                <CustomTimeLine tasks={tasks}/>
+                <CustomTimeLine tasks={tasks} />
             </div>
             <div className="box follower">팔로워</div>
             <div className="box tasklist">
@@ -125,9 +129,9 @@ const Home = () => {
                 <Modal open={modalOpen} close={closeModal} header="Options" />
             </div>
             <div className="box teamlist">
-                TeamList
+
                 {initTeamCard()}
-                {teamCard.map(v=>v)}
+                {teamCard.map(v => v)}
             </div>
         </div >
     );

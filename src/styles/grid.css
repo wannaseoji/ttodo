@@ -76,7 +76,7 @@ body {
     grid-area: teamlist;
 }
 
-#seo_nav {
+.seo_nav {
     /* display: block; */
     position: relative;
     /* width: 200px;
