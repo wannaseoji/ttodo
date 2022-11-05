@@ -9,50 +9,60 @@ import Typography from '@mui/material/Typography';
 import {BiDotsVerticalRounded} from "react-icons/bi";
 import member from "../assets/Member.json";
 import { useState } from 'react';
+import '../styles/Profile.css';
 
 
 export default function Profile() {
-    const [idx, setIdx] = useState(0);
-    const {name, image, intro, email} = member[idx];
-    console.log(image);
+  const [idx, setIdx] = useState(0);
+  const {name, image, intro, email} = member[idx];
   return (
-    <List sx={{ width: '100%', maxWidth: 500, bgcolor: 'background.paper' }}>
+    <List sx={{ width: '100%', maxWidth: 550, bgcolor: 'background.paper' }}>
       <ListItem>
         <ListItemAvatar>
           <Avatar 
+            className="profile"
             alt="Remy Sharp" 
             src={image}
             sx={{ width: "50px", height: "50px" }}/>
         </ListItemAvatar>
         <ListItemText
+          primary= {
+            <React.Fragment>
+              <Typography
+                sx={{ display: 'inline' }}
+                component="span"
+                variant="h6"
+                color="pink"
+              >
+                {`${name}`}
+              </Typography>
+              <Typography
+                sx={{ display: 'inline' }}
+                component="p"
+                variant="caption"
+                color="grey"
+              >
+              {email}
+              </Typography>
+            </React.Fragment>
+          }
           secondary={
             <React.Fragment>
               <Typography
                 sx={{ display: 'inline' }}
                 component="span"
                 variant="body2"
-                color="text.primary"
+                color="black"
               >
                 {intro}
               </Typography>
+              
             </React.Fragment>
-          }>
-        {name}
-        <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                {`  ${email}`}
-              </Typography>
-            </React.Fragment>
-        </ListItemText>
-        <ListItemText>
-          <BiDotsVerticalRounded 
-            onClick={ () => { setIdx(idx + 1); }}/>
-        </ListItemText>
+          }
+        />
+        <BiDotsVerticalRounded 
+            onClick={ () =>  //프로필을 수정하는 아이콘 여기서 프로필을 수정하게 하면 될듯
+              { setIdx(idx + 1); }}/>
       </ListItem>
     </List>
   );
