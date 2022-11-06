@@ -58,6 +58,7 @@ body {
 
 .profile {
     grid-area: profile;
+    align-items: center;
 }
 
 .content {
