@@ -9,7 +9,10 @@ import Typography from '@mui/material/Typography';
 import {BiDotsVerticalRounded} from "react-icons/bi";
 import member from "../assets/Member.json";
 import { useState } from 'react';
-
+import { VscHome } from 'react-icons/vsc' //GiStairsGoal
+import { GiStairsGoal } from 'react-icons/gi' //GiStairsGoal, IoPersonOutline
+import { IoPersonOutline } from 'react-icons/io5' //GiStairsGoal, IoPersonOutline,BsPeople
+import { BsPeople } from 'react-icons/bs' //GiStairsGoal, IoPersonOutline,BsPeople
 
 export default function Profile() {
     const [idx, setIdx] = useState(0);
