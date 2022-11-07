@@ -1,5 +1,11 @@
 const data = [
     {
+        "id": "wannaseo",
+        "label": "lisp",
+        "value": 117,
+        "color": "hsl(37, 70%, 50%)"
+    },
+    {
         "id": "lisp",
         "label": "lisp",
         "value": 117,
@@ -28,7 +34,8 @@ const data = [
         "label": "stylus",
         "value": 339,
         "color": "hsl(247, 70%, 50%)"
-    }
+    },
+
 ]
 
 

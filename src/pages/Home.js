@@ -19,12 +19,14 @@ import taskData from '../assets/task-data.json';
 import Modal from '../components/Modal';
 import teamData from "../assets/team.json"
 //import { Link } from "react-router-dom";
-import StyledLink from "../styles/linkStyle";
+import StyledListItem from "../styles/linkStyle";
 import PinkLink from '../styles/pinkLink';
 import { VscHome } from 'react-icons/vsc' //GiStairsGoal
 import { GiStairsGoal } from 'react-icons/gi' //GiStairsGoal, IoPersonOutline
 import { IoPersonOutline } from 'react-icons/io5' //GiStairsGoal, IoPersonOutline,BsPeople
 import { BsPeople } from 'react-icons/bs' //GiStairsGoal, IoPersonOutline,BsPeople
+import { useNavigate } from 'react-router';
+
 const Home = () => {
 
     const [teams, setTeams] = useState(teamData);
@@ -63,6 +65,25 @@ const Home = () => {
         }
     }
 
+
+    const navigate = useNavigate();
+
+    const OnGoalClick = () => {
+        navigate('/Goal', { state: tasks });
+    }
+    const OnHomeClick = () => {
+        navigate("/", { state: tasks });
+    }
+    const OnTeamClick = () => {
+        navigate("/TeamLink", { state: tasks });
+    }
+    const OnMyTaskClick = () => {
+        navigate("/MyTask", { state: tasks });
+    }
+    // 버튼 클릭시 호출
+
+
+
     return (
         <div id="app" className="parent" >
             <div className="box menu" >
@@ -70,48 +91,46 @@ const Home = () => {
                     <Box sx={{ width: '100%', maxWidth: 400, bgcolor: 'background.black', position: 'relative', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
                         <List component="nav">
                             <nav>
-                                <PinkLink to="/" style={{ textDecoration: 'none' }}>
-                                    <ListItem >
-                                        <ListItemButton sx={{ height: 80, }}>
-                                            <VscHome /><ListItemText>Home</ListItemText>
-                                        </ListItemButton>
+                                {/*<PinkLink to="/" style={{ textDecoration: 'none' }}>*/}
+                                <StyledListItem >
+                                    <ListItemButton onClick={OnHomeClick} sx={{ height: 80, }}>
+                                        <VscHome /><ListItemText>Home</ListItemText>
+                                    </ListItemButton>
 
-                                    </ListItem>
-                                </PinkLink>
+                                </StyledListItem>
+                                {/*</PinkLink>*/}
                             </nav>
-                            <nav>
-                                <StyledLink to="/Goal" style={{ textDecoration: 'none' }} >
+                            <nav >
 
-                                    <ListItem>
-                                        <ListItemButton sx={{ height: 80, }}>
-                                            <GiStairsGoal /><ListItemText >Goal</ListItemText>
-                                        </ListItemButton>
-                                    </ListItem>
-                                </StyledLink>
-
-                            </nav>
-                            <nav>
-                                <StyledLink to="/MyTask" style={{ textDecoration: 'none' }}>
-
-                                    <ListItem>
-
-                                        <ListItemButton sx={{ height: 80, }}>
-                                            <IoPersonOutline /><ListItemText > MyTask</ListItemText>
-                                        </ListItemButton>
-                                    </ListItem>
-                                </StyledLink>
+                                <StyledListItem>
+                                    <ListItemButton onClick={OnGoalClick} sx={{ height: 80, }}>
+                                        <GiStairsGoal /><ListItemText >Goal</ListItemText>
+                                    </ListItemButton>
+                                </StyledListItem>
 
                             </nav>
                             <nav>
-                                <StyledLink to="/TeamLink" style={{ textDecoration: 'none' }}>
-                                    <ListItem>
+                                {/*<StyledLink to="/MyTask" style={{ textDecoration: 'none' }}>*/}
 
-                                        <ListItemButton sx={{ height: 80, }}>
-                                            <BsPeople></BsPeople><ListItemText >  TeamLink</ListItemText>
-                                        </ListItemButton>
+                                <StyledListItem>
 
-                                    </ListItem>
-                                </StyledLink>
+                                    <ListItemButton onClick={OnMyTaskClick} sx={{ height: 80, }}>
+                                        <IoPersonOutline /><ListItemText > MyTask</ListItemText>
+                                    </ListItemButton>
+                                </StyledListItem>
+                                {/*</StyledLink>*/}
+
+                            </nav>
+                            <nav>
+                                {/* <StyledLink to="/TeamLink" style={{ textDecoration: 'none' }}>*/}
+                                <StyledListItem>
+
+                                    <ListItemButton onClick={OnTeamClick} sx={{ height: 80, }}>
+                                        <BsPeople></BsPeople><ListItemText >  TeamLink</ListItemText>
+                                    </ListItemButton>
+
+                                </StyledListItem>
+                                {/* </StyledLink>*/}
                             </nav>
                         </List>
                     </Box>

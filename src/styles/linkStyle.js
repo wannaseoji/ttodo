@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components'
-import { Link } from 'react-router-dom';
+import ListItem from '@mui/material/ListItem';
 
-const StyledLink = styled(Link)`
+
+const StyledListItem = styled(ListItem)`
 	box-sizing: border-box;
 	display: block;
 	padding: 4px 8px;
@@ -11,5 +12,4 @@ const StyledLink = styled(Link)`
 `;
 
 
-
-export default StyledLink;
+export default StyledListItem;

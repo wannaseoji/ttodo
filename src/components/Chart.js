@@ -6,8 +6,10 @@ import React from 'react';
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
-const MyResponsivePie = ({ data /* see data tab */ }) => (
+const MyResponsivePie = ({ data, length /* see data tab */ }) => (
+
     <ResponsivePie
+        length={length}
         data={data}
         margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
         innerRadius={0.5}
