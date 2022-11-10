@@ -23,6 +23,8 @@ import taskData from '../assets/task-data.json'
 import { useNavigate } from "react-router";
 import { useLocation } from 'react-router-dom';
 import MyBarCharts from '../components/BarChart';
+import getPieData from '../components/getPieData';
+import getProgressData from '../components/getProgressData';
 const Goal = () => {
     const navigate = useNavigate();
 
@@ -40,18 +42,16 @@ const Goal = () => {
     }
     const location = useLocation();
     const tasks = location.state;
+
+
+
     //const numOftasks = tasks;
     //console.log(numOftasks)
     //const { id, date } = tasks;
-    let numTasks = 0;
-    let numTrue = 0;
-    tasks.map(task => numTasks++)
-    console.log(numTasks)
-    tasks.map(task => task.check === true ? numTrue++ : numTrue)
-    console.log(numTrue)
+
+    //console.log(numTrue)
     console.log("This is home and Tasks are transfered", tasks)
-    const { id } = tasks;
-    console.log(id)
+    const [numTasks, numTrue] = getPieData(tasks);
     const Piedata = [{
         id: '완료',
         label: '완료',
@@ -65,95 +65,24 @@ const Goal = () => {
         color: '#f768a1'
     }
     ]
+    //category별 진척도
 
-    const progressData = [
-        {
-            "id": "STUDY",
-            "ranges": [
-                68,
-                40,
-                70,
-                0,
-                120
-            ],
-            "measures": [
-                89
-            ],
-            "markers": [
-                82
-            ]
-        },
-        {
-            "id": "EXERCISE",
-            "ranges": [
-                0.8413840746810386,
-                0.3671208093174572,
-                1.485443638492447,
-                0,
-                2
-            ],
-            "measures": [
-                0.21568446763652868,
-                0.43504834443079554
-            ],
-            "markers": [
-                1.6696273680813452
-            ]
-        },
-        {
-            "id": "FRIENDS",
-            "ranges": [
-                0,
-                1,
-                38,
-                0,
-                1,
-                27,
-                0,
-                40
-            ],
-            "measures": [
-                10
-            ],
-            "markers": [
-                32
-            ]
-        },
-        {
-            "id": "ROCKIN",
-            "ranges": [
-                6962,
-                48038,
-                415093,
-                0,
-                500000
-            ],
-            "measures": [
-                24233,
-                181784
-            ],
-            "markers": [
-                389124
-            ]
-        },
-        {
-            "id": "ROCKIN",
-            "ranges": [
-                0,
-                8,
-                1,
-                0,
-                9
-            ],
-            "measures": [
-                6
-            ],
-            "markers": [
-                5.812582440603217,
-                5.731667684129301
-            ]
-        }
-    ]
+    const categoryFilter = (keyWord) => tasks.map(task => { return task.category });
+
+    const categories = categoryFilter(tasks)
+    console.log("categories", categories)
+    const uniqueArr = (array) => array.filter((element, index) => {
+        return array.indexOf(element) === index;
+    });
+    const uniqueCategories = uniqueArr(categories);
+    const progressData = uniqueCategories.map((category, i) => {
+        return getProgressData(tasks, category)
+    })
+    const uniqueProgressData = uniqueArr(progressData);
+
+    console.log("progressData", uniqueProgressData);
+
+
 
     return (
         <div id="app" className="parent" >
@@ -215,7 +144,9 @@ const Goal = () => {
                 </div>
             </div>
             <div className="box follower"></div>
-            <div className="box tasklist"><MyBarCharts data={progressData} /></div>
+            <div className="box tasklist">
+                <MyBarCharts data={uniqueProgressData} />
+            </div>
             <div className="box teamlist">
 
             </div>
