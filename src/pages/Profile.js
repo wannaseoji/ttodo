@@ -31,7 +31,7 @@ export default function Profile() {
             className="profile"
             alt="Remy Sharp"
             src={image}
-            sx={{ width: "50px", height: "50px" }} />
+            sx={{ width: "70px", height: "70px" }} />
         </ListItemAvatar>
         <ListItemText
           primary={
@@ -48,7 +48,7 @@ export default function Profile() {
                 sx={{ display: 'inline' }}
                 component="p"
                 variant="caption"
-                color="grey"
+                color="#555555"
               >
                 {email}
               </Typography>
@@ -57,10 +57,14 @@ export default function Profile() {
           secondary={
             <React.Fragment>
               <Typography
-                sx={{ display: 'inline' }}
+                sx={{ display: 'inline-block', 
+                      width: '23vw', 
+                      overflow: 'hidden',
+                      textOverflow:'ellipsis',
+                      whiteSpace:'nowrap'}}
                 component="span"
                 variant="body2"
-                color="black"
+                color="#555555"
               >
                 {intro}
               </Typography>
@@ -68,7 +72,7 @@ export default function Profile() {
             </React.Fragment>
           }
         />
-        <BiDotsVerticalRounded
+        <BiDotsVerticalRounded size={25} color="#D9D9D9"
           onClick={() =>  //프로필을 수정하는 아이콘 여기서 프로필을 수정하게 하면 될듯
           { setIdx(idx + 1); }} />
       </ListItem>
