@@ -11,13 +11,13 @@ const MyResponsivePie = ({ data, length /* see data tab */ }) => (
     <ResponsivePie
         length={length}
         data={data}
-        margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+        margin={{ top: 0, right: 80, bottom: 80, left: 80 }}
         innerRadius={0.5}
         padAngle={1}
         cornerRadius={3}
         activeOuterRadiusOffset={8}
-        colors={{ scheme: 'nivo' }}
-        borderWidth={1}
+        colors={{ scheme: 'red_purple' }}
+        borderWidth={4}
         borderColor={{
             from: 'color',
             modifiers: [
@@ -27,17 +27,40 @@ const MyResponsivePie = ({ data, length /* see data tab */ }) => (
                 ]
             ]
         }}
-        arcLinkLabelsSkipAngle={10}
-        arcLinkLabelsTextColor={{ from: 'color', modifiers: [] }}
-        arcLinkLabelsThickness={2}
-        arcLinkLabelsColor={{ from: 'color', modifiers: [] }}
+        theme={{
+            /**
+             * label style (pad에 표현되는 글씨)
+             */
+            labels: {
+                text: {
+                    fontSize: 15,
+                    fill: '#000000',
+                },
+            },
+            /**
+             * legend style (default로 하단에 있는 색상별 key 표시)
+             */
+            legends: {
+                text: {
+                    fontSize: 30,
+                    fill: '#000000',
+                },
+            },
+        }}
+        enableArcLabels={false}
+        arcLinkLabelsSkipAngle={0}
+        arcLinkLabelsTextColor={{ from: 'rgba(255, 255, 255, 0.3)', modifiers: [] }}
+        arcLinkLabelsTex
+        arcLinkLabelsThickness={5}
+        arcLinkLabelsColor={{ from: 'rgba(255, 255, 255, 0.3)', modifiers: [] }}
+        arcLinkLabelsDiagonalLength={0}
         arcLabelsSkipAngle={10}
         arcLabelsTextColor={{
             from: 'color',
             modifiers: [
                 [
                     'darker',
-                    2
+                    5
                 ]
             ]
         }}
@@ -45,8 +68,8 @@ const MyResponsivePie = ({ data, length /* see data tab */ }) => (
             {
                 id: 'dots',
                 type: 'patternDots',
-                background: 'inherit',
-                color: 'rgba(255, 255, 255, 0.3)',
+                background: "#f768a1", //배경색
+                color: '#f768a1',
                 size: 4,
                 padding: 1,
                 stagger: true
@@ -54,73 +77,40 @@ const MyResponsivePie = ({ data, length /* see data tab */ }) => (
             {
                 id: 'lines',
                 type: 'patternLines',
-                background: 'inherit',
+                background: '#eeeeee',
                 color: 'rgba(255, 255, 255, 0.3)',
                 rotation: -45,
                 lineWidth: 6,
                 spacing: 10
             }
         ]}
-        fill={[
+        fill={[ //채우기 속성
             {
                 match: {
-                    id: 'ruby'
+                    id: '완료'
                 },
                 id: 'dots'
             },
             {
                 match: {
-                    id: 'c'
+                    id: '미완료'
                 },
-                id: 'dots'
+                id: 'lines',
+
             },
-            {
-                match: {
-                    id: 'go'
-                },
-                id: 'dots'
-            },
-            {
-                match: {
-                    id: 'python'
-                },
-                id: 'dots'
-            },
-            {
-                match: {
-                    id: 'scala'
-                },
-                id: 'lines'
-            },
-            {
-                match: {
-                    id: 'lisp'
-                },
-                id: 'lines'
-            },
-            {
-                match: {
-                    id: 'elixir'
-                },
-                id: 'lines'
-            },
-            {
-                match: {
-                    id: 'javascript'
-                },
-                id: 'lines'
-            }
+
         ]}
         legends={[
             {
-                anchor: 'bottom',
-                direction: 'row',
+
+                anchor: 'bottom-left',
+                direction: 'column', //차트아래에 표시되는것
                 justify: false,
                 translateX: 0,
-                translateY: 56,
+                translateY: 0,
                 itemsSpacing: 0,
-                itemWidth: 100,
-                itemHeight: 18,
+                itemWidth: 50,
+                itemHeight: 30,
                 itemTextColor: '#999',
                 itemDirection: 'left-to-right',
                 itemOpacity: 1,
