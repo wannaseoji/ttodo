@@ -10,7 +10,7 @@ function Team({ data }) {
     return (
         <Card style={{ backgroundColor: "#FFE2E9", margin: "15px"}} sx={{ maxWidth: 190, minWidth: 190, maxHeight: 212, minHeight: 212 , borderRadius: 3 }} >
             <CardContent>
-                <Typography component="div" align="left" sx={{fontWeight: 'bold'}}>
+                <Typography component={"span"} align="left" sx={{fontWeight: 'bold'}}>
                     <b style={{color:"#555555", fontSize:"19px"}}>{data.name}</b>
                 </Typography>
 
@@ -20,7 +20,7 @@ function Team({ data }) {
                 </ChakraProvider>
 
                 <div style={{padding:"3px"}}></div>
-                <Typography variant="body2">
+                <Typography component={"span"} variant="body2">
                     {data.notice.map((v, i) => 
                         <div align="left" key={i} >
                             <div style={{float:"left"}}><button><MdPushPin /></button></div>
