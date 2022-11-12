@@ -3,7 +3,7 @@
         "id": "wannaseo",
         "category": "Study",
         "title": "설계패턴 대면",
-        "date": "2022-10-31",
+        "date": "2022-11-13",
         "hour": "10",
         "minute": "30",
         "check": false
@@ -12,7 +12,7 @@
         "id": "wannaseo",
         "category": "Study",
         "title": "성공성공성공🍕",
-        "date": "2022-10-31",
+        "date": "2022-11-13",
         "hour": "23",
         "minute": "55",
         "check": false
@@ -21,25 +21,25 @@
         "id": "wannaseo",
         "category": "Friend",
         "title": "쉬는 시간",
-        "date": "2022-10-31",
-        "hour": "12",
-        "minute": "30",
-        "check": false
+        "date": "2022-11-13",
+        "hour": "none", 
+        "minute":"none",
+        "check":false
     },
     {
         "id": "wannaseo",
         "category": "Friend",
         "title": "운동운동",
-        "date": "2022-10-31",
-        "hour": "7",
-        "minute": "50",
+        "date": "2022-11-13",
+        "hour": "none",
+        "minute": "none",
         "check": false
     },
     {
         "id": "wannaseo",
         "category": "Study",
         "title": "쉬는 시간22",
-        "date": "2022-10-31",
+        "date": "2022-11-13",
         "hour": "14",
         "minute": "45",
         "check": false
@@ -48,7 +48,7 @@
         "id": "wannaseo",
         "category": "Exercise",
         "title": "집 가는 시간",
-        "date": "2022-10-31",
+        "date": "2022-11-13",
         "hour": "19",
         "minute": "00",
         "check": false
@@ -57,7 +57,7 @@
         "id": "wannaseo",
         "category": "Exercise",
         "title": "잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,잘래,,,",
-        "date": "2022-10-31",
+        "date": "2022-11-13",
         "hour": "7",
         "minute": "47",
         "check": false

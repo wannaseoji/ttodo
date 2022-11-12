@@ -7,12 +7,11 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
-//import {BsCheckCircleFill} from 'react-icons/fa';
 import { AiOutlineCheckCircle, AiFillCheckCircle } from 'react-icons/ai';
 import { SlOptionsVertical } from 'react-icons/sl';
 import { IoMdAddCircleOutline } from "react-icons/io";
 
-export default function TaskList({ tasks = [], onCheck = f => f, onModal = f => f }) {
+export default function TaskList({ tasks = [], onCheck = f => f, onModal = f => f , onAddTaskModal = f => f}) {
 
     return (
         <List sx={{ width: '95vw', left: '50%', transform: 'translateX(-50%)', bgcolor: 'background.paper' }}>
@@ -27,7 +26,7 @@ export default function TaskList({ tasks = [], onCheck = f => f, onModal = f => 
                 }}>
                     카테고리 이름
                 </span>
-                <IconButton sx={{ float: "right" }} style={{ color: "#FF9AB5", maxWidth: "10%" }} aria-label="addTask" onClick={onModal}>
+                <IconButton sx={{ float: "right" }} style={{ color: "#FF9AB5", maxWidth: "10%" }} aria-label="addTask" onClick={onAddTaskModal}>
                     <IoMdAddCircleOutline size='3vh' />
                 </IconButton>
             </div>

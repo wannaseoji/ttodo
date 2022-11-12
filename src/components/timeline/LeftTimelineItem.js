@@ -7,11 +7,9 @@ import RightTimelineItem from './RightTimelineItem'
 
 // Timeline에서 왼쪽에 적힌 ~:00
 const LeftTimelineItem = function({tasks,hour,nowHour}){
-    console.log("hour:"+hour);
-    console.log("nowHour:"+nowHour);
     return(
         <TimelineItem>
-            <TimelineOppositeContent style={{flex:0.1, fontWeight:(nowHour==hour)?"bold":"normal", color:(nowHour>hour)?"grays":"black"}}>{hour}:00</TimelineOppositeContent>
+            <TimelineOppositeContent key={hour} style={{flex:0.1, fontWeight:(nowHour==hour)?"bold":"normal", color:(nowHour>hour)?"grays":"black"}}>{hour}:00</TimelineOppositeContent>
             <TimelineSeparator>
                 <TimelineDot />
                 <TimelineConnector />
