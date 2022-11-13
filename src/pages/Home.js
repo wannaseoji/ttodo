@@ -76,7 +76,7 @@ const Home = () => {
         setTasks(newTasks)
     }
 
-
+    //팀 카드 3개이하 저장
     const teamCard = [];
     function initTeamCard() {
         for (let i = 0; i < teams.length && i < 3; i++) {
