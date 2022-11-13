@@ -10,11 +10,13 @@ import IconButton from '@mui/material/IconButton';
 import { AiOutlineCheckCircle, AiFillCheckCircle } from 'react-icons/ai';
 import { SlOptionsVertical } from 'react-icons/sl';
 import { IoMdAddCircleOutline } from "react-icons/io";
+import Scrollbars from 'react-custom-scrollbars';
 
 export default function TaskList({ tasks = [], onCheck = f => f, onModal = f => f , onAddTaskModal = f => f}) {
 
     return (
-        <List sx={{ width: '95vw', left: '50%', transform: 'translateX(-50%)', bgcolor: 'background.paper' }}>
+        <Scrollbars style={{height:'100%', backgroundColor:"#F0F0F0", borderRadius:"0px 0px 10px 10px"}}>
+        <List sx={{ width: '100%', left: '50%', transform: 'translateX(-50%)', bgcolor: 'background.paper' }}>
             <div width='95vw'>
                 <span style={{
                     display: "inline-block",
@@ -30,6 +32,7 @@ export default function TaskList({ tasks = [], onCheck = f => f, onModal = f => 
                     <IoMdAddCircleOutline size='3vh' />
                 </IconButton>
             </div>
+            
             {tasks.map((value, i) => {
                 const labelId = `checkbox-list-label-${i}`;
                 console.log(`tasks.map 안의 value : ${value}`);
@@ -65,5 +68,6 @@ export default function TaskList({ tasks = [], onCheck = f => f, onModal = f => 
                 );
             })}
         </List>
+        </Scrollbars>
     );
 }
