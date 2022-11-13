@@ -2,14 +2,12 @@
 const getProgressData = (tasks, category) => {
 
 
-
-
     const categoryNum = tasks.filter(task =>
         task.category === category
     ).length
 
     const categoryTrue = tasks.filter(task => {
-        return (task.category === category) || (task.check === true)
+        return (task.category === category) && (task.check === true)
     }).length
 
     console.log("in getProgress categoryNum:", categoryNum)
@@ -20,10 +18,11 @@ const getProgressData = (tasks, category) => {
         "id": category,
         "ranges": [
             0,
-            categoryTrue
+            categoryNum,
+
         ],
         "measures": [
-            categoryNum
+            categoryTrue
 
         ],
         "markers": [

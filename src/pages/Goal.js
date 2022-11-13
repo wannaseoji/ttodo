@@ -70,11 +70,12 @@ const Goal = () => {
     const categoryFilter = (keyWord) => tasks.map(task => { return task.category });
 
     const categories = categoryFilter(tasks)
-    console.log("categories", categories)
+
     const uniqueArr = (array) => array.filter((element, index) => {
         return array.indexOf(element) === index;
     });
     const uniqueCategories = uniqueArr(categories);
+    console.log("uniqueCategories", uniqueCategories)
     const progressData = uniqueCategories.map((category, i) => {
         return getProgressData(tasks, category)
     })
