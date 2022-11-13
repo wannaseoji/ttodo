@@ -17,6 +17,7 @@ import React, { useState, useEffect } from "react";
 import TaskList from '../components/TaskList';
 import taskData from '../assets/task-data.json';
 import Modal from '../components/Modal';
+import AddTaskModal from "../components/modal/AddTaskModal";
 import teamData from "../assets/team.json"
 //import { Link } from "react-router-dom";
 import StyledListItem from "../styles/linkStyle";
@@ -33,6 +34,7 @@ const Home = () => {
     const [tasks, setTasks] = useState(taskData);
     useEffect(() => setTasks(taskData), [taskData]);
     const [modalOpen, setModalOpen] = useState(false); // Options Modal 창 open, close State 확인
+    const [addTaskModalOpen, setAddTaskModalOpen] = useState(false); // AddTask Modal 창 open, close State 확인
 
     // Task check 변경
     const onCheckTask = (index) => {
@@ -58,6 +60,23 @@ const Home = () => {
         openModal();
     }
 
+    const openAddTaskModal = () => {
+        setAddTaskModalOpen(true);
+    };
+    const closeAddTaskModal = () => {
+        setAddTaskModalOpen(false);
+    };
+    const onShowAddTaskModal = () => {
+        openAddTaskModal();
+    }
+
+    const onNewTask = function(id, category, title, date, hour, minute){ // id, category, title, date, hour, minute, check
+        console.log("new task 추가")
+        const newTasks = [...tasks, {id, category, title, date, hour, minute, check:false}]
+        setTasks(newTasks)
+    }
+
+    //팀 카드 3개이하 저장
     const teamCard = [];
     function initTeamCard() {
         for (let i = 0; i < teams.length && i < 3; i++) {
@@ -146,7 +165,9 @@ const Home = () => {
                     tasks={tasks}
                     onCheck={onCheckTask}
                     onModal={onShowModal}
+                    onAddTaskModal = {onShowAddTaskModal}
                 />
+                <AddTaskModal open={addTaskModalOpen} close={closeAddTaskModal} onNewTask={onNewTask} header="일정 추가" category="Study"/>
                 <Modal open={modalOpen} close={closeModal} header="Options" />
             </div>
             <div className="box teamlist">

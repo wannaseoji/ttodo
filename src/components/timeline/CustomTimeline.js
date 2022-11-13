@@ -9,9 +9,14 @@ import LeftTimelineItem from './LeftTimelineItem'
 import Scrollbars from 'react-custom-scrollbars';
 
 const CustomTimeLine = function({tasks=[]}){
-    const distinctHours = DistinctHours(tasks);
     const date = new Date();
     const nowHour = date.getHours(); // 현재 시간
+    const today = date.getFullYear()+"-"+('0' + (date.getMonth() + 1)).slice(-2)+"-"+('0' + date.getDate()).slice(-2); // 2022-11-04
+
+    const todayTasks = tasks.filter(({date,hour})=>date===today&&hour!=="none") // 당일에 해당하는 task로만 필터링
+    const distinctHours = DistinctHours(todayTasks); // 일정 있는 시간 그리기
+   
+    // console.log(todayTasks)
 
     return(
         <div className="TodayAppointment" style={{padding:"2px"}}>
@@ -20,7 +25,7 @@ const CustomTimeLine = function({tasks=[]}){
                 <Timeline align="left">
                     {distinctHours.map(
                         (hour,i) =>(
-                            <LeftTimelineItem tasks={tasks} hour={hour} nowHour={nowHour}/> 
+                            <LeftTimelineItem key={i} tasks={todayTasks} hour={hour} nowHour={nowHour}/> 
                         )
                     )}
 
@@ -48,7 +53,7 @@ const DistinctHours = function(tasks=[]){
         distinct : [...distinct, hour],
         []
     )
-    console.log(distinctHours);
+    // console.log(distinctHours);
     return distinctHours.sort(function (a, b) { return Number(a)-Number(b) });
     // return distinctHours.sort();
 }

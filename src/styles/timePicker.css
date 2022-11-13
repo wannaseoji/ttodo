@@ -1,0 +1,14 @@
+/* input[type=time] {
+    color: #2a2c2d;
+    font-size: 14px;
+    font-family: helvetica;
+    width: 11.5em;
+    padding:5px;
+  } */
+
+input[type="time"] { margin-left: 1em; width: 11.5em; padding: .3em 1em; border-radius: .25rem; border: 1px solid #555555 }
+input[type="time"]:focus-within { outline: 0; border: 2px solid #FF9AB5}
+
+input[type="time"]:valid {
+  color:black
+}

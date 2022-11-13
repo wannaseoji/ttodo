@@ -38,16 +38,16 @@ export default function Profile() {
             <React.Fragment>
               <Typography
                 sx={{ display: 'inline', fontWeight: 'bold' }}
-                component="span"
-                variant="h6"
+                component={'span'}
+                variant={"h6"}
                 color="#FF9AB5"
               >
                 {`${name}`}
               </Typography>
               <Typography
                 sx={{ display: 'inline' }}
-                component="p"
-                variant="caption"
+                component={'span'}
+                variant={'caption'}
                 color="#555555"
               >
                 {email}
@@ -62,13 +62,12 @@ export default function Profile() {
                       overflow: 'hidden',
                       textOverflow:'ellipsis',
                       whiteSpace:'nowrap'}}
-                component="span"
-                variant="body2"
+                component={'span'}
+                variant={'body2'}
                 color="#555555"
               >
                 {intro}
               </Typography>
-
             </React.Fragment>
           }
         />
