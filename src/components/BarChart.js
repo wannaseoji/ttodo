@@ -11,16 +11,19 @@ const MyBarCharts = ({ data /* see data tab */ }) => (
     <ResponsiveBullet
         data={data}
         margin={{ top: 50, right: 90, bottom: 50, left: 90 }}
-        spacing={37}
+        spacing={25}
         titleAlign="start"
         titleOffsetX={-70}
         rangeBorderColor={{ from: 'color', modifiers: [] }}
         measureBorderColor="#000000"
+        measureBorderWidth={0}
         measureSize={0.45}
         markerSize={0}
-        rangeColors="nivo"
-        measureColors="blues"
+        rangeColors="#F5F5F5"
+        measureColors="#FFE2E9"
         markerColors="paired"
+        theme={{ fontSize: 20 }}
+
     />
 )
 export default MyBarCharts;

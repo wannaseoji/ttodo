@@ -17,7 +17,7 @@ body {
 }
 
 .parent {
-    background-color: #F5F5F5;
+
     height: 100%;
     display: grid;
     grid-template-areas:
