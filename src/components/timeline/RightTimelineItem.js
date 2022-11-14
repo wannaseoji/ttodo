@@ -1,7 +1,13 @@
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 
-const RightTimelineItem = function(filteredTasks=[],mainHour,nowHour){
+const RightTimelineItem = function(todayTasks,mainHour,nowHour){
+    const filteredTasks = todayTasks.filter(function(task){
+        return task.hour==mainHour;
+    }).sort((a,b)=>(Number(a.minute)-Number(b.minute)))
+    console.log(filteredTasks)
+    console.log(mainHour)
+
     if(mainHour==nowHour){ // 현재 시간 = mainHour 인 경우 핑크색으로 표시
         return(
             <TimelineContent sx={{ py: '12px', px: 2, paddingTop:"10%", paddingBottom:"5%" }}>

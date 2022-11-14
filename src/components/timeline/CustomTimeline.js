@@ -5,8 +5,9 @@ import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import TimelineDot from '@mui/lab/TimelineDot';
-import LeftTimelineItem from './LeftTimelineItem'
 import Scrollbars from 'react-custom-scrollbars';
+import { TimelineConnector } from '@mui/lab';
+import RightTimelineItem from './RightTimelineItem';
 
 const CustomTimeLine = function({tasks=[]}){
     const date = new Date();
@@ -15,19 +16,29 @@ const CustomTimeLine = function({tasks=[]}){
 
     const todayTasks = tasks.filter(({date,hour})=>date===today&&hour!=="none") // 당일에 해당하는 task로만 필터링
     const distinctHours = DistinctHours(todayTasks); // 일정 있는 시간 그리기
-   
-    // console.log(todayTasks)
+    const hours = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
 
     return(
         <div className="TodayAppointment" style={{padding:"2px"}}>
             <header style={{textAlign:"left", backgroundColor:"#DFDFDF", minWidth:"300px", width:"30vw", padding:"1em 0em",borderRadius:"10px 10px 0px 0px"}}><span style={{fontWeight:"700", paddingLeft:"2em"}}>Today Appointment</span></header>
             <Scrollbars style={{minWidth:"300px", width: "30vw", height: "70vh", backgroundColor:"#F0F0F0", borderRadius:"0px 0px 10px 10px"}}>
                 <Timeline align="left">
-                    {distinctHours.map(
-                        (hour,i) =>(
-                            <LeftTimelineItem key={i} tasks={todayTasks} hour={hour} nowHour={nowHour}/> 
+                    {
+                        hours.map(
+                            (hour,i)=>(<TimelineItem key={i}>
+                                <TimelineOppositeContent style={{flex:(hour<10)?0.115:0.1, fontWeight:(nowHour==hour)?"bold":"normal", color:(nowHour==hour)?"#FF9AB5":(nowHour>hour)?"grey":"black"}}>{hour}:00</TimelineOppositeContent>
+                                <TimelineSeparator>
+                                    <TimelineDot />
+                                    <TimelineConnector />
+                                </TimelineSeparator>
+                                {console.log()}
+                                {console.log(hour)}
+                                {(distinctHours.indexOf(hour.toString())<0)? <TimelineContent/>:RightTimelineItem(todayTasks,hour,nowHour)}
+                                
+                            </TimelineItem>)
                         )
-                    )}
+                    }
+                    
 
                     {/* 선 끝에 점 생성하기*/}
                     <TimelineItem>
