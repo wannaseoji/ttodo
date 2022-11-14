@@ -48,6 +48,9 @@ const Home = () => {
         setTasks(newTasks);
     }
 
+    //Team task check 변경
+
+
     // Modal open close setting 하기
     const openModal = () => {
         setModalOpen(true);

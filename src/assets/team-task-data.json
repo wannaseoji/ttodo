@@ -1,0 +1,72 @@
+[
+    {
+        "name":"RockIn",
+        "myTask": [
+            {
+                "title":"고모프 6주차 녹강듣기",
+                "date":"2022-11-13",
+                "hour": "10",
+                "minute": "30",
+                "check": false,
+                "reletedMembers": ["user1", "user2", "user3"]},
+            {
+                "title":"고모프 7주차 녹강듣기",
+                "date":"2022-11-13",
+                "hour": "11",
+                "minute": "30",
+                "check": false,
+                "reletedMembers": ["user1", "user2"]}
+        ],
+        "otherTask": [
+            {
+                "title":"시프 6주차 녹강듣기",
+                "date":"2022-11-13",
+                "hour": "10",
+                "minute": "30",
+                "check": false,
+                "reletedMembers": ["user1", "user2", "user3"]},
+            {
+                "title":"시프 7주차 녹강듣기",
+                "date":"2022-11-13",
+                "hour": "11",
+                "minute": "30",
+                "check": false,
+                "reletedMembers": ["user1", "user2"]}
+        ]
+    },
+    {
+        "name":"폼생폼사",
+        "myTask": [
+            {
+                "title":"설패 6주차 녹강듣기",
+                "date":"2022-11-13",
+                "hour": "10",
+                "minute": "30",
+                "check": false,
+                "reletedMembers": ["user4", "user5", "user6"]},
+            {
+                "title":"설패 7주차 녹강듣기",
+                "date":"2022-11-13",
+                "hour": "11",
+                "minute": "30",
+                "check": false,
+                "reletedMembers": ["user4", "user5"]}
+        ],
+        "otherTask": [
+            {
+                "title":"네프 6주차 녹강듣기",
+                "date":"2022-11-13",
+                "hour": "10",
+                "minute": "30",
+                "check": false,
+                "reletedMembers": ["user4", "user5", "user3"]},
+            {
+                "title":"네프 7주차 녹강듣기",
+                "date":"2022-11-13",
+                "hour": "11",
+                "minute": "30",
+                "check": false,
+                "reletedMembers": ["user4", "user5"]}
+        ]
+    }
+]

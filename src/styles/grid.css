@@ -78,6 +78,11 @@ body {
     grid-area: teamlist;
 }
 
+.notice {
+    grid-area: teamlist;
+    flex-direction:column;
+}
+
 .seo_nav {
     /* display: block; */
     position: relative;

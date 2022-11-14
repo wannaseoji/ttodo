@@ -27,12 +27,15 @@ import { GiStairsGoal } from 'react-icons/gi' //GiStairsGoal, IoPersonOutline
 import { IoPersonOutline } from 'react-icons/io5' //GiStairsGoal, IoPersonOutline,BsPeople
 import { BsPeople } from 'react-icons/bs' //GiStairsGoal, IoPersonOutline,BsPeople
 import { useNavigate } from "react-router-dom";
-
-
-
+import {BsPlusCircleFill} from "react-icons/bs";
+import { textAlign, width } from "@mui/system";
+import { AiOutlinePlus } from 'react-icons/ai';
+import TeamEditList from "../components/TeamEditList"
+import Notice from "../components/Notice";
 
 const TeamLink = () => {
     const navigate = useNavigate();
+    const [modalOpen, setModalOpen] = useState(false); // Options Modal 창 open, close State 확인
 
     const OnGoalClick = () => {
         navigate('/Goal', {});
@@ -46,6 +49,19 @@ const TeamLink = () => {
     const OnMyTaskClick = () => {
         navigate("/MyTask", {});
     }
+    // Modal open close setting 하기
+    const openModal = () => {
+        setModalOpen(true);
+    };
+    const closeModal = () => {
+        setModalOpen(false);
+    };
+
+    const onShowModal = () => {
+        openModal();
+    }
+
+
     return (
         <div id="app" className="parent" >
             <div className="box menu" >
@@ -100,13 +116,16 @@ const TeamLink = () => {
             </div >
             <div className="box profile"><Profile /></div>
             <div className="box content">
+                <TeamEditList onShowModal={onShowModal} />
+                <Modal open={modalOpen} close={closeModal} header="Options" />
             </div>
             <div className="box follower">팔로워</div>
             <div className="box tasklist">
 
             </div>
-            <div className="box teamlist">
 
+            <div className="box notice">
+                <Notice />
             </div>
         </div >
     );
