@@ -16,6 +16,7 @@ import CustomTimeLine from "../components/timeline/CustomTimeline";
 import React, { useState, useEffect } from "react";
 import TaskList from '../components/TaskList';
 import taskData from '../assets/task-data.json';
+import teamTaskData from '../assets/team-task-data.json'
 import Modal from '../components/Modal';
 import AddTaskModal from "../components/modal/AddTaskModal";
 import teamData from "../assets/team.json"
@@ -29,7 +30,7 @@ import { BsPeople } from 'react-icons/bs' //GiStairsGoal, IoPersonOutline,BsPeop
 import { useNavigate } from 'react-router';
 
 const Home = () => {
-
+    const [teamTask, setTeamTask] = useState(teamTaskData)
     const [teams, setTeams] = useState(teamData);
     const [tasks, setTasks] = useState(taskData);
     useEffect(() => setTasks(taskData), [taskData]);
@@ -49,6 +50,10 @@ const Home = () => {
     }
 
     //Team task check 변경
+
+    //Team화면 Data
+
+    //Team 화면
 
 
     // Modal open close setting 하기
@@ -89,21 +94,19 @@ const Home = () => {
 
 
     const navigate = useNavigate();
-
     const OnGoalClick = () => {
-        navigate('/Goal', { state: tasks });
+        navigate('/Goal', { state: {tasks, teams, teamTask}});
     }
     const OnHomeClick = () => {
-        navigate("/", { state: tasks });
+        navigate("/",  { state: {tasks, teams, teamTask}});
     }
     const OnTeamClick = () => {
-        navigate("/TeamLink", { state: tasks });
+        navigate("/TeamLink", { state: {tasks, teams, teamTask}});
     }
     const OnMyTaskClick = () => {
-        navigate("/MyTask", { state: tasks });
+        navigate("/MyTask",  { state: {tasks, teams, teamTask}});
     }
     // 버튼 클릭시 호출
-
 
 
     return (

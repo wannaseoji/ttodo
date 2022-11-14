@@ -35,15 +35,15 @@ const Goal = () => {
         navigate("/", {});
     }
     const OnTeamClick = () => {
-        navigate("/TeamLink", {});
+        navigate('/TeamLink', { state: {tasks, teams, teamTask}});
     }
     const OnMyTaskClick = () => {
         navigate("/MyTask", {});
     }
     const location = useLocation();
-    const tasks = location.state;
+    const {tasks ,teams, teamTask} = location.state;
 
-
+    
 
     //const numOftasks = tasks;
     //console.log(numOftasks)

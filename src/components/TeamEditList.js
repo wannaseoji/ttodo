@@ -1,11 +1,11 @@
 import Team from "../components/Team";
 import { useState } from "react";
-import teamData from "../assets/team.json";
 import {BsPlusCircleFill} from "react-icons/bs";
 import {GoChevronLeft} from "react-icons/go";
 import {GoChevronRight} from "react-icons/go";
+// import teamData from "../assets/team.json"
 
-function TeamEditList({onShowModal}) {
+function TeamEditList({onShowModal, teamData}) {
     
     const [teams, setTeams] = useState(teamData);
 

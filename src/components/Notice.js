@@ -1,11 +1,11 @@
 
 import { useState } from "react";
-import teamData from "../assets/team.json";
+// import teamData from "../assets/team.json";
 import { AiOutlinePlus } from 'react-icons/ai';
 import {GoChevronLeft} from "react-icons/go";
 import {GoChevronRight} from "react-icons/go";
 
-function Notice() {
+function Notice({teamData}) {
     //팀 목록에서 클릭한 팀을 나타낸다. 
     const [currentTeam, setCurrentTeam] = useState(teamData[0]);
     const [notice, setNotice] = useState(currentTeam.notice)

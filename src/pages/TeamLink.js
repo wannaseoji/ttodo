@@ -13,12 +13,11 @@ import Team from "../components/Team";
 import Profile from "./Profile";
 
 import CustomTimeLine from "../components/timeline/CustomTimeline";
-
 import React, { useState, useEffect } from "react";
 import TaskList from '../components/TaskList';
-import taskData from '../assets/task-data.json';
+// import taskData from '../assets/task-data.json';
 import Modal from '../components/Modal';
-import teamData from "../assets/team.json"
+// import teamData from "../assets/team.json"
 //import { Link } from "react-router-dom";
 import StyledListItem from "../styles/linkStyle";
 import PinkLink from '../styles/pinkLink';
@@ -26,19 +25,21 @@ import { VscHome } from 'react-icons/vsc' //GiStairsGoal
 import { GiStairsGoal } from 'react-icons/gi' //GiStairsGoal, IoPersonOutline
 import { IoPersonOutline } from 'react-icons/io5' //GiStairsGoal, IoPersonOutline,BsPeople
 import { BsPeople } from 'react-icons/bs' //GiStairsGoal, IoPersonOutline,BsPeople
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import {BsPlusCircleFill} from "react-icons/bs";
 import { textAlign, width } from "@mui/system";
 import { AiOutlinePlus } from 'react-icons/ai';
 import TeamEditList from "../components/TeamEditList"
 import Notice from "../components/Notice";
+import TeamModal from "../components/TeamModal";
+import { useLocation } from 'react-router-dom';
 
 const TeamLink = () => {
     const navigate = useNavigate();
     const [modalOpen, setModalOpen] = useState(false); // Options Modal 창 open, close State 확인
 
     const OnGoalClick = () => {
-        navigate('/Goal', {});
+        navigate('/Goal', { state: {tasks, teams, teamTask}});
     }
     const OnHomeClick = () => {
         navigate("/", {});
@@ -61,6 +62,27 @@ const TeamLink = () => {
         openModal();
     }
 
+    //내 코드 시작
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+    const onShow = () => {
+        handleClickOpen();
+    }
+    //내 코드 끝
+
+    const location = useLocation();
+
+    //teamState: team.json, teamTaskState: team-task-data.json
+    const {tasks ,teams, teamTask} = location.state;
+    console.log(teams);
+    console.log(teamTask);
 
     return (
         <div id="app" className="parent" >
@@ -116,8 +138,8 @@ const TeamLink = () => {
             </div >
             <div className="box profile"><Profile /></div>
             <div className="box content">
-                <TeamEditList onShowModal={onShowModal} />
-                <Modal open={modalOpen} close={closeModal} header="Options" />
+                <TeamEditList onShowModal={onShow} teamData={teams}/>
+                <TeamModal open={open} close={handleClose} />
             </div>
             <div className="box follower">팔로워</div>
             <div className="box tasklist">
@@ -125,7 +147,7 @@ const TeamLink = () => {
             </div>
 
             <div className="box notice">
-                <Notice />
+                <Notice teamData={teams}/>
             </div>
         </div >
     );
