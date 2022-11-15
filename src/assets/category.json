@@ -1,18 +1,18 @@
 [
     {
-        "teamMember":["i1.jpg"],
+        "teamMember":["park.jpg"],
         "task":[ "웹프레임워크1"]
     },
     {
-        "teamMember":["i1.jpg","i2.png"],
+        "teamMember":["park.jpg","kim.jpg"],
         "task":[ "웹프레임워크1", "고급모바일프로그래밍"]
     },
     {
-        "teamMember": ["i1.jpg","i2.png","i3.jpg"],
+        "teamMember": ["park.jpg","kim.jpg","cho.jpg"],
         "task": [ "웹프레임워크1", "고급모바일프로그래밍", "가상현실"]
     },
     {
-        "teamMember": ["i1.jpg","i2.png","i3.jpg", "i4.jpg"],
+        "teamMember": ["park.jpg","kim.jpg","cho.jpg", "seo.jpg"],
         "task": [ "웹프레임워크1", "고급모바일프로그래밍", "가상현실", "데이터베이스 설계"]
     }
 ]

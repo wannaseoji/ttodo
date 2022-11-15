@@ -1,56 +1,37 @@
 [
     {
-        "name":"WebFrameWork1",
-        "image":"i3.jpg",
+        "name":"park",
+        "image":"park.jpg",
         "intro":"열시미하겠습니다.11, 열시미하겠습니다.11, 열시미하겠습니다.11",        
         "email":"hasnunf@naver.com"
     },
     {
-        "name":"WebFrameWork2",
-        "image":"i4.jpg",
+        "name":"kim",
+        "image":"kim.jpg",
         "intro":"열시미하겠습니다.22",
         "email":"hasnunf@naver.com"
     },
     {
-        "name":"WebFrameWork1",
-        "image":"i3.jpg",
+        "name":"cho",
+        "image":"cho.jpg",
         "intro":"열시미하겠습니다.11, 열시미하겠습니다.11, 열시미하겠습니다.11",        
         "email":"hasnunf@naver.com"
     },
     {
-        "name":"WebFrameWork1",
-        "image":"i3.jpg",
-        "intro":"열시미하겠습니다.11, 열시미하겠습니다.11, 열시미하겠습니다.11",        
-        "email":"hasnunf@naver.com"
-    },
-
-    {
-        "name":"WebFrameWork1",
-        "image":"i3.jpg",
+        "name":"seo",
+        "image":"seo.jpg",
         "intro":"열시미하겠습니다.11, 열시미하겠습니다.11, 열시미하겠습니다.11",        
         "email":"hasnunf@naver.com"
     },
     {
-        "name":"WebFrameWork1",
-        "image":"i3.jpg",
+        "name":"cho",
+        "image":"cho.jpg",
         "intro":"열시미하겠습니다.11, 열시미하겠습니다.11, 열시미하겠습니다.11",        
         "email":"hasnunf@naver.com"
     },
     {
-        "name":"WebFrameWork1",
-        "image":"i3.jpg",
-        "intro":"열시미하겠습니다.11, 열시미하겠습니다.11, 열시미하겠습니다.11",        
-        "email":"hasnunf@naver.com"
-    },
-    {
-        "name":"WebFrameWork1",
-        "image":"i3.jpg",
-        "intro":"열시미하겠습니다.11, 열시미하겠습니다.11, 열시미하겠습니다.11",        
-        "email":"hasnunf@naver.com"
-    },
-    {
-        "name":"WebFrameWork1",
-        "image":"i3.jpg",
+        "name":"seo",
+        "image":"seo.jpg",
         "intro":"열시미하겠습니다.11, 열시미하겠습니다.11, 열시미하겠습니다.11",        
         "email":"hasnunf@naver.com"
     }
