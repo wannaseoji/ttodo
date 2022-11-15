@@ -68,6 +68,7 @@ body {
 
 .follower {
     grid-area: follower;
+    align-items: center;
 }
 
 .tasklist {

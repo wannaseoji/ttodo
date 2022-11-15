@@ -33,6 +33,9 @@ import TeamEditList from "../components/TeamEditList"
 import Notice from "../components/Notice";
 import TeamModal from "../components/TeamModal";
 import { useLocation } from 'react-router-dom';
+import CategoryList from "../components/CategoryList";
+import MemberList from "../components/MemberList";
+
 
 const TeamLink = () => {
     const navigate = useNavigate();
@@ -126,11 +129,9 @@ const TeamLink = () => {
                             <nav>
                                 {/* <StyledLink to="/TeamLink" style={{ textDecoration: 'none' }}>*/}
                                 <StyledListItem>
-
                                     <ListItemButton onClick={OnTeamClick} sx={{ height: 80, }}>
                                         <BsPeople></BsPeople><ListItemText >  TeamLink</ListItemText>
                                     </ListItemButton>
-
                                 </StyledListItem>
                                 {/* </StyledLink>*/}
                             </nav>
@@ -143,11 +144,10 @@ const TeamLink = () => {
                 <TeamEditList onShowModal={onShow} teamData={teams1}/>
                 <TeamModal open={open} close={handleClose} onNewTeam={onNewTeam}/>
             </div>
-            <div className="box follower">팔로워</div>
+            <div className="box follower"><MemberList teams={teams}/></div>
             <div className="box tasklist">
-
+                <CategoryList/>
             </div>
-
             <div className="box notice">
                 <Notice teamData={teams1}/>
             </div>
