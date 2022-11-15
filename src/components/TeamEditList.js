@@ -7,7 +7,7 @@ import {GoChevronRight} from "react-icons/go";
 
 function TeamEditList({onShowModal, teamData}) {
     
-    const [teams, setTeams] = useState(teamData);
+    //const [teams, setTeams] = useState(teamData);
 
     const [limit, setLimit] = useState(4);
     const [page, setPage] = useState(1);
@@ -17,11 +17,11 @@ function TeamEditList({onShowModal, teamData}) {
     if(count / 4 > 0) { 
         maxCount += 1;
     }
-
+    console.log(count)
     maxCount = parseInt(maxCount);
 
     var list;
-    list = teams.slice(offset, offset + limit);
+    list = teamData.slice(offset, offset + limit);
 
     return (
         <table width="480" height="550" style={{backgroundColor:"#F0F0F0", borderRadius: "10px"}}>

@@ -36,7 +36,6 @@ import { useLocation } from 'react-router-dom';
 
 const TeamLink = () => {
     const navigate = useNavigate();
-    const [modalOpen, setModalOpen] = useState(false); // Options Modal 창 open, close State 확인
 
     const OnGoalClick = () => {
         navigate('/Goal', { state: {tasks, teams, teamTask}});
@@ -49,17 +48,6 @@ const TeamLink = () => {
     }
     const OnMyTaskClick = () => {
         navigate("/MyTask", {});
-    }
-    // Modal open close setting 하기
-    const openModal = () => {
-        setModalOpen(true);
-    };
-    const closeModal = () => {
-        setModalOpen(false);
-    };
-
-    const onShowModal = () => {
-        openModal();
     }
 
     //내 코드 시작
@@ -76,14 +64,28 @@ const TeamLink = () => {
         handleClickOpen();
     }
     //내 코드 끝
-
     const location = useLocation();
 
     //teamState: team.json, teamTaskState: team-task-data.json
     const {tasks ,teams, teamTask} = location.state;
-    console.log(teams);
-    console.log(teamTask);
+    const [teams1, setTeams1] = useState(teams);
 
+    //Team 생성
+    const onNewTeam = function(name, memberList, intro, reader) {
+        console.log("new team 추가")
+        // name, memberList, notice, intro, reader
+        const newTeams = {
+            name: name,
+            memberList: [],
+            notice: [],
+            intro: intro,
+            reader: reader
+        }
+        const t1 = [...teams1, newTeams]
+        setTeams1(t1)
+        console.log(t1)
+    }
+    
     return (
         <div id="app" className="parent" >
             <div className="box menu" >
@@ -138,8 +140,8 @@ const TeamLink = () => {
             </div >
             <div className="box profile"><Profile /></div>
             <div className="box content">
-                <TeamEditList onShowModal={onShow} teamData={teams}/>
-                <TeamModal open={open} close={handleClose} />
+                <TeamEditList onShowModal={onShow} teamData={teams1}/>
+                <TeamModal open={open} close={handleClose} onNewTeam={onNewTeam}/>
             </div>
             <div className="box follower">팔로워</div>
             <div className="box tasklist">
@@ -147,7 +149,7 @@ const TeamLink = () => {
             </div>
 
             <div className="box notice">
-                <Notice teamData={teams}/>
+                <Notice teamData={teams1}/>
             </div>
         </div >
     );

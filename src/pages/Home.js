@@ -51,8 +51,12 @@ const Home = () => {
 
     //Team task check 변경
 
-    //Team화면 Data
-
+    //Team 생성
+    const onNewTeam = function(name, memberList, notice, intro, reader) {
+        console.log("new team 추가")
+        const newTeams = [...teams, {name, memberList, notice, intro, reader}]
+        setTeams(newTeams)
+    }
     //Team 화면
 
 
