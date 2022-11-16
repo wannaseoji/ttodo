@@ -1,0 +1,21 @@
+#category_top {
+    display: flex;
+    align-items: center;
+    width: 95vw;
+}
+
+#category_name {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+    vertical-align: middle;
+}
+
+#add_task_btn {
+    color: #FF9AB5;
+    max-width: 10%;
+    padding: 0;
+    /* margin-left: auto; */
+}

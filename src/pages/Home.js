@@ -14,6 +14,10 @@ import Profile from "./Profile";
 import CustomTimeLine from "../components/timeline/CustomTimeline";
 
 import React, { useState, useEffect } from "react";
+
+import OptionsModal from "../components/modal/OptionsModal";
+import HomeTaskList from "../components/tasklist/HomeTaskList";
+
 import TaskList from '../components/TaskList';
 import taskData from '../assets/task-data.json';
 import teamTaskData from '../assets/team-task-data.json'
@@ -37,15 +41,32 @@ const Home = () => {
     const [modalOpen, setModalOpen] = useState(false); // Options Modal 창 open, close State 확인
     const [addTaskModalOpen, setAddTaskModalOpen] = useState(false); // AddTask Modal 창 open, close State 확인
 
+
+    const date = new Date(); // Mon Nov 14 2022 10:50:35 GMT+0900 (한국 표준시)
+    const today = date.getFullYear()+"-"+('0' + (date.getMonth() + 1)).slice(-2)+"-"+('0' + date.getDate()).slice(-2); // 2022-11-14
+    let todayTasks = tasks.filter(({date})=>date===today) // 시간 상관 없이 당일에 해당하는 task로만 필터링
+    todayTasks.map((value) => console.log(value.title))
+
+
+    // todayTasks 중 check 되지 않는 tasks 들만 모은 Array
+    let nonCheckTasks = todayTasks.filter(({check})=> check === false)
+    nonCheckTasks.map((value) => console.log("noncheck : " + value.title))
+
+
+    useEffect(() => {
+        todayTasks = tasks.filter(({date})=>date===today)
+        todayTasks.map((value) => console.log(value.title))
+        nonCheckTasks = todayTasks.filter(({check})=> check === false)
+        console.log(`useEffect`);
+    }, [tasks])
+
     // Task check 변경
-    const onCheckTask = (index) => {
-        const newTasks = tasks.map((task, i) => {
-            if (index === i) {
+    const onCheck = index =>{
+        const newTasks = tasks.map(task => {
+            if(task.index === index) 
                 task.check = !(task.check);
-            }
             return task;
-        });
-        console.log(`newTasks : ${newTasks}`);
+        })
         setTasks(newTasks);
     }
 
@@ -61,15 +82,18 @@ const Home = () => {
 
 
     // Modal open close setting 하기
-    const openModal = () => {
+    const openOptionsModal = () => {
         setModalOpen(true);
+        console.log(`modal openOption : ${modalOpen}`)
     };
-    const closeModal = () => {
+    const closeOptionsModal = () => {
         setModalOpen(false);
+        console.log(`modal closeOption : ${modalOpen}`)
     };
 
-    const onShowModal = () => {
-        openModal();
+    const onShowOptionsModal = () => {
+        console.log(`onShowOptionsModal`)
+        openOptionsModal();
     }
 
     const openAddTaskModal = () => {
@@ -171,14 +195,20 @@ const Home = () => {
             </div>
             <div className="box follower">팔로워</div>
             <div className="box tasklist">
-                <TaskList
+                {/* <TaskList
                     tasks={tasks}
                     onCheck={onCheckTask}
                     onModal={onShowModal}
                     onAddTaskModal = {onShowAddTaskModal}
+                /> */}
+                <HomeTaskList
+                    tasks={nonCheckTasks}
+                    onCheck={onCheck}
+                    onOptionsModal={onShowOptionsModal}
+                    onAddTaskModal = {onShowAddTaskModal}
                 />
                 <AddTaskModal open={addTaskModalOpen} close={closeAddTaskModal} onNewTask={onNewTask} header="일정 추가" category="Study"/>
-                <Modal open={modalOpen} close={closeModal} header="Options" />
+                <OptionsModal open={modalOpen} close ={closeOptionsModal} header="Options" />
             </div>
             <div className="box teamlist">
 
