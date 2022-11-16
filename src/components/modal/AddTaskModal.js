@@ -1,6 +1,6 @@
 import { TextField, styled } from '@mui/material';
 import React from 'react';
-import '../../styles/addTaskModal.css';
+import "../../styles/addTaskModal.css"
 import TimeToggle from './TimeToggle';
 import TaskDatePicker from './TaskDatePicker'
 

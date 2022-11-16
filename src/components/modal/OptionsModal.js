@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/OptionsModal.css';
+import '../../styles/addTaskModal.css';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
