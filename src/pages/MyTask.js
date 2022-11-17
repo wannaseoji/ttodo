@@ -9,14 +9,8 @@ import Profile from "./Profile";
 import React, { useState, useEffect } from "react";
 import StyledListItem from "../styles/linkStyle";
 
-import TaskList from '../components/TaskList';
 import taskData from '../assets/task-data.json';
 import categoryData from '../assets/category-data.json'
-import Modal from '../components/Modal';
-import teamData from "../assets/team.json"
-//import { Link } from "react-router-dom";
-import StyledListItem from "../styles/linkStyle";
-import PinkLink from '../styles/pinkLink';
 
 import Scrollbars from 'react-custom-scrollbars';
 
