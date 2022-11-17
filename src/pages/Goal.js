@@ -25,6 +25,11 @@ import { useLocation } from 'react-router-dom';
 import MyBarCharts from '../components/BarChart';
 import getPieData from '../components/getPieData';
 import getProgressData from '../components/getProgressData';
+import { ResponsiveContainer, BarChart, XAxis, YAxis, Tooltip, Legend, Bar, } from 'recharts'
+import Slider from '../components/Slider'
+import Slide from '../components/Slide'
+
+
 const Goal = () => {
     const navigate = useNavigate();
 
@@ -35,15 +40,15 @@ const Goal = () => {
         navigate("/", {});
     }
     const OnTeamClick = () => {
-        navigate('/TeamLink', { state: {tasks, teams, teamTask}});
+        navigate('/TeamLink', { state: { tasks, teams, teamTask } });
     }
     const OnMyTaskClick = () => {
         navigate("/MyTask", {});
     }
     const location = useLocation();
-    const {tasks ,teams, teamTask} = location.state;
+    const { tasks, teams, teamTask } = location.state;
 
-    
+
 
     //const numOftasks = tasks;
     //console.log(numOftasks)
@@ -54,13 +59,13 @@ const Goal = () => {
     const [numTasks, numTrue] = getPieData(tasks);
     const Piedata = [{
         id: '완료',
-        label: '완료',
+        // label: '완료',
         value: numTrue,
         color: "#f768a1"
     },
     {
         id: '미완료',
-        label: '미완료',
+        // label: '미완료',
         value: (numTasks - numTrue),
         color: '#f768a1'
     }
@@ -138,15 +143,25 @@ const Goal = () => {
                 </nav >
             </div >
             <div className="box profile"><Profile /></div>
-            <div className="box content">
-
+            <div className="box content"  >
                 <div style={{ width: '100%', height: '100%', }}>
-                    <MyResponsivePie data={Piedata} />
+                    <Slider Piedata={Piedata} />
+                    {/* <Slide Piedata={Piedata} /> */}
                 </div>
             </div>
             <div className="box follower"></div>
             <div className="box tasklist">
-                <MyBarCharts data={uniqueProgressData} />
+
+                <ResponsiveContainer width='90%' aspect={4.0 / 2.0}>
+                    <BarChart data={uniqueProgressData} layout="vertical" fill="#000000" width={150} height={40}>
+                        <XAxis type="number" dataKey="total" hide />
+                        <YAxis dataKey="name" reversed type="category" />
+                        <Tooltip />
+                        <Legend />
+                        <Bar legendType="category" dataKey="done" fill="#FF9AB5" />
+                    </BarChart>
+                </ResponsiveContainer>
+                {/* <MyBarCharts data={uniqueProgressData} /> */}
             </div>
             <div className="box teamlist">
 
@@ -158,3 +173,6 @@ const Goal = () => {
 };
 
 export default Goal;
+
+
+

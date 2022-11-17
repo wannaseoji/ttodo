@@ -1,4 +1,4 @@
-const getPieData = (tasks) => {
+const getPieData = (tasks = []) => {
     let numTasks = 0;
     let numTrue = 0;
     tasks.map(task => numTasks++)

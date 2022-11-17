@@ -31,18 +31,18 @@ const MyResponsivePie = ({ data, length /* see data tab */ }) => (
             /**
              * label style (pad에 표현되는 글씨)
              */
-            labels: {
-                text: {
-                    fontSize: 15,
-                    fill: '#000000',
-                },
-            },
+            // labels: {
+            //     text: {
+            //         fontSize: 0, //11-17
+            //         fill: '#000000',
+            //     },
+            // },
             /**
              * legend style (default로 하단에 있는 색상별 key 표시)
              */
             legends: {
                 text: {
-                    fontSize: 30,
+                    fontSize: 10,
                     fill: '#000000',
                 },
             },
@@ -107,7 +107,7 @@ const MyResponsivePie = ({ data, length /* see data tab */ }) => (
                 direction: 'column', //차트아래에 표시되는것
                 justify: false,
                 translateX: 0,
-                translateY: 0,
+                translateY: 50,
                 itemsSpacing: 0,
                 itemWidth: 50,
                 itemHeight: 30,

@@ -13,22 +13,14 @@ const getProgressData = (tasks, category) => {
     console.log("in getProgress categoryNum:", categoryNum)
     console.log("in getProgress categoryTrue:", categoryTrue)
 
+
     const progressData =
     {
-        "id": category,
-        "ranges": [
-            0,
-            categoryNum,
-
-        ],
-        "measures": [
-            categoryTrue
-
-        ],
-        "markers": [
-
-        ]
-    };
+        name: category,
+        done: categoryTrue,
+        total: categoryNum,
+        percent: categoryTrue / categoryNum * 100 + "%"
+    }
 
     console.log("in getProgressData", progressData)
     return progressData;
