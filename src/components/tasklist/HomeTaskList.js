@@ -7,7 +7,7 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 
 import '../../styles/TaskList.css';
 
-// Home 화면에서 5개를 고정으로 띄우는 TaskList
+// Home 화면에서 limit 개수만큼 고정으로 띄우는 TaskList
 function HomeTaskList({tasks = [], limit, onCheck = f => f, onOptionsModal = f => f, onAddTaskModal = f => f}) {
 
     return (
