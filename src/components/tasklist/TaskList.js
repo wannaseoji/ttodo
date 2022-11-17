@@ -3,18 +3,17 @@ import * as React from 'react';
 import Task from './Task'
 
 export default function TaskList ({tasks = [], limit, onCheckTask = f => f, onOptionsModal = f => f}){
-    // Category 이름만 추출
-    // const categoryObjectArray = tasks.reduce(function(acc, current) {
-    //     if (acc.findIndex(({ category }) => category === current.category) === -1) {
-    //         acc.push(current);
-    //     }
-    //         return acc;
-    //     }, []);
-    // const categoryNameArray = categoryObjectArray.map((categoryTask) => categoryTask.category)
+    let nonCheckTasks = tasks.filter(({check})=> check === false)
+    nonCheckTasks.map((value) => console.log("noncheck : " + value.title))
+    let checkTasks = tasks.filter(({check}) => check === true)
+    
     let result = [];
+    let cnt = 0;
     for (var j = 0; j < limit; j++) {
-        if(tasks[j] == null) continue;
-        result.push(<Task key={j} task={tasks[j]} i={j} onCheck={onCheckTask} onOptionsModal={onOptionsModal} />)
+        if(nonCheckTasks[j] == null)
+            result.push(<Task key={j} task={checkTasks[cnt++]} i={j} onCheck={onCheckTask} onOptionsModal={onOptionsModal} />)
+        else
+            result.push(<Task key={j} task={nonCheckTasks[j]} i={j} onCheck={onCheckTask} onOptionsModal={onOptionsModal} />)
     }
     console.log(`result : ${result}`);
     return result

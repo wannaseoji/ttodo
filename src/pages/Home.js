@@ -47,19 +47,6 @@ const Home = () => {
     let todayTasks = tasks.filter(({date})=>date===today) // 시간 상관 없이 당일에 해당하는 task로만 필터링
     todayTasks.map((value) => console.log(value.title))
 
-
-    // todayTasks 중 check 되지 않는 tasks 들만 모은 Array
-    let nonCheckTasks = todayTasks.filter(({check})=> check === false)
-    nonCheckTasks.map((value) => console.log("noncheck : " + value.title))
-
-
-    useEffect(() => {
-        todayTasks = tasks.filter(({date})=>date===today)
-        todayTasks.map((value) => console.log(value.title))
-        nonCheckTasks = todayTasks.filter(({check})=> check === false)
-        console.log(`useEffect`);
-    }, [tasks])
-
     // Task check 변경
     const onCheck = index =>{
         const newTasks = tasks.map(task => {
@@ -195,14 +182,9 @@ const Home = () => {
             </div>
             <div className="box follower">팔로워</div>
             <div className="box tasklist">
-                {/* <TaskList
-                    tasks={tasks}
-                    onCheck={onCheckTask}
-                    onModal={onShowModal}
-                    onAddTaskModal = {onShowAddTaskModal}
-                /> */}
                 <HomeTaskList
-                    tasks={nonCheckTasks}
+                    tasks={todayTasks}
+                    limit={5}
                     onCheck={onCheck}
                     onOptionsModal={onShowOptionsModal}
                     onAddTaskModal = {onShowAddTaskModal}
