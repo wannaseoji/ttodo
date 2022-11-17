@@ -31,8 +31,6 @@ const CustomTimeLine = function({tasks=[]}){
                                     <TimelineDot />
                                     <TimelineConnector />
                                 </TimelineSeparator>
-                                {console.log()}
-                                {console.log(hour)}
                                 {(distinctHours.indexOf(hour.toString())<0)? <TimelineContent/>:RightTimelineItem(todayTasks,hour,nowHour)}
                                 
                             </TimelineItem>)

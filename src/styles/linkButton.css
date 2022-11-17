@@ -1,5 +1,5 @@
 .linkButton{
-    color:white;
+    color:white !important;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -9,4 +9,5 @@
 
 .linkButton .menuName{
     padding-left: 0.5em;
+    text-transform: none
 }
