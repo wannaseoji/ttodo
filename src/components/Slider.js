@@ -5,7 +5,7 @@ import Slide from './Slide';
 import { style } from "@mui/system";
 
 const TOTAL_SLIDES = 5; // 전체 슬라이드 개수(총3개. 배열로 계산)
-const SlideComponent = ({ Piedata }) => {
+const SlideComponent = ({ Piedata = [] }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const slideRef = useRef(null);
 
@@ -40,15 +40,11 @@ const SlideComponent = ({ Piedata }) => {
             <button onClick={NextSlide}>next</button>
             <Wrapper>
                 <SlideWrapper ref={slideRef} style={{ width: '100%', height: '100%', }}>
-                    <div style={{ width: '100%', height: '100%', flex: 'none' }}>
-                        <Slide Piedata={Piedata} />
-                    </div>
-                    <div style={{ width: '100%', height: '100%', flex: 'none' }}>
-                        <Slide Piedata={Piedata} />
-                    </div>
-                    <div style={{ width: '100%', height: '100%', flex: 'none' }}>
-                        <Slide Piedata={Piedata} />
-                    </div>
+                    {Piedata.map(pie => <div style={{ width: '100%', height: '100%', flex: 'none' }}> <Slide Piedata={pie} /> </div>)}
+
+
+
+
                 </SlideWrapper>
 
 
