@@ -57,24 +57,14 @@ const Goal = () => {
     //const { id, date } = tasks;
 
     //console.log(numTrue)
-    console.log("This is home and Tasks are transfered", tasks)
-    const [numTasks, numTrue] = getPieData(tasks);
-    const Piedata = [{
-        id: '완료',
-        // label: '완료',
-        value: numTrue,
-        color: "#f768a1"
-    },
-    {
-        id: '미완료',
-        // label: '미완료',
-        value: (numTasks - numTrue),
-        color: '#f768a1'
-    }
-    ]
+    //console.log("This is home and Tasks are transfered", tasks)
+    //const [numTasks, numTrue] = 
+    const Piedata = getPieData(tasks);
+    console.log("Piedata in Goal : ", Piedata);
     //category별 진척도
 
-    const categoryFilter = (keyWord) => tasks.map(task => { return task.category });
+    const categoryFilter = (keyWord) => keyWord.map(task => { return task.category });
+    //const dateFilter = (keyWord) => keyWord.map(task => { return task.date });
 
     const categories = categoryFilter(tasks)
 
@@ -82,7 +72,7 @@ const Goal = () => {
         return array.indexOf(element) === index;
     });
     const uniqueCategories = uniqueArr(categories);
-    console.log("uniqueCategories", uniqueCategories)
+    //console.log("uniqueCategories", uniqueCategories)
     const progressData = uniqueCategories.map((category, i) => {
         return getProgressData(tasks, category)
     })

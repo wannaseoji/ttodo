@@ -10,8 +10,8 @@ const getProgressData = (tasks, category) => {
         return (task.category === category) && (task.check === true)
     }).length
 
-    console.log("in getProgress categoryNum:", categoryNum)
-    console.log("in getProgress categoryTrue:", categoryTrue)
+    //console.log("in getProgress categoryNum:", categoryNum)
+    //console.log("in getProgress categoryTrue:", categoryTrue)
 
 
     const progressData =
@@ -22,7 +22,7 @@ const getProgressData = (tasks, category) => {
         percent: categoryTrue / categoryNum * 100 + "%"
     }
 
-    console.log("in getProgressData", progressData)
+    //console.log("in getProgressData", progressData)
     return progressData;
 }
 
