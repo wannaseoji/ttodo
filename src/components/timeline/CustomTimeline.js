@@ -20,7 +20,7 @@ const CustomTimeLine = function({tasks=[]}){
 
     return(
         <div className="TodayAppointment" style={{padding:"2px"}}>
-            <header style={{textAlign:"left", backgroundColor:"#DFDFDF", minWidth:"300px", width:"30vw", padding:"1em 0em",borderRadius:"10px 10px 0px 0px"}}><span style={{fontWeight:"700", paddingLeft:"2em"}}>Today Appointment</span></header>
+            <header style={{textAlign:"left", backgroundColor:"#DFDFDF", minWidth:"300px", width:"30vw", padding:"0.5em 0em",borderRadius:"10px 10px 0px 0px"}}><span style={{fontWeight:"600", paddingLeft:"1em", color:"#555555", fontSize:"1.5em"}}>Today Appointment</span></header>
             <Scrollbars style={{minWidth:"300px", width: "30vw", height: "70vh", backgroundColor:"#F0F0F0", borderRadius:"0px 0px 10px 10px"}}>
                 <Timeline align="left">
                     {

@@ -1,0 +1,12 @@
+.linkButton{
+    color:white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height:5em;
+    width: 100%;
+}
+
+.linkButton .menuName{
+    padding-left: 0.5em;
+}

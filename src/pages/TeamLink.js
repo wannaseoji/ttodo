@@ -35,6 +35,8 @@ import TeamModal from "../components/TeamModal";
 import { useLocation } from 'react-router-dom';
 import CategoryList from "../components/CategoryList";
 import MemberList from "../components/MemberList";
+import Button from '@material-ui/core/Button';
+import '../styles/linkButton.css';
 
 
 const TeamLink = () => {
@@ -94,34 +96,31 @@ const TeamLink = () => {
             <div className="box menu" >
                 <nav className="seo_nav">
                     <Box sx={{ width: '100%', maxWidth: 400, bgcolor: 'background.black', position: 'relative', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
-                        <List component="nav">
-                            <nav>
+                    <List component="nav">
+                    <nav>
                                 {/*<PinkLink to="/" style={{ textDecoration: 'none' }}>*/}
                                 <StyledListItem >
-                                    <ListItemButton onClick={OnHomeClick} sx={{ height: 80, }}>
-                                        <VscHome /><ListItemText>Home</ListItemText>
-                                    </ListItemButton>
-
+                                    <Button class="linkButton" sx={{ height: 80, }} component={Link} to="/" state={{ tasks: tasks, teams:teams, teamTask:teamTask }}>
+                                        <VscHome /><ListItemText class="menuName"> Home</ListItemText>
+                                    </Button>
                                 </StyledListItem>
                                 {/*</PinkLink>*/}
                             </nav>
                             <nav >
 
                                 <StyledListItem>
-                                    <ListItemButton onClick={OnGoalClick} sx={{ height: 80, }}>
-                                        <GiStairsGoal /><ListItemText >Goal</ListItemText>
-                                    </ListItemButton>
+                                    <Button class="linkButton" component={Link} to="/Goal" state={{ tasks: tasks, teams:teams, teamTask:teamTask }}>
+                                        <GiStairsGoal /><ListItemText class="menuName"> Goal</ListItemText>
+                                    </Button>
                                 </StyledListItem>
 
                             </nav>
                             <nav>
                                 {/*<StyledLink to="/MyTask" style={{ textDecoration: 'none' }}>*/}
-
                                 <StyledListItem>
-
-                                    <ListItemButton onClick={OnMyTaskClick} sx={{ height: 80, }}>
-                                        <IoPersonOutline /><ListItemText > MyTask</ListItemText>
-                                    </ListItemButton>
+                                    <Button class="linkButton" component={Link} to="/MyTask" state={{ tasks: tasks, teams:teams, teamTask:teamTask }}>
+                                        <IoPersonOutline /><ListItemText class="menuName"> MyTask</ListItemText>
+                                    </Button>
                                 </StyledListItem>
                                 {/*</StyledLink>*/}
 
@@ -129,9 +128,9 @@ const TeamLink = () => {
                             <nav>
                                 {/* <StyledLink to="/TeamLink" style={{ textDecoration: 'none' }}>*/}
                                 <StyledListItem>
-                                    <ListItemButton onClick={OnTeamClick} sx={{ height: 80, }}>
-                                        <BsPeople></BsPeople><ListItemText >  TeamLink</ListItemText>
-                                    </ListItemButton>
+                                     <Button class="linkButton" component={Link} to="/TeamLink" state={{ tasks: tasks, teams:teams, teamTask:teamTask }}>
+                                        <BsPeople /><ListItemText class="menuName"> TeamLink</ListItemText>
+                                    </Button>
                                 </StyledListItem>
                                 {/* </StyledLink>*/}
                             </nav>

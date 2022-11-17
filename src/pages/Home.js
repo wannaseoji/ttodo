@@ -32,6 +32,8 @@ import { GiStairsGoal } from 'react-icons/gi' //GiStairsGoal, IoPersonOutline
 import { IoPersonOutline } from 'react-icons/io5' //GiStairsGoal, IoPersonOutline,BsPeople
 import { BsPeople } from 'react-icons/bs' //GiStairsGoal, IoPersonOutline,BsPeople
 import { useNavigate } from 'react-router';
+import Button from '@material-ui/core/Button';
+// import '../styles/linkButton.css';
 
 const Home = () => {
     const [teamTask, setTeamTask] = useState(teamTaskData)
@@ -46,19 +48,6 @@ const Home = () => {
     const today = date.getFullYear()+"-"+('0' + (date.getMonth() + 1)).slice(-2)+"-"+('0' + date.getDate()).slice(-2); // 2022-11-14
     let todayTasks = tasks.filter(({date})=>date===today) // 시간 상관 없이 당일에 해당하는 task로만 필터링
     todayTasks.map((value) => console.log(value.title))
-
-
-    // todayTasks 중 check 되지 않는 tasks 들만 모은 Array
-    let nonCheckTasks = todayTasks.filter(({check})=> check === false)
-    nonCheckTasks.map((value) => console.log("noncheck : " + value.title))
-
-
-    useEffect(() => {
-        todayTasks = tasks.filter(({date})=>date===today)
-        todayTasks.map((value) => console.log(value.title))
-        nonCheckTasks = todayTasks.filter(({check})=> check === false)
-        console.log(`useEffect`);
-    }, [tasks])
 
     // Task check 변경
     const onCheck = index =>{
@@ -142,13 +131,16 @@ const Home = () => {
             <div className="box menu" >
                 <nav className="seo_nav">
                     <Box sx={{ width: '100%', maxWidth: 400, bgcolor: 'background.black', position: 'relative', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
-                        <List component="nav">
+                    <List component="nav">
                             <nav>
                                 {/*<PinkLink to="/" style={{ textDecoration: 'none' }}>*/}
                                 <StyledListItem >
-                                    <ListItemButton onClick={OnHomeClick} sx={{ height: 80, }}>
+                                    {/* <ListItemButton onClick={OnHomeClick} sx={{ height: 80, }}>
                                         <VscHome /><ListItemText>Home</ListItemText>
-                                    </ListItemButton>
+                                    </ListItemButton> */}
+                                    <Button class="linkButton" sx={{ height: 80, }} component={Link} to="/" state={{ tasks: tasks, teams:teams, teamTask:teamTask }}>
+                                        <VscHome /><ListItemText class="menuName"> Home</ListItemText>
+                                    </Button>
 
                                 </StyledListItem>
                                 {/*</PinkLink>*/}
@@ -156,9 +148,12 @@ const Home = () => {
                             <nav >
 
                                 <StyledListItem>
-                                    <ListItemButton onClick={OnGoalClick} sx={{ height: 80, }}>
+                                    {/* <ListItemButton onClick={OnGoalClick} sx={{ height: 80, }}>
                                         <GiStairsGoal /><ListItemText >Goal</ListItemText>
-                                    </ListItemButton>
+                                    </ListItemButton> */}
+                                    <Button class="linkButton" component={Link} to="/Goal" state={{ tasks: tasks, teams:teams, teamTask:teamTask }}>
+                                        <GiStairsGoal /><ListItemText class="menuName"> Goal</ListItemText>
+                                    </Button>
                                 </StyledListItem>
 
                             </nav>
@@ -167,9 +162,12 @@ const Home = () => {
 
                                 <StyledListItem>
 
-                                    <ListItemButton onClick={OnMyTaskClick} sx={{ height: 80, }}>
+                                    {/* <ListItemButton onClick={OnMyTaskClick} sx={{ height: 80, }}>
                                         <IoPersonOutline /><ListItemText > MyTask</ListItemText>
-                                    </ListItemButton>
+                                    </ListItemButton> */}
+                                    <Button class="linkButton" component={Link} to="/MyTask" state={{ tasks: tasks, teams:teams, teamTask:teamTask }}>
+                                        <IoPersonOutline /><ListItemText class="menuName"> MyTask</ListItemText>
+                                    </Button>
                                 </StyledListItem>
                                 {/*</StyledLink>*/}
 
@@ -177,11 +175,12 @@ const Home = () => {
                             <nav>
                                 {/* <StyledLink to="/TeamLink" style={{ textDecoration: 'none' }}>*/}
                                 <StyledListItem>
-
-                                    <ListItemButton onClick={OnTeamClick} sx={{ height: 80, }}>
-                                        <BsPeople></BsPeople><ListItemText >  TeamLink</ListItemText>
-                                    </ListItemButton>
-
+                                    {/* <ListItemButton onClick={OnTeamClick} sx={{ height: 80, }}>
+                                        <BsPeople/><ListItemText >  TeamLink</ListItemText>
+                                    </ListItemButton> */}
+                                     <Button class="linkButton" component={Link} to="/TeamLink" state={{ tasks: tasks, teams:teams, teamTask:teamTask }}>
+                                        <BsPeople /><ListItemText class="menuName"> TeamLink</ListItemText>
+                                    </Button>
                                 </StyledListItem>
                                 {/* </StyledLink>*/}
                             </nav>
@@ -195,14 +194,9 @@ const Home = () => {
             </div>
             <div className="box follower">팔로워</div>
             <div className="box tasklist">
-                {/* <TaskList
-                    tasks={tasks}
-                    onCheck={onCheckTask}
-                    onModal={onShowModal}
-                    onAddTaskModal = {onShowAddTaskModal}
-                /> */}
                 <HomeTaskList
-                    tasks={nonCheckTasks}
+                    tasks={todayTasks}
+                    limit={5}
                     onCheck={onCheck}
                     onOptionsModal={onShowOptionsModal}
                     onAddTaskModal = {onShowAddTaskModal}
