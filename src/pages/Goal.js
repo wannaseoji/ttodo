@@ -25,6 +25,13 @@ import { useLocation } from 'react-router-dom';
 import MyBarCharts from '../components/BarChart';
 import getPieData from '../components/getPieData';
 import getProgressData from '../components/getProgressData';
+import { ResponsiveContainer, BarChart, XAxis, YAxis, Tooltip, Legend, Bar, } from 'recharts'
+import Slider from '../components/Slider'
+import Slide from '../components/Slide'
+
+
+import Button from '@material-ui/core/Button';
+import '../styles/linkButton.css';
 const Goal = () => {
     const navigate = useNavigate();
 
@@ -35,15 +42,15 @@ const Goal = () => {
         navigate("/", {});
     }
     const OnTeamClick = () => {
-        navigate('/TeamLink', { state: {tasks, teams, teamTask}});
+        navigate('/TeamLink', { state: { tasks, teams, teamTask } });
     }
     const OnMyTaskClick = () => {
         navigate("/MyTask", {});
     }
     const location = useLocation();
-    const {tasks ,teams, teamTask} = location.state;
+    const { tasks, teams, teamTask } = location.state;
 
-    
+
 
     //const numOftasks = tasks;
     //console.log(numOftasks)
@@ -54,13 +61,13 @@ const Goal = () => {
     const [numTasks, numTrue] = getPieData(tasks);
     const Piedata = [{
         id: '완료',
-        label: '완료',
+        // label: '완료',
         value: numTrue,
         color: "#f768a1"
     },
     {
         id: '미완료',
-        label: '미완료',
+        // label: '미완료',
         value: (numTasks - numTrue),
         color: '#f768a1'
     }
@@ -94,30 +101,27 @@ const Goal = () => {
                             <nav>
                                 {/*<PinkLink to="/" style={{ textDecoration: 'none' }}>*/}
                                 <StyledListItem >
-                                    <ListItemButton onClick={OnHomeClick} sx={{ height: 80, }}>
-                                        <VscHome /><ListItemText>Home</ListItemText>
-                                    </ListItemButton>
-
+                                    <Button class="linkButton" sx={{ height: 80, }} component={Link} to="/" state={{ tasks: tasks, teams: teams, teamTask: teamTask }}>
+                                        <VscHome /><ListItemText class="menuName"> Home</ListItemText>
+                                    </Button>
                                 </StyledListItem>
                                 {/*</PinkLink>*/}
                             </nav>
                             <nav >
 
                                 <StyledListItem>
-                                    <ListItemButton onClick={OnGoalClick} sx={{ height: 80, }}>
-                                        <GiStairsGoal /><ListItemText >Goal</ListItemText>
-                                    </ListItemButton>
+                                    <Button class="linkButton" component={Link} to="/Goal" state={{ tasks: tasks, teams: teams, teamTask: teamTask }}>
+                                        <GiStairsGoal /><ListItemText class="menuName"> Goal</ListItemText>
+                                    </Button>
                                 </StyledListItem>
 
                             </nav>
                             <nav>
                                 {/*<StyledLink to="/MyTask" style={{ textDecoration: 'none' }}>*/}
-
                                 <StyledListItem>
-
-                                    <ListItemButton onClick={OnMyTaskClick} sx={{ height: 80, }}>
-                                        <IoPersonOutline /><ListItemText > MyTask</ListItemText>
-                                    </ListItemButton>
+                                    <Button class="linkButton" component={Link} to="/MyTask" state={{ tasks: tasks, teams: teams, teamTask: teamTask }}>
+                                        <IoPersonOutline /><ListItemText class="menuName"> MyTask</ListItemText>
+                                    </Button>
                                 </StyledListItem>
                                 {/*</StyledLink>*/}
 
@@ -125,11 +129,9 @@ const Goal = () => {
                             <nav>
                                 {/* <StyledLink to="/TeamLink" style={{ textDecoration: 'none' }}>*/}
                                 <StyledListItem>
-
-                                    <ListItemButton onClick={OnTeamClick} sx={{ height: 80, }}>
-                                        <BsPeople></BsPeople><ListItemText >  TeamLink</ListItemText>
-                                    </ListItemButton>
-
+                                    <Button class="linkButton" component={Link} to="/TeamLink" state={{ tasks: tasks, teams: teams, teamTask: teamTask }}>
+                                        <BsPeople /><ListItemText class="menuName"> TeamLink</ListItemText>
+                                    </Button>
                                 </StyledListItem>
                                 {/* </StyledLink>*/}
                             </nav>
@@ -138,15 +140,25 @@ const Goal = () => {
                 </nav >
             </div >
             <div className="box profile"><Profile /></div>
-            <div className="box content">
-
+            <div className="box content"  >
                 <div style={{ width: '100%', height: '100%', }}>
-                    <MyResponsivePie data={Piedata} />
+                    <Slider Piedata={Piedata} />
+                    {/* <Slide Piedata={Piedata} /> */}
                 </div>
             </div>
             <div className="box follower"></div>
             <div className="box tasklist">
-                <MyBarCharts data={uniqueProgressData} />
+
+                <ResponsiveContainer width='90%' aspect={4.0 / 2.0}>
+                    <BarChart data={uniqueProgressData} layout="vertical" fill="#000000" width={150} height={40}>
+                        <XAxis type="number" dataKey="total" hide />
+                        <YAxis dataKey="name" reversed type="category" />
+                        <Tooltip />
+                        <Legend />
+                        <Bar legendType="category" dataKey="done" fill="#FF9AB5" />
+                    </BarChart>
+                </ResponsiveContainer>
+                {/* <MyBarCharts data={uniqueProgressData} /> */}
             </div>
             <div className="box teamlist">
 
@@ -158,3 +170,6 @@ const Goal = () => {
 };
 
 export default Goal;
+
+
+

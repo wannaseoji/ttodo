@@ -1,6 +1,6 @@
 [
     {
-        "index" : 1,
+        "index": 1,
         "id": "wannaseo",
         "category": "Study",
         "title": "설계패턴 대면",
@@ -10,7 +10,7 @@
         "check": false
     },
     {
-        "index" : 2,
+        "index": 2,
         "id": "wannaseo",
         "category": "Study",
         "title": "성공성공성공🍕",
@@ -20,7 +20,7 @@
         "check": false
     },
     {
-        "index" : 3,
+        "index": 3,
         "id": "wannaseo",
         "category": "Friend",
         "title": "쉬는 시간",
@@ -30,7 +30,7 @@
         "check": false
     },
     {
-        "index" : 4,
+        "index": 4,
         "id": "wannaseo",
         "category": "Friend",
         "title": "운동운동",
@@ -40,7 +40,7 @@
         "check": false
     },
     {
-        "index" : 5,
+        "index": 5,
         "id": "wannaseo",
         "category": "Study",
         "title": "쉬는 시간22",
@@ -50,7 +50,7 @@
         "check": false
     },
     {
-        "index" : 6,
+        "index": 6,
         "id": "wannaseo",
         "category": "Exercise",
         "title": "집 가는 시간",
@@ -60,7 +60,7 @@
         "check": false
     },
     {
-        "index" : 7,
+        "index": 7,
         "id": "wannaseo",
         "category": "Exercise",
         "title": "나 이제 그만 자고 싶어",
