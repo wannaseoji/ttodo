@@ -5,8 +5,6 @@ const RightTimelineItem = function(todayTasks,mainHour,nowHour){
     const filteredTasks = todayTasks.filter(function(task){
         return task.hour==mainHour;
     }).sort((a,b)=>(Number(a.minute)-Number(b.minute)))
-    console.log(filteredTasks)
-    console.log(mainHour)
 
     if(mainHour==nowHour){ // 현재 시간 = mainHour 인 경우 핑크색으로 표시
         return(
