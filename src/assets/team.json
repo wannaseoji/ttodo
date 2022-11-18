@@ -4,39 +4,39 @@
         "memberList": ["park","kim","cho","seo"],
         "notice": ["극Rock도 Rock이다", "나Rock도 Rock이다", "오Rock도 Rock이다"],
         "intro": "락인 1입니다.",
-        "email": "",
-        "reader":"WebFrameWork1"
+        "img": "park.jpg",
+        "leader":"park"
     },
     {
         "name": "광야의 작은 아씨들1221",
         "memberList": ["park","kim","cho","seo","park","kim"],
         "notice": ["일선도 전공처럼", "매주 월요일 면담", "발표 준비하기", "보고서 작성"],
         "intro": "ㅁ람나라암닝.",
-        "email": "",
-        "reader":"WebFrameWork1"
+        "img": "park.jpg",
+        "leader":"park"
+    },
+    {
+        "name": "폼생폼사",
+        "memberList": ["kim","park"],
+        "notice": ["뜨거운 가슴으로 시작", "폼에 살고 죽기"],
+        "intro": "웅에ㅔ에엥.",
+        "img": "kim.jpg",
+        "leader":"kim"
+    },
+    {
+        "name": "폼생폼사",
+        "memberList": ["kim","park"],
+        "notice": ["뜨거운 가슴으로 시작", "폼에 살고 죽기"],
+        "intro": "웅에ㅔ에엥.",
+        "img": "kim.jpg",
+        "leader":"kim"
     },
     {
         "name": "폼생폼사",
         "memberList": ["park","kim"],
         "notice": ["뜨거운 가슴으로 시작", "폼에 살고 죽기"],
         "intro": "웅에ㅔ에엥.",
-        "email": "",
-        "reader":"WebFrameWork1"
-    },
-    {
-        "name": "폼생폼사",
-        "memberList": ["park","kim"],
-        "notice": ["뜨거운 가슴으로 시작", "폼에 살고 죽기"],
-        "intro": "웅에ㅔ에엥.",
-        "email": "",
-        "reader":"WebFrameWork1"
-    },
-    {
-        "name": "폼생폼사",
-        "memberList": ["park","kim"],
-        "notice": ["뜨거운 가슴으로 시작", "폼에 살고 죽기"],
-        "intro": "웅에ㅔ에엥.",
-        "email": "",
-        "reader":"WebFrameWork1"
+        "img": "park.jpg",
+        "leader":"park"
     }
 ]
