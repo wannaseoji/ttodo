@@ -8,12 +8,12 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import '../../styles/TaskList.css';
 
 
-function CategoryTaskList({tasks = [], onCheck = f => f, onOptionsModal = f => f}) {
+function CategoryTaskList({tasks = [], categoryName, onCheck = f => f, onOptionsModal = f => f}) {
     return (
     <>
         <List sx={{ width: '95%',left:'50%', transform: 'translateX(-50%)', bgcolor: '#FFE2E9', borderRadius:'5px', paddingLeft:'1vw', paddingRight: '1vw', marginTop:'1vh' }}>
             <div id='category_top'>
-                <span id="category_name">{tasks[0].category}</span>
+                <span id="category_name">{categoryName}</span>
                 <IconButton id='add_task_btn' aria-label="addTask" onClick={onOptionsModal}>
                     <IoMdAddCircleOutline size='3vh' />
                 </IconButton>
