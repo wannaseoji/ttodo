@@ -1,4 +1,4 @@
-import MyResponsivePie from '../components/Chart'
+import MyResponsivePie from '../components/piechart/Chart'
 //import data from '../components/data'
 import { Outlet, Link } from "react-router-dom";
 import '../App.css';
@@ -13,8 +13,8 @@ import { GiStairsGoal } from 'react-icons/gi' //GiStairsGoal, IoPersonOutline
 import { IoPersonOutline } from 'react-icons/io5' //GiStairsGoal, IoPersonOutline,BsPeople
 import { BsPeople } from 'react-icons/bs' //GiStairsGoal, IoPersonOutline,BsPeople
 import { useLocation } from 'react-router-dom';
-import getPieData from '../components/getPieData';
-import getProgressData from '../components/getProgressData';
+import getPieData from '../components/piechart/getPieData';
+import getProgressData from '../components/barchart/getProgressData';
 import { ResponsiveContainer, BarChart, XAxis, YAxis, Tooltip, Legend, Bar, } from 'recharts'
 import Slider from '../components/Slider'
 import Button from '@material-ui/core/Button';
@@ -61,34 +61,34 @@ const Goal = () => {
                 <nav className="seo_nav">
                     <Box sx={{ width: '100%', maxWidth: 400, bgcolor: 'background.black', position: 'relative', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
                         <List component="nav">
-                                <nav>
-                                    <StyledListItem >
-                                        <Button className="linkButton" component={Link} to="/" state={{ tasks: tasks, teams:teams, teamTask:teamTask }}>
-                                            <VscHome /><ListItemText className="menuName"> Home</ListItemText>
-                                        </Button>
-                                    </StyledListItem>
-                                </nav>
-                                <nav >
-                                    <StyledListItem>
-                                        <Button className="linkButton" component={Link} to="/Goal" state={{ tasks: tasks, teams:teams, teamTask:teamTask }}>
-                                            <GiStairsGoal /><ListItemText className="menuName"> Goal</ListItemText>
-                                        </Button>
-                                    </StyledListItem>
-                                </nav>
-                                <nav>
-                                    <StyledListItem>
-                                        <Button className="linkButton" component={Link} to="/MyTask" state={{ tasks: tasks, teams:teams, teamTask:teamTask }}>
-                                            <IoPersonOutline /><ListItemText className="menuName"> My Task</ListItemText>
-                                        </Button>
-                                    </StyledListItem>
-                                </nav>
-                                <nav>
-                                    <StyledListItem>
-                                        <Button className="linkButton" component={Link} to="/TeamLink" state={{ tasks: tasks, teams:teams, teamTask:teamTask }}>
-                                            <BsPeople /><ListItemText className="menuName"> Team</ListItemText>
-                                        </Button>
-                                    </StyledListItem>
-                                </nav>
+                            <nav>
+                                <StyledListItem >
+                                    <Button className="linkButton" component={Link} to="/" state={{ tasks: tasks, teams: teams, teamTask: teamTask }}>
+                                        <VscHome /><ListItemText className="menuName"> Home</ListItemText>
+                                    </Button>
+                                </StyledListItem>
+                            </nav>
+                            <nav >
+                                <StyledListItem>
+                                    <Button className="linkButton" component={Link} to="/Goal" state={{ tasks: tasks, teams: teams, teamTask: teamTask }}>
+                                        <GiStairsGoal /><ListItemText className="menuName"> Goal</ListItemText>
+                                    </Button>
+                                </StyledListItem>
+                            </nav>
+                            <nav>
+                                <StyledListItem>
+                                    <Button className="linkButton" component={Link} to="/MyTask" state={{ tasks: tasks, teams: teams, teamTask: teamTask }}>
+                                        <IoPersonOutline /><ListItemText className="menuName"> My Task</ListItemText>
+                                    </Button>
+                                </StyledListItem>
+                            </nav>
+                            <nav>
+                                <StyledListItem>
+                                    <Button className="linkButton" component={Link} to="/TeamLink" state={{ tasks: tasks, teams: teams, teamTask: teamTask }}>
+                                        <BsPeople /><ListItemText className="menuName"> Team</ListItemText>
+                                    </Button>
+                                </StyledListItem>
+                            </nav>
                         </List>
                     </Box>
                 </nav >

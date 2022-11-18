@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import Slide from './Slide';
 import { style } from "@mui/system";
 
-const TOTAL_SLIDES = 5; // 전체 슬라이드 개수(총3개. 배열로 계산)
+const TOTAL_SLIDES = 5; // 전체 슬라이드 개수(총3개. 배열로 계산)
 const SlideComponent = ({ Piedata = [] }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const slideRef = useRef(null);
@@ -42,7 +42,7 @@ const SlideComponent = ({ Piedata = [] }) => {
                 <SlideWrapper ref={slideRef} style={{ width: '100%', height: '100%', }}>
                     {Piedata.map(pie => <div style={{ width: '100%', height: '100%', flex: 'none' }}> <Slide Piedata={pie} /> </div>)}
 
-
+                    {/* 컴포넌트자리 */}
 
 
                 </SlideWrapper>
@@ -61,7 +61,7 @@ const Wrapper = styeld.div`
   width: 80%;
   height: 80%;
   
-   overflow: hidden;
+    overflow: hidden;
 `;
 
 const SlideWrapper = styeld.div`
