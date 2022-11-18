@@ -1,43 +1,17 @@
-import { Outlet, Link } from "react-router-dom";
 import '../App.css';
 import '../styles/grid.css';
-import List from '@mui/material/List';
-import Box from '@mui/material/Box';
-import ListItemText from '@mui/material/ListItemText';
 import Team from "../components/Team";
 import Profile from "./Profile";
 import CustomTimeLine from "../components/timeline/CustomTimeline";
 import React, { useState, useEffect } from "react";
 import OptionsModal from "../components/modal/OptionsModal";
 import HomeTaskList from "../components/tasklist/HomeTaskList";
-import AddTaskModal from "../components/modal/AddTaskModal";
-import StyledListItem from "../styles/linkStyle";
-import { VscHome } from 'react-icons/vsc' //GiStairsGoal
-import { GiStairsGoal } from 'react-icons/gi' //GiStairsGoal, IoPersonOutline
-import { IoPersonOutline } from 'react-icons/io5' //GiStairsGoal, IoPersonOutline,BsPeople
-import { BsPeople } from 'react-icons/bs' //GiStairsGoal, IoPersonOutline,BsPeople
-import { useNavigate } from "react-router";
-import { useLocation } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
 import '../styles/linkButton.css';
 import Menu from "../components/Menu";
 
 
 const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams=f=>f})=> {
-    // const location = useLocation();
-    // if(location.state!=null){
-    //     teamTask = location.state.teamTask
-    //     teams = location.state.teams
-    //     tasks = location.state.tasks
-    // }
-    
-    // useEffect(() => setTasks(taskData), [taskData]);
     const [modalOpen, setModalOpen] = useState(false); // Options Modal 창 open, close State 확인
-    const [addTaskModalOpen, setAddTaskModalOpen] = useState(false); // AddTask Modal 창 open, close State 확인
-
-    console.log("--------------------------------")
-    console.log(tasks);
-    console.log("--------------------------------")
 
     const date = new Date(); // Mon Nov 14 2022 10:50:35 GMT+0900 (한국 표준시)
     const today = date.getFullYear()+"-"+('0' + (date.getMonth() + 1)).slice(-2)+"-"+('0' + date.getDate()).slice(-2); // 2022-11-14
@@ -80,22 +54,6 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
         openOptionsModal();
     }
 
-    const openAddTaskModal = () => {
-        setAddTaskModalOpen(true);
-    };
-    const closeAddTaskModal = () => {
-        setAddTaskModalOpen(false);
-    };
-    const onShowAddTaskModal = () => {
-        openAddTaskModal();
-    }
-
-    const onNewTask = function(id, category, title, date, hour, minute){ // id, category, title, date, hour, minute, check
-        console.log("new task 추가")
-        const newTasks = [...tasks, {id, category, title, date, hour, minute, check:false}]
-        setTasks(newTasks)
-    }
-
     //팀 카드 3개이하 저장
     const teamCard = [];
     function initTeamCard() {
@@ -120,9 +78,7 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
                     limit={5}
                     onCheck={onCheck}
                     onOptionsModal={onShowOptionsModal}
-                    onAddTaskModal = {onShowAddTaskModal}
                 />
-                <AddTaskModal open={addTaskModalOpen} close={closeAddTaskModal} onNewTask={onNewTask} header="일정 추가" category="Study"/>
                 <OptionsModal open={modalOpen} close ={closeOptionsModal} header="Options" />
             </div>
             <div className="box teamlist">
