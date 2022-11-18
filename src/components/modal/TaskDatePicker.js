@@ -14,10 +14,8 @@ const DateToYYYYMMDD = (date) => {
   return year + "-" + month + "-" + day;
 }
 
-export default function TaskDatePicker({changeSelectedDate=f=>f}) {
-  const today = DateToYYYYMMDD(new Date())
-  const [selectedDate, setSelectedDate] = React.useState(today);
-  // console.log(selectedDate)
+export default function TaskDatePicker({changeSelectedDate=f=>f, initSelectedDate}) {
+  const [selectedDate, setSelectedDate] = React.useState(DateToYYYYMMDD(initSelectedDate));
 
   React.useEffect(
     () => {

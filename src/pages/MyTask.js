@@ -15,21 +15,26 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
     const onNewTask = function(id, category, title, date, hour, minute){ // id, category, title, date, hour, minute, check
         console.log("new task 추가")
         let indexs = tasks.map((task)=>task.index).sort((a,b) => a-b)
-        console.log(indexs)
         const newIndex = indexs[indexs.length-1]+1
         const newTasks = [...tasks, {index: newIndex, id, category, title, date, hour, minute, check:false}]
-        console.log(newTasks)
         setTasks(newTasks)
       }
 
+    const DateToYYYYMMDD = (date) => {
+    var year = date.getFullYear();
+    var month = ("0" + (1 + date.getMonth())).slice(-2);
+    var day = ("0" + date.getDate()).slice(-2);
+    
+    return year + "-" + month + "-" + day;
+    }
+      
     const [addCategoryName, setAddCategoryName] = useState("");
     const [modalOpen, setModalOpen] = useState(false);
     const [addTaskModalOpen, setAddTaskModalOpen] = useState(false); // AddTask Modal 창 open, close State 확인
-
-    const date = new Date(); // Mon Nov 14 2022 10:50:35 GMT+0900 (한국 표준시)
-    const today = date.getFullYear()+"-"+('0' + (date.getMonth() + 1)).slice(-2)+"-"+('0' + date.getDate()).slice(-2); // 2022-11-14
-    let todayTasks = tasks.filter(({date})=>date===today) // 시간 상관 없이 당일에 해당하는 task로만 필터링
-    todayTasks.map((value) => console.log(value.title))
+    const [selectedDate, onChange] = useState(new Date()); // Mon Nov 14 2022 10:50:35 GMT+0900 (한국 표준시)
+    // const selectedDateString = selectedDate.getFullYear()+"-"+('0' + (selectedDate.getMonth() + 1)).slice(-2)+"-"+('0' + selectedDate.getDate()).slice(-2); // 2022-11-14
+    const selectedDateString = DateToYYYYMMDD(selectedDate)
+    const selectedDateTasks = tasks.filter(({date})=>date===selectedDateString) // 시간 상관 없이 당일에 해당하는 task로만 필터링
 
     const onCheck = index =>{
         const newTasks = tasks.map(task => {
@@ -37,7 +42,7 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
                 task.check = !(task.check);
             return task;
         })
-        console.log("oncheck")
+        // console.log("oncheck")
         setTasks(newTasks);
     }
 
@@ -77,20 +82,20 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
             </div >
             <div className="box profile"><Profile/></div>
             <div className="box content">
-                <CustomCalendar tasks={tasks}/>
+                <CustomCalendar tasks={tasks} value={selectedDate} onChange={onChange}/>
             </div>
             <div className="box follower">팔로워</div>
             <div className="box tasklist">
                 <Scrollbars style={{width: '100%',height:'100%', backgroundColor: "transparent", borderRadius:"0px 0px 10px 10px"}}>
                     <CategoryScrollList
                         categories={categoryData}
-                        tasks={todayTasks}
+                        tasks={selectedDateTasks}
                         onCheck={onCheck}
                         onOptionsModal={onShowOptionsModal}
                         onAddTaskModal = {addTaskHandler}
                     />
                 </Scrollbars>
-                <AddTaskModal open={addTaskModalOpen} close={closeAddTaskModal} onNewTask={onNewTask} header="일정 추가" category={addCategoryName}/>
+                <AddTaskModal open={addTaskModalOpen} close={closeAddTaskModal} onNewTask={onNewTask} header="일정 추가" category={addCategoryName} calendarSelectedDate={selectedDate}/>
                 <OptionsModal open={modalOpen} close ={closeOptionsModal} header="Options" />
             </div>
             {/* <div className="box teamlist">

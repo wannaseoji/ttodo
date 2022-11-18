@@ -30,21 +30,18 @@ const StyledTextField = styled(TextField)({
 
 const AddTaskModal = (props) => {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
-  const { open, close, onNewTask, header, category } = props;
+  const { open, close, onNewTask, header, category, calendarSelectedDate } = props;
   let title = "";
   let date = "";
   let time = "none";
   let hour = "none";
   let minute = "none";
-  const today = new Date();
+  // const today = new Date();
   const changeSelectedDate = (selectedDate) => {date = selectedDate} 
   const changeSelectedTime = (selectedTime) => {time = selectedTime}
-
-  console.log(`&&&&&&& ${category} &&&&&&&`)
   
   const addNewTask = () => { // index, id, category, title, date, hour, minute
     if(time==="none"){
-      console.log("time = none")
       hour = "none"
       minute = "none"
     }
@@ -70,7 +67,7 @@ const AddTaskModal = (props) => {
           </header>
           <main>
             <div><span className="settingTitle">내용</span><StyledTextField id="standard-basic" label="" variant="standard" sx={{width:"80%"}} onChange={e=>title = e.target.value}/></div>
-            <div><span className="settingTitle">날짜</span><TaskDatePicker changeSelectedDate={changeSelectedDate}/></div>
+            <div><span className="settingTitle">날짜</span><TaskDatePicker changeSelectedDate={changeSelectedDate} initSelectedDate={calendarSelectedDate}/></div>
             <div><span className="settingTitle">시간 설정</span><TimeToggle changeSelectedTime={changeSelectedTime}/></div>
           </main>
           <footer>
