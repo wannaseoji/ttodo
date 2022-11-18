@@ -3,26 +3,22 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select'
 
-export default function TeamModal({open, close, onNewTeam}) {
+export default function TeamModal({open, close, onNewTeam, followers, leader}) {
     var teamName = "";
     var teamMessage = "";
     var memberList = [];
     
-
     const newTeam = () => {
-// name, memberList, intro, reader
-//reader는 따로 빼와야할듯
-            onNewTeam(teamName, memberList, teamMessage, "wannaseo")
+            onNewTeam(teamName, memberList, teamMessage, leader)
             close()
         }
+
     return (
         <div>
             <Dialog open={open} onClose={close}>
@@ -55,15 +51,19 @@ export default function TeamModal({open, close, onNewTeam}) {
                         onChange={e=>teamMessage = e.target.value}/>
                 </DialogContent>
                 <FormControl>
-                    <InputLabel id="demo-simple-select-label">맴버</InputLabel>
+                    <InputLabel id="demo-simple-select-label"
+                    style={{marginLeft: "1.5vw"}}
+                    > 맴버</InputLabel>
                     <Select
+                        style={{  width: '20vw', alignItems: 'center', marginLeft: "1.5vw"}}
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        label="Age"
-                        style={{ width: '20vw', alignItems: 'center'}}>
-                            <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
+                        label="Age">
+                            {
+                                followers.map(v=>(
+                                    <MenuItem value={10}>{v.name}</MenuItem>
+                                ))
+                            }
                     </Select>
                 </FormControl>
                 <DialogActions>

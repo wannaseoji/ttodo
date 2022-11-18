@@ -24,6 +24,7 @@ function Team({ data }) {
                 <div style={{padding:"3px"}}></div>
                 <Typography component={"span"} variant="body2">
                     {data.notice.map((v, i) => 
+                        i<4 ?
                         <div align="left" key={i} >
                             <div style={{float:"left"}}><button><MdPushPin color='red'/></button></div>
                             <div style={{color:"#555555", fontSize:"15px", float:"left", width:"144px", overflow: 'hidden'
@@ -32,7 +33,7 @@ function Team({ data }) {
                             </div>
                             <br /> 
                             <div style={{padding:"3px"}}></div>
-                        </div>
+                        </div> : <span></span>
                     )}
                 </Typography>
             </CardContent>

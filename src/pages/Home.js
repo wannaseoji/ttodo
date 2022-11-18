@@ -9,6 +9,14 @@ import HomeTaskList from "../components/tasklist/HomeTaskList";
 import '../styles/linkButton.css';
 import Menu from "../components/Menu";
 
+// const Home = () => {
+//     const [teamTask, setTeamTask] = useState(teamTaskData)
+//     const [teams, setTeams] = useState(teamData);
+//     const [tasks, setTasks] = useState(taskData);
+//     const [followers, setfollowers] = useState(followerData);
+//     useEffect(() => setTasks(taskData), [taskData]);
+//     const [modalOpen, setModalOpen] = useState(false); // Options Modal 창 open, close State 확인
+//     const [addTaskModalOpen, setAddTaskModalOpen] = useState(false); // AddTask Modal 창 open, close State 확인
 
 const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams=f=>f})=> {
     const [modalOpen, setModalOpen] = useState(false); // Options Modal 창 open, close State 확인
@@ -91,4 +99,3 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
 };
 
 export default Home;
-
