@@ -13,19 +13,19 @@ const RightTimelineItem = function(todayTasks,mainHour,nowHour){
                     <div key={i}>
                         <TimelineDot sx={{display:'inline-block', margin:'0', backgroundColor: '#FF9AB5'}} />
                         <span style={{fontWeight: 'bold', marginLeft:'1em', color: '#FF9AB5'}}>{task.hour}:{task.minute} </span>
-                        <span style={{fontWeight: 'bold', marginLeft:'1em', color: '#FF9AB5'}}>{task.title}</span>
+                        <span style={{fontWeight: 'bold', marginLeft:'1em', color: '#FF9AB5', textDecoration:(task.check)?"line-through":"none"}}>{task.title}</span>
                     </div>
                 ))}
             </TimelineContent>
         )
     }
     else if(mainHour<nowHour){ // 현재 시간보다 mainHour이 이전이면 회색으로 표시
-        return(<TimelineContent sx={{ py: '12px', px: 2, paddingTop:"10%", paddingBottom:"5%" }} color="text.secondary">
+        return(<TimelineContent sx={{ py: '12px', px: 2, paddingTop:"10%", paddingBottom:"5%"}} color="text.secondary">
             { filteredTasks.map((task,i)=>(
                 <div key={i}>
                     <TimelineDot sx={{display:'inline-block', margin:'0'}} />
                     <span style={{marginLeft:'1em'}}>{task.hour}:{task.minute} </span>
-                    <span style={{marginLeft:'1em'}}>{task.title}</span>
+                    <span style={{marginLeft:'1em', textDecoration:(task.check)?"line-through":"none"}}>{task.title}</span>
                 </div>
             ))}    
         </TimelineContent>
@@ -38,7 +38,7 @@ const RightTimelineItem = function(todayTasks,mainHour,nowHour){
                 <div key={i}>
                 <TimelineDot sx={{display:'inline-block', margin:'0'}} />
                 <span style={{marginLeft:'1em'}}>{task.hour}:{task.minute} </span>
-                <span style={{marginLeft:'1em'}}>{task.title}</span>
+                <span style={{marginLeft:'1em', textDecoration:(task.check)?"line-through":"none"}}>{task.title}</span>
                 </div>
             ))}    
         </TimelineContent>

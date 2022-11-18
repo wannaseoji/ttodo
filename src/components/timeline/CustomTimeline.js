@@ -27,8 +27,8 @@ const CustomTimeLine = function({tasks=[]}){
                         hours.map(
                             (hour,i)=>(<TimelineItem key={i}>
                                 <TimelineOppositeContent style={{flex:(hour<10)?0.115:0.1, fontWeight:(nowHour==hour)?"bold":"normal", color:(nowHour==hour)?"#FF9AB5":(nowHour>hour)?"grey":"black"}}>{hour}:00</TimelineOppositeContent>
-                                <TimelineSeparator>
-                                    <TimelineDot />
+                                <TimelineSeparator >
+                                    <TimelineDot style={{backgroundColor:(hour==nowHour)?"#FF9AB5":"text.secondary"}}/>
                                     <TimelineConnector />
                                 </TimelineSeparator>
                                 {(distinctHours.indexOf(hour.toString())<0)? <TimelineContent/>:RightTimelineItem(todayTasks,hour,nowHour)}
@@ -37,7 +37,6 @@ const CustomTimeLine = function({tasks=[]}){
                         )
                     }
                     
-
                     {/* 선 끝에 점 생성하기*/}
                     <TimelineItem>
                         <TimelineOppositeContent style={{flex:0.1}}>24:00</TimelineOppositeContent>
