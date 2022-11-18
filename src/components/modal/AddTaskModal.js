@@ -39,8 +39,10 @@ const AddTaskModal = (props) => {
   const today = new Date();
   const changeSelectedDate = (selectedDate) => {date = selectedDate} 
   const changeSelectedTime = (selectedTime) => {time = selectedTime}
+
+  console.log(`&&&&&&& ${category} &&&&&&&`)
   
-  const addNewTask = () => { // id, category, title, date, hour, minute
+  const addNewTask = () => { // index, id, category, title, date, hour, minute
     if(time==="none"){
       console.log("time = none")
       hour = "none"
@@ -50,8 +52,8 @@ const AddTaskModal = (props) => {
       hour = parseInt(time.split(":")[0]).toString()
       minute = time.split(":")[1]
     }
-
-    onNewTask("wannaseo",category, title, date, hour, minute)
+  
+    onNewTask("wannaseo", category,title, date, hour, minute)
     close()
   }
 

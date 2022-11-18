@@ -2,9 +2,7 @@ import React,{useState} from 'react';
 import List from '@mui/material/List';
 import IconButton from '@mui/material/IconButton';
 import TaskList from './TaskList'
-
 import { IoMdAddCircleOutline } from "react-icons/io";
-
 import '../../styles/TaskList.css';
 
 // Home 화면에서 limit 개수만큼 고정으로 띄우는 TaskList

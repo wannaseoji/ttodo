@@ -20,9 +20,10 @@ import CategoryList from "../components/CategoryList";
 import MemberList from "../components/MemberList";
 import Button from '@material-ui/core/Button';
 import '../styles/linkButton.css';
+import Menu from "../components/Menu";
 
 
-const TeamLink = () => {
+const TeamLink = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams=f=>f}) => {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -35,10 +36,7 @@ const TeamLink = () => {
     const onShow = () => {
         handleClickOpen();
     }
-    const location = useLocation();
 
-    //teamState: team.json, teamTaskState: team-task-data.json
-    const {tasks ,teams, teamTask} = location.state;
     const [teams1, setTeams1] = useState(teams);
 
     //Team 생성
@@ -60,40 +58,7 @@ const TeamLink = () => {
     return (
         <div id="app" className="parent" >
             <div className="box menu" >
-                <nav className="seo_nav">
-                    <Box sx={{ width: '100%', maxWidth: 400, bgcolor: 'background.black', position: 'relative', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
-                        <List component="nav">
-                                <nav>
-                                    <StyledListItem >
-                                        <Button className="linkButton" component={Link} to="/" state={{ tasks: tasks, teams:teams, teamTask:teamTask }}>
-                                            <VscHome /><ListItemText className="menuName"> Home</ListItemText>
-                                        </Button>
-                                    </StyledListItem>
-                                </nav>
-                                <nav >
-                                    <StyledListItem>
-                                        <Button className="linkButton" component={Link} to="/Goal" state={{ tasks: tasks, teams:teams, teamTask:teamTask }}>
-                                            <GiStairsGoal /><ListItemText className="menuName"> Goal</ListItemText>
-                                        </Button>
-                                    </StyledListItem>
-                                </nav>
-                                <nav>
-                                    <StyledListItem>
-                                        <Button className="linkButton" component={Link} to="/MyTask" state={{ tasks: tasks, teams:teams, teamTask:teamTask }}>
-                                            <IoPersonOutline /><ListItemText className="menuName"> My Task</ListItemText>
-                                        </Button>
-                                    </StyledListItem>
-                                </nav>
-                                <nav>
-                                    <StyledListItem>
-                                        <Button className="linkButton" component={Link} to="/TeamLink" state={{ tasks: tasks, teams:teams, teamTask:teamTask }}>
-                                            <BsPeople /><ListItemText className="menuName"> Team</ListItemText>
-                                        </Button>
-                                    </StyledListItem>
-                                </nav>
-                        </List>
-                    </Box>
-                </nav >
+                <Menu/>
             </div >
             <div className="box profile"><Profile /></div>
             <div className="box content">

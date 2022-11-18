@@ -18,13 +18,9 @@ import getProgressData from '../components/getProgressData';
 import { ResponsiveContainer, BarChart, XAxis, YAxis, Tooltip, Legend, Bar, } from 'recharts'
 import Slider from '../components/Slider'
 import Button from '@material-ui/core/Button';
+import Menu from '../components/Menu';
 import '../styles/linkButton.css';
-const Goal = () => {
-    const location = useLocation();
-    const { tasks, teams, teamTask } = location.state;
-
-
-
+const Goal = ({tasks, teamTask, teams}) => {
     //const numOftasks = tasks;
     //console.log(numOftasks)
     //const { id, date } = tasks;
@@ -58,45 +54,12 @@ const Goal = () => {
     return (
         <div id="app" className="parent" >
             <div className="box menu" >
-                <nav className="seo_nav">
-                    <Box sx={{ width: '100%', maxWidth: 400, bgcolor: 'background.black', position: 'relative', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
-                        <List component="nav">
-                                <nav>
-                                    <StyledListItem >
-                                        <Button className="linkButton" component={Link} to="/" state={{ tasks: tasks, teams:teams, teamTask:teamTask }}>
-                                            <VscHome /><ListItemText className="menuName"> Home</ListItemText>
-                                        </Button>
-                                    </StyledListItem>
-                                </nav>
-                                <nav >
-                                    <StyledListItem>
-                                        <Button className="linkButton" component={Link} to="/Goal" state={{ tasks: tasks, teams:teams, teamTask:teamTask }}>
-                                            <GiStairsGoal /><ListItemText className="menuName"> Goal</ListItemText>
-                                        </Button>
-                                    </StyledListItem>
-                                </nav>
-                                <nav>
-                                    <StyledListItem>
-                                        <Button className="linkButton" component={Link} to="/MyTask" state={{ tasks: tasks, teams:teams, teamTask:teamTask }}>
-                                            <IoPersonOutline /><ListItemText className="menuName"> My Task</ListItemText>
-                                        </Button>
-                                    </StyledListItem>
-                                </nav>
-                                <nav>
-                                    <StyledListItem>
-                                        <Button className="linkButton" component={Link} to="/TeamLink" state={{ tasks: tasks, teams:teams, teamTask:teamTask }}>
-                                            <BsPeople /><ListItemText className="menuName"> Team</ListItemText>
-                                        </Button>
-                                    </StyledListItem>
-                                </nav>
-                        </List>
-                    </Box>
-                </nav >
+                <Menu/>
             </div >
             <div className="box profile"><Profile /></div>
             <div className="box content"  >
-                <div style={{ width: '100%', height: '100%', }}>
-                    <Slider Piedata={Piedata} />
+                <div style={{ width: '100%', height: '100%'}}>
+                    <Slider Piedata={Piedata}  />
                 </div>
             </div>
             <div className="box follower"></div>
