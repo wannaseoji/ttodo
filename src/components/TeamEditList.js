@@ -5,10 +5,8 @@ import {GoChevronLeft} from "react-icons/go";
 import {GoChevronRight} from "react-icons/go";
 // import teamData from "../assets/team.json"
 
-function TeamEditList({onShowModal, teamData}) {
+function TeamEditList({onShowModal, teamData, changeCurTeamIdx}) {
     
-    //const [teams, setTeams] = useState(teamData);
-
     const [limit, setLimit] = useState(4);
     const [page, setPage] = useState(1);
     const offset = (page - 1) * limit;
@@ -46,7 +44,7 @@ function TeamEditList({onShowModal, teamData}) {
                     <tr>
                         <td width="240" height="275">
                             <center>
-                                {<Team data={list[0]} />}
+                            <button onClick={()=>changeCurTeamIdx(offset)}>{<Team key={offset} data={list[0]} />}</button>
                             </center>
                         </td >
                         <td width="240" height="275">
@@ -64,10 +62,10 @@ function TeamEditList({onShowModal, teamData}) {
             <><thead>
                 <tr>
                     <td width="240" height="275">
-                        <center>{<Team data={list[0]} />}</center>
+                        <center><button onClick={()=>changeCurTeamIdx(offset)}>{<Team key={offset} data={list[0]} />}</button></center>
                     </td >
                     <td width="240" height="275">
-                        <center>{<Team data={list[1]} />}</center>
+                        <center><button onClick={()=>changeCurTeamIdx(offset+1)}>{<Team key={offset+1} data={list[1]} />}</button></center>
                     </td>
                 </tr>
                 <tr>
@@ -83,15 +81,15 @@ function TeamEditList({onShowModal, teamData}) {
             <><thead>
                 <tr>
                     <td width="240" height="275">
-                        <center>{<Team data={list[0]} />}</center>
+                        <center><button onClick={()=>changeCurTeamIdx(offset)}>{<Team key={offset} data={list[0]} />}</button></center>
                     </td >
                     <td width="240" height="275">
-                        <center>{<Team data={list[1]} />}</center>
+                        <center><button onClick={()=>changeCurTeamIdx(offset+1)}>{<Team key={offset+1} data={list[1]} />}</button></center>
                     </td>
                 </tr>
                 <tr>
                     <td width="240" height="275">
-                        <center>{<Team data={list[2]} />}</center>
+                        <center><button onClick={()=>changeCurTeamIdx(offset+2)}>{<Team key={offset+2} data={list[2]} />}</button></center>
                     </td>
                     <td width="240" height="275">
                         <center>{<button onClick={onShowModal}><BsPlusCircleFill size="60" color="#FEA4BC" /></button>}</center>
@@ -104,18 +102,18 @@ function TeamEditList({onShowModal, teamData}) {
             <><thead>
                 <tr>
                     <td width="240" height="275">
-                        <center>{<Team data={list[0]} />}</center>
+                        <center><button onClick={()=>changeCurTeamIdx(offset)}>{<Team key={offset} data={list[0]}/>}</button></center>
                     </td >
                     <td width="240" height="275">
-                        <center>{<Team data={list[1]} />}</center>
+                        <center><button onClick={()=>changeCurTeamIdx(offset+1)}>{<Team key={offset+1} data={list[1]} />}</button></center>
                     </td>
                 </tr>
                 <tr>
                     <td width="240" height="275">
-                        <center>{<Team data={list[2]} />}</center>
+                        <center><button onClick={()=>changeCurTeamIdx(offset+2)}>{<Team key={offset+2} data={list[2]} />}</button></center>
                     </td>
                     <td width="240" height="275">
-                        <center>{<Team data={list[3]} />}</center>
+                        <center><button onClick={()=>changeCurTeamIdx(offset+3)}>{<Team key={offset+3} data={list[3]} />}</button></center>
                     </td>
                 </tr>
             </thead><tbody></tbody></> : <><thead><tr><td></td></tr></thead><tbody></tbody></>
@@ -139,7 +137,7 @@ function TeamEditList({onShowModal, teamData}) {
                     <center>
                         <GoChevronRight size="27" color="#878787" 
                             onClick={ () => { 
-                                if(page !== maxCount) {         //즉 페이지 이동을 할 수 있는 경우,
+                                if(page !== maxCount) { //즉 페이지 이동을 할 수 있는 경우,
                                     setPage(page + 1);    
                                 } 
                             }}

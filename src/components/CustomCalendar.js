@@ -13,9 +13,11 @@ const Customdot = (date, uncheckedTasksNum) => {
   }
 }
 
-const CustomCalendar = ({tasks = []}) => {
-    const [value, onChange] = useState(new Date());
+const CustomCalendar = ({tasks = [], value, onChange=f=>f}) => {
+    // const [value, onChange] = useState(new Date());
     const [mark, setMark] = useState([]);
+
+
 
     React.useMemo(
       ()=>{

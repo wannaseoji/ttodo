@@ -36,15 +36,12 @@ const SlideComponent = ({ Piedata = [] }) => {
 
     return (
         <>
+            
+            <Wrapper>
             <button onClick={PrevSlide}>prev</button>
             <button onClick={NextSlide}>next</button>
-            <Wrapper>
                 <SlideWrapper ref={slideRef} style={{ width: '100%', height: '100%', }}>
                     {Piedata.map(pie => <div style={{ width: '100%', height: '100%', flex: 'none' }}> <Slide Piedata={pie} /> </div>)}
-
-                    {/* 컴포넌트자리 */}
-
-
                 </SlideWrapper>
 
 
@@ -60,8 +57,8 @@ export default SlideComponent;
 const Wrapper = styeld.div`
   width: 80%;
   height: 80%;
-  
-    overflow: hidden;
+  background:#B7B7B7;
+   overflow: hidden;
 `;
 
 const SlideWrapper = styeld.div`
