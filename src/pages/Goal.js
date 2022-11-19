@@ -1,26 +1,18 @@
-import MyResponsivePie from '../components/piechart/Chart'
 //import data from '../components/data'
 import { Outlet, Link } from "react-router-dom";
 import '../App.css';
 import '../styles/grid.css';
 import List from '@mui/material/List';
-import Box from '@mui/material/Box';
-import ListItemText from '@mui/material/ListItemText';
 import Profile from "./Profile";
 import StyledListItem from '../styles/linkStyle';
-import { VscHome } from 'react-icons/vsc' //GiStairsGoal
-import { GiStairsGoal } from 'react-icons/gi' //GiStairsGoal, IoPersonOutline
-import { IoPersonOutline } from 'react-icons/io5' //GiStairsGoal, IoPersonOutline,BsPeople
-import { BsPeople } from 'react-icons/bs' //GiStairsGoal, IoPersonOutline,BsPeople
-import { useLocation } from 'react-router-dom';
 import getPieData from '../components/piechart/getPieData';
 import getProgressData from '../components/barchart/getProgressData';
 import { ResponsiveContainer, BarChart, XAxis, YAxis, Tooltip, Legend, Bar, } from 'recharts'
 import Slider from '../components/Slider'
-import Button from '@material-ui/core/Button';
 import Menu from '../components/Menu';
 import '../styles/linkButton.css';
-const Goal = ({tasks, teamTask, teams}) => {
+import getLineChartData from "../components/getLineChartData";
+const Goal = ({ tasks, teamTask, teams }) => {
     //const numOftasks = tasks;
     //console.log(numOftasks)
     //const { id, date } = tasks;
@@ -29,7 +21,7 @@ const Goal = ({tasks, teamTask, teams}) => {
     //console.log("This is home and Tasks are transfered", tasks)
     //const [numTasks, numTrue] = 
     const Piedata = getPieData(tasks);
-    console.log("Piedata in Goal : ", Piedata);
+    // console.log("Piedata in Goal : ", Piedata);
     //category별 진척도
 
     const categoryFilter = (keyWord) => keyWord.map(task => { return task.category });
@@ -47,19 +39,21 @@ const Goal = ({tasks, teamTask, teams}) => {
     })
     const uniqueProgressData = uniqueArr(progressData);
 
-    console.log("progressData", uniqueProgressData);
+    // console.log("progressData", uniqueProgressData);
 
+
+    const LineData = getLineChartData(tasks);
 
 
     return (
         <div id="app" className="parent" >
             <div className="box menu" >
-                <Menu/>
+                <Menu />
             </div >
             <div className="box profile"><Profile /></div>
             <div className="box content"  >
-                <div style={{ width: '100%', height: '100%'}}>
-                    <Slider Piedata={Piedata}  />
+                <div style={{ width: '100%', height: '100%' }}>
+                    <Slider Piedata={Piedata} LineData={LineData} />
                 </div>
             </div>
             <div className="box follower"></div>

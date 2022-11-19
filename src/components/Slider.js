@@ -4,11 +4,12 @@ import { useState, useRef, useEffect } from "react";
 import Slide from './Slide';
 import { style } from "@mui/system";
 
-const TOTAL_SLIDES = 5; // 전체 슬라이드 개수(총3개. 배열로 계산)
-const SlideComponent = ({ Piedata = [] }) => {
+// 전체 슬라이드 개수(총3개. 배열로 계산)
+const SlideComponent = ({ Piedata = [], LineData = [] }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const slideRef = useRef(null);
 
+    const TOTAL_SLIDES = Piedata.map(() => { }).length - 1;
     // Next 버튼 클릭 시
     const NextSlide = () => {
         if (currentSlide >= TOTAL_SLIDES) {
@@ -36,12 +37,12 @@ const SlideComponent = ({ Piedata = [] }) => {
 
     return (
         <>
-            
+
             <Wrapper>
-            <button onClick={PrevSlide}>prev</button>
-            <button onClick={NextSlide}>next</button>
+                <button onClick={PrevSlide}>prev</button>
+                <button onClick={NextSlide}>next</button>
                 <SlideWrapper ref={slideRef} style={{ width: '100%', height: '100%', }}>
-                    {Piedata.map(pie => <div style={{ width: '100%', height: '100%', flex: 'none' }}> <Slide Piedata={pie} /> </div>)}
+                    {Piedata.map((pie, i) => <div key={i} style={{ width: '100%', height: '100%', flex: 'none' }}> <Slide key={i} Piedata={pie} LineData={LineData} /> </div>)}
                 </SlideWrapper>
 
 

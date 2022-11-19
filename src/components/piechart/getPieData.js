@@ -2,15 +2,15 @@ const getPieData = (tasks = []) => {
 
     const dateFilter = (keyWord) => keyWord.map(task => { return task.date });
     const dates = dateFilter(tasks);
-    console.log("dates in getPieData", dates)
+    // console.log("dates in getPieData", dates)
     const months = dates.map(date => date.slice(0, 7));
-    console.log("in getPieData months", months);
+    // console.log("in getPieData months", months);
 
     const uniqueArr = (array) => array.filter((element, index) => {
         return array.indexOf(element) === index;
     });
     const uniqueMonths = uniqueArr(months);
-    console.log(uniqueMonths);
+    // console.log(uniqueMonths);
 
 
     const pieData = uniqueMonths.map(month => {
@@ -18,10 +18,10 @@ const getPieData = (tasks = []) => {
         let numTrue = 0;
         tasks.map((task, i) => (task.check === true && task.date.slice(0, 7) == month) ? numTrue++ : numTrue)
         //console.log(month, task.date.slice(0, 7))
-        console.log("numTrue :", numTrue)
+        //console.log("numTrue :", numTrue)
 
         tasks.map((task, i) => task.date.slice(0, 7) == month ? numTasks++ : numTasks)
-        console.log("numTasks :", numTasks)
+        // console.log("numTasks :", numTasks)
 
         return (
             [{

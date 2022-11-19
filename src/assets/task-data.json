@@ -4,7 +4,7 @@
         "id": "wannaseo",
         "category": "Study",
         "title": "설계패턴 대면",
-        "date": "2022-11-19",
+        "date": "2022-11-20",
         "hour": "10",
         "minute": "30",
         "check": false
@@ -14,7 +14,7 @@
         "id": "wannaseo",
         "category": "Study",
         "title": "성공성공성공🍕",
-        "date": "2022-11-19",
+        "date": "2022-11-20",
         "hour": "23",
         "minute": "55",
         "check": false
@@ -24,7 +24,7 @@
         "id": "wannaseo",
         "category": "Friend",
         "title": "쉬는 시간",
-        "date": "2022-11-19",
+        "date": "2022-11-20",
         "hour": "none",
         "minute": "none",
         "check": false
@@ -34,27 +34,27 @@
         "id": "wannaseo",
         "category": "Friend",
         "title": "운동운동",
-        "date": "2022-11-19",
+        "date": "2022-11-20",
         "hour": "none",
         "minute": "none",
-        "check": false
+        "check": true
     },
     {
         "index": 5,
         "id": "wannaseo",
         "category": "Study",
         "title": "쉬는 시간22",
-        "date": "2022-11-19",
+        "date": "2022-11-20",
         "hour": "14",
         "minute": "45",
-        "check": false
+        "check": true
     },
     {
         "index": 6,
         "id": "wannaseo",
         "category": "Exercise",
         "title": "집 가는 시간",
-        "date": "2022-11-19",
+        "date": "2022-11-20",
         "hour": "19",
         "minute": "00",
         "check": false
@@ -77,14 +77,14 @@
         "date": "2021-12-17",
         "hour": "19",
         "minute": "45",
-        "check": false
+        "check": true
     },
     {
         "index": 9,
         "id": "wannaseo",
         "category": "Exercise",
         "title": "나 이제 그만 자고 싶어",
-        "date": "2021-3-17",
+        "date": "2021-03-17",
         "hour": "19",
         "minute": "45",
         "check": false
@@ -137,14 +137,84 @@
         "date": "2022-11-07",
         "hour": "19",
         "minute": "30",
-        "check": false
+        "check": true
     },
     {
-        "index": 14,
+        "index": 16,
         "id": "wannaseo",
         "category": "Exercise",
         "title": "완성?",
-        "date": "2022-11-04",
+        "date": "2022-11-15",
+        "hour": "9",
+        "minute": "45",
+        "check": false
+    },
+    {
+        "index": 16,
+        "id": "wannaseo",
+        "category": "Exercise",
+        "title": "완성?",
+        "date": "2022-11-15",
+        "hour": "9",
+        "minute": "45",
+        "check": false
+    },
+    {
+        "index": 16,
+        "id": "wannaseo",
+        "category": "Exercise",
+        "title": "완성?",
+        "date": "2022-11-15",
+        "hour": "9",
+        "minute": "45",
+        "check": false
+    },
+    {
+        "index": 16,
+        "id": "wannaseo",
+        "category": "Exercise",
+        "title": "완성?",
+        "date": "2022-11-15",
+        "hour": "9",
+        "minute": "45",
+        "check": true
+    },
+    {
+        "index": 16,
+        "id": "wannaseo",
+        "category": "Exercise",
+        "title": "완성?",
+        "date": "2022-11-15",
+        "hour": "9",
+        "minute": "45",
+        "check": true
+    },
+    {
+        "index": 16,
+        "id": "wannaseo",
+        "category": "Exercise",
+        "title": "완성?",
+        "date": "2022-11-16",
+        "hour": "9",
+        "minute": "45",
+        "check": true
+    },
+    {
+        "index": 16,
+        "id": "wannaseo",
+        "category": "Exercise",
+        "title": "완성?",
+        "date": "2022-11-17",
+        "hour": "9",
+        "minute": "45",
+        "check": false
+    },
+    {
+        "index": 16,
+        "id": "wannaseo",
+        "category": "Exercise",
+        "title": "완성?",
+        "date": "2022-11-15",
         "hour": "9",
         "minute": "45",
         "check": true
