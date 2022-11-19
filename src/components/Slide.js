@@ -276,7 +276,7 @@ const data = [
         ]
     }
 ]
-export default function Slide({ Piedata }) {
+export default function Slide({ Piedata = [], LineChartData = [] }) {
     return (
         <>
 
