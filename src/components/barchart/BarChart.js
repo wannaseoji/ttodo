@@ -11,7 +11,7 @@ const MyBarCharts = ({ data /* see data tab */ }) => (
     <ResponsiveBullet
 
         data={data}
-        margin={{ top: 50, right: 90, bottom: 50, left: 90 }}
+        margin={{ top: 100, right: 90, bottom: 50, left: 90 }}
         spacing={25}
         titleAlign="start"
         titleOffsetX={-70}
@@ -22,7 +22,7 @@ const MyBarCharts = ({ data /* see data tab */ }) => (
         // reverse={true}
         measureSize={0.1}
         markerSize={1}
-        rangeColors={"#FFFFFF"}
+        rangeColors={"#B7B7B7"}
         measureColors={["#FF9AB5", "#FFFFFF"]}
         markerColors="paired"
         axisPosition='undifined'

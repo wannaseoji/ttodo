@@ -12,6 +12,9 @@ import Slider from '../components/Slider'
 import Menu from '../components/Menu';
 import '../styles/linkButton.css';
 import getLineChartData from "../components/getLineChartData";
+import DetailChart from "../components/DetailChart";
+import { background } from "@chakra-ui/react";
+import { BiBorderRadius } from "react-icons/bi";
 const Goal = ({ tasks, teamTask, teams }) => {
     //const numOftasks = tasks;
     //console.log(numOftasks)
@@ -43,7 +46,10 @@ const Goal = ({ tasks, teamTask, teams }) => {
 
 
     const LineData = getLineChartData(tasks);
-
+    // console.log("#############################################")
+    // console.log("LineData in Gaol", LineData)
+    // console.log("Piedata in Gaol", Piedata)
+    // console.log("#############################################")
 
     return (
         <div id="app" className="parent" >
@@ -52,15 +58,15 @@ const Goal = ({ tasks, teamTask, teams }) => {
             </div >
             <div className="box profile"><Profile /></div>
             <div className="box content"  >
-                <div style={{ width: '100%', height: '100%' }}>
+                <div style={{ paddingLeft: '15%', width: '100%', height: '120%', bg: '#B7B7B7', }}>
                     <Slider Piedata={Piedata} LineData={LineData} />
                 </div>
             </div>
             <div className="box follower"></div>
-            <div className="box tasklist">
+            <div className="box tasklist" style={{ width: '90%', background: '#B7B7B7', borderRadius: '20px' }}>
 
-                <ResponsiveContainer width='90%' aspect={4.0 / 2.0}>
-                    <BarChart data={uniqueProgressData} layout="vertical" fill="#000000" width={150} height={40}>
+                <ResponsiveContainer width='100%' aspect={4.0 / 2.0} >
+                    <BarChart data={uniqueProgressData} layout="vertical" fill="#B7B7B7" width={150} height={40}>
                         <XAxis type="number" dataKey="total" hide />
                         <YAxis dataKey="name" reversed type="category" />
                         <Tooltip />
@@ -71,13 +77,16 @@ const Goal = ({ tasks, teamTask, teams }) => {
                 {/* <MyBarCharts data={uniqueProgressData} /> */}
             </div>
             <div className="box teamlist">
-
+                {
+                    uniqueCategories.map((category, i) => <DetailChart className="customCard" key={i} sx={{ color: "#FF9AB5" }} />)
+                }
             </div>
         </div >
 
 
     );
 };
+
 
 export default Goal;
 

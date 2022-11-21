@@ -19,8 +19,9 @@ const getLineChartData = (tasks) => {
     // console.log(getWeekNumber(new Date('2022-10-31'))); // 6
     const dateFilter = (keyWord) => keyWord.map(task => { return task.date });
     const dates = dateFilter(tasks);
-    // console.log("dates in getLineChartData", dates)
+
     const months = dates.map(date => date.slice(0, 7));
+    // console.log("dates in getLineChartData", dates)
     const weeks = dates.map(date => {
         return getWeekNumber(new Date(date));
     });//몇주차인지
@@ -48,8 +49,8 @@ const getLineChartData = (tasks) => {
     });
     const uniqueCount = uniqueArr(count);
     console.log(uniqueCount)
-    const uniqueMonths = uniqueArr(months);
     // console.log(uniqueMonths);
+    const uniqueMonths = uniqueArr(months);
 
     const weekdata = uniqueCount.map(nWeek => {
         let mweek = nWeek.slice(13, 14);
@@ -93,25 +94,92 @@ const getLineChartData = (tasks) => {
     const uniqueWeekdata = arrUnique(weekdata);
 
     console.log(uniqueWeekdata)
-    const labels = uniqueWeekdata.map((uniqueWeek) => uniqueWeek.mmonth + "월" + uniqueWeek.mweek + " 주차")
-    const linedata = uniqueWeekdata.map((uniqueWeek) => ({ x: uniqueWeek.mmonth + "월" + uniqueWeek.mweek + " 주차", y: `${uniqueWeek.numTrue / uniqueWeek.numTasks * 100}` }))
-
-    console.log(linedata)
-    const data = {
-        labels: labels,
-        datasets: [
-            {
-                type: 'line',
-                label: '주차별 목표달성율',
-                borderColor: '#FF9AB5',
-                borderWidth: 2,
-                data: linedata,
-            },
-        ]
-    };
 
 
-    return data;
+    const groupByCategory = (uniqueWeekdata) => uniqueWeekdata.reduce((group, weekdata) => {
+        const { mmonth } = weekdata;
+        console.log("weekdata", weekdata);
+        group[mmonth] = group[mmonth] ?? [];
+        group[mmonth].push(weekdata);
+        return group;
+    }, []);
+
+
+
+    const sortedUniqueWeekData = groupByCategory(uniqueWeekdata)
+
+
+
+    const LINEDATA = uniqueMonths.map(
+
+        month => {
+
+            var arrlabels = [];
+            var arrlinedata = [];
+            sortedUniqueWeekData[month].map(
+                (monthly) => {
+                    //console.log("monthly", monthly)
+
+                    const labels = monthly.mmonth + "월" + monthly.mweek + " 주차"
+                    arrlabels.push(labels)
+                    const linedata = { x: monthly.mmonth + "월" + monthly.mweek + " 주차", y: `${monthly.numTrue / monthly.numTasks * 100}` }
+                    arrlinedata.push(linedata)
+                    return;
+                }
+            )
+            const sortedlabels = arrlabels.sort(function (a, b) {
+                return a.slice(8, 9) - b.slice(8, 9);
+            });
+            const sortedlinedata = arrlinedata.sort(function (a, b) {
+                return a.x.slice(8, 9) - b.x.slice(8, 9);
+            });
+            // console.log("#####################")
+            // console.log(sortedlabels)
+            // console.log("#####################")
+            return {
+                labels: sortedlabels,
+                datasets: [
+                    {
+                        type: 'line',
+                        label: '주차별 목표달성율',
+                        borderColor: '#FF9AB5',
+                        borderWidth: 2,
+                        data: arrlinedata,
+                    },
+                ]
+            };
+        }
+
+    )
+    console.log("sortedUniqueWeekData", sortedUniqueWeekData)
+    console.log("LINEDATA", LINEDATA)
+
+    // sortedUniqueWeekData.map(monthData => {
+    //     console.log(monthData)
+
+    //     return;
+    // })
+
+
+
+    // const labels = uniqueWeekdata.map((uniqueWeek) => uniqueWeek.mmonth + "월" + uniqueWeek.mweek + " 주차")
+    // const linedata = uniqueWeekdata.map((uniqueWeek) => ({ x: uniqueWeek.mmonth + "월" + uniqueWeek.mweek + " 주차", y: `${uniqueWeek.numTrue / uniqueWeek.numTasks * 100}` }))
+
+    // const data = {
+    //     labels: labels,
+    //     datasets: [
+    //         {
+    //             type: 'line',
+    //             label: '주차별 목표달성율',
+    //             borderColor: '#FF9AB5',
+    //             borderWidth: 2,
+    //             data: linedata,
+    //         },
+    //     ]
+    // };
+
+
+    return LINEDATA;
 
 
 }

@@ -13,25 +13,8 @@ import { Line } from 'react-chartjs-2';
 
 
 const MyLineChart = ({ data }) => {
-    // let data = {
-    //     labels: ['2째주', '3재쭈', '4재쭈'],
-    //     datasets: [
-    //         {
-    //             type: 'line',
-    //             label: 'Dataset 1',
-    //             borderColor: '#FF9AB5',
-    //             borderWidth: 2,
-    //             data: [
-    //                 { x: 'January', y: 1 },
-    //                 { x: 'February', y: 2 },
-    //                 { x: 'March', y: 3 },
-    //                 { x: 'April', y: 4 },
-    //                 { x: 'May', y: 5 }
-    //             ],
-    //         },
-    //     ]
-    // };
 
+    console.log("in MyLineChart ", data);
     return (
         <div>
             <Line type="line" data={data} />

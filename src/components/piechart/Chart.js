@@ -11,7 +11,7 @@ const MyResponsivePie = ({ data, length /* see data tab */ }) => (
     <ResponsivePie
         length={length}
         data={data}
-        margin={{ top: 0, right: 80, bottom: 80, left: 80 }}
+        margin={{ top: 50, right: 80, bottom: 80, left: 80 }}
         innerRadius={0.5}
         padAngle={1}
         cornerRadius={3}
@@ -31,12 +31,12 @@ const MyResponsivePie = ({ data, length /* see data tab */ }) => (
             /**
              * label style (pad에 표현되는 글씨)
              */
-            // labels: {
-            //     text: {
-            //         fontSize: 0, //11-17
-            //         fill: '#000000',
-            //     },
-            // },
+            labels: {
+                text: {
+                    fontSize: 0, //11-17
+                    fill: '#000000',
+                },
+            },
             /**
              * legend style (default로 하단에 있는 색상별 key 표시)
              */

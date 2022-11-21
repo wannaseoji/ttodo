@@ -4,8 +4,9 @@ import MyLineChart from './LineChart.js';
 import MyResponsivePie from './piechart/Chart.js'
 
 
-
 export default function Slide({ Piedata = [], LineData = [] }) {
+
+
     return (
         <>
 
