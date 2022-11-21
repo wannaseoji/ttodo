@@ -13,7 +13,7 @@ function HomeTaskList({tasks = [], limit, onCheck = f => f, onOptionsModal = f =
                 <div id='category_top'>
                     <span id="category_name">My Task</span>
                 </div>
-                {tasks.length !== 0 ? 
+                {tasks!== null ? 
                     <TaskList 
                     tasks={tasks}
                     limit={limit}
