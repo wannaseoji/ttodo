@@ -11,6 +11,7 @@ import Profile from "./Profile";
 import CustomTimeLine from "../components/timeline/CustomTimeline";
 import OptionsModal from "../components/modal/OptionsModal";
 import HomeTaskList from "../components/tasklist/HomeTaskList";
+import GrayBox from "../components/GrayBox.js"
 
 // const Home = () => {
 //     const [teamTask, setTeamTask] = useState(teamTaskData)
@@ -80,7 +81,9 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
             </div >
             <div className="box profile"><Profile /></div>
             <div className="box content">
-                <CustomTimeLine tasks={tasks} />
+                <GrayBox boxname="timeline" title="Today Appointment">
+                    <CustomTimeLine tasks={tasks} />
+                </GrayBox>
             </div>
             <div className="box follower">팔로워</div>
             <div className="box tasklist">

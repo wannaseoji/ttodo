@@ -31,10 +31,7 @@ const CustomCalendar = ({tasks = [], value, onChange=f=>f}) => {
     )
 
     return (
-      <div className="calendar" style={{padding:"2px"}}>
-        <header style={{textAlign:"left", backgroundColor:"#DFDFDF", minWidth:"300px", width:"30vw", padding:"0.5em 0em",borderRadius:"10px 10px 0px 0px"}}><span style={{fontWeight:"600", paddingLeft:"1em", color:"#555555", fontSize:"1.5em"}}>Calendar</span></header>
-        <div style={{minWidth:"300px", width: "30vw", height: "70vh", backgroundColor:"#F0F0F0", borderRadius:"0px 0px 10px 10px"}}>
-          <Calendar
+      <Calendar style={{width: "100%", height: "100%", backgroundColor:"none", borderRadius:"0px 0px 10px 10px"}}
             onChange={onChange} // useState로 포커스 변경 시 현재 날짜 받아오기
             formatDay={(locale, date) => moment(date).format("DD")} // 날'일' 제외하고 숫자만 보이도록 설정
             value={value}
@@ -61,9 +58,6 @@ const CustomCalendar = ({tasks = [], value, onChange=f=>f}) => {
               );
             }}
           />
-        </div>
-      </div>
-
     );
 }
 

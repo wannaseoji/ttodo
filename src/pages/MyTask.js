@@ -9,6 +9,7 @@ import AddTaskModal from "../components/modal/AddTaskModal";
 import CategoryScrollList from "../components/tasklist/CategoryScrollList"
 import CustomCalendar from "../components/CustomCalendar";
 import Menu from "../components/Menu";
+import GrayBox from "../components/GrayBox"
 import '../styles/linkButton.css';
 
 const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams=f=>f}) => {
@@ -82,7 +83,9 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
             </div >
             <div className="box profile"><Profile/></div>
             <div className="box content">
-                <CustomCalendar tasks={tasks} value={selectedDate} onChange={onChange}/>
+                <GrayBox boxname="calendar" title="Calendar">
+                    <CustomCalendar tasks={tasks} value={selectedDate} onChange={onChange}/>
+                </GrayBox>
             </div>
             <div className="box follower">팔로워</div>
             <div className="box tasklist">
