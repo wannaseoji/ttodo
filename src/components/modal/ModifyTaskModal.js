@@ -26,10 +26,7 @@ const StyledTextField = styled(TextField)({
   }
 });
 
-
-
-
-const AddTaskModal = (props) => {
+const ModifyTaskModal = (props) => {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
   const { open, close, onNewTask, header, category, calendarSelectedDate } = props;
   let title = "";
@@ -81,4 +78,4 @@ const AddTaskModal = (props) => {
   );
 };
 
-export default AddTaskModal;
+export default ModifyTaskModal;

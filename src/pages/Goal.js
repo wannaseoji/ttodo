@@ -97,7 +97,7 @@ const Goal = ({ tasks, teamTask, teams, myProfile }) => {
                     modifyProfile={modifyProfile} />
             </div>
             <div className="box content"  >
-                <GrayBox title={"월별 목표달성률"}>
+                <GrayBox title={"월별 목표달성률"} settingHeight="70vh">
                     <div style={{ paddingLeft: '10%', width: '100%', height: '120%', }}>
                         <Slider Piedata={Piedata} LineData={LineData} />
                     </div>
