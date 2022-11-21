@@ -10,7 +10,8 @@ import { FiUserPlus } from "react-icons/fi";
 import Member from "../assets/Member.json";
 
 
-const MemberList = (teams) => {
+const MemberList = ({curTeam}) => {
+    console.log(curTeam);
     const [follower, setFollower] = useState(Follower);
     const [limit, setLimit] = useState(8);
     const [page, setPage] = useState(1);

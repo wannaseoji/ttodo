@@ -65,7 +65,7 @@ const TeamLink = ({tasks, teamTask, teams, followers, setTeamTask=f=>f, setTasks
         // name, memberList, notice, intro, reader
         const newTeams = {
             name: name,
-            memberList: [leader],
+            memberList: [leader,...memberList],
             notice: [],
             intro: intro,
             leader:leader
@@ -93,7 +93,7 @@ const TeamLink = ({tasks, teamTask, teams, followers, setTeamTask=f=>f, setTasks
                 <TeamEditList onShowModal={onShow} teamData={teams} changeCurTeamIdx={changeCurTeamIdx}/>
                 <TeamModal open={open} close={handleClose} onNewTeam={onNewTeam} followers={followers} leader={curTeam.leader}/>
             </div>
-            <div className="box follower"><MemberList teams={teams}/></div>
+            <div className="box follower"><MemberList curTeam={curTeam}/></div>
             <div className="box tasklist">
                 <CategoryList/>
             </div>
