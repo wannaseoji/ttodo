@@ -9,11 +9,16 @@ const getPieData = (tasks = []) => {
     const uniqueArr = (array) => array.filter((element, index) => {
         return array.indexOf(element) === index;
     });
+
     const uniqueMonths = uniqueArr(months);
     // console.log(uniqueMonths);
 
-
-    const pieData = uniqueMonths.map(month => {
+    const sortedUniqueMonths = uniqueMonths.sort(function (a, b) {
+        if (a > b) return 1;
+        if (a === b) return 0;
+        if (a < b) return -1;
+    });
+    const pieData = sortedUniqueMonths.map(month => {
         let numTasks = 0;
         let numTrue = 0;
         tasks.map((task, i) => (task.check === true && task.date.slice(0, 7) == month) ? numTrue++ : numTrue)
