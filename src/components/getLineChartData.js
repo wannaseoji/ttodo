@@ -69,16 +69,16 @@ const getLineChartData = (tasks) => {
             return (((task.date.slice(0, 7) == mmonth) && (mweek == getWeekNumber(new Date(task.date)).slice(13, 14))) && (task.check === true))
                 ? numTrue++ : numTrue;
         })
-        console.log("month ", mmonth);
-        console.log("week", mweek)
-        console.log("numTasks in week", numTasks);
-        console.log("numTrue in getLineChartData", numTrue);
+        // console.log("month ", mmonth);
+        // console.log("week", mweek)
+        // console.log("numTasks in week", numTasks);
+        // console.log("numTrue in getLineChartData", numTrue);
 
         //console.log(mtasks)
 
         return { mmonth, mweek, numTasks, numTrue };
     })
-    console.log(weekdata)
+    // console.log(weekdata)
 
     // let uniqueArr2 = (weekdata) => weekdata.filter((element, index) => {
     //     return (
@@ -93,12 +93,12 @@ const getLineChartData = (tasks) => {
     });
     const uniqueWeekdata = arrUnique(weekdata);
 
-    console.log(uniqueWeekdata)
+    // console.log(uniqueWeekdata)
 
 
     const groupByCategory = (uniqueWeekdata) => uniqueWeekdata.reduce((group, weekdata) => {
         const { mmonth } = weekdata;
-        console.log("weekdata", weekdata);
+        // console.log("weekdata", weekdata);
         group[mmonth] = group[mmonth] ?? [];
         group[mmonth].push(weekdata);
         return group;
@@ -107,10 +107,14 @@ const getLineChartData = (tasks) => {
 
 
     const sortedUniqueWeekData = groupByCategory(uniqueWeekdata)
+    const sortedUniqueMonths = uniqueMonths.sort(function (a, b) {
+        if (a > b) return 1;
+        if (a === b) return 0;
+        if (a < b) return -1;
+    });
 
 
-
-    const LINEDATA = uniqueMonths.map(
+    const LINEDATA = sortedUniqueMonths.map(
 
         month => {
 

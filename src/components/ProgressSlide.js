@@ -1,0 +1,22 @@
+import React from 'react';
+//import { LineChart } from 'recharts';
+import MyLineChart from './LineChart.js';
+import MyResponsivePie from './piechart/Chart.js'
+import MyBarCharts from './barchart/BarChart.js';
+
+export default function ProgressSlide({ data = [] }) {
+
+
+    return (
+        <>
+            <h3>{data[0].month}</h3>
+            <div style={{ width: '100%', height: '100%' }}>
+                <MyBarCharts data={data} />
+            </div>
+
+        </>
+
+    );
+
+}
+

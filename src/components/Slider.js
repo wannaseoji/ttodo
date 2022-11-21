@@ -4,10 +4,10 @@ import { useState, useRef, useEffect } from "react";
 import Slide from './Slide';
 import styled from "styled-components";
 // 전체 슬라이드 개수(총3개. 배열로 계산)
-const SlideComponent = ({ Piedata = [], LineData = [] }) => {
-    const [currentSlide, setCurrentSlide] = useState(0);
+const SlideComponent = ({ Piedata = [], LineData = [], progressData = [], children }) => {
+    const [currentSlide, setCurrentSlide] = useState(Piedata && Piedata.map(() => { }).length - 1);
     const slideRef = useRef(null);
-    console.log("LineData in Slider", LineData)
+    // console.log("LineData in Slider", LineData)
     const TOTAL_SLIDES = Piedata && Piedata.map(() => { }).length - 1;
     // Next 버튼 클릭 시
     const NextSlide = () => {
@@ -42,9 +42,10 @@ const SlideComponent = ({ Piedata = [], LineData = [] }) => {
                 <StyledButton onClick={NextSlide}>next</StyledButton>
 
 
-                <SlideWrapper ref={slideRef} style={{ width: '100%', height: '100%', }}>
+                <SlideWrapper ref={slideRef} style={{ width: '100%', height: '100%' }}>
 
-                    {Piedata.map((pie, i) => <div key={i} style={{ width: '100%', height: '100%', flex: 'none' }}> <Slide key={i} Piedata={pie} LineData={LineData[i]} /> </div>)}
+                    {children}
+
                     {/* {Piedata.map((pie, i) =>
                         <div key={i} style={{ width: '100%', height: '50%', flex: 'none' }}>
                             <MyResponsivePie data={pie} />

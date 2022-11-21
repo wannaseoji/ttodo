@@ -4,7 +4,7 @@
         "id": "wannaseo",
         "category": "Study",
         "title": "설계패턴 대면",
-        "date": "2022-11-21",
+        "date": "2022-11-22",
         "hour": "10",
         "minute": "30",
         "check": false
@@ -25,8 +25,8 @@
         "category": "Friend",
         "title": "쉬는 시간",
         "date": "2022-11-21",
-        "hour": "none",
-        "minute": "none",
+        "hour": "23",
+        "minute": "23",
         "check": false
     },
     {

@@ -8,7 +8,6 @@ import Profile from "../components/Profile";
 import StyledListItem from '../styles/linkStyle';
 import getPieData from '../components/piechart/getPieData';
 import getProgressData from '../components/barchart/getProgressData';
-import { ResponsiveContainer, BarChart, XAxis, YAxis, Tooltip, Legend, Bar, } from 'recharts'
 import Slider from '../components/Slider'
 import Menu from '../components/Menu';
 import '../styles/linkButton.css';
@@ -21,7 +20,9 @@ import { BiBorderRadius } from "react-icons/bi";
 import GrayBox from '../components/GrayBox'
 import { useState } from 'react';
 import ProfileModal from '../components/ProfileModal';
-
+import Slide from '../components/Slide'
+import MyBarCharts from "../components/barchart/BarChart";
+import ProgressSlide from "../components/ProgressSlide";
 const Goal = ({ tasks, teamTask, teams, myProfile }) => {
     //const numOftasks = tasks;
     //console.log(numOftasks)
@@ -43,13 +44,34 @@ const Goal = ({ tasks, teamTask, teams, myProfile }) => {
         return array.indexOf(element) === index;
     });
     const uniqueCategories = uniqueArr(categories);
-    //console.log("uniqueCategories", uniqueCategories)
-    const progressData = uniqueCategories.map((category, i) => {
-        return getProgressData(tasks, category)
-    })
-    const uniqueProgressData = uniqueArr(progressData);
+    const dateFilter = (keyWord) => keyWord.map(task => { return task.date });
+    const dates = dateFilter(tasks);
 
-    // console.log("progressData", uniqueProgressData);
+    const months = dates.map(date => date.slice(0, 7));
+    const uniqueMonths = uniqueArr(months);
+    tasks.map((task) => {
+        task.date.slice(0, 7)
+        return;
+    })
+    const sortedUniqueMonths = uniqueMonths.sort(function (a, b) {
+        if (a > b) return 1;
+        if (a === b) return 0;
+        if (a < b) return -1;
+    });
+    //console.log("uniqueCategories", uniqueCategories)
+    const progressData = sortedUniqueMonths.map(
+        month => {
+            const data = uniqueCategories.map((category, i) => {
+                return getProgressData(tasks, category, month)
+            })
+            return data;
+        }
+
+    )
+
+
+    const uniqueProgressData = uniqueArr(progressData);
+    console.log("progressData", progressData, uniqueMonths);
 
     //장훈 코드
     const [profileOpen, setProfileOpen] = useState(false);
@@ -99,22 +121,36 @@ const Goal = ({ tasks, teamTask, teams, myProfile }) => {
             <div className="box content"  >
                 <GrayBox title={"월별 목표달성률"} settingHeight="70vh">
                     <div style={{ paddingLeft: '10%', width: '100%', height: '120%', }}>
-                        <Slider Piedata={Piedata} LineData={LineData} />
+
+                        <Slider Piedata={Piedata} LineData={LineData} children={
+                            Piedata.map((pie, i) => <div key={i} style={{ width: '100%', height: '100%', flex: 'none' }}> <Slide key={i} Piedata={pie} LineData={LineData[i]} /> </div>)
+                        } />
                     </div>
                 </GrayBox>
             </div>
             <div className="box follower"></div>
             <div className="box tasklist" style={{ width: '90%', borderRadius: '20px' }}>
                 <GrayBox title={"카테고리별 목표달성률"}>
-                    <ResponsiveContainer width='100%' aspect={4.0 / 2.0} >
-                        <BarChart data={uniqueProgressData} layout="vertical" fill="#B7B7B7" width={150} height={40}>
-                            <XAxis type="number" dataKey="total" hide />
-                            <YAxis dataKey="name" reversed type="category" />
-                            <Tooltip />
-                            <Legend />
-                            <Bar legendType="category" dataKey="done" fill="#FF9AB5" />
-                        </BarChart>
-                    </ResponsiveContainer>
+                    <Slider Piedata={Piedata} progressData={progressData} children={
+                        progressData.map(
+                            (data, i) =>
+                                <div key={i} style={{ width: '100%', height: '100%', flex: 'none' }}>
+                                    <ProgressSlide key={i} data={data} />
+                                </div>
+                        )
+                    }
+                    />
+
+
+
+                    {/* {progressData.map(data => {
+                        console.log(data)
+                        return <MyBarCharts data={data} />
+                    })} */}
+                    {/* <Slider progressData={progressData} children={
+                        progressData.map(data => <MyBarCharts data={progressData} />)} /> */}
+                    {/* </Slider> */}
+
                 </GrayBox>
                 {/* <MyBarCharts data={uniqueProgressData} /> */}
             </div>

@@ -1,35 +1,22 @@
 // install (please make sure versions match peerDependencies)
 // yarn add @nivo/core @nivo/bullet
-import { ResponsiveBullet } from '@nivo/bullet'
 
-// make sure parent container have a defined height when using
-// responsive component, otherwise height will be 0 and
-// no chart will be rendered.
-// website examples showcase many properties,
-// you'll often use just a few of them.
-const MyBarCharts = ({ data /* see data tab */ }) => (
-    <ResponsiveBullet
+import { ResponsiveContainer, BarChart, XAxis, YAxis, Tooltip, Legend, Bar, } from 'recharts'
 
-        data={data}
-        margin={{ top: 100, right: 90, bottom: 50, left: 90 }}
-        spacing={25}
-        titleAlign="start"
-        titleOffsetX={-70}
-        rangeBorderColor={{ from: 'color', modifiers: [] }}
-        // measureBorderColor="#000000"
-        // measureBorderWidth={0}
-        // axisPosition={undefined}
-        // reverse={true}
-        measureSize={0.1}
-        markerSize={1}
-        rangeColors={"#B7B7B7"}
-        measureColors={["#FF9AB5", "#FFFFFF"]}
-        markerColors="paired"
-        axisPosition='undifined'
-        theme={{
-            "fontSize": 15,
-            "color": "white"
-        }}
-    />
-)
+const MyBarCharts = ({ data }) => {
+    // console.log(data)
+
+    return (
+        <>
+            {/* <h2>{data[0].month}</h2> */}
+            <ResponsiveContainer width='100%' aspect={4.0 / 4.0} >
+                <BarChart data={data} layout="vertical" fill="#B7B7B7" width={60} height={20}>
+                    <XAxis type="number" dataKey="maxPercent" hide />
+                    <YAxis dataKey="name" reversed type="category" />
+                    <Tooltip />
+                    <Legend title={data.month} />
+                    <Bar legendType="category" barSize={40} dataKey="percent" fill="#FF9AB5" />
+                </BarChart>
+            </ResponsiveContainer></>);
+}
 export default MyBarCharts;
