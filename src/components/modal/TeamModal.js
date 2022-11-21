@@ -8,16 +8,54 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select'
+import { useState } from 'react';
+import { useTheme } from '@mui/material/styles';
+import OutlinedInput from '@mui/material/OutlinedInput';
 
+//변경 시작
+function getStyles(name, personName, theme) {
+    return {
+        fontWeight:
+        personName.indexOf(name) === -1
+        ? theme.typography.fontWeightRegular
+        : theme.typography.fontWeightMedium,
+    };
+}
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+        PaperProps: {
+            style: {
+            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+            width: 250,
+            },
+        },
+    };
+//변경 끝
 export default function TeamModal({open, close, onNewTeam, followers, leader}) {
-    var teamName = "";
-    var teamMessage = "";
-    var memberList = [];
-    
+    const [teamName, setTeamName] = useState()
+    const [teamMessage, setTeamMessage] = useState()
     const newTeam = () => {
-            onNewTeam(teamName, memberList, teamMessage, leader)
+            console.log(teamName)
+            onNewTeam(teamName, personName, teamMessage, leader)
+            setPersonName([])
             close()
         }
+    
+    //변경 시작
+    const theme = useTheme();
+    const [personName, setPersonName] = useState([]);
+
+    const handleChange = (event) => {
+        const {
+            target: { value },
+        } = event;
+        setPersonName(
+            // On autofill we get a stringified value.
+            typeof value === 'string' ? value.split(',') : value,
+        );
+    };
+    //변경 끝
 
     return (
         <div>
@@ -37,7 +75,7 @@ export default function TeamModal({open, close, onNewTeam, followers, leader}) {
                         fullWidth
                         variant="standard"
                         sx={{ input: { color: 'black' } }}
-                        onChange={e=>teamName = e.target.value}
+                        onChange={e=>setTeamName(e.target.value)}
                         />
                     <TextField
                         autoFocus
@@ -48,9 +86,11 @@ export default function TeamModal({open, close, onNewTeam, followers, leader}) {
                         fullWidth
                         variant="standard"
                         sx={{ input: { color: 'black' } }}
-                        onChange={e=>teamMessage = e.target.value}/>
+                        onChange={e=>setTeamMessage(e.target.value)}/>
                 </DialogContent>
-                <FormControl>
+                {/*Select 박스 옆으로 옮김*/}
+                <DialogContent style={{ alignItems: "center"}}>
+                <FormControl> 
                     <InputLabel id="demo-simple-select-label"
                     style={{marginLeft: "1.5vw"}}
                     > 맴버</InputLabel>
@@ -58,14 +98,22 @@ export default function TeamModal({open, close, onNewTeam, followers, leader}) {
                         style={{  width: '20vw', alignItems: 'center', marginLeft: "1.5vw"}}
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        label="Age">
+                        multiple
+                        value={personName}
+                        MenuProps={MenuProps}
+                        onChange={handleChange}
+                        input={<OutlinedInput label="Name"/>}
+                        >
                             {
                                 followers.map(v=>(
-                                    <MenuItem value={10}>{v.name}</MenuItem>
+                                    <MenuItem value={v.name} style={getStyles(v.name,personName, theme)}>
+                                        {v.name}
+                                    </MenuItem>
                                 ))
                             }
                     </Select>
                 </FormControl>
+                </DialogContent> 
                 <DialogActions>
                     <Button onClick={newTeam}>추가</Button>
                     <Button onClick={close}>취소</Button>

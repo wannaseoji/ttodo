@@ -5,15 +5,21 @@ import Avatar from '@mui/material/Avatar';
 import { useState } from "react";
 import '../styles/Member.css';
 import { IoPeopleCircleOutline } from "react-icons/io5";
-import { AiOutlineSetting } from "react-icons/ai";
+import { FiUserPlus } from "react-icons/fi";
+import { BorderStyle } from "@mui/icons-material";
 
 
-const MemberList = ({curTeam, onShowTeamMemberModal, onShowCategoryModal}) => {
+const FollowerList = ({follower, onShowModal}) => {
+    //const [Follower, setFollower] = useState(follower);
+    for(let i = 0; i < follower.length; i++) {
+        console.log(follower[i].name);
+    }
     const [limit, setLimit] = useState(8);
     const [page, setPage] = useState(1);
     const offset = (page - 1) * limit;
-    const allCount = curTeam.memberList.length
-    const [count, setCount] = useState(curTeam.memberList.slice(offset, offset + limit).length)
+    const allCount = follower.length
+    console.log(allCount);
+    const [count, setCount] = useState(follower.slice(offset, offset + limit).length)
     let maxCount = (allCount / 8);
     if(allCount % 8 > 0) {
         maxCount += 1;
@@ -38,10 +44,10 @@ const MemberList = ({curTeam, onShowTeamMemberModal, onShowCategoryModal}) => {
                 />
 
             {   
-                curTeam.memberList.slice(offset, offset + limit).map((data) => (
+                follower.slice(offset, offset + limit).map((data) => (
                     <Avatar
                         alt="Remy Sharp"
-                        src={data + ".jpg"}
+                        src={data.image}
                         sx={{ width: "50px", height: "50px"}} 
                         className="Member"/>
                     ))
@@ -65,18 +71,19 @@ const MemberList = ({curTeam, onShowTeamMemberModal, onShowCategoryModal}) => {
                         setPage(page + 1);
                     }
                 }}/>
+            {/*프로필 변경하는 클릭 이벤트 지정(장훈) */} 
             <AiOutlinePlusCircle 
                     size="50" 
                     color="#FF9AB5"
                     className="Member"
-                    onClick={onShowTeamMemberModal}/>
-            <AiOutlineSetting 
+                    onClick={onShowModal}/>
+            <IoPeopleCircleOutline 
                 size="50" 
                 color="#FF9AB5"
                 className="Member"
-                onClick={onShowCategoryModal}/>
+                onClick={() => { alert('프로필 아이콘 눌러짐');}}/>
         </>
     );
 }
 
-export default MemberList;
+export default FollowerList;

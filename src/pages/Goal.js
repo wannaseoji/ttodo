@@ -3,7 +3,8 @@ import { Outlet, Link } from "react-router-dom";
 import '../App.css';
 import '../styles/grid.css';
 import List from '@mui/material/List';
-import Profile from "./Profile";
+import Team from "../components/Team";
+import Profile from "../components/Profile";
 import StyledListItem from '../styles/linkStyle';
 import getPieData from '../components/piechart/getPieData';
 import getProgressData from '../components/barchart/getProgressData';
@@ -18,7 +19,10 @@ import { CategoryScale } from 'chart.js';
 import { background } from "@chakra-ui/react";
 import { BiBorderRadius } from "react-icons/bi";
 import GrayBox from '../components/GrayBox'
-const Goal = ({ tasks, teamTask, teams }) => {
+import { useState } from 'react';
+import ProfileModal from '../components/ProfileModal';
+
+const Goal = ({ tasks, teamTask, teams, myProfile }) => {
     //const numOftasks = tasks;
     //console.log(numOftasks)
     //const { id, date } = tasks;
@@ -47,19 +51,51 @@ const Goal = ({ tasks, teamTask, teams }) => {
 
     // console.log("progressData", uniqueProgressData);
 
+    //장훈 코드
+    const [profileOpen, setProfileOpen] = useState(false);
 
     const LineData = getLineChartData(tasks);
     // console.log("#############################################")
     // console.log("LineData in Gaol", LineData)
     // console.log("Piedata in Gaol", Piedata)
     // console.log("#############################################")
+    const handleProfileClickOpen = () => {
+        setProfileOpen(true)
+    };
+
+    const handleProfileClose = () => {
+        setProfileOpen(false);
+    }
+
+    // console.log("#############################################")
+    // console.log("LineData in Gaol", LineData)
+    // console.log("Piedata in Gaol", Piedata)
+    // console.log("#############################################")
+    const onShowProfileModal = () => {
+        handleProfileClickOpen();
+    }
+    //프로필을 변경하는 메소드
+    const modifyProfile = (name, email, intro) => {
+        myProfile[0].name = name;
+        myProfile[0].email = email;
+        myProfile[0].intro = intro;
+    }
 
     return (
         <div id="app" className="parent" >
             <div className="box menu" >
                 <Menu />
             </div >
-            <div className="box profile"><Profile /></div>
+            <div className="box profile">
+                <Profile
+                    myProfile={myProfile}
+                    onShowModal={onShowProfileModal} />
+                <ProfileModal
+                    myProfile={myProfile}
+                    open={profileOpen}
+                    close={handleProfileClose}
+                    modifyProfile={modifyProfile} />
+            </div>
             <div className="box content"  >
                 <GrayBox title={"월별 목표달성률"}>
                     <div style={{ paddingLeft: '10%', width: '100%', height: '120%', }}>

@@ -8,14 +8,14 @@
                 "hour": "10",
                 "minute": "30",
                 "check": false,
-                "reletedMembers": ["user1", "user2", "user3"]},
+                "relatedMembers": ["seo"]},
             {
                 "title":"고모프 7주차 녹강듣기",
                 "date":"2022-11-13",
                 "hour": "11",
                 "minute": "30",
                 "check": false,
-                "reletedMembers": ["user1", "user2"]}
+                "relatedMembers": ["seo", "park"]}
         ],
         "otherTask": [
             {
@@ -24,18 +24,18 @@
                 "hour": "10",
                 "minute": "30",
                 "check": false,
-                "reletedMembers": ["user1", "user2", "user3"]},
+                "relatedMembers": ["park", "kim"]},
             {
                 "title":"시프 7주차 녹강듣기",
                 "date":"2022-11-13",
                 "hour": "11",
                 "minute": "30",
                 "check": false,
-                "reletedMembers": ["user1", "user2"]}
+                "relatedMembers": ["kim", "cho", "park"]}
         ]
     },
     {
-        "name":"폼생폼사",
+        "name":"광야의 작은 아씨들1221",
         "myTask": [
             {
                 "title":"설패 6주차 녹강듣기",
@@ -43,14 +43,14 @@
                 "hour": "10",
                 "minute": "30",
                 "check": false,
-                "reletedMembers": ["user4", "user5", "user6"]},
+                "relatedMembers": ["park", "kim", "cho"]},
             {
                 "title":"설패 7주차 녹강듣기",
                 "date":"2022-11-13",
                 "hour": "11",
                 "minute": "30",
                 "check": false,
-                "reletedMembers": ["user4", "user5"]}
+                "relatedMembers": ["park", "kim"]}
         ],
         "otherTask": [
             {
@@ -59,14 +59,51 @@
                 "hour": "10",
                 "minute": "30",
                 "check": false,
-                "reletedMembers": ["user4", "user5", "user3"]},
+                "relatedMembers": ["kim", "cho", "seo"]},
             {
                 "title":"네프 7주차 녹강듣기",
                 "date":"2022-11-13",
                 "hour": "11",
                 "minute": "30",
                 "check": false,
-                "reletedMembers": ["user4", "user5"]}
+                "relatedMembers": ["kim", "cho"]}
+        ]
+    },
+    {
+        "name":"광야의 작은 아씨들1221",
+        "myTask": [
+            {
+                "title":"설패 6주차 녹강듣기",
+                "date":"2022-11-13",
+                "hour": "10",
+                "minute": "30",
+                "check": false,
+                "relatedMembers": ["park", "kim", "cho"]},
+            {
+                "title":"설패 7주차 녹강듣기",
+                "date":"2022-11-13",
+                "hour": "11",
+                "minute": "30",
+                "check": false,
+                "relatedMembers": ["park", "kim"]}
+        ],
+        "otherTask": [
+            {
+                "title":"네프 6주차 녹강듣기",
+                "date":"2022-11-13",
+                "hour": "10",
+                "minute": "30",
+                "check": false,
+                "relatedMembers": ["kim", "cho", "seo"]},
+            {
+                "title":"네프 7주차 녹강듣기",
+                "date":"2022-11-13",
+                "hour": "11",
+                "minute": "30",
+                "check": false,
+                "relatedMembers": ["kim", "cho"]}
         ]
     }
 ]
+
+

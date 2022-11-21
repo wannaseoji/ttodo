@@ -1,25 +1,33 @@
 
 import '../App.css';
 import '../styles/grid.css';
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import TeamEditList from "../components/TeamEditList"
 import Notice from "../components/Notice";
-import TeamModal from "../components/TeamModal";
+import TeamModal from "../components/modal/TeamModal";
 import CategoryList from "../components/CategoryList";
 import MemberList from "../components/MemberList";
 import '../styles/linkButton.css';
 import Menu from "../components/Menu";
-import NoticeModal from '../components/NoticeModal';
+import NoticeModal from '../components/modal/NoticeModal';
 import TeamProfile from '../components/TeamProfile';
+import TeamMemberModal from '../components/TeamMemberModal';
+import TeamProfileModal from '../components/TeamProfileModal';
+import CategoryModal from '../components/modal/CategoryModal';
+import CategoryModifyModal from '../components/modal/CategoryModifyModal';
+import CategoryDeleteModal from '../components/modal/CategoryDeleteModal';
+import CategoryAddModal from '../components/modal/CategoryAddModal';
 
 const TeamLink = ({tasks, teamTask, teams, followers, setTeamTask=f=>f, setTasks=f=>f, setTeams=f=>f}) => {
     // const [curTeamIdx, setCurTeamIdx] = useState(0)
     const [curTeam, setCurTeam] = useState(teams[0])
-
+    const [index, setIndex] = useState(0)
+    console.log(curTeam)
     //팀 클릭시 해당 팀을 가리키는 인덱스로 변경
     const changeCurTeamIdx = (idx) => {
         // setCurTeamIdx(idx)
         console.log("현재 팀 변경 => " + idx)
+        setIndex(idx)
         setCurTeam(teams[idx])
     }
 
@@ -65,7 +73,7 @@ const TeamLink = ({tasks, teamTask, teams, followers, setTeamTask=f=>f, setTasks
         // name, memberList, notice, intro, reader
         const newTeams = {
             name: name,
-            memberList: [leader],
+            memberList: [leader,...memberList],
             notice: [],
             intro: intro,
             leader:leader
@@ -82,20 +90,182 @@ const TeamLink = ({tasks, teamTask, teams, followers, setTeamTask=f=>f, setTasks
         const newNotices = [...notices, notice]
         curTeam.notice = newNotices
     }
+    
+    //팀 멤버 추가하는 코드(장훈)
+    const [TeamMemberModalOpen, setTeamMemberModalOpen] = useState(false);
+
+    const handleTeamMemberClickOpen = () => {
+        setTeamMemberModalOpen(true)
+    };
+
+    const handleTeamMemberClose = () =>  {
+        setTeamMemberModalOpen(false);
+    }
+
+    const onShowTeamMemberModal = () => {
+        handleTeamMemberClickOpen();
+    }
+
+    //Follower를 추가하는 메소드 필요(장훈)
+    const createTeamMember = (username) => {
+        let newTeamMember = {
+            "name" : username,
+            "image" : username + ".jpg",
+            "intro" : "",
+            "email" : username + "@naver.com"
+        }
+        //const newFollowerArr = [...followers, newFollower];
+        //console.log(newFollowerArr);
+        //setFollower(newFollowerArr);
+    }
+    //===========================================(장훈 코드)
+
+    //팀 프로필을 수정하는 Modal를 위함
+    const [TeamProfileOpen, setTeamProfileOpen] = useState(false);
+
+    const handleTeamProfileClickOpen = () => {
+        setTeamProfileOpen(true)
+    };
+    
+    const handleTeamProfileClose = () =>  {
+        setTeamProfileOpen(false);
+    }
+    
+    const onShowTeamProfileModal = () => {
+        handleTeamProfileClickOpen();
+    }
+
+    //팀 프로필을 변경하는 메소드
+    const modifyTeamProfile = (name, intro) => {
+        let originName = teams[index].name;
+        console.log(originName);
+        teams[index].name = name;
+        teams[index].intro = intro;
+        let findIdx = -1;
+        for(let i = 0; i < teamTask.length; i++) {
+            if (teamTask[i].name === originName) {
+                teamTask[i].name = name;
+                findIdx = i;
+            }
+        }
+        setIndex(index);
+        console.log(index);
+        setCurTeam(teams[index]);
+        console.log(teams[index]);
+        setTeamTask(teamTask);
+        console.log(teamTask)
+    }
+
+    //카테고리를 수정하는 상태변수
+    const [CategoryOpen, setCategoryOpen] = useState(false);
+
+    const handleCategoryClickOpen = () => {
+        setCategoryOpen(true)
+    }
+    const handleCategoryClickClose = () => {
+        setCategoryOpen(false)
+    }
+    const onShowCategoryModal = () => {
+        handleCategoryClickOpen()
+    }
+
+    const addCategory = () => {}
+    const modifyCategory = () => {}
+    const deleteCategory = () => {}
+
+    //카테고리를 추가
+    const [CategoryAddOpen, setCategoryAddOpen] = useState(false);
+
+    const handleCategoryAddClickOpen = () => {
+        setCategoryAddOpen(true)
+    }
+    const handleCategoryAddClickClose = () => {
+        setCategoryAddOpen(false)
+    }
+    const onShowCategoryAddModal = () => {
+        handleCategoryAddClickOpen()
+    }
+
+    //카테고리를 수정
+    const [CategoryModifyOpen, setCategoryModifyOpen] = useState(false);
+
+    const handleCategoryModifyClickOpen = () => {
+        setCategoryModifyOpen(true)
+    }
+    const handleCategoryModifyClickClose = () => {
+        setCategoryModifyOpen(false)
+    }
+    const onShowCategoryModifyModal = () => {
+        handleCategoryModifyClickOpen()
+    }
+
+    //카테고리를 삭제
+    const [CategoryDeleteOpen, setCategoryDeleteOpen] = useState(false);
+
+    const handleCategoryDeleteClickOpen = () => {
+        setCategoryDeleteOpen(true)
+    }
+
+    const handleCategoryDeleteClickClose = () => {
+        setCategoryDeleteOpen(false)
+    }
+
+    const onShowCategoryDeleteModal = () => {
+        handleCategoryDeleteClickOpen()
+    }
 
     return (
         <div id="app" className="parent" >
             <div className="box menu" >
                 <Menu/>
-            </div >
-            <div className="box profile"><TeamProfile curTeam={curTeam}/></div>
+            </div>
+            <div className="box profile">
+                <TeamProfile 
+                    curTeam={curTeam}
+                    onShowTeamProfileModal={onShowTeamProfileModal}/>
+                <TeamProfileModal
+                    open={TeamProfileOpen}
+                    close={handleTeamProfileClose}
+                    modifyTeamProfile={modifyTeamProfile} 
+                    />
+            </div>
             <div className="box content">
                 <TeamEditList onShowModal={onShow} teamData={teams} changeCurTeamIdx={changeCurTeamIdx}/>
                 <TeamModal open={open} close={handleClose} onNewTeam={onNewTeam} followers={followers} leader={curTeam.leader}/>
             </div>
-            <div className="box follower"><MemberList teams={teams}/></div>
+            <div className="box follower">
+                <MemberList 
+                    curTeam={curTeam}
+                    onShowTeamMemberModal={onShowTeamMemberModal}
+                    onShowCategoryModal={onShowCategoryModal}/>
+                <TeamMemberModal
+                    open={TeamMemberModalOpen} 
+                    close={handleTeamMemberClose}
+                    createTeamMember={createTeamMember} 
+                    followers={followers}/>
+                <CategoryModal 
+                    open={CategoryOpen}
+                    close={handleCategoryClickClose}
+                    onShowCategoryAddModal={onShowCategoryAddModal}
+                    onShowCategoryDeleteModal={onShowCategoryDeleteModal}
+                    onShowCategoryModifyModal={onShowCategoryModifyModal}/>
+                <CategoryAddModal
+                    open={CategoryAddOpen}
+                    close={handleCategoryAddClickClose}
+                    addCategory={addCategory}/>
+                <CategoryModifyModal
+                    open={CategoryModifyOpen}
+                    close={handleCategoryModifyClickClose}
+                    modifyCategory={modifyCategory}/>
+                <CategoryDeleteModal
+                    open={CategoryDeleteOpen}
+                    close={handleCategoryDeleteClickClose}
+                    deleteCategory={deleteCategory} />
+            </div>
             <div className="box tasklist">
-                <CategoryList/>
+                <CategoryList 
+                    curTeam={curTeam} 
+                    teamTask={teamTask}/>
             </div>
             <div className="box notice">
                 <Notice onShowModal={onShowNoticeModal} notices={notices}/>
