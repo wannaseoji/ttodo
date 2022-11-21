@@ -1,3 +1,12 @@
+.tasklist_container {
+    width: 95%;
+    left:50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    margin-top:1vh;
+    margin-right: 6vw;
+}
+
 #category_top {
     display: flex;
     align-items: center;
@@ -12,11 +21,13 @@
     text-overflow: ellipsis;
     max-width: 90%;
     vertical-align: middle;
+    color: #555555;
+    font-weight: 500;
 }
 
 #add_task_btn {
     color: #FF9AB5;
     max-width: 10%;
     padding: 0;
-    /* margin-left: auto; */
+    margin-left: 0.5vw;
 }

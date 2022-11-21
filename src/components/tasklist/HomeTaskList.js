@@ -7,7 +7,9 @@ import '../../styles/TaskList.css';
 function HomeTaskList({tasks = [], limit, onCheck = f => f, onOptionsModal = f => f}) {
     return (
         <>
-            <List sx={{ width: '95%',left:'50%', transform: 'translateX(-50%)', bgcolor: 'background.paper', borderRadius:'5px', paddingLeft:'1vw', paddingRight: '1vw', marginTop:'1vh', marginRight:'6vw' }}>
+            <List className='tasklist_container'
+                sx={{ bgcolor: 'background.paper', 
+                marginTop:'1vh', marginRight:'6vw' }}>
                 <div id='category_top'>
                     <span id="category_name">My Task</span>
                 </div>
