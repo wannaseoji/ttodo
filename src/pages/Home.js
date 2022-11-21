@@ -1,13 +1,16 @@
+import React, { useState, useEffect } from "react";
+
 import '../App.css';
 import '../styles/grid.css';
+import '../styles/linkButton.css';
+
+// ****************** Components ******************//
+import Menu from "../components/Menu";
 import Team from "../components/Team";
 import Profile from "./Profile";
 import CustomTimeLine from "../components/timeline/CustomTimeline";
-import React, { useState, useEffect } from "react";
 import OptionsModal from "../components/modal/OptionsModal";
 import HomeTaskList from "../components/tasklist/HomeTaskList";
-import '../styles/linkButton.css';
-import Menu from "../components/Menu";
 
 // const Home = () => {
 //     const [teamTask, setTeamTask] = useState(teamTaskData)
@@ -47,7 +50,7 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
     //Team 화면
 
 
-    // Modal open close setting 하기
+    // ********** Modal open close setting 하기 ********** //
     const openOptionsModal = () => {
         setModalOpen(true);
         console.log(`modal openOption : ${modalOpen}`)
@@ -62,7 +65,7 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
         openOptionsModal();
     }
 
-    //팀 카드 3개이하 저장
+    // ********** 팀 카드 3개이하 저장 ********** //
     const teamCard = [];
     function initTeamCard() {
         for (let i = 0; i < teams.length && i < 3; i++) {
@@ -90,7 +93,6 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
                 <OptionsModal open={modalOpen} close ={closeOptionsModal} header="Options" />
             </div>
             <div className="box teamlist">
-
                 {initTeamCard()}
                 {teamCard.map(v => v)}
             </div>

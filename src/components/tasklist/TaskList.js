@@ -4,7 +4,6 @@ import Task from './Task'
 
 export default function TaskList ({tasks = [], limit, onCheckTask = f => f, onOptionsModal = f => f}){
     let nonCheckTasks = tasks.filter(({check})=> check === false)
-    nonCheckTasks.map((value) => console.log("noncheck : " + value.title))
     let checkTasks = tasks.filter(({check}) => check === true)
     
     let result = [];
@@ -15,6 +14,6 @@ export default function TaskList ({tasks = [], limit, onCheckTask = f => f, onOp
         else
             result.push(<Task key={j} task={nonCheckTasks[j]} i={j} onCheck={onCheckTask} onOptionsModal={onOptionsModal} />)
     }
-    console.log(`result : ${result}`);
+    
     return result
 }

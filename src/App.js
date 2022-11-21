@@ -1,15 +1,20 @@
-import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from 'react';
+import './App.css';
+
+// ****************** Components ******************//
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
+import Goal from "./pages/Goal";
 import MyTask from "./pages/MyTask";
 import TeamLink from "./pages/TeamLink";
-import Goal from "./pages/Goal";
+
+// ****************** Data ******************//
 import taskData from './assets/task-data.json';
 import teamTaskData from './assets/team-task-data.json'
 import teamData from "./assets/team.json"
-import { useState } from 'react';
 import followerData from './assets/Follower.json';
+
 
 function App() {
       
