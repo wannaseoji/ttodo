@@ -11,6 +11,7 @@ import { HiOutlineDotsVertical } from "react-icons/hi";
 
 
 export default function Task({task = [], i,  onCheck=f=>f, onOptionsModal=f=>f}) {
+    console.log(`Task task : ${task}`)
     return (
         <ListItem
                 key={i}

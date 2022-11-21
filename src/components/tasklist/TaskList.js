@@ -7,6 +7,7 @@ export default function TaskList ({tasks = [], limit, onCheckTask = f => f, onOp
     let checkTasks = tasks.filter(({check}) => check === true)
     
     let result = [];
+    if(tasks.length === 0) return result;
     let cnt = 0;
     for (var j = 0; j < limit; j++) {
         if(nonCheckTasks[j] == null)
