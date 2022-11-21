@@ -6,7 +6,7 @@ import CustomTimeLine from "../components/timeline/CustomTimeline";
 import React, { useState, useEffect } from "react";
 import categoryData from '../assets/category-data.json'
 import Scrollbars from 'react-custom-scrollbars';
-import OptionsModal from "../components/modal/OptionsModal";
+import ModifyTaskModal from "../components/modal/ModifyTaskModal";
 import AddTaskModal from "../components/modal/AddTaskModal";
 import CategoryScrollList from "../components/tasklist/CategoryScrollList"
 import CustomCalendar from "../components/CustomCalendar";
@@ -55,18 +55,18 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
         setAddCategoryName(categoryName);
     }
 
-    const openOptionsModal = () => {
+    const openModifyTaskModal = () => {
         setModalOpen(true);
         console.log(`modal openOption : ${modalOpen}`)
     };
-    const closeOptionsModal = () => {
+    const closeModifyTaskModal = () => {
         setModalOpen(false);
         console.log(`modal closeOption : ${modalOpen}`)
     };
 
-    const onShowOptionsModal = () => {
-        console.log(`onShowOptionsModal`)
-        openOptionsModal();
+    const onShowModifyTaskModal = () => {
+        console.log(`onShowModifyTaskModal`)
+        openModifyTaskModal();
     }
 
     const openAddTaskModal = () => {
@@ -116,7 +116,7 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
                     modifyProfile={modifyProfile} />
             </div>
             <div className="box content">
-                <GrayBox boxname="calendar" title="Calendar">
+                <GrayBox boxname="calendar" title="Calendar"  settingHeight="70vh">
                     <CustomCalendar tasks={tasks} value={selectedDate} onChange={onChange}/>
                 </GrayBox>
             </div>
@@ -127,12 +127,12 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
                         categories={categoryData}
                         tasks={selectedDateTasks}
                         onCheck={onCheck}
-                        onOptionsModal={onShowOptionsModal}
+                        onModifyTaskModal={onShowModifyTaskModal}
                         onAddTaskModal = {addTaskHandler}
                     />
                 </Scrollbars>
                 <AddTaskModal open={addTaskModalOpen} close={closeAddTaskModal} onNewTask={onNewTask} header="일정 추가" category={addCategoryName} calendarSelectedDate={selectedDate}/>
-                <OptionsModal open={modalOpen} close ={closeOptionsModal} header="Options" />
+                <ModifyTaskModal open={modalOpen} close ={closeModifyTaskModal} header="Options" />
             </div>
             {/* <div className="box teamlist">
 

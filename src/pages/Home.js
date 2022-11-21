@@ -170,7 +170,7 @@ const Home =
                     modifyProfile={modifyProfile} />
             </div>
             <div className="box content">
-                <GrayBox boxname="timeline" title="Today Appointment">
+                <GrayBox boxname="timeline" title="Today Appointment" settingHeight="70vh">
                     <CustomTimeLine tasks={tasks} />
                 </GrayBox>
             </div>
