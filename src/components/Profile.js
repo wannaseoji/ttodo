@@ -20,9 +20,8 @@ import { createTheme, ThemeProvider } from '@mui/material';
 
 
 
-export default function Profile() {
-  const [idx, setIdx] = useState(0);
-  const { name, image, intro, email } = member[idx];
+export default function Profile({myProfile, onShowModal}) {
+  const { name, image, intro, email } = myProfile[0];
   return (
     <List sx={{ width: '100%', maxWidth: 550, bgcolor: 'background.paper' }}>
       <ListItem>
@@ -72,8 +71,7 @@ export default function Profile() {
           }
         />
         <BiDotsVerticalRounded size={25} color="#D9D9D9"
-          onClick={() =>  //프로필을 수정하는 아이콘 여기서 프로필을 수정하게 하면 될듯
-          { setIdx(idx + 1); }} />
+          onClick={onShowModal} />
       </ListItem>
     </List>
   );

@@ -1,6 +1,8 @@
 import '../App.css';
 import '../styles/grid.css';
-import Profile from "./Profile";
+import Team from "../components/Team";
+import Profile from "../components/Profile";
+import CustomTimeLine from "../components/timeline/CustomTimeline";
 import React, { useState, useEffect } from "react";
 import categoryData from '../assets/category-data.json'
 import Scrollbars from 'react-custom-scrollbars';
@@ -11,15 +13,16 @@ import CustomCalendar from "../components/CustomCalendar";
 import Menu from "../components/Menu";
 import GrayBox from "../components/GrayBox"
 import '../styles/linkButton.css';
+import ProfileModal from '../components/ProfileModal';
 
-const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams=f=>f}) => {
+const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams=f=>f, myProfile}) => {
     const onNewTask = function(id, category, title, date, hour, minute){ // id, category, title, date, hour, minute, check
         console.log("new task 추가")
         let indexs = tasks.map((task)=>task.index).sort((a,b) => a-b)
         const newIndex = indexs[indexs.length-1]+1
         const newTasks = [...tasks, {index: newIndex, id, category, title, date, hour, minute, check:false}]
         setTasks(newTasks)
-      }
+    }
 
     const DateToYYYYMMDD = (date) => {
     var year = date.getFullYear();
@@ -28,7 +31,7 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
     
     return year + "-" + month + "-" + day;
     }
-      
+
     const [addCategoryName, setAddCategoryName] = useState("");
     const [modalOpen, setModalOpen] = useState(false);
     const [addTaskModalOpen, setAddTaskModalOpen] = useState(false); // AddTask Modal 창 open, close State 확인
@@ -37,7 +40,7 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
     const selectedDateString = DateToYYYYMMDD(selectedDate)
     const selectedDateTasks = tasks.filter(({date})=>date===selectedDateString) // 시간 상관 없이 당일에 해당하는 task로만 필터링
 
-    const onCheck = index =>{
+    const onCheck = index => {
         const newTasks = tasks.map(task => {
             if(task.index === index) 
                 task.check = !(task.check);
@@ -76,12 +79,42 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
         openAddTaskModal();
     }
 
+    //장훈 코드(프로필 모달 )
+    const [profileOpen, setProfileOpen] = useState(false);
+
+    const handleProfileClickOpen = () => {
+        setProfileOpen(true)
+    };
+
+    const handleProfileClose = () =>  {
+        setProfileOpen(false);
+    }
+    
+    const onShowProfileModal = () => {
+        handleProfileClickOpen();
+    }
+    //프로필을 변경하는 메소드(장훈)
+    const modifyProfile = (name, email, intro) => {
+        myProfile[0].name = name;                       //로그인/로그아웃이 없어서 json에는 프로필에 대한 정보는 하나,
+        myProfile[0].email = email;                     //그래서 이렇게 코드를 짰어요
+        myProfile[0].intro = intro;
+    }
+
     return (
         <div id="app" className="parent" >
             <div className="box menu" >
                 <Menu/>
             </div >
-            <div className="box profile"><Profile/></div>
+            <div className="box profile">
+                <Profile 
+                    myProfile={myProfile}
+                    onShowModal={onShowProfileModal}/>
+                <ProfileModal
+                    myProfile={myProfile}
+                    open={profileOpen}
+                    close={handleProfileClose}
+                    modifyProfile={modifyProfile} />
+            </div>
             <div className="box content">
                 <GrayBox boxname="calendar" title="Calendar">
                     <CustomCalendar tasks={tasks} value={selectedDate} onChange={onChange}/>

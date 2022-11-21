@@ -7,7 +7,8 @@ import '../styles/linkButton.css';
 // ****************** Components ******************//
 import Menu from "../components/Menu";
 import Team from "../components/Team";
-import Profile from "./Profile";
+import Profile from "../components/Profile";
+import ProfileModal from "../components/ProfileModal";
 import CustomTimeLine from "../components/timeline/CustomTimeline";
 import OptionsModal from "../components/modal/OptionsModal";
 import HomeTaskList from "../components/tasklist/HomeTaskList";
@@ -22,9 +23,20 @@ import GrayBox from "../components/GrayBox.js"
 //     const [modalOpen, setModalOpen] = useState(false); // Options Modal 창 open, close State 확인
 //     const [addTaskModalOpen, setAddTaskModalOpen] = useState(false); // AddTask Modal 창 open, close State 확인
 
-const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams=f=>f})=> {
-    const [modalOpen, setModalOpen] = useState(false); // Options Modal 창 open, close State 확인
+/* follwer랑 */
+import { useNavigate } from 'react-router';
+import member from "../assets/Member.json";
+import follower from "../assets/Follower.json";
+import FollowerList from "../components/FollowerList";
+import FollowerModal from "../components/FollowerModal";
+import MyProfile from "../assets/MyProfile.json";
 
+
+const Home = 
+    ({tasks, teamTask, teams, 
+    setTeamTask=f=>f, setTasks=f=>f, setTeams=f=>f,  
+    myProfile, setMyProfile, followers, member, setMember=f=>f, setFollowers=f=>f})=> {
+    const [modalOpen, setModalOpen] = useState(false); // Options Modal 창 open, close State 확인
     const date = new Date(); // Mon Nov 14 2022 10:50:35 GMT+0900 (한국 표준시)
     const today = date.getFullYear()+"-"+('0' + (date.getMonth() + 1)).slice(-2)+"-"+('0' + date.getDate()).slice(-2); // 2022-11-14
     let todayTasks = tasks.filter(({date})=>date===today) // 시간 상관 없이 당일에 해당하는 task로만 필터링
@@ -73,19 +85,111 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
             teamCard[i] = <Team key={i} data={teams[i]} />;
         }
     }
+    //장훈이의 코드(프로필 변경, Follower 추가)
+    //Follower 변경 modal에 대한 코드(장훈)
+    const [open, setOpen] = React.useState(false);
 
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+    const onShow = () => {
+        handleClickOpen();
+    }
+
+    const [profileOpen, setProfileOpen] = useState(false);
+
+    const handleProfileClickOpen = () => {
+        setProfileOpen(true)
+    };
+
+    const handleProfileClose = () =>  {
+        setProfileOpen(false);
+    }
+
+    const onShowProfileModal = () => {
+        handleProfileClickOpen();
+    }
+    //프로필을 변경하는 메소드
+    const modifyProfile = (name, email, intro) => {
+        let originName = myProfile[0].name;
+        myProfile[0].name = name;
+        myProfile[0].email = email;
+        myProfile[0].intro = intro;
+        //team data에 자신의 이름을 수정
+        for(let i = 0; i < teams.length; i++) {
+            for(let j = 0; j < teams.memberList.length; i++) {
+                if (teams.memberList[j] === originName) {
+                    teams.memberList[j] = name;
+                }
+            }
+        }
+
+        //team task data에 자신의 이름을 수정
+        for(let i = 0; i < teamTask.length; i++) {
+            for(let j = 0; j < teamTask[i].myTask.length; j++) {        //myTask.length === 2
+                for(let k = 0; k < teamTask[i].myTask[j].relatedMembers.length; k++) {
+                    if(teamTask[i].myTask[i].relatedMembers[k]  === originName) {
+                        teamTask[i].myTask[i].relatedMembers[k] = name;
+                    }
+                }
+            }
+        }
+
+    }
+    //Follower를 추가하는 메소드 필요(장훈)
+    const createFollower = (username) => {
+        let newFollower = {
+            "name" : username,
+            "image" : username + ".jpg",
+            "intro" : "",
+            "email" : username + "@naver.com"
+        }
+        const newFollowerArr = [...followers, newFollower];
+        console.log(newFollowerArr);
+        console.log(followers);
+        setFollowers(newFollowerArr);
+    }
+    //===========================================(장훈 코드)
     return (
         <div id="app" className="parent" >
             <div className="box menu" >
                 <Menu/>
             </div >
-            <div className="box profile"><Profile /></div>
+            <div className="box profile">
+                <Profile 
+                    myProfile={myProfile}
+                    onShowModal={onShowProfileModal}/>
+                <ProfileModal
+                    myProfile={myProfile}
+                    open={profileOpen}
+                    close={handleProfileClose}
+                    modifyProfile={modifyProfile} />
+            </div>
             <div className="box content">
                 <GrayBox boxname="timeline" title="Today Appointment">
                     <CustomTimeLine tasks={tasks} />
                 </GrayBox>
             </div>
-            <div className="box follower">팔로워</div>
+
+            {/* FollowerList 컴포넌트에 Follower를 전달 (장훈)*/}
+            <div className="box follower">
+                <FollowerList 
+                    follower={followers} 
+                    onShowModal={onShow}/>
+                {/*Modal을 열고 닫고와 팔로워를 추가하는 메소드를 props로 전달(장훈) */}
+                <FollowerModal 
+                    open={open} 
+                    close={handleClose} 
+                    follower={followers} 
+                    member={member} 
+                    createFollower={createFollower}/>
+            </div>
+
+
             <div className="box tasklist">
                 <HomeTaskList
                     tasks={todayTasks}

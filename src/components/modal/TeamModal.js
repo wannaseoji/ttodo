@@ -88,7 +88,9 @@ export default function TeamModal({open, close, onNewTeam, followers, leader}) {
                         sx={{ input: { color: 'black' } }}
                         onChange={e=>setTeamMessage(e.target.value)}/>
                 </DialogContent>
-                <FormControl>
+                {/*Select 박스 옆으로 옮김*/}
+                <DialogContent style={{ alignItems: "center"}}>
+                <FormControl> 
                     <InputLabel id="demo-simple-select-label"
                     style={{marginLeft: "1.5vw"}}
                     > 맴버</InputLabel>
@@ -111,6 +113,7 @@ export default function TeamModal({open, close, onNewTeam, followers, leader}) {
                             }
                     </Select>
                 </FormControl>
+                </DialogContent> 
                 <DialogActions>
                     <Button onClick={newTeam}>추가</Button>
                     <Button onClick={close}>취소</Button>

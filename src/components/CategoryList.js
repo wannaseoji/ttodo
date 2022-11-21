@@ -11,17 +11,18 @@ import Avatar from '@mui/material/Avatar';
 import '../styles/category.css';
 import category from "../assets/category.json";
 import Scrollbars from 'react-custom-scrollbars';
+import {BsPlusCircle} from 'react-icons/bs';
 
-
-const CategoryList = () => {
+//장훈, 형민이가 같이 수정한 CategoryList 컴포넌트
+const CategoryList = ({curTeam, teamTask, onShowCategoryModal=f=>f}) => {
+    var t1;
+    console.log(curTeam)
+    t1 = teamTask.filter(x1 => curTeam.name === x1.name)[0];
+    console.log(t1)
     return (
         <Scrollbars>
-            {/*
-            <div style={{overflow: 'auto', width: '50vw', height: "55vh"}} className="categoryScroll">
-            <Scrollbars style={{height:'100%', backgroundColor:"#FFFFFF", borderRadius:"0px 0px 10px 10px"}}>
-            </Scrollbars>
-            <div style={{overflow: 'auto', width: '50vw', height: "55vh"}} className="categoryScroll">*/}
-        { category.map((element) => (
+        { 
+            t1.myTask.map((element) => (
             <Accordion 
             style={{ backgroundColor: "#FFE2E9", borderRadius: 10}}>
                 <AccordionSummary
@@ -29,26 +30,25 @@ const CategoryList = () => {
                     aria-controls="panel1a-content"
                     id="panel1a-header">
                     {/*동그란 이미지가 나오는 부분*/}
-                    {element.teamMember.map((data) => (
+                    {element.relatedMembers.map((data) => (
                         <Avatar
-                        src={data}
+                        src={data + ".jpg"}
                         sx={{ width: "30px", height: "30px"}} />
                     ))}
                 </AccordionSummary>
                 <AccordionDetails>
                     <List sx={{ width: '40vw', left: '50%', transform: 'translateX(-50%)', bgcolor: 'background.paper' }}>
                         {/*task 렌더링 하는 부분 */}
-                        {element.task.map((data) => (
-                            <ListItem>
-                            <Checkbox
-                                icon={<AiOutlineCheckCircle style={{ color: "#B7B7B7" }} />}
-                                checkedIcon={<AiFillCheckCircle style={{ color: "#FF9AB5" }} />}
-                                size='3vh'
-                                edge="start"
-                                tabIndex={-1} />
-                            {data}
-                            </ListItem>    
-                        ))}
+                        <ListItem>
+                        <Checkbox
+                            icon={<AiOutlineCheckCircle style={{ color: "#B7B7B7" }} />}
+                            checkedIcon={<AiFillCheckCircle style={{ color: "#FF9AB5" }} />}
+                            size='3vh'
+                            edge="start"
+                            //checked={}
+                            tabIndex={-1} />
+                            {element.title}
+                        </ListItem>    
                     </List>
                 </AccordionDetails>
             </Accordion>

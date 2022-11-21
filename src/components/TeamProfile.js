@@ -12,8 +12,7 @@ import '../styles/Profile.css';
 
 
 //팀에 대한 데이터를 넣어야한다.
-const TeamProfile = ({curTeam}) => {
-    const [idx, setIdx] = useState(0);
+const TeamProfile = ({curTeam, onShowTeamProfileModal}) => {
     const { name, img, intro } = curTeam;
     
     return (
@@ -57,8 +56,7 @@ const TeamProfile = ({curTeam}) => {
             }
             />
             <BiDotsVerticalRounded size={25} color="#D9D9D9"
-            onClick={() =>  //프로필을 수정하는 아이콘 여기서 프로필을 수정하게 하면 될듯
-            { setIdx(idx + 1); }} />
+            onClick={onShowTeamProfileModal} />
         </ListItem>
         </List>
     );
