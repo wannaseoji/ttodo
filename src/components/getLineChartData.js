@@ -151,32 +151,6 @@ const getLineChartData = (tasks) => {
         }
 
     )
-    console.log("sortedUniqueWeekData", sortedUniqueWeekData)
-    console.log("LINEDATA", LINEDATA)
-
-    // sortedUniqueWeekData.map(monthData => {
-    //     console.log(monthData)
-
-    //     return;
-    // })
-
-
-
-    // const labels = uniqueWeekdata.map((uniqueWeek) => uniqueWeek.mmonth + "월" + uniqueWeek.mweek + " 주차")
-    // const linedata = uniqueWeekdata.map((uniqueWeek) => ({ x: uniqueWeek.mmonth + "월" + uniqueWeek.mweek + " 주차", y: `${uniqueWeek.numTrue / uniqueWeek.numTasks * 100}` }))
-
-    // const data = {
-    //     labels: labels,
-    //     datasets: [
-    //         {
-    //             type: 'line',
-    //             label: '주차별 목표달성율',
-    //             borderColor: '#FF9AB5',
-    //             borderWidth: 2,
-    //             data: linedata,
-    //         },
-    //     ]
-    // };
 
 
     return LINEDATA;

@@ -2,10 +2,7 @@ import React from "react";
 import styeld from "styled-components";
 import { useState, useRef, useEffect } from "react";
 import Slide from './Slide';
-import { style } from "@mui/system";
-import MyResponsivePie from "./piechart/Chart";
 import styled from "styled-components";
-import MyLineChart from "./LineChart"
 // 전체 슬라이드 개수(총3개. 배열로 계산)
 const SlideComponent = ({ Piedata = [], LineData = [] }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -74,7 +71,6 @@ export default SlideComponent;
 const Wrapper = styeld.div`
   width: 80%;
   height: 80%;
-  background:#B7B7B7;
   border-radius:20px;
    overflow: hidden;
 `;

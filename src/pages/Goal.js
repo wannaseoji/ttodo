@@ -13,8 +13,11 @@ import Menu from '../components/Menu';
 import '../styles/linkButton.css';
 import getLineChartData from "../components/getLineChartData";
 import DetailChart from "../components/DetailChart";
+import Chart from 'chart.js/auto'; //필수임
+import { CategoryScale } from 'chart.js';
 import { background } from "@chakra-ui/react";
 import { BiBorderRadius } from "react-icons/bi";
+import GrayBox from '../components/GrayBox'
 const Goal = ({ tasks, teamTask, teams }) => {
     //const numOftasks = tasks;
     //console.log(numOftasks)
@@ -58,22 +61,25 @@ const Goal = ({ tasks, teamTask, teams }) => {
             </div >
             <div className="box profile"><Profile /></div>
             <div className="box content"  >
-                <div style={{ paddingLeft: '15%', width: '100%', height: '120%', bg: '#B7B7B7', }}>
-                    <Slider Piedata={Piedata} LineData={LineData} />
-                </div>
+                <GrayBox title={"월별 목표달성률"}>
+                    <div style={{ paddingLeft: '10%', width: '100%', height: '120%', }}>
+                        <Slider Piedata={Piedata} LineData={LineData} />
+                    </div>
+                </GrayBox>
             </div>
             <div className="box follower"></div>
-            <div className="box tasklist" style={{ width: '90%', background: '#B7B7B7', borderRadius: '20px' }}>
-
-                <ResponsiveContainer width='100%' aspect={4.0 / 2.0} >
-                    <BarChart data={uniqueProgressData} layout="vertical" fill="#B7B7B7" width={150} height={40}>
-                        <XAxis type="number" dataKey="total" hide />
-                        <YAxis dataKey="name" reversed type="category" />
-                        <Tooltip />
-                        <Legend />
-                        <Bar legendType="category" dataKey="done" fill="#FF9AB5" />
-                    </BarChart>
-                </ResponsiveContainer>
+            <div className="box tasklist" style={{ width: '90%', borderRadius: '20px' }}>
+                <GrayBox title={"카테고리별 목표달성률"}>
+                    <ResponsiveContainer width='100%' aspect={4.0 / 2.0} >
+                        <BarChart data={uniqueProgressData} layout="vertical" fill="#B7B7B7" width={150} height={40}>
+                            <XAxis type="number" dataKey="total" hide />
+                            <YAxis dataKey="name" reversed type="category" />
+                            <Tooltip />
+                            <Legend />
+                            <Bar legendType="category" dataKey="done" fill="#FF9AB5" />
+                        </BarChart>
+                    </ResponsiveContainer>
+                </GrayBox>
                 {/* <MyBarCharts data={uniqueProgressData} /> */}
             </div>
             <div className="box teamlist">
