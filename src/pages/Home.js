@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import '../App.css';
 import '../styles/grid.css';
@@ -13,23 +13,8 @@ import CustomTimeLine from "../components/timeline/CustomTimeline";
 import OptionsModal from "../components/modal/OptionsModal";
 import HomeTaskList from "../components/tasklist/HomeTaskList";
 import GrayBox from "../components/GrayBox.js"
-
-// const Home = () => {
-//     const [teamTask, setTeamTask] = useState(teamTaskData)
-//     const [teams, setTeams] = useState(teamData);
-//     const [tasks, setTasks] = useState(taskData);
-//     const [followers, setfollowers] = useState(followerData);
-//     useEffect(() => setTasks(taskData), [taskData]);
-//     const [modalOpen, setModalOpen] = useState(false); // Options Modal 창 open, close State 확인
-//     const [addTaskModalOpen, setAddTaskModalOpen] = useState(false); // AddTask Modal 창 open, close State 확인
-
-/* follwer랑 */
-import { useNavigate } from 'react-router';
-import member from "../assets/Member.json";
-import follower from "../assets/Follower.json";
 import FollowerList from "../components/FollowerList";
 import FollowerModal from "../components/FollowerModal";
-import MyProfile from "../assets/MyProfile.json";
 
 
 const Home = 
@@ -51,18 +36,6 @@ const Home =
         })
         setTasks(newTasks);
     }
-
-    //Team task check 변경
-
-    //Team 생성
-    const onNewTeam = function(name, memberList, notice, intro, reader) {
-        console.log("new team 추가")
-        const newTeams = [...teams, {name, memberList, notice, intro, reader}]
-        setTeams(newTeams)
-    }
-    //Team 화면
-
-
     // ********** Modal open close setting 하기 ********** //
     const openOptionsModal = () => {
         setModalOpen(true);
@@ -113,32 +86,32 @@ const Home =
     const onShowProfileModal = () => {
         handleProfileClickOpen();
     }
-    //프로필을 변경하는 메소드
+    //프로필을 변경하는 메소드(장훈)
     const modifyProfile = (name, email, intro) => {
         let originName = myProfile[0].name;
         myProfile[0].name = name;
         myProfile[0].email = email;
         myProfile[0].intro = intro;
         //team data에 자신의 이름을 수정
+
         for(let i = 0; i < teams.length; i++) {
-            for(let j = 0; j < teams.memberList.length; i++) {
-                if (teams.memberList[j] === originName) {
-                    teams.memberList[j] = name;
+            for(let j = 0; j < teams[i].memberList.length; j++) {
+                if (teams[i].memberList[j] === originName) {
+                    teams[i].memberList[j] = name;
                 }
+                teams[i].leader = name;
             }
         }
-
-        //team task data에 자신의 이름을 수정
         for(let i = 0; i < teamTask.length; i++) {
-            for(let j = 0; j < teamTask[i].myTask.length; j++) {        //myTask.length === 2
+            for(let j = 0; j < teamTask[i].myTask.length; j++) {
                 for(let k = 0; k < teamTask[i].myTask[j].relatedMembers.length; k++) {
-                    if(teamTask[i].myTask[i].relatedMembers[k]  === originName) {
-                        teamTask[i].myTask[i].relatedMembers[k] = name;
+                    if (teamTask[i].myTask[j].relatedMembers[k] === originName) {
+                        teamTask[i].myTask[j].relatedMembers[k] = name;
                     }
                 }
             }
         }
-
+        console.log(teamTask);
     }
     //Follower를 추가하는 메소드 필요(장훈)
     const createFollower = (username) => {
@@ -193,7 +166,7 @@ const Home =
             <div className="box tasklist">
                 <HomeTaskList
                     tasks={todayTasks}
-                    limit={todayTasks.length}
+                    limit={todayTasks.length > 5 ? 5 : todayTasks.length}
                     onCheck={onCheck}
                     onOptionsModal={onShowOptionsModal}
                 />

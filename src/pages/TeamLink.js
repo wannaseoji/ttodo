@@ -11,7 +11,7 @@ import '../styles/linkButton.css';
 import Menu from "../components/Menu";
 import NoticeModal from '../components/modal/NoticeModal';
 import TeamProfile from '../components/TeamProfile';
-import TeamMemberModal from '../components/TeamMemberModal';
+import MemberAddModal from '../components/MemberAddModal';
 import TeamProfileModal from '../components/TeamProfileModal';
 import CategoryModal from '../components/modal/CategoryModal';
 import CategoryModifyModal from '../components/modal/CategoryModifyModal';
@@ -106,17 +106,11 @@ const TeamLink = ({tasks, teamTask, teams, followers, setTeamTask=f=>f, setTasks
         handleTeamMemberClickOpen();
     }
 
-    //Follower를 추가하는 메소드 필요(장훈)
+    //팀의 멤버의 배열에도 추가하면 된다.
     const createTeamMember = (username) => {
-        let newTeamMember = {
-            "name" : username,
-            "image" : username + ".jpg",
-            "intro" : "",
-            "email" : username + "@naver.com"
-        }
-        //const newFollowerArr = [...followers, newFollower];
-        //console.log(newFollowerArr);
-        //setFollower(newFollowerArr);
+        const newMemberList = [...curTeam.memberList, username];
+        curTeam.memberList = newMemberList;
+        setCurTeam(curTeam);
     }
     //===========================================(장훈 코드)
 
@@ -238,11 +232,12 @@ const TeamLink = ({tasks, teamTask, teams, followers, setTeamTask=f=>f, setTasks
                     curTeam={curTeam}
                     onShowTeamMemberModal={onShowTeamMemberModal}
                     onShowCategoryModal={onShowCategoryModal}/>
-                <TeamMemberModal
+                <MemberAddModal
                     open={TeamMemberModalOpen} 
                     close={handleTeamMemberClose}
                     createTeamMember={createTeamMember} 
-                    followers={followers}/>
+                    followers={followers}
+                    curTeam={curTeam}/>
                 <CategoryModal 
                     open={CategoryOpen}
                     close={handleCategoryClickClose}

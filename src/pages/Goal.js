@@ -96,11 +96,32 @@ const Goal = ({ tasks, teamTask, teams, myProfile }) => {
     const onShowProfileModal = () => {
         handleProfileClickOpen();
     }
-    //프로필을 변경하는 메소드
+    //프로필을 변경하는 메소드(장훈)
     const modifyProfile = (name, email, intro) => {
+        let originName = myProfile[0].name;
         myProfile[0].name = name;
         myProfile[0].email = email;
         myProfile[0].intro = intro;
+        //team data에 자신의 이름을 수정
+
+        for(let i = 0; i < teams.length; i++) {
+            for(let j = 0; j < teams[i].memberList.length; j++) {
+                if (teams[i].memberList[j] === originName) {
+                    teams[i].memberList[j] = name;
+                }
+                teams[i].leader = name;
+            }
+        }
+        for(let i = 0; i < teamTask.length; i++) {
+            for(let j = 0; j < teamTask[i].myTask.length; j++) {
+                for(let k = 0; k < teamTask[i].myTask[j].relatedMembers.length; k++) {
+                    if (teamTask[i].myTask[j].relatedMembers[k] === originName) {
+                        teamTask[i].myTask[j].relatedMembers[k] = name;
+                    }
+                }
+            }
+        }
+        console.log(teamTask);
     }
 
     return (

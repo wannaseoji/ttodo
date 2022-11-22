@@ -11,6 +11,7 @@ import { BorderStyle } from "@mui/icons-material";
 
 const FollowerList = ({follower, onShowModal}) => {
     //const [Follower, setFollower] = useState(follower);
+    
     for(let i = 0; i < follower.length; i++) {
         console.log(follower[i].name);
     }

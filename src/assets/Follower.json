@@ -16,5 +16,17 @@
         "image": "seo.jpg",
         "intro": "11",
         "email": "hasnunf@naver.com"
+    },
+    {
+        "name": "shin",
+        "image": "shin.jpg",
+        "intro": ".11, .11, .11",
+        "email": "hasnunf@naver.com"
+    },
+    {
+        "name": "choi",
+        "image": "choi.jpg",
+        "intro": ".11, .11, .11",
+        "email": "hasnunf@naver.com"
     }
 ]

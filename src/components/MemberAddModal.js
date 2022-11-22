@@ -13,7 +13,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select'
 import { useState } from "react";
 
-const TeamMemberModal = ({open, close, createTeamMember, followers}) => {
+const MemberAddModal = ({open, close, createTeamMember, followers, curTeam}) => {
     {/*장훈이가 만든 컴포넌트 */}
     const [search, setSearch] = useState("");
     const [booleanView, setBooleanView] = useState(false)
@@ -30,15 +30,14 @@ const TeamMemberModal = ({open, close, createTeamMember, followers}) => {
 
     const newFollower = () => { //추가 버튼을 눌렀을 경우,
         close();                //닫는다.(다시 눌렀을때 그대로 보이는것을 방지하기 위함)
-        //createTeamMember//createFollower(search); //팔로워 추가
+        createTeamMember(search);
         setBooleanView(false);  //목록을 안보이게 하고
         setSearch("");          //search를 초기화하고
     }
-    /*
+    
     //팔로워중 팀맴버가 아닌 사람들을 필터링
-    const filterSearch = member.filter(x1 => follower.every(x2 => x1.name !== x2.name))
+    const filterSearch = followers.filter(x1 => curTeam.memberList.every(x2 => x1.name !== x2))
                         .filter((p) => {return p.name.toLocaleLowerCase().includes(search.toLocaleLowerCase().replace(" ", ""))})
-                        */
     return (
         <div>
             <Dialog open={open} onClose={close}>
@@ -51,7 +50,7 @@ const TeamMemberModal = ({open, close, createTeamMember, followers}) => {
                 <FormControl>
                     <input type="text" value={search} onChange={onChange}/>
                     <div>
-                        {/*booleanView ? filterSearch.map(member => <div><span>{member.name}</span></div>) : <div></div>*/}
+                        {booleanView ? filterSearch.map(member => <div><span>{member.name}</span></div>) : <div></div>}
                     </div>
                 </FormControl>
                 </DialogContent> 
@@ -74,4 +73,4 @@ const TeamMemberModal = ({open, close, createTeamMember, followers}) => {
     );
 }
 
-export default TeamMemberModal;
+export default MemberAddModal;

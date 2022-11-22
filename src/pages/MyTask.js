@@ -121,11 +121,33 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
     const onShowProfileModal = () => {
         handleProfileClickOpen();
     }
-    //프로필을 변경하는 메소드(장훈)
+
+    //프로필을 변경하는 메소드(장훈)(팀에 있는 내 이름과 관련된 정보를 다 바꿈)
     const modifyProfile = (name, email, intro) => {
-        myProfile[0].name = name;                       //로그인/로그아웃이 없어서 json에는 프로필에 대한 정보는 하나,
-        myProfile[0].email = email;                     //그래서 이렇게 코드를 짰어요
+        let originName = myProfile[0].name;
+        myProfile[0].name = name;
+        myProfile[0].email = email;
         myProfile[0].intro = intro;
+        //team data에 자신의 이름을 수정
+
+        for(let i = 0; i < teams.length; i++) {
+            for(let j = 0; j < teams[i].memberList.length; j++) {
+                if (teams[i].memberList[j] === originName) {
+                    teams[i].memberList[j] = name;
+                }
+                teams[i].leader = name;
+            }
+        }
+        for(let i = 0; i < teamTask.length; i++) {
+            for(let j = 0; j < teamTask[i].myTask.length; j++) {
+                for(let k = 0; k < teamTask[i].myTask[j].relatedMembers.length; k++) {
+                    if (teamTask[i].myTask[j].relatedMembers[k] === originName) {
+                        teamTask[i].myTask[j].relatedMembers[k] = name;
+                    }
+                }
+            }
+        }
+        console.log(teamTask);
     }
 
     return (
