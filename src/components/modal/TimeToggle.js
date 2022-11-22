@@ -3,10 +3,11 @@ import Switcher from 'react-switcher-rc';
 import '../../styles/timePicker.css'
 
 
-const TimeToggle = function({changeSelectedTime=f=>f}){
-    const [switcherState, setSwitcherState] = useState(false);
-    const [time, setTime] = useState("none");
-    // console.log(time)
+const TimeToggle = function({changeSelectedTime=f=>f, selectedTask}){
+    console.log(selectedTask)
+    const [switcherState, setSwitcherState] = useState(selectedTask.hour!=="none");
+    const [time, setTime] = useState(selectedTask.hour+":"+selectedTask.minute);
+
 
     React.useEffect(
         () => {

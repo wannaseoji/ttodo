@@ -28,7 +28,7 @@ const StyledTextField = styled(TextField)({
 
 const ModifyTaskModal = (props) => {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
-  const { open, close, onNewTask, header, category, calendarSelectedDate } = props;
+  const { open, close, onNewTask, header, category, calendarSelectedDate, selectedTask, onModifyTask } = props;
   let title = "";
   let date = "";
   let time = "none";
@@ -38,6 +38,11 @@ const ModifyTaskModal = (props) => {
   const changeSelectedDate = (selectedDate) => {date = selectedDate} 
   const changeSelectedTime = (selectedTime) => {time = selectedTime}
   
+  const modifyNewTask = () => {
+    onModifyTask(selectedTask)
+    close()
+  }
+
   const addNewTask = () => { // index, id, category, title, date, hour, minute
     if(time==="none"){
       hour = "none"
@@ -64,13 +69,13 @@ const ModifyTaskModal = (props) => {
             </button>
           </header>
           <main>
-            <div><span className="settingTitle">내용</span><StyledTextField id="standard-basic" label="" variant="standard" sx={{width:"80%"}} onChange={e=>title = e.target.value}/></div>
+            <div><span className="settingTitle">내용</span><StyledTextField id="standard-basic" label="" variant="standard" sx={{width:"80%"}} onChange={e=>title = e.target.value} value={selectedTask.title}/></div>
             <div><span className="settingTitle">날짜</span><TaskDatePicker changeSelectedDate={changeSelectedDate} initSelectedDate={calendarSelectedDate}/></div>
-            <div><span className="settingTitle">시간 설정</span><TimeToggle changeSelectedTime={changeSelectedTime}/></div>
+            <div><span className="settingTitle">시간 설정</span><TimeToggle changeSelectedTime={changeSelectedTime} selectedTask={selectedTask}/></div>
           </main>
           <footer>
-            <button className="add" onClick={addNewTask}>add</button>
-            <button className="cancel" onClick={close}>cancel</button>
+            <button className="modify" onClick={modifyNewTask}>modify</button>
+            <button className="delete" onClick={close}>delete</button>
           </footer>
         </section>
       ) : null}

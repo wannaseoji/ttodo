@@ -76,6 +76,7 @@
     border-radius: 5px;
     font-size: 13px;
   }
+
   .modal > section > footer button.cancel {
     padding: 6px 12px;
     margin-left: 1em;
@@ -83,6 +84,17 @@
     text-align: center;
     color: #fff;
     background-color: #aaa9a9;
+    border-radius: 5px;
+    font-size: 13px;
+  }
+
+    .modal > section > footer button.delete {
+    padding: 6px 12px;
+    margin-left: 1em;
+    width: 5em;
+    text-align: center;
+    color: #fff;
+    background-color: #C5C4F9;
     border-radius: 5px;
     font-size: 13px;
   }

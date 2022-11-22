@@ -21,7 +21,21 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
         let indexs = tasks.map((task)=>task.index).sort((a,b) => a-b)
         const newIndex = indexs[indexs.length-1]+1
         const newTasks = [...tasks, {index: newIndex, id, category, title, date, hour, minute, check:false}]
+        console.log("%%%%%%%%%%%%%%%%%%%")
+        console.log(newTasks)
         setTasks(newTasks)
+    }
+
+    const onModifyTask = function(selectedTask){
+        console.log("task 수정 전")
+        console.log(tasks)
+        console.log(selectedTask)
+
+        const modifiedTasks = tasks.map((task)=>{
+            return task.index===selectedTask.index? {...task, title:"수정됨"}:task
+        })
+        console.log("task 수정 후")
+        console.log(modifiedTasks)
     }
 
     const DateToYYYYMMDD = (date) => {
@@ -40,13 +54,24 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
     const selectedDateString = DateToYYYYMMDD(selectedDate)
     const selectedDateTasks = tasks.filter(({date})=>date===selectedDateString) // 시간 상관 없이 당일에 해당하는 task로만 필터링
 
+    const initTask = {
+        "index": 0,
+        "id": "",
+        "category": "",
+        "title": "",
+        "date": selectedDate,
+        "hour": "none",
+        "minute": "none",
+        "check": false
+    }
+    const [selectedTask, setSelectedTask] = useState(initTask)
+
     const onCheck = index => {
         const newTasks = tasks.map(task => {
             if(task.index === index) 
                 task.check = !(task.check);
             return task;
         })
-        // console.log("oncheck")
         setTasks(newTasks);
     }
 
@@ -55,17 +80,20 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
         setAddCategoryName(categoryName);
     }
 
+    const modifyTaskHandler = (task) => {
+        setSelectedTask(task)
+        onChange(new Date(task.date))
+        onShowModifyTaskModal();
+    }
+
     const openModifyTaskModal = () => {
         setModalOpen(true);
-        console.log(`modal openOption : ${modalOpen}`)
     };
     const closeModifyTaskModal = () => {
         setModalOpen(false);
-        console.log(`modal closeOption : ${modalOpen}`)
     };
 
     const onShowModifyTaskModal = () => {
-        console.log(`onShowModifyTaskModal`)
         openModifyTaskModal();
     }
 
@@ -127,12 +155,12 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
                         categories={categoryData}
                         tasks={selectedDateTasks}
                         onCheck={onCheck}
-                        onModifyTaskModal={onShowModifyTaskModal}
+                        onModifyTaskModal={modifyTaskHandler}
                         onAddTaskModal = {addTaskHandler}
                     />
                 </Scrollbars>
-                <AddTaskModal open={addTaskModalOpen} close={closeAddTaskModal} onNewTask={onNewTask} header="일정 추가" category={addCategoryName} calendarSelectedDate={selectedDate}/>
-                <ModifyTaskModal open={modalOpen} close ={closeModifyTaskModal} header="Options" />
+                <AddTaskModal open={addTaskModalOpen} close={closeAddTaskModal} onNewTask={onNewTask} header="일정 추가" category={addCategoryName} calendarSelectedDate={selectedDate} initTask={initTask}/>
+                <ModifyTaskModal open={modalOpen} close ={closeModifyTaskModal} onNewTask={onNewTask} header="일정 수정 및 삭제" category={addCategoryName} calendarSelectedDate={selectedDate} selectedTask={selectedTask} onModifyTask={onModifyTask}/>
             </div>
             {/* <div className="box teamlist">
 

@@ -6,7 +6,7 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import '../../styles/TaskList.css';
 
 
-function CategoryTaskList({tasks = [], categoryName, onCheck = f => f, onOptionsModal = f => f, onAddTaskModal = f => f}) {
+function CategoryTaskList({tasks = [], categoryName, onCheck = f => f, onModifyTaskModal = f => f, onAddTaskModal = f => f}) {
     return (
     <>
         <List sx={{ width: '80%',left:'50%', transform: 'translateX(-50%)', bgcolor: '#FFE2E9', borderRadius:'5px', paddingLeft:'1vw', paddingRight: '1vw', marginTop:'1vh' }}>
@@ -20,7 +20,7 @@ function CategoryTaskList({tasks = [], categoryName, onCheck = f => f, onOptions
                 tasks={tasks}
                 limit={tasks.length}
                 onCheckTask={onCheck}
-                onOptionsModal={onOptionsModal}/>
+                onModifyTaskModal={onModifyTaskModal}/>
         </List>
     </>
     )
