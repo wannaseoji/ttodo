@@ -43,7 +43,7 @@ const AddTaskModal = (props) => {
   
   const addNewTask = () => { // index, id, category, title, date, hour, minute
     console.log(time)
-    if(time==="none:none"){
+    if(time==="none:none"||time=="none"){
       hour = "none"
       minute = "none"
     }

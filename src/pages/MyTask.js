@@ -17,25 +17,17 @@ import ProfileModal from '../components/ProfileModal';
 
 const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams=f=>f, myProfile}) => {
     const onNewTask = function(id, category, title, date, hour, minute){ // id, category, title, date, hour, minute, check
-        console.log("new task 추가")
         let indexs = tasks.map((task)=>task.index).sort((a,b) => a-b)
         const newIndex = indexs[indexs.length-1]+1
         const newTasks = [...tasks, {index: newIndex, id, category, title, date, hour, minute, check:false}]
-        console.log("%%%%%%%%%%%%%%%%%%%")
-        console.log(newTasks)
         setTasks(newTasks)
     }
 
-    const onModifyTask = function(selectedTask){
-        console.log("task 수정 전")
-        console.log(tasks)
-        console.log(selectedTask)
-
+    const onModifyTask = function(modifiedTask){
         const modifiedTasks = tasks.map((task)=>{
-            return task.index===selectedTask.index? {...task, title:"수정됨"}:task
+            return task.index===modifiedTask.index? modifiedTask:task
         })
-        console.log("task 수정 후")
-        console.log(modifiedTasks)
+        setTasks(modifiedTasks)
     }
 
     const DateToYYYYMMDD = (date) => {
@@ -64,6 +56,7 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
         "minute": "none",
         "check": false
     }
+    
     const [selectedTask, setSelectedTask] = useState(initTask)
 
     const onCheck = index => {
