@@ -193,7 +193,7 @@ const Home =
             <div className="box tasklist">
                 <HomeTaskList
                     tasks={todayTasks}
-                    limit={todayTasks.length}
+                    limit={todayTasks.length > 5 ? 5 : todayTasks.length}
                     onCheck={onCheck}
                     onOptionsModal={onShowOptionsModal}
                 />
