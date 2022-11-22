@@ -28,12 +28,13 @@ const StyledTextField = styled(TextField)({
 
 const ModifyTaskModal = (props) => {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
-  const { open, close, onNewTask, header, category, calendarSelectedDate, selectedTask, onModifyTask } = props;
+  const { open, close, header, calendarSelectedDate, selectedTask, onModifyTask } = props;
   let title = selectedTask.title;
   let date = "";
   let time = "none";
-  let hour = "none";
-  let minute = "none";
+  let hour = selectedTask.hour;
+  let minute = selectedTask.minute;
+
   // const today = new Date();
   const changeSelectedDate = (selectedDate) => {date = selectedDate} 
   const changeSelectedTime = (selectedTime) => {time = selectedTime}
@@ -49,20 +50,6 @@ const ModifyTaskModal = (props) => {
     }
     const modifiedTask = {...selectedTask,title, date, hour, minute}
     onModifyTask(modifiedTask)
-    close()
-  }
-
-  const addNewTask = () => { // index, id, category, title, date, hour, minute
-    if(time==="none"){
-      hour = "none"
-      minute = "none"
-    }
-    else{
-      hour = parseInt(time.split(":")[0]).toString()
-      minute = time.split(":")[1]
-    }
-  
-    onNewTask("wannaseo", category,title, date, hour, minute)
     close()
   }
 

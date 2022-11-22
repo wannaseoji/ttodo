@@ -10,22 +10,19 @@ import Team from "../components/Team";
 import Profile from "../components/Profile";
 import ProfileModal from "../components/ProfileModal";
 import CustomTimeLine from "../components/timeline/CustomTimeline";
-import OptionsModal from "../components/modal/OptionsModal";
+import ModifyTaskModal from "../components/modal/ModifyTaskModal";
 import HomeTaskList from "../components/tasklist/HomeTaskList";
 import GrayBox from "../components/GrayBox.js"
 import FollowerList from "../components/FollowerList";
 import FollowerModal from "../components/FollowerModal";
 
 
-const Home = 
-    ({tasks, teamTask, teams, 
-    setTeamTask=f=>f, setTasks=f=>f, setTeams=f=>f,  
-    myProfile, setMyProfile, followers, member, setMember=f=>f, setFollowers=f=>f})=> {
-    const [modalOpen, setModalOpen] = useState(false); // Options Modal 창 open, close State 확인
+const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams=f=>f, myProfile, setMyProfile, followers, member, setMember=f=>f, setFollowers=f=>f})=> {
+    const [modalOpen, setModalOpen] = useState(false); // 태스크 수정/삭제 Modal 창 open, close State 확인
     const date = new Date(); // Mon Nov 14 2022 10:50:35 GMT+0900 (한국 표준시)
     const today = date.getFullYear()+"-"+('0' + (date.getMonth() + 1)).slice(-2)+"-"+('0' + date.getDate()).slice(-2); // 2022-11-14
     let todayTasks = tasks.filter(({date})=>date===today) // 시간 상관 없이 당일에 해당하는 task로만 필터링
-    todayTasks.map((value) => console.log(value.title))
+    // todayTasks.map((value) => console.log(value.title))
 
     // Task check 변경
     const onCheck = index =>{
@@ -36,19 +33,41 @@ const Home =
         })
         setTasks(newTasks);
     }
-    // ********** Modal open close setting 하기 ********** //
-    const openOptionsModal = () => {
+
+    // ********** Modal에 필요한 함수 setting ********** //
+    const initTask = {
+        "index": 0,
+        "id": "",
+        "category": "",
+        "title": "",
+        "date": today,
+        "hour": "none",
+        "minute": "none",
+        "check": false
+    }
+    const [selectedTask, setSelectedTask] = useState(initTask)
+    const modifyTaskHandler = (task) => {
+        setSelectedTask(task)
+        // onChange(new Date(task.date))
+        onShowModifyTaskModal();
+    }
+
+    const openModifyTaskModal = () => {
         setModalOpen(true);
-        console.log(`modal openOption : ${modalOpen}`)
     };
-    const closeOptionsModal = () => {
+    const closeModifyTaskModal = () => {
         setModalOpen(false);
-        console.log(`modal closeOption : ${modalOpen}`)
     };
 
-    const onShowOptionsModal = () => {
-        console.log(`onShowOptionsModal`)
-        openOptionsModal();
+    const onShowModifyTaskModal = () => {
+        openModifyTaskModal();
+    }
+
+    const onModifyTask = function(modifiedTask){
+        const modifiedTasks = tasks.map((task)=>{
+            return task.index===modifiedTask.index? modifiedTask:task
+        })
+        setTasks(modifiedTasks)
     }
 
     // ********** 팀 카드 3개이하 저장 ********** //
@@ -168,9 +187,9 @@ const Home =
                     tasks={todayTasks}
                     limit={todayTasks.length > 5 ? 5 : todayTasks.length}
                     onCheck={onCheck}
-                    onOptionsModal={onShowOptionsModal}
+                    onModifyTaskModal={modifyTaskHandler}
                 />
-                <OptionsModal open={modalOpen} close ={closeOptionsModal} header="Options" />
+                <ModifyTaskModal open={modalOpen} close ={closeModifyTaskModal} header="일정 수정 및 삭제" calendarSelectedDate={date} selectedTask={selectedTask} onModifyTask={onModifyTask}/>
             </div>
             <div className="box teamlist">
                 {initTeamCard()}

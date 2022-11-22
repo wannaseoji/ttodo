@@ -4,9 +4,8 @@ import '../../styles/timePicker.css'
 
 
 const TimeToggle = function({changeSelectedTime=f=>f, selectedTask}){
-    console.log(selectedTask)
     const [switcherState, setSwitcherState] = useState(selectedTask.hour!=="none");
-    const [time, setTime] = useState(selectedTask.hour+":"+selectedTask.minute);
+    const [time, setTime] = useState(('0' + selectedTask.hour).slice(-2)+":"+selectedTask.minute);
 
 
     React.useEffect(
