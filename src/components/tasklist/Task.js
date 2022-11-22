@@ -10,13 +10,14 @@ import { AiOutlineCheckCircle, AiFillCheckCircle } from 'react-icons/ai';
 import { HiOutlineDotsVertical } from "react-icons/hi";
 
 
-export default function Task({ task = [], i, onCheck = f => f, onOptionsModal = f => f }) {
-    console.log(`Task task : ${task}`)
+export default function Task({ task = [], i, onCheck = f => f, onModifyTaskModal = f => f }) {
+    const modifyTask = () => onModifyTaskModal(task)
+
     return (
         <ListItem
             key={i}
             secondaryAction={
-                <IconButton edge="end" aria-label="comments" onClick={onOptionsModal}>
+                <IconButton edge="end" aria-label="comments" onClick={modifyTask}>
                     <HiOutlineDotsVertical size='3vh' />
                 </IconButton>
             }
@@ -44,4 +45,3 @@ export default function Task({ task = [], i, onCheck = f => f, onOptionsModal = 
 
     );
 }
-
