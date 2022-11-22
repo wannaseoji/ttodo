@@ -238,5 +238,25 @@
         "hour": "19",
         "minute": "00",
         "check": false
+    },
+    {
+        "index": 26,
+        "id": "wannaseo",
+        "category": "a",
+        "title": "집 가는 시간",
+        "date": "2022-11-22",
+        "hour": "19",
+        "minute": "00",
+        "check": false
+    },
+    {
+        "index": 26,
+        "id": "wannaseo",
+        "category": "b",
+        "title": "집 가는 시간",
+        "date": "2022-11-22",
+        "hour": "19",
+        "minute": "00",
+        "check": false
     }
 ]

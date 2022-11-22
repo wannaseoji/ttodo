@@ -8,6 +8,13 @@ const SlideComponent = ({ Piedata = [], LineData = [], progressData = [], childr
     const [currentSlide, setCurrentSlide] = useState(Piedata && Piedata.map(() => { }).length - 1);
     const slideRef = useRef(null);
     // console.log("LineData in Slider", LineData)
+    //console.log(progressData[0] && progressData[0][0].month ? progressData[0][0].month : 0)
+
+    // const thisMonth = month;
+
+
+
+
     const TOTAL_SLIDES = Piedata && Piedata.map(() => { }).length - 1;
     // Next 버튼 클릭 시
     const NextSlide = () => {
@@ -36,10 +43,10 @@ const SlideComponent = ({ Piedata = [], LineData = [], progressData = [], childr
 
     return (
         <>
-
+            <StyledButton onClick={PrevSlide}>prev</StyledButton><span></span>
+            <StyledButton onClick={NextSlide}>next</StyledButton>
             <Wrapper>
-                <StyledButton onClick={PrevSlide}>prev</StyledButton>
-                <StyledButton onClick={NextSlide}>next</StyledButton>
+
 
 
                 <SlideWrapper ref={slideRef} style={{ width: '100%', height: '100%' }}>
