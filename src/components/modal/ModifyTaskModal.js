@@ -28,7 +28,7 @@ const StyledTextField = styled(TextField)({
 
 const ModifyTaskModal = (props) => {
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
-  const { open, close, header, calendarSelectedDate, selectedTask, onModifyTask } = props;
+  const { open, close, header, calendarSelectedDate, selectedTask, onModifyTask, onDeleteTask } = props;
   let title = selectedTask.title;
   let date = "";
   let time = "none";
@@ -71,7 +71,7 @@ const ModifyTaskModal = (props) => {
           </main>
           <footer>
             <button className="modify" onClick={modifyNewTask}>modify</button>
-            <button className="delete" onClick={close}>delete</button>
+            <button className="delete" onClick={onDeleteTask}>delete</button>
           </footer>
         </section>
       ) : null}

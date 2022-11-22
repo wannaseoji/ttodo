@@ -90,6 +90,12 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
         openModifyTaskModal();
     }
 
+    const onDeleteTask = function(){
+        const modifiedTasks = tasks.filter((task) => task.index!==selectedTask.index);
+        setTasks(modifiedTasks);
+        closeModifyTaskModal();
+    }
+
     const openAddTaskModal = () => {
         setAddTaskModalOpen(true);
     };
@@ -175,7 +181,7 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
                     />
                 </Scrollbars>
                 <AddTaskModal open={addTaskModalOpen} close={closeAddTaskModal} onNewTask={onNewTask} header="일정 추가" category={addCategoryName} calendarSelectedDate={selectedDate} initTask={initTask}/>
-                <ModifyTaskModal open={modalOpen} close ={closeModifyTaskModal} header="일정 수정 및 삭제" calendarSelectedDate={selectedDate} selectedTask={selectedTask} onModifyTask={onModifyTask}/>
+                <ModifyTaskModal open={modalOpen} close ={closeModifyTaskModal} header="일정 수정 및 삭제" calendarSelectedDate={selectedDate} selectedTask={selectedTask} onModifyTask={onModifyTask} onDeleteTask={onDeleteTask}/>
             </div>
             {/* <div className="box teamlist">
 

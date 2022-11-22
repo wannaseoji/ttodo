@@ -66,8 +66,14 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
     const onModifyTask = function(modifiedTask){
         const modifiedTasks = tasks.map((task)=>{
             return task.index===modifiedTask.index? modifiedTask:task
-        })
-        setTasks(modifiedTasks)
+        });
+        setTasks(modifiedTasks);
+    }
+
+    const onDeleteTask = function(){
+        const modifiedTasks = tasks.filter((task) => task.index!==selectedTask.index);
+        setTasks(modifiedTasks);
+        closeModifyTaskModal();
     }
 
     // ********** 팀 카드 3개이하 저장 ********** //
@@ -189,7 +195,7 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
                     onCheck={onCheck}
                     onModifyTaskModal={modifyTaskHandler}
                 />
-                <ModifyTaskModal open={modalOpen} close ={closeModifyTaskModal} header="일정 수정 및 삭제" calendarSelectedDate={date} selectedTask={selectedTask} onModifyTask={onModifyTask}/>
+                <ModifyTaskModal open={modalOpen} close ={closeModifyTaskModal} header="일정 수정 및 삭제" calendarSelectedDate={date} selectedTask={selectedTask} onModifyTask={onModifyTask} onDeleteTask={onDeleteTask}/>
             </div>
             <div className="box teamlist">
                 {initTeamCard()}
