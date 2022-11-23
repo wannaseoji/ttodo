@@ -6,9 +6,9 @@ import { ChakraProvider } from '@chakra-ui/react';
 import Members from './Members';
 import { MdPushPin } from 'react-icons/md';
 
-function Team({ data }) {
+function Team({ data, memberData }) {
     return (
-        <Card style={{ backgroundColor: "#FFE2E9", margin: "15px" }} sx={{ maxWidth: 190, minWidth: 190, maxHeight: 212, minHeight: 212 , borderRadius: 3 }} >
+        <Card style={{ backgroundColor: "#FFE2E9", margin: "15px", display:"inline-block" }} sx={{ maxWidth: 190, minWidth: 190, maxHeight: 195, minHeight: 195 , borderRadius: 3 }} >
             <CardContent>
                 {/* component={"span"} */}
                 <Typography align="left" sx={{fontWeight: 'bold', width:"8vw", overflow: 'hidden'
@@ -18,7 +18,7 @@ function Team({ data }) {
 
                 <div style={{padding:"3px"}}></div>
                 <ChakraProvider>
-                    <Members memberList={data.memberList} />
+                    <Members memberList={data.memberList} memberData={memberData}/>
                 </ChakraProvider>
 
                 <div style={{padding:"3px"}}></div>
@@ -26,7 +26,7 @@ function Team({ data }) {
                     {data.notice.map((v, i) => 
                         i<4 ?
                         <div align="left" key={i} >
-                            <div style={{float:"left"}}><button><MdPushPin color='red'/></button></div>
+                            <div style={{float:"left"}}><MdPushPin color='red'/></div>
                             <div style={{color:"#555555", fontSize:"15px", float:"left", width:"144px", overflow: 'hidden'
                             , textOverflow:'ellipsis', whiteSpace:'nowrap'}}>
                                 {v}

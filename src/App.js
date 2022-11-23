@@ -64,7 +64,8 @@ function App() {
                                             setTeamTask={setTeamTask} 
                                             setTasks={setTasks}
                                             setTeams={setTeams} 
-                                            followers={followers}                              
+                                            followers={followers}
+                                            member={member}                              
                                             />} />
           <Route path="Goal" element={<Goal tasks={tasks} 
                                             teamTask={teamTask} 
