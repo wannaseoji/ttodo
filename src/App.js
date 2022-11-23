@@ -62,6 +62,7 @@ function App() {
             tasks={tasks}
             teamTask={teamTask}
             teams={teams}
+            member={member}
             setTeamTask={setTeamTask}
             setTasks={setTasks}
             setTeams={setTeams}
