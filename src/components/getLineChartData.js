@@ -157,14 +157,14 @@ const getLineChartData = (tasks) => {
                     return;
                 })
             })
-            for (let i = 0; i < arrlinedata.length; i++) {
-                console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-                if (!finalLineData.findIndex(i => i.x == arrlinedata.x)) {
-                    finalLineData.push(arrlinedata[i]);
-                    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-                }
-            }
-
+            // var index;
+            // for (let j = 0; j < finalLineData.length; j++) {
+            //     for (let i = 0; i < arrlinedata.length; i++) {
+            //         if (finalLineData[j].x != arrlinedata[i].x)
+            //             index = j;
+            //     }
+            // }
+            arrlinedata.map(linedata => finalLineData.map(FL => FL.x != linedata.x).includes(false) ? finalLineData : finalLineData.push(linedata))
             const sortedlabels = arrlabels.sort(function (a, b) {
                 return a.slice(0, 1) - b.slice(0, 1);
             });
