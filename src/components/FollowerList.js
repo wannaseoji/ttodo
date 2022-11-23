@@ -5,30 +5,22 @@ import Avatar from '@mui/material/Avatar';
 import { useState } from "react";
 import '../styles/Member.css';
 import { IoPeopleCircleOutline } from "react-icons/io5";
-import { FiUserPlus } from "react-icons/fi";
-import { BorderStyle } from "@mui/icons-material";
 
 
 const FollowerList = ({follower, onShowModal}) => {
-    //const [Follower, setFollower] = useState(follower);
-    
-    for(let i = 0; i < follower.length; i++) {
-        console.log(follower[i].name);
-    }
     const [limit, setLimit] = useState(8);
     const [page, setPage] = useState(1);
     const offset = (page - 1) * limit;
-    const allCount = follower.length
+    const allCount = follower.length //5
     console.log(allCount);
-    const [count, setCount] = useState(follower.slice(offset, offset + limit).length)
+    const count = follower.slice(offset, offset + limit).length //5
     let maxCount = (allCount / 8);
     if(allCount % 8 > 0) {
         maxCount += 1;
     }
     maxCount = parseInt(maxCount);
-    var i = 8-count>0 ? 8-count : 0
-    const [plusIconNumber, setPlusIconNumber] = useState(i);
-    console.log(plusIconNumber)
+    var i = 8-count  //빈 원형 점선 아이콘 개수
+
     return (
         <> 
             {/*왼쪽 버튼 */}
@@ -38,15 +30,15 @@ const FollowerList = ({follower, onShowModal}) => {
                 className="Member"
                 onClick={() => {
                     if(page !== 1) {
-                        var i = 8-count>0 ? 8-count : 0;
                         setPage(page - 1);
                     }
                 }}
                 />
 
             {   
-                follower.slice(offset, offset + limit).map((data) => (
+                follower.slice(offset, offset + limit).map((data,i) => (
                     <Avatar
+                        key={i}
                         alt="Remy Sharp"
                         src={data.image}
                         sx={{ width: "50px", height: "50px"}} 
@@ -54,8 +46,9 @@ const FollowerList = ({follower, onShowModal}) => {
                     ))
             }
             { 
-                [...Array(plusIconNumber)].map((data) => 
+                [...Array(i)].map((data,i) => 
                         <Avatar
+                        key={i}
                         alt="Remy Sharp"
                         sx={{ width: "50px", height: "50px"}} 
                         style={{ background: "#FFFFFF", border: "5px dotted pink"}}

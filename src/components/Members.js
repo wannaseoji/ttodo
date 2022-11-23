@@ -1,7 +1,6 @@
 import { Avatar, AvatarGroup } from '@chakra-ui/react';
 
 function Members({memberList, memberData}) {
-    console.log(memberData)
     return (
         <AvatarGroup size='sm' max={6} >
             {memberList.map((v,i)=>{
