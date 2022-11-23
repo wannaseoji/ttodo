@@ -80,7 +80,7 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
     const teamCard = [];
     function initTeamCard() {
         for (let i = 0; i < teams.length && i < 3; i++) {
-            teamCard[i] = <Team key={i} data={teams[i]} />;
+            teamCard[i] = <Team key={i} data={teams[i]} memberData={member} />;
         }
     }
     //장훈이의 코드(프로필 변경, Follower 추가)

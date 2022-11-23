@@ -18,15 +18,17 @@ import CategoryModifyModal from '../components/modal/CategoryModifyModal';
 import CategoryDeleteModal from '../components/modal/CategoryDeleteModal';
 import CategoryAddModal from '../components/modal/CategoryAddModal';
 
-const TeamLink = ({tasks, teamTask, teams, followers, setTeamTask=f=>f, setTasks=f=>f, setTeams=f=>f}) => {
-    // const [curTeamIdx, setCurTeamIdx] = useState(0)
+const TeamLink = ({tasks, teamTask, teams, member, followers, setTeamTask=f=>f, setTasks=f=>f, setTeams=f=>f}) => {
+    console.log(member);
     const [curTeam, setCurTeam] = useState(teams[0])
     const [index, setIndex] = useState(0)
+    const [noticePage, setNoticePage] = useState(1);
+
     console.log(curTeam)
     //팀 클릭시 해당 팀을 가리키는 인덱스로 변경
     const changeCurTeamIdx = (idx) => {
-        // setCurTeamIdx(idx)
         console.log("현재 팀 변경 => " + idx)
+        setNoticePage(1);
         setIndex(idx)
         setCurTeam(teams[idx])
     }
@@ -78,10 +80,16 @@ const TeamLink = ({tasks, teamTask, teams, followers, setTeamTask=f=>f, setTasks
             intro: intro,
             leader:leader
         }
-        console.log(newTeams)
         const t1 = [...teams, newTeams]
         setTeams(t1)
-        console.log(t1)
+
+        //teamTask 생성
+        const newTeamTask = {
+            name: name,
+            myTask: [],
+            otherTask: []
+        }
+        setTeamTask([...teamTask, newTeamTask])
     }
     
     //Notice 생성
@@ -224,7 +232,7 @@ const TeamLink = ({tasks, teamTask, teams, followers, setTeamTask=f=>f, setTasks
                     />
             </div>
             <div className="box content">
-                <TeamEditList onShowModal={onShow} teamData={teams} changeCurTeamIdx={changeCurTeamIdx}/>
+                <TeamEditList onShowModal={onShow} teamData={teams} changeCurTeamIdx={changeCurTeamIdx} member={member}/>
                 <TeamModal open={open} close={handleClose} onNewTeam={onNewTeam} followers={followers} leader={curTeam.leader}/>
             </div>
             <div className="box follower">
@@ -263,7 +271,7 @@ const TeamLink = ({tasks, teamTask, teams, followers, setTeamTask=f=>f, setTasks
                     teamTask={teamTask}/>
             </div>
             <div className="box notice">
-                <Notice onShowModal={onShowNoticeModal} notices={notices}/>
+                <Notice onShowModal={onShowNoticeModal} notices={notices} page={noticePage} setPage={setNoticePage}/>
                 <NoticeModal open={noticeOpen} close={noticeClickClose} onNewNotice={onNewNotice}/>
             </div>
         </div >

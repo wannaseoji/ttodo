@@ -76,6 +76,7 @@ function App() {
             myProfile={myProfile}
             setMyProfile={setMyProfile}
           />} />
+
         </Route>
       </Routes>
     </BrowserRouter>

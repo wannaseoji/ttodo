@@ -1,17 +1,10 @@
-
-import { useState } from "react";
-// import teamData from "../assets/team.json";
 import { AiOutlinePlus } from 'react-icons/ai';
 import {GoChevronLeft} from "react-icons/go";
 import {GoChevronRight} from "react-icons/go";
 
 //팀 목록에서 클릭한 팀을 인자로 받아야 한다.
-function Notice({onShowModal, notices}) {
-    //팀 목록에서 클릭한 팀을 나타낸다. 
-    // const [notice, setNotice] = useState(notices)
-    const [page, setPage] = useState(1);
+function Notice({onShowModal, notices, page, setPage}) {
     let count = notices.length; //공지사항의 개수, 총 페이지의 개수
-    console.log(count);
     return (
         <>
             <span style={{color:"#FF9AB5", fontWeight: "bold", fontSize:"20px", textAlign:"left", marginBottom:"0.8vh"}}>NOTICE</span>                

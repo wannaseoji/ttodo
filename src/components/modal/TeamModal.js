@@ -92,10 +92,10 @@ export default function TeamModal({open, close, onNewTeam, followers, leader}) {
                 <DialogContent style={{ alignItems: "center"}}>
                 <FormControl> 
                     <InputLabel id="demo-simple-select-label"
-                    style={{marginLeft: "1.5vw"}}
-                    > 맴버</InputLabel>
+                    style={{marginLeft: "0.3vw"}}
+                    > 멤버</InputLabel>
                     <Select
-                        style={{  width: '20vw', alignItems: 'center', marginLeft: "1.5vw"}}
+                        style={{  width: '20vw', alignItems: 'center', marginLeft: "0.3vw"}}
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         multiple
@@ -105,8 +105,8 @@ export default function TeamModal({open, close, onNewTeam, followers, leader}) {
                         input={<OutlinedInput label="Name"/>}
                         >
                             {
-                                followers.map(v=>(
-                                    <MenuItem value={v.name} style={getStyles(v.name,personName, theme)}>
+                                followers.map((v,i)=>(
+                                    <MenuItem key={i} value={v.name} style={getStyles(v.name,personName, theme)}>
                                         {v.name}
                                     </MenuItem>
                                 ))
