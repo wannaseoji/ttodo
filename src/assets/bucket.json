@@ -1,0 +1,18 @@
+[
+    {
+        "index": 1,
+        "id": "wannaseo",
+        "category": "BUCKET LIST",
+        "title": "이번겨울에 날 찾지마..",
+        "date": "2022-11-23",
+        "check": false
+    },
+    {
+        "index": 2,
+        "id": "wannaseo",
+        "category": "BUCKET LIST",
+        "title": "오빠 폰트 사이즈 안바껴",
+        "date": "2022-11-23",
+        "check": false
+    }
+]

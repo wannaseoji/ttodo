@@ -15,27 +15,27 @@ import GrayBox from "../components/GrayBox"
 import '../styles/linkButton.css';
 import ProfileModal from '../components/ProfileModal';
 
-const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams=f=>f, myProfile}) => {
-    const onNewTask = function(id, category, title, date, hour, minute){ // id, category, title, date, hour, minute, check
-        let indexs = tasks.map((task)=>task.index).sort((a,b) => a-b)
-        const newIndex = indexs[indexs.length-1]+1
-        const newTasks = [...tasks, {index: newIndex, id, category, title, date, hour, minute, check:false}]
+const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => f, setTeams = f => f, myProfile }) => {
+    const onNewTask = function (id, category, title, date, hour, minute) { // id, category, title, date, hour, minute, check
+        let indexs = tasks.map((task) => task.index).sort((a, b) => a - b)
+        const newIndex = indexs[indexs.length - 1] + 1
+        const newTasks = [...tasks, { index: newIndex, id, category, title, date, hour, minute, check: false }]
         setTasks(newTasks)
     }
 
-    const onModifyTask = function(modifiedTask){
-        const modifiedTasks = tasks.map((task)=>{
-            return task.index===modifiedTask.index? modifiedTask:task
+    const onModifyTask = function (modifiedTask) {
+        const modifiedTasks = tasks.map((task) => {
+            return task.index === modifiedTask.index ? modifiedTask : task
         })
         setTasks(modifiedTasks)
     }
 
     const DateToYYYYMMDD = (date) => {
-    var year = date.getFullYear();
-    var month = ("0" + (1 + date.getMonth())).slice(-2);
-    var day = ("0" + date.getDate()).slice(-2);
-    
-    return year + "-" + month + "-" + day;
+        var year = date.getFullYear();
+        var month = ("0" + (1 + date.getMonth())).slice(-2);
+        var day = ("0" + date.getDate()).slice(-2);
+
+        return year + "-" + month + "-" + day;
     }
 
     const [addCategoryName, setAddCategoryName] = useState("");
@@ -44,7 +44,7 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
     const [selectedDate, onChange] = useState(new Date()); // Mon Nov 14 2022 10:50:35 GMT+0900 (한국 표준시)
     // const selectedDateString = selectedDate.getFullYear()+"-"+('0' + (selectedDate.getMonth() + 1)).slice(-2)+"-"+('0' + selectedDate.getDate()).slice(-2); // 2022-11-14
     const selectedDateString = DateToYYYYMMDD(selectedDate)
-    const selectedDateTasks = tasks.filter(({date})=>date===selectedDateString) // 시간 상관 없이 당일에 해당하는 task로만 필터링
+    const selectedDateTasks = tasks.filter(({ date }) => date === selectedDateString) // 시간 상관 없이 당일에 해당하는 task로만 필터링
 
     const initTask = {
         "index": 0,
@@ -56,12 +56,12 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
         "minute": "none",
         "check": false
     }
-    
+
     const [selectedTask, setSelectedTask] = useState(initTask)
 
     const onCheck = index => {
         const newTasks = tasks.map(task => {
-            if(task.index === index) 
+            if (task.index === index)
                 task.check = !(task.check);
             return task;
         })
@@ -90,8 +90,8 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
         openModifyTaskModal();
     }
 
-    const onDeleteTask = function(){
-        const modifiedTasks = tasks.filter((task) => task.index!==selectedTask.index);
+    const onDeleteTask = function () {
+        const modifiedTasks = tasks.filter((task) => task.index !== selectedTask.index);
         setTasks(modifiedTasks);
         closeModifyTaskModal();
     }
@@ -113,10 +113,10 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
         setProfileOpen(true)
     };
 
-    const handleProfileClose = () =>  {
+    const handleProfileClose = () => {
         setProfileOpen(false);
     }
-    
+
     const onShowProfileModal = () => {
         handleProfileClickOpen();
     }
@@ -129,17 +129,17 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
         myProfile[0].intro = intro;
         //team data에 자신의 이름을 수정
 
-        for(let i = 0; i < teams.length; i++) {
-            for(let j = 0; j < teams[i].memberList.length; j++) {
+        for (let i = 0; i < teams.length; i++) {
+            for (let j = 0; j < teams[i].memberList.length; j++) {
                 if (teams[i].memberList[j] === originName) {
                     teams[i].memberList[j] = name;
                 }
                 teams[i].leader = name;
             }
         }
-        for(let i = 0; i < teamTask.length; i++) {
-            for(let j = 0; j < teamTask[i].myTask.length; j++) {
-                for(let k = 0; k < teamTask[i].myTask[j].relatedMembers.length; k++) {
+        for (let i = 0; i < teamTask.length; i++) {
+            for (let j = 0; j < teamTask[i].myTask.length; j++) {
+                for (let k = 0; k < teamTask[i].myTask[j].relatedMembers.length; k++) {
                     if (teamTask[i].myTask[j].relatedMembers[k] === originName) {
                         teamTask[i].myTask[j].relatedMembers[k] = name;
                     }
@@ -152,12 +152,12 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
     return (
         <div id="app" className="parent" >
             <div className="box menu" >
-                <Menu/>
+                <Menu />
             </div >
             <div className="box profile">
-                <Profile 
+                <Profile
                     myProfile={myProfile}
-                    onShowModal={onShowProfileModal}/>
+                    onShowModal={onShowProfileModal} />
                 <ProfileModal
                     myProfile={myProfile}
                     open={profileOpen}
@@ -165,23 +165,23 @@ const MyTask = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTea
                     modifyProfile={modifyProfile} />
             </div>
             <div className="box content">
-                <GrayBox boxname="calendar" title="Calendar"  settingHeight="70vh">
-                    <CustomCalendar tasks={tasks} value={selectedDate} onChange={onChange}/>
+                <GrayBox boxname="calendar" title="Calendar" settingHeight="70vh">
+                    <CustomCalendar tasks={tasks} value={selectedDate} onChange={onChange} />
                 </GrayBox>
             </div>
             <div className="box follower">팔로워</div>
             <div className="box tasklist">
-                <Scrollbars style={{width: '100%',height:'100%', backgroundColor: "transparent", borderRadius:"0px 0px 10px 10px"}}>
+                <Scrollbars style={{ width: '100%', height: '100%', backgroundColor: "transparent", borderRadius: "0px 0px 10px 10px" }}>
                     <CategoryScrollList
                         categories={categoryData}
                         tasks={selectedDateTasks}
                         onCheck={onCheck}
                         onModifyTaskModal={modifyTaskHandler}
-                        onAddTaskModal = {addTaskHandler}
+                        onAddTaskModal={addTaskHandler}
                     />
                 </Scrollbars>
-                <AddTaskModal open={addTaskModalOpen} close={closeAddTaskModal} onNewTask={onNewTask} header="일정 추가" category={addCategoryName} calendarSelectedDate={selectedDate} initTask={initTask}/>
-                <ModifyTaskModal open={modalOpen} close ={closeModifyTaskModal} header="일정 수정 및 삭제" calendarSelectedDate={selectedDate} selectedTask={selectedTask} onModifyTask={onModifyTask} onDeleteTask={onDeleteTask}/>
+                <AddTaskModal open={addTaskModalOpen} close={closeAddTaskModal} onNewTask={onNewTask} header="일정 추가" category={addCategoryName} calendarSelectedDate={selectedDate} initTask={initTask} />
+                <ModifyTaskModal open={modalOpen} close={closeModifyTaskModal} header="일정 수정 및 삭제" calendarSelectedDate={selectedDate} selectedTask={selectedTask} onModifyTask={onModifyTask} onDeleteTask={onDeleteTask} />
             </div>
             {/* <div className="box teamlist">
 

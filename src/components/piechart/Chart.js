@@ -11,7 +11,7 @@ const MyResponsivePie = ({ data, length /* see data tab */ }) => (
     <ResponsivePie
         length={length}
         data={data}
-        margin={{ top: 50, right: 80, bottom: 80, left: 80 }}
+        margin={{ top: 60, right: 80, bottom: 0, left: 80 }}
         innerRadius={0.5}
         padAngle={1}
         cornerRadius={3}
@@ -42,7 +42,8 @@ const MyResponsivePie = ({ data, length /* see data tab */ }) => (
              */
             legends: {
                 text: {
-                    fontSize: 10,
+                    fontSize: 15,
+                    fontStyle: 'bold',
                     fill: '#000000',
                 },
             },
@@ -103,19 +104,21 @@ const MyResponsivePie = ({ data, length /* see data tab */ }) => (
         legends={[
             {
 
-                anchor: 'bottom-left',
+                anchor: 'top-left',
                 direction: 'column', //차트아래에 표시되는것
                 justify: false,
-                translateX: 0,
-                translateY: 50,
+                translateX: -80,
+                translateY: -60,
                 itemsSpacing: 0,
-                itemWidth: 50,
+                itemWidth: 100,
                 itemHeight: 30,
                 itemTextColor: '#999',
                 itemDirection: 'left-to-right',
                 itemOpacity: 1,
                 symbolSize: 18,
                 symbolShape: 'circle',
+                // textSize: ,
+                fontSize: 25,
                 effects: [
                     {
                         on: 'hover',

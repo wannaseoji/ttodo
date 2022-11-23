@@ -10,10 +10,10 @@ export default function Slide({ Piedata = [], LineData = [] }) {
     return (
         <>
 
-            <div style={{ width: '100%', height: '50%', }}>
+            <div style={{ width: '90%', height: '50%', }}>
                 <MyResponsivePie data={Piedata} />
             </div>
-            <div style={{ width: '100%', height: '50%', }}>
+            <div style={{ width: '100%', height: '50%', marginTop: 50 }}>
                 <MyLineChart data={LineData} />
             </div>
 

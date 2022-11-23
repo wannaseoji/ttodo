@@ -23,7 +23,93 @@ import ProfileModal from '../components/ProfileModal';
 import Slide from '../components/Slide'
 import MyBarCharts from "../components/barchart/BarChart";
 import ProgressSlide from "../components/ProgressSlide";
-const Goal = ({ tasks, teamTask, teams, myProfile }) => {
+import CategoryTaskList from "../components/tasklist/CategoryTaskList";
+import ModifyTaskModal from '../components/modal/ModifyTaskModal'
+import AddTaskModal from "../components/modal/AddTaskModal"
+import Scrollbars from "react-custom-scrollbars";
+const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, myProfile }) => {
+
+    const initTask = {
+        "index": 0,
+        "id": "",
+        "category": "",
+        "title": "",
+        "date": "none",
+        "check": false
+    }
+
+    const onNewTask = function (id, category, title, date) { // id, category, title, date, hour, minute, check
+        console.log("new task 추가")
+        let indexs = BUCKETLIST.map((task) => task.index).sort((a, b) => a - b)
+        const newIndex = indexs[indexs.length - 1] + 1
+        const newTasks = [...BUCKETLIST, { index: newIndex, id, category, title, date, hour: 'none', minute: 'none', check: false }]
+        setBUCKETLIST(newTasks)
+    }
+
+    const [selectedTask, setSelectedTask] = useState(initTask)
+    console.log(`$$$$$$$$$$$$$$$$$$$`)
+    console.log(selectedTask)
+    console.log(selectedTask.date)
+    const onModifyTask = function (modifiedTask) {
+        const modifiedTasks = BUCKETLIST.map((task) => {
+            return task.index === modifiedTask.index ? modifiedTask : task
+        });
+        setBUCKETLIST(modifiedTasks);
+    }
+    const [selectedDate, onChange] = useState(new Date()); // Mon Nov 14 2022 10:50:35 GMT+0900 (한국 표준시)
+
+    const [addCategoryName, setAddCategoryName] = useState("");
+    const [modalOpen, setModalOpen] = useState(false);
+    const [addTaskModalOpen, setAddTaskModalOpen] = useState(false);
+
+    const onCheck = index => {
+        const newTasks = BUCKETLIST.map(task => {
+            if (task.index === index)
+                task.check = !(task.check);
+            return task;
+        })
+        setBUCKETLIST(newTasks);
+    }
+
+    const addTaskHandler = (e, categoryName) => {
+        onShowAddTaskModal();
+        setAddCategoryName(categoryName);
+    }
+
+    const modifyTaskHandler = (task) => {
+        setSelectedTask(task)
+        onChange(new Date(task.date))
+        onShowModifyTaskModal();
+    }
+
+    const openModifyTaskModal = () => {
+        setModalOpen(true);
+    };
+    const closeModifyTaskModal = () => {
+        setModalOpen(false);
+    };
+
+    const onShowModifyTaskModal = () => {
+        openModifyTaskModal();
+    }
+
+    const onDeleteTask = function () {
+        const modifiedTasks = BUCKETLIST.filter((task) => task.index !== selectedTask.index);
+        setBUCKETLIST(modifiedTasks);
+        closeModifyTaskModal();
+    }
+
+    const openAddTaskModal = () => {
+        setAddTaskModalOpen(true);
+    };
+    const closeAddTaskModal = () => {
+        setAddTaskModalOpen(false);
+    };
+    const onShowAddTaskModal = () => {
+        openAddTaskModal();
+    }
+
+
     //const numOftasks = tasks;
     //console.log(numOftasks)
     //const { id, date } = tasks;
@@ -71,7 +157,9 @@ const Goal = ({ tasks, teamTask, teams, myProfile }) => {
 
 
     const uniqueProgressData = uniqueArr(progressData);
-    console.log("progressData", progressData, uniqueMonths);
+    console.log("####################################")
+    console.log("progressData", sortedUniqueMonths);
+    console.log("####################################")
 
     //장훈 코드
     const [profileOpen, setProfileOpen] = useState(false);
@@ -104,17 +192,17 @@ const Goal = ({ tasks, teamTask, teams, myProfile }) => {
         myProfile[0].intro = intro;
         //team data에 자신의 이름을 수정
 
-        for(let i = 0; i < teams.length; i++) {
-            for(let j = 0; j < teams[i].memberList.length; j++) {
+        for (let i = 0; i < teams.length; i++) {
+            for (let j = 0; j < teams[i].memberList.length; j++) {
                 if (teams[i].memberList[j] === originName) {
                     teams[i].memberList[j] = name;
                 }
                 teams[i].leader = name;
             }
         }
-        for(let i = 0; i < teamTask.length; i++) {
-            for(let j = 0; j < teamTask[i].myTask.length; j++) {
-                for(let k = 0; k < teamTask[i].myTask[j].relatedMembers.length; k++) {
+        for (let i = 0; i < teamTask.length; i++) {
+            for (let j = 0; j < teamTask[i].myTask.length; j++) {
+                for (let k = 0; k < teamTask[i].myTask[j].relatedMembers.length; k++) {
                     if (teamTask[i].myTask[j].relatedMembers[k] === originName) {
                         teamTask[i].myTask[j].relatedMembers[k] = name;
                     }
@@ -150,35 +238,33 @@ const Goal = ({ tasks, teamTask, teams, myProfile }) => {
                 </GrayBox>
             </div>
             <div className="box follower"></div>
-            <div className="box tasklist" style={{ width: '90%', borderRadius: '20px' }}>
-                <GrayBox title={"카테고리별 목표달성률"}>
-                    <Slider Piedata={Piedata} progressData={progressData} children={
-                        progressData.map(
-                            (data, i) =>
-                                <div key={i} style={{ width: '100%', height: '100%', flex: 'none' }}>
-                                    <ProgressSlide key={i} data={data} />
-                                </div>
-                        )
-                    }
-                    />
+            <div className="box tasklist" style={{ width: '100%', height: '95% ', borderRadius: '20px' }}>
+                <Scrollbars>{
+                    <GrayBox title={"카테고리별 목표달성률"} >
+
+                        <Slider Piedata={Piedata} progressData={progressData} children={
+                            progressData.map(
+                                (data, i) =>
+                                    <div key={i} style={{ width: '100%', height: '100%', flex: 'none' }}>
+                                        <ProgressSlide key={i} data={data} />
+                                    </div>
+                            )
+                        }
+                        />
 
 
 
-                    {/* {progressData.map(data => {
-                        console.log(data)
-                        return <MyBarCharts data={data} />
-                    })} */}
-                    {/* <Slider progressData={progressData} children={
-                        progressData.map(data => <MyBarCharts data={progressData} />)} /> */}
-                    {/* </Slider> */}
-
-                </GrayBox>
+                    </GrayBox>
+                } </Scrollbars >
                 {/* <MyBarCharts data={uniqueProgressData} /> */}
             </div>
             <div className="box teamlist">
-                {
-                    uniqueCategories.map((category, i) => <DetailChart className="customCard" key={i} sx={{ color: "#FF9AB5" }} />)
-                }
+                <Scrollbars style={{ width: '100%', height: '90%', backgroundColor: "transparent", borderRadius: "0px 0px 0px 0px" }}>
+                    <CategoryTaskList tasks={BUCKETLIST} categoryName={'BUCKET LIST'} onCheck={onCheck} onModifyTaskModal={modifyTaskHandler} onAddTaskModal={addTaskHandler}
+                        style={{ width: '100%', height: '100%', backgroundColor: "transparent", borderRadius: "0px 0px 10px 10px", margin: "20px 50px 30px 50px;" }}></CategoryTaskList>
+                </Scrollbars>
+                <ModifyTaskModal open={modalOpen} close={closeModifyTaskModal} header="버킷리스트 수정 및 삭제" calendarSelectedDate={new Date(selectedTask.date)} selectedTask={selectedTask} onModifyTask={onModifyTask} onDeleteTask={onDeleteTask} isBucket={true} />
+                <AddTaskModal open={addTaskModalOpen} close={closeAddTaskModal} onNewTask={onNewTask} header="버킷리스트 추가" category={addCategoryName} calendarSelectedDate={selectedDate} isBucket={true} />
             </div>
         </div >
 

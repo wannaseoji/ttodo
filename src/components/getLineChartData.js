@@ -91,6 +91,7 @@ const getLineChartData = (tasks) => {
     const arrUnique = (weekdata) => weekdata.filter((character, idx, arr) => {
         return arr.findIndex((item) => item.mmonth === character.mmonth && item.mweek === character.mweek) === idx
     });
+
     const uniqueWeekdata = arrUnique(weekdata);
 
     // console.log(uniqueWeekdata)
@@ -107,48 +108,94 @@ const getLineChartData = (tasks) => {
 
 
     const sortedUniqueWeekData = groupByCategory(uniqueWeekdata)
+
     const sortedUniqueMonths = uniqueMonths.sort(function (a, b) {
         if (a > b) return 1;
         if (a === b) return 0;
         if (a < b) return -1;
     });
-
+    const MarrUnique = (weekdata) => weekdata.filter((character, idx, arr) => {
+        return arr.findIndex((item) => item.x === character.x && item.y === character.y) === idx
+    });
 
     const LINEDATA = sortedUniqueMonths.map(
-
         month => {
-
-            var arrlabels = [];
             var arrlinedata = [];
+
+            var arrlabels = ['1주차', '2주차', '3주차', '4주차'];
+            var finalLineData = [];
+            const compare = [
+                { x: "1주차", y: `0` },
+                { x: "2주차", y: `0` },
+                { x: "3주차", y: `0` },
+                { x: "4주차", y: `0` },
+            ];
+
             sortedUniqueWeekData[month].map(
                 (monthly) => {
                     //console.log("monthly", monthly)
 
-                    const labels = monthly.mmonth + "월" + monthly.mweek + " 주차"
+                    const labels = monthly.mweek + "주차"
+                    // const labels = monthly.mmonth + "월" + monthly.mweek + "주차"
                     arrlabels.push(labels)
-                    const linedata = { x: monthly.mmonth + "월" + monthly.mweek + " 주차", y: `${monthly.numTrue / monthly.numTasks * 100}` }
+                    // const linedata = { x: monthly.mmonth + "월" + monthly.mweek + "주차", y: `${monthly.numTrue / monthly.numTasks * 100}` }
+                    const linedata = { x: monthly.mweek + "주차", y: `${monthly.numTrue / monthly.numTasks * 100}` }
                     arrlinedata.push(linedata)
                     return;
                 }
             )
+
+            // "linedata => n주차 m% 
+            compare.map(compare => {
+                finalLineData.push(compare)
+                arrlinedata.map(linedata => {
+                    if (finalLineData.includes(compare) && compare.x == linedata.x && parseFloat(compare.y) <= parseFloat(linedata.y)) {
+                        finalLineData.pop()
+                        finalLineData.push(linedata)
+                    }
+
+                    return;
+                })
+            })
+            for (let i = 0; i < arrlinedata.length; i++) {
+                console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                if (!finalLineData.findIndex(i => i.x == arrlinedata.x)) {
+                    finalLineData.push(arrlinedata[i]);
+                    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                }
+            }
+
             const sortedlabels = arrlabels.sort(function (a, b) {
-                return a.slice(8, 9) - b.slice(8, 9);
+                return a.slice(0, 1) - b.slice(0, 1);
             });
             const sortedlinedata = arrlinedata.sort(function (a, b) {
-                return a.x.slice(8, 9) - b.x.slice(8, 9);
+                return a.x.slice(0, 1) - b.x.slice(0, 1);
             });
-            // console.log("#####################")
-            // console.log(sortedlabels)
-            // console.log("#####################")
+            const finalLabelData = uniqueArr(sortedlabels)
+            //const FinalLineData = arrUnique(finalLineData)
+
+            console.log("#####################")
+            console.log(finalLineData)
+            console.log("#####################")
+
+
+
             return {
-                labels: sortedlabels,
+                labels: finalLabelData,
                 datasets: [
                     {
                         type: 'line',
                         label: '주차별 목표달성율',
                         borderColor: '#FF9AB5',
                         borderWidth: 2,
-                        data: arrlinedata,
+                        data: finalLineData,
+                        datalabels: {		// 라인차트의 CSS
+                            // color: 'white'
+                            color: '#FF9AB5',
+                            backgroundColor: 'white',
+                            font: { size: 13, weight: 'bold' },
+                        },
+
                     },
                 ]
             };

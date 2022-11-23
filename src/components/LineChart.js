@@ -10,13 +10,17 @@ const MyLineChart = ({ data }) => {
     // console.log("in MyLineChart ", data);
     return (
         <div>
-            <Line type="line" data={data} />
+            <Line type="line" options={options} data={data} />
         </div>
     );
 };
 
 
+const options = {
+    fill: true,
+    fontSize: '10%',
 
+}
 
 
 export default MyLineChart;
