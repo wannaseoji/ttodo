@@ -27,7 +27,7 @@ function TeamEditList({onShowModal, teamData, changeCurTeamIdx, member}) {
             <><thead>
                 <tr>
                     <td width="240" height="264">
-                        <center>{<button onClick={onShowModal}><BsPlusCircleFill size="60" color="#FEA4BC" /></button>}</center>
+                        <center>{<button style={{border:"0", outline:"0"}} onClick={onShowModal}><BsPlusCircleFill size="60" color="#FEA4BC" /></button>}</center>
                     </td >
                     <td width="240" height="264"> </td>
                 </tr>
