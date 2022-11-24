@@ -23,7 +23,6 @@ body {
         "menu header"
         "menu body"
         "menu footer"
-
     ;
     grid-template-columns: 15% 85%;
     grid-template-rows: 20% 50% 30%;
@@ -52,7 +51,7 @@ body {
     ;
     gap: 1px;
     grid-template-rows: 20% 25% 25% 15% 15%;
-    grid-template-columns: 15% 40% 45%;
+    grid-template-columns: 15% 42% 43%;
     /*
     grid-template-rows: 20% 20% 20% 20% 20%
     grid-template-rows: 100px 185px 185px 185px 185px
