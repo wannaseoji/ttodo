@@ -26,7 +26,7 @@ import CategoryTaskList from "../components/tasklist/CategoryTaskList";
 import ModifyTaskModal from '../components/modal/ModifyTaskModal'
 import AddTaskModal from "../components/modal/AddTaskModal"
 import Scrollbars from "react-custom-scrollbars";
-const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, myProfile }) => {
+const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, myProfile, member}) => {
 
     const initTask = {
         "index": 0,
@@ -101,7 +101,6 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, myPr
     const onShowAddTaskModal = () => {
         openAddTaskModal();
     }
-
     const Piedata = getPieData(tasks);
     const categoryFilter = (keyWord) => keyWord.map(task => { return task.category });
     const categories = categoryFilter(tasks)
@@ -148,6 +147,16 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, myPr
         myProfile[0].name = name;
         myProfile[0].email = email;
         myProfile[0].intro = intro;
+
+        //member의 정보를 수정
+        for(let i = 0; i < member.length; i++) {
+            if(member[i].name === originName) {
+                member[i].name = name;
+            }
+        }
+
+        //team data에 자신의 이름을 수정
+
         for (let i = 0; i < teams.length; i++) {
             for (let j = 0; j < teams[i].memberList.length; j++) {
                 if (teams[i].memberList[j] === originName) {

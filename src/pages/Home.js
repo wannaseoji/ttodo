@@ -111,14 +111,20 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
     const onShowProfileModal = () => {
         handleProfileClickOpen();
     }
-    //프로필을 변경하는 메소드(장훈)
     const modifyProfile = (name, email, intro) => {
         let originName = myProfile[0].name;
         myProfile[0].name = name;
         myProfile[0].email = email;
         myProfile[0].intro = intro;
-        //team data에 자신의 이름을 수정
+    
+        //member의 정보를 수정
+        for(let i = 0; i < member.length; i++) {
+            if(member[i].name === originName) {
+                member[i].name = name;
+            }
+        }
 
+        //team data에 자신의 이름을 수정
         for(let i = 0; i < teams.length; i++) {
             for(let j = 0; j < teams[i].memberList.length; j++) {
                 if (teams[i].memberList[j] === originName) {
@@ -180,6 +186,7 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
                     onShowModal={onShow}/>
                 {/*Modal을 열고 닫고와 팔로워를 추가하는 메소드를 props로 전달(장훈) */}
                 <FollowerModal 
+                    myProfile={myProfile}
                     open={open} 
                     close={handleClose} 
                     follower={followers} 

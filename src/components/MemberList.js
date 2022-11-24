@@ -61,6 +61,8 @@ const MemberList = ({curTeam, onShowTeamMemberModal, onShowCategoryModal}) => {
                 className="Member"
                 onClick={ () => { 
                     if(page !== maxCount) { 
+                        var i = 8-count>0 ? 8-count : 0;
+                        //setPlusIconNumber(i);
                         setPage(page + 1);
                     }
                 }}/>
