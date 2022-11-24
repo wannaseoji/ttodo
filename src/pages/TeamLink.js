@@ -14,17 +14,50 @@ import TeamProfile from '../components/TeamProfile';
 import MemberAddModal from '../components/MemberAddModal';
 import TeamProfileModal from '../components/TeamProfileModal';
 import CategoryModal from '../components/modal/CategoryModal';
-import CategoryModifyModal from '../components/modal/CategoryModifyModal';
-import CategoryDeleteModal from '../components/modal/CategoryDeleteModal';
-import CategoryAddModal from '../components/modal/CategoryAddModal';
+import ModifyTaskModal from '../components/modal/ModifyTaskModal';
+import AddTaskModal from '../components/modal/AddTaskModal';
 
-const TeamLink = ({ tasks, teamTask, teams, member, followers, setTeamTask = f => f, setTasks = f => f, setTeams = f => f }) => {
-    console.log(member);
+
+const TeamLink = ({tasks, teamTask, teams, member, followers, setTeamTask=f=>f, setTasks=f=>f, setTeams=f=>f, myProfile}) => {
     const [curTeam, setCurTeam] = useState(teams[0])
     const [index, setIndex] = useState(0)
     const [noticePage, setNoticePage] = useState(1);
 
-    console.log(curTeam)
+
+
+    const onCheck = index => {
+        // const newTeamTasks = tasks.map(task => {
+        //     if (task.index === index)
+        //         task.check = !(task.check);
+        //     return task;
+        // })
+        // setTasks(newTasks);
+        
+        const newTeamTasks = teamTask.map(team => {
+            team.myTask.sort((a, b) => a.relatedMembers.length - b.relatedMembers.length)
+            .map((element) => {
+                (element.tasks).map(task => {
+                    if(task.index === index)
+                        task.check = !(task.check);
+                    return task;
+                })
+            })
+
+            team.otherTask.sort((a, b) => a.relatedMembers.length - b.relatedMembers.length)
+            .map((element) => {
+                (element.tasks).map(task => {
+                    if(task.index === index)
+                        task.check = !(task.check);
+                    return task;
+                })
+            })
+
+            return team
+        })
+        setTeamTask(newTeamTasks)
+    }
+
+
     //팀 클릭시 해당 팀을 가리키는 인덱스로 변경
     const changeCurTeamIdx = (idx) => {
         console.log("현재 팀 변경 => " + idx)
@@ -93,8 +126,8 @@ const TeamLink = ({ tasks, teamTask, teams, member, followers, setTeamTask = f =
     }
 
     //Notice 생성
-    const onNewNotice = function (notice) {
-        console.log("new notice 추가")
+
+    const onNewNotice = function(notice) {
         const newNotices = [...notices, notice]
         curTeam.notice = newNotices
     }
@@ -138,7 +171,6 @@ const TeamLink = ({ tasks, teamTask, teams, member, followers, setTeamTask = f =
     //팀 프로필을 변경하는 메소드
     const modifyTeamProfile = (name, intro) => {
         let originName = teams[index].name;
-        console.log(originName);
         teams[index].name = name;
         teams[index].intro = intro;
         let findIdx = -1;
@@ -149,11 +181,42 @@ const TeamLink = ({ tasks, teamTask, teams, member, followers, setTeamTask = f =
             }
         }
         setIndex(index);
-        console.log(index);
         setCurTeam(teams[index]);
-        console.log(teams[index]);
         setTeamTask(teamTask);
-        console.log(teamTask)
+    }
+    
+    //카테고리를 추가하는 메소드
+    const addCategory = (newList) => {
+        console.log("addCategory 호출");
+        let findIdx = -1;           //현재 팀에 해당하는 teamTask를 찾는다.
+        for(let i = 0; i < teamTask.length; i++) {
+            if(curTeam.name === teamTask[i].name) {
+                findIdx = i;        //현재 클릭된 팀에 해당하는 teamTask를 찾음
+            }
+        }
+        let copyTeamTask = [...teamTask];
+        let copyNewList = [...newList];
+        console.log("copyNewList: " + copyNewList);
+        let newTask = {
+            "relatedMembers": copyNewList,
+            "tasks": []
+        }
+        
+        console.log(myProfile);
+        console.log(myProfile[0].name);
+        //console.log(newTask);
+        //이제 분기를 해야함(프로필에 있는 나의 이름이 하나라도 있을 경우) => myTasks
+        
+        if(newList.includes(myProfile[0].name)) {
+            console.log("1");
+            copyTeamTask[findIdx].myTask.push(newTask);
+        }
+        else {      //프로필이 있는 나의 이름이 하나라도 없는 경우,
+            console.log("2");
+            copyTeamTask[findIdx].otherTask.push(newTask);
+        }
+        console.log(copyTeamTask);
+        setTeamTask(copyTeamTask);
     }
 
     //카테고리를 수정하는 상태변수
@@ -169,9 +232,9 @@ const TeamLink = ({ tasks, teamTask, teams, member, followers, setTeamTask = f =
         handleCategoryClickOpen()
     }
 
-    const addCategory = () => { }
-    const modifyCategory = () => { }
-    const deleteCategory = () => { }
+    const modifyCategory = () => {}
+    const deleteCategory = () => {}
+
 
     //카테고리를 추가
     const [CategoryAddOpen, setCategoryAddOpen] = useState(false);
@@ -214,6 +277,38 @@ const TeamLink = ({ tasks, teamTask, teams, member, followers, setTeamTask = f =
         handleCategoryDeleteClickOpen()
     }
 
+    //Category내에 있는 task를 추가하는 모달
+    const [CategoryAddTaskOpen, setCategoryAddTaskOpen] = useState(false);
+
+    const handleCategoryAddTaskOpen = () => {
+        setCategoryAddTaskOpen(true)
+    };
+        
+    const handleCategoryTeamTaskClose = () =>  {
+        setCategoryAddTaskOpen(false);
+    }
+        
+    const onShowCategoryTeamTask = () => {
+        handleCategoryAddTaskOpen();
+    }
+
+    //category내에 있는 task를 수정/삭제하는 모달
+    const [CategoryDeleteModifyOpen, setCategoryDeleteModifyOpen] = useState(false);
+
+    const handleCategoryDeleteModifyOpen = () => {
+        setCategoryDeleteModifyOpen(true)
+    };
+        
+    const handleCategoryDeleteModifyClose = () =>  {
+        setCategoryDeleteModifyOpen(false);
+    }
+        
+    const onShowCategoryDeleteModify = () => {
+        handleCategoryDeleteModifyOpen();
+    }
+
+
+
     return (
         <div id="app" className="parent" >
             <div className="box menu" >
@@ -247,26 +342,29 @@ const TeamLink = ({ tasks, teamTask, teams, member, followers, setTeamTask = f =
                 <CategoryModal
                     open={CategoryOpen}
                     close={handleCategoryClickClose}
+                    curTeam={curTeam}
+                    teamTask={teamTask}
+                    addCategory={addCategory}
                     onShowCategoryAddModal={onShowCategoryAddModal}
                     onShowCategoryDeleteModal={onShowCategoryDeleteModal}
-                    onShowCategoryModifyModal={onShowCategoryModifyModal} />
-                <CategoryAddModal
-                    open={CategoryAddOpen}
-                    close={handleCategoryAddClickClose}
-                    addCategory={addCategory} />
-                <CategoryModifyModal
-                    open={CategoryModifyOpen}
-                    close={handleCategoryModifyClickClose}
-                    modifyCategory={modifyCategory} />
-                <CategoryDeleteModal
-                    open={CategoryDeleteOpen}
-                    close={handleCategoryDeleteClickClose}
-                    deleteCategory={deleteCategory} />
+                    onShowCategoryModifyModal={onShowCategoryModifyModal}/>
             </div>
             <div className="box tasklist">
-                <CategoryList
-                    curTeam={curTeam}
-                    teamTask={teamTask} />
+                <CategoryList 
+                    curTeam={curTeam} 
+                    teamTask={teamTask}
+                    onShowCategoryTeamTask={onShowCategoryTeamTask}
+                    onShowCategoryDeleteModify={onShowCategoryDeleteModify}
+                    onCheck={onCheck}
+                    />
+                {/*
+                <AddTaskModal
+                    open={CategoryAddTaskOpen}
+                    close={handleCategoryAddClickClose}/>
+                <ModifyTaskModal 
+                    open={CategoryDeleteModifyOpen}
+                    close={handleCategoryDeleteModifyClose}/>
+                */}
             </div>
             <div className="box notice">
                 <Notice onShowModal={onShowNoticeModal} notices={notices} page={noticePage} setPage={setNoticePage} />

@@ -114,8 +114,15 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
         myProfile[0].name = name;
         myProfile[0].email = email;
         myProfile[0].intro = intro;
-        //team data에 자신의 이름을 수정
+    
+        //member의 정보를 수정
+        for(let i = 0; i < member.length; i++) {
+            if(member[i].name === originName) {
+                member[i].name = name;
+            }
+        }
 
+        //team data에 자신의 이름을 수정
         for(let i = 0; i < teams.length; i++) {
             for(let j = 0; j < teams[i].memberList.length; j++) {
                 if (teams[i].memberList[j] === originName) {
@@ -173,6 +180,7 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
                     follower={followers} 
                     onShowModal={onShow}/>
                 <FollowerModal 
+                    myProfile={myProfile}
                     open={open} 
                     close={handleClose} 
                     follower={followers} 

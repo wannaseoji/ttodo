@@ -57,6 +57,7 @@ function App() {
             setMyProfile={setMyProfile}
           />} />
           <Route path="TeamLink" element={<TeamLink
+            myProfile={myProfile}
             tasks={tasks}
             teamTask={teamTask}
             teams={teams}

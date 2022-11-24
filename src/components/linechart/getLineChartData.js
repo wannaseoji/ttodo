@@ -123,7 +123,6 @@ const getLineChartData = (tasks) => {
                 ]
             };
         }
-
     )
 
 

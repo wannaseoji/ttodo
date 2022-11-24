@@ -37,6 +37,7 @@ export default function Task({ task = [], i, onCheck = f => f, onModifyTaskModal
                     />
                 </ListItemIcon>
                 <div>
+                {console.log(`task : ${task.title}`)}
                     <ListItemText id={i} primary={<div /*style={{fontWeight:'bold'}}*/>{task.title}</div>} sx={{ color: "#555555" }} />
                     {task.hour ?
                         (task.hour === "none" ? "" : <div style={{ fontSize: "0.4rem", color: "#555555" }}>{task.date.split('-')[0]}.{task.date.split('-')[1]}.{task.date.split('-')[2]} {task.hour}:{task.minute}</div>) : ""}

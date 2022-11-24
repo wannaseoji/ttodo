@@ -12,12 +12,6 @@
         "email": "hasnunf@naver.com"
     },
     {
-        "name": "seo",
-        "image": "seo.jpg",
-        "intro": "11",
-        "email": "hasnunf@naver.com"
-    },
-    {
         "name": "shin",
         "image": "shin.jpg",
         "intro": ".11, .11, .11",
@@ -26,6 +20,12 @@
     {
         "name": "choi",
         "image": "choi.jpg",
+        "intro": ".11, .11, .11",
+        "email": "hasnunf@naver.com"
+    }, 
+    {
+        "name": "son",
+        "image": "son.jpg",
         "intro": ".11, .11, .11",
         "email": "hasnunf@naver.com"
     }

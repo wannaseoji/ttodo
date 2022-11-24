@@ -33,9 +33,11 @@ const MemberAddModal = ({ open, close, createTeamMember, followers, curTeam }) =
         setBooleanView(false);  //목록을 안보이게 하고
         setSearch("");          //search를 초기화하고
     }
-
-    const filterSearch = followers.filter(x1 => curTeam.memberList.every(x2 => x1.name !== x2))
-        .filter((p) => { return p.name.toLocaleLowerCase().includes(search.toLocaleLowerCase().replace(" ", "")) })
+    
+    //팔로워중 팀맴버가 아닌 사람들을 필터링
+    const filterSearch = followers
+                        .filter(x1 => curTeam.memberList.every(x2 => x1.name !== x2))
+                        .filter((p) => {return p.name.toLocaleLowerCase().includes(search.toLocaleLowerCase().replace(" ", ""))})
     return (
         <div>
             <Dialog open={open} onClose={close}>

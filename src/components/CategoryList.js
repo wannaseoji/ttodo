@@ -11,19 +11,34 @@ import Avatar from '@mui/material/Avatar';
 import '../styles/category.css';
 import Scrollbars from 'react-custom-scrollbars';
 import {AiOutlinePlusCircle} from "react-icons/ai";
+import { useState } from "react";
+import TaskList from "../components/tasklist/TaskList"
 
+<<<<<<< HEAD
 const CategoryList = ({curTeam, teamTask, onShowCategoryModal=f=>f}) => {
+=======
+//장훈, 형민이가 같이 수정한 CategoryList 컴포넌트
+const CategoryList = ({curTeam, teamTask, onShowCategoryModal=f=>f, onShowCategoryTeamTask, onShowCategoryDeleteModify, onCheck=f=>f}) => {
+
+    
+
+>>>>>>> 9dc36d4aeeef91e589042c455f2bc0e936d08fd4
     var t1;
-    console.log(curTeam)
+    console.log(` curTeam : ${curTeam}`)
+    console.log(`team Task : ${teamTask}`)
     t1 = teamTask.filter(x1 => curTeam.name === x1.name)[0];
-    console.log(t1)
+    console.log(`t1 : ${t1}`)
+    if(t1 === null) {
+        return (<></>);
+    }
+    // console.log(t1)
     return (
         <Scrollbars>
         { 
             t1.myTask.sort((a, b) => a.relatedMembers.length - b.relatedMembers.length)
-            .map((element) => (
+            .map((element, index) => (
             <Accordion 
-            style={{ backgroundColor: "#FFE2E9", borderRadius: 10}}>
+            style={{ "backgroundColor": "#FFE2E9", "borderRadius": 10}}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
@@ -38,11 +53,11 @@ const CategoryList = ({curTeam, teamTask, onShowCategoryModal=f=>f}) => {
                         style={{ "marginLeft": "0.3vw"}}
                         size="32" 
                         color="#FF9AB5"
-                        onClick={() => { alert(`아이콘 클릭`)}}/>
+                        onClick={(e) => onShowCategoryTeamTask(e,t1, element.relatedMembers)}/>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <List sx={{ width: '40vw', left: '50%', transform: 'translateX(-50%)', bgcolor: 'background.paper' }}>
-                        {/*task 렌더링 하는 부분 */}
+                    <TaskList tasks={element.tasks} limit={element.tasks.length} onCheckTask={onCheck} onModifyTaskModal={onShowCategoryDeleteModify}/>
+                    {/* <List sx={{ width: '40vw', left: '50%', transform: 'translateX(-50%)', bgcolor: 'background.paper' }}>
                         {element.tasks.map((data) => (
                             <ListItem>
                                 <Checkbox
@@ -55,7 +70,7 @@ const CategoryList = ({curTeam, teamTask, onShowCategoryModal=f=>f}) => {
                                 {data.title}
                             </ListItem>    
                         ))}
-                    </List>
+                    </List> */}
                 </AccordionDetails>
             </Accordion>
         ))
@@ -82,8 +97,8 @@ const CategoryList = ({curTeam, teamTask, onShowCategoryModal=f=>f}) => {
                             onClick={() => { alert(`아이콘 클릭`)}}/>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <List sx={{ width: '40vw', left: '50%', transform: 'translateX(-50%)', bgcolor: 'background.paper' }}>
-                            {/*task 렌더링 하는 부분 */}
+                        <TaskList tasks={element.tasks} limit={element.tasks.length} onCheckTask={onCheck} onModifyTaskModal={onShowCategoryDeleteModify}/>
+                        {/* <List sx={{ width: '40vw', left: '50%', transform: 'translateX(-50%)', bgcolor: 'background.paper' }}>
                             {element.tasks.map((data) => (
                             <ListItem>
                                 <Checkbox
@@ -92,11 +107,12 @@ const CategoryList = ({curTeam, teamTask, onShowCategoryModal=f=>f}) => {
                                 size='3vh'
                                 edge="start"
                                 //checked={}
+                                //checked={}
                                 tabIndex={-1} />
                                 {data.title}
                             </ListItem>    
                             ))} 
-                        </List>
+                        </List> */}
                     </AccordionDetails>
                 </Accordion>
             ))
