@@ -4,7 +4,7 @@ import Team from "../components/Team";
 import Profile from "../components/Profile";
 import CustomTimeLine from "../components/timeline/CustomTimeline";
 import React, { useState, useEffect } from "react";
-import categoryData from '../assets/category-data.json'
+// import categoryData from '../assets/category-data.json'
 import Scrollbars from 'react-custom-scrollbars';
 import ModifyTaskModal from "../components/modal/ModifyTaskModal";
 import AddTaskModal from "../components/modal/AddTaskModal";
@@ -17,13 +17,22 @@ import ProfileModal from '../components/ProfileModal';
 import { AiOutlineSetting } from "react-icons/ai";
 import CategorySettingModal from '../components/modal/CategorySettingModal'
 
+import AddCategoryModal from "../components/modal/AddCategoryModal"
 
-const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => f, setTeams = f => f, myProfile, member}) => {
+
+const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => f, setTeams = f => f, myProfile, member, categories, setCategories=f=>f}) => {
     const onNewTask = function (id, category, title, date, hour, minute) { // id, category, title, date, hour, minute, check
         let indexs = tasks.map((task) => task.index).sort((a, b) => a - b)
         const newIndex = indexs[indexs.length - 1] + 1
         const newTasks = [...tasks, { index: newIndex, id, category, title, date, hour, minute, check: false }]
         setTasks(newTasks)
+    }
+
+    const onNewCategory = function(title){
+        let index = categories.map(category => category.index).sort((a,b) => a - b)
+        const newIndex = index[index.length - 1] + 1
+        const newCategories = [...categories, {index : newIndex, title: title}]
+        setCategories(newCategories)
     }
 
     const onModifyTask = function (modifiedTask) {
@@ -42,7 +51,7 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
     }
 
     
-    const [categories, setCategories] = useState(categoryData);
+    
     const [addCategoryName, setAddCategoryName] = useState("");
     const [modalOpen, setModalOpen] = useState(false);
     const [addTaskModalOpen, setAddTaskModalOpen] = useState(false); // AddTask Modal 창 open, close State 확인
@@ -78,6 +87,23 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
         onShowAddTaskModal();
         setAddCategoryName(categoryName);
     }
+
+    // Category 추가 모달
+    const [addCategoryModalOpen, setAddCategoryModalOpen] = useState(false);
+    const openAddCategoryModal = () => {
+        setAddCategoryModalOpen(true);
+    };
+    const closeAddCategoryModal = () => {
+        setAddCategoryModalOpen(false);
+    };
+    const onShowAddCategoryModal = () => {
+        openAddCategoryModal();
+    }
+
+    // const addCategoryHandler = () => {
+    //     onShowAddTaskModal();
+    //     setAddCategoryName(categoryName);
+    // }
 
     const modifyTaskHandler = (task) => {
         setSelectedTask(task)
@@ -194,14 +220,26 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
                 </GrayBox>
             </div>
             <div className="box follower">
-                <AiOutlineSetting 
-                    size="3.5vh" 
-                    style={{ 
-                        color: "FF9AB5", 
-                        marginTop:"auto", 
-                        marginLeft:"56%"}} 
-                    onClick = {onShowCategorySettingModal}/>
-                <CategorySettingModal open={categorySettingModalOpen} close={closeCategorySettingModal} header="카테고리" categories={categories} setCategories={setCategories}/>
+                <AiOutlineSetting
+                    size="3.5vh"
+                    style={{
+                        color: "FF9AB5",
+                        marginTop: "auto",
+                        marginLeft: "56%"
+                    }}
+                    onClick={onShowCategorySettingModal} />
+                <CategorySettingModal
+                    open={categorySettingModalOpen}
+                    close={closeCategorySettingModal}
+                    header="카테고리"
+                    categories={categories}
+                    setCategories={setCategories}
+                    onShowAddCategoryModal={onShowAddCategoryModal} />
+                <AddCategoryModal
+                    open={addCategoryModalOpen}
+                    close={closeAddCategoryModal}
+                    header="카테고리 추가" 
+                    onNewCategory={onNewCategory}/>
             </div>
             <div className="box tasklist">
                 <Scrollbars style={{ width: '90%', height: '100%', margin:'0rem', backgroundColor: "transparent", borderRadius: "0px 0px 10px 10px" }}>

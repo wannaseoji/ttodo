@@ -19,7 +19,7 @@ function CategoryItem({ category }) {
         <>
         {/* <Box sx={{ width: '100%', maxWidth: 200, bgcolor: 'background.paper' }}> */}
             {/* <List sx={{ width: '100%', maxWidth: '90%', bgcolor: 'background.paper' }} component="nav" aria-label="main mailbox folders"> */}
-            <List sx={{ width: '100%', maxWidth: '90%', bgcolor: 'background.paper' }} component="nav" aria-label="main mailbox folders">
+            <List sx={{ width: '100%', maxWidth: '92%', bgcolor: 'background.paper' }} component="nav" aria-label="main mailbox folders">
                 <ListItemButton
                     // selected={selectedIndex === 0}
                     // onClick={(event) => handleListItemClick(event, 0)}
@@ -30,7 +30,7 @@ function CategoryItem({ category }) {
                     <ListItemText primary={category.title} />
                 </ListItemButton>
             </List>
-            <Divider sx={{ width: '100%', maxWidth: '90%'}} />
+            <Divider sx={{ width: '100%', maxWidth: '92%'}} />
         {/* </Box> */}
         </>
         

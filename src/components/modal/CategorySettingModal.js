@@ -2,33 +2,13 @@ import React from 'react';
 import { TextField, styled } from '@mui/material';
 import Scrollbars from 'react-custom-scrollbars';
 import CategoryNameList from './CategoryNameList'
+import { CloseTwoTone } from '@mui/icons-material';
 
-const StyledTextField = styled(TextField)({
-    "&:hover .MuiInput-underline": {
-        borderBottomColor: "gray"
-    },
-    "& .MuiInput-underline:after": {
-        borderBottomColor: "#FF9AB5"
-    },
-    "& .MuiOutlinedInput-root": {
-        "& fieldset": {
-            borderColor: "white"
-        },
-        "&:hover fieldset": {
-            borderColor: "white",
-            borderBottomColor: "white",
-            borderWidth: 2
-        },
-        "&.Mui-focused fieldset": {
-            borderColor: "white"
-        }
-    }
-});
 
-const CategorySettingModal = (props) =>  {
-    // const { open, close, onNewTask, header, category, calendarSelectedDate, initTask, isBucket } = props;
-    const {open, close, header, categories, setCategories} = props;
-
+// const CategorySettingModal = (props) =>  {
+//     // const { open, close, onNewTask, header, category, calendarSelectedDate, initTask, isBucket } = props;
+//     const {open, close, header, categories, setCategories, onShowCategorySettingModal=f=>f} = props;
+function CategorySettingModal({open, close, header, categories, setCategories, onShowAddCategoryModal=f=>f}){
     return (
         // 모달이 열릴때 openModal 클래스가 생성된다.
         <div className={open ? 'openModal modal' : 'modal'} >
@@ -50,7 +30,7 @@ const CategorySettingModal = (props) =>  {
                     </main>
                     <footer>
                         {/* <button className="add" onClick={addNewTask}>add</button> */}
-                        {/* <button className="cancel" onClick={close}>cancel</button> */}
+                        <button className="add" onClick={onShowAddCategoryModal}>add</button>
                     </footer>
                 </section>
             ) : null}

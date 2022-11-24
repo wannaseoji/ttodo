@@ -17,6 +17,7 @@ import followerData from './assets/Follower.json';
 import profileData from './assets/MyProfile.json';
 import memberData from './assets/Member.json';
 import BUCKETLISTD from './assets/bucket.json';
+import categoryData from './assets/category-data.json'
 
 function App() {
   //프로필 상태를 유지하는 상태변수와, 현재프로필 정보를 유지하는 상태변수 추가(장훈)
@@ -28,6 +29,7 @@ function App() {
   const [tasks, setTasks] = useState(taskData);
   const [BUCKETLIST, setBUCKETLIST] = useState(BUCKETLISTD);
   const [followers, setFollowers] = useState(followerData);
+  const [categories, setCategories] = useState(categoryData);
 
   return (
     <BrowserRouter>
@@ -57,6 +59,8 @@ function App() {
             followers={followers}
             myProfile={myProfile}
             setMyProfile={setMyProfile}
+            categories={categories}
+            setCategories={setCategories}
           />} />
           <Route path="TeamLink" element={<TeamLink
             myProfile={myProfile}
