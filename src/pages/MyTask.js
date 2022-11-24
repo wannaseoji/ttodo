@@ -14,8 +14,10 @@ import Menu from "../components/Menu";
 import GrayBox from "../components/GrayBox"
 import '../styles/linkButton.css';
 import ProfileModal from '../components/ProfileModal';
+import { AiOutlineSetting } from "react-icons/ai";
+import CategorySettingModal from '../components/modal/CategorySettingModal'
 
-const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => f, setTeams = f => f, myProfile }) => {
+const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => f, setTeams = f => f, myProfile, setMyProfile=f=>f}) => {
     const onNewTask = function (id, category, title, date, hour, minute) { // id, category, title, date, hour, minute, check
         let indexs = tasks.map((task) => task.index).sort((a, b) => a - b)
         const newIndex = indexs[indexs.length - 1] + 1
@@ -38,9 +40,12 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
         return year + "-" + month + "-" + day;
     }
 
+    
+    const [categories, setCategories] = useState(categoryData);
     const [addCategoryName, setAddCategoryName] = useState("");
     const [modalOpen, setModalOpen] = useState(false);
     const [addTaskModalOpen, setAddTaskModalOpen] = useState(false); // AddTask Modal 창 open, close State 확인
+    const [categorySettingModalOpen,setCategorySettingModalOpen] = useState(false);
     const [selectedDate, onChange] = useState(new Date()); // Mon Nov 14 2022 10:50:35 GMT+0900 (한국 표준시)
     // const selectedDateString = selectedDate.getFullYear()+"-"+('0' + (selectedDate.getMonth() + 1)).slice(-2)+"-"+('0' + selectedDate.getDate()).slice(-2); // 2022-11-14
     const selectedDateString = DateToYYYYMMDD(selectedDate)
@@ -106,6 +111,17 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
         openAddTaskModal();
     }
 
+    // 카테고리 추가 / 수정 / 삭제
+    const openCategorySettingModal = () => {
+        setCategorySettingModalOpen(true);
+    };
+    const closeCategorySettingModal = () => {
+        setCategorySettingModalOpen(false);
+    };
+    const onShowCategorySettingModal = () => {
+        openCategorySettingModal();
+    }
+
     //장훈 코드(프로필 모달 )
     const [profileOpen, setProfileOpen] = useState(false);
 
@@ -169,11 +185,20 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
                     <CustomCalendar tasks={tasks} value={selectedDate} onChange={onChange} />
                 </GrayBox>
             </div>
-            <div className="box follower">팔로워</div>
+            <div className="box follower">
+                <AiOutlineSetting 
+                    size="3.5vh" 
+                    style={{ 
+                        color: "FF9AB5", 
+                        marginTop:"auto", 
+                        marginLeft:"56%"}} 
+                    onClick = {onShowCategorySettingModal}/>
+                <CategorySettingModal open={categorySettingModalOpen} close={closeCategorySettingModal} header="카테고리" categories={categories} setCategories={setCategories}/>
+            </div>
             <div className="box tasklist">
-                <Scrollbars style={{ width: '100%', height: '100%', backgroundColor: "transparent", borderRadius: "0px 0px 10px 10px" }}>
+                <Scrollbars style={{ width: '90%', height: '100%', margin:'0rem', backgroundColor: "transparent", borderRadius: "0px 0px 10px 10px" }}>
                     <CategoryScrollList
-                        categories={categoryData}
+                        categories={categories}
                         tasks={selectedDateTasks}
                         onCheck={onCheck}
                         onModifyTaskModal={modifyTaskHandler}

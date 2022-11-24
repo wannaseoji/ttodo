@@ -16,7 +16,7 @@ import teamData from "./assets/team.json"
 import followerData from './assets/Follower.json';
 import profileData from './assets/MyProfile.json';
 import memberData from './assets/Member.json';
-import BUCKETLISTD from './assets/bucket.json'
+import BUCKETLISTD from './assets/bucket.json';
 
 function App() {
   //프로필 상태를 유지하는 상태변수와, 현재프로필 정보를 유지하는 상태변수 추가(장훈)
