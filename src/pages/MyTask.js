@@ -4,7 +4,7 @@ import Team from "../components/Team";
 import Profile from "../components/Profile";
 import CustomTimeLine from "../components/timeline/CustomTimeline";
 import React, { useState, useEffect } from "react";
-import categoryData from '../assets/category-data.json'
+// import categoryData from '../assets/category-data.json'
 import Scrollbars from 'react-custom-scrollbars';
 import ModifyTaskModal from "../components/modal/ModifyTaskModal";
 import AddTaskModal from "../components/modal/AddTaskModal";
@@ -14,14 +14,25 @@ import Menu from "../components/Menu";
 import GrayBox from "../components/GrayBox"
 import '../styles/linkButton.css';
 import ProfileModal from '../components/ProfileModal';
+import { AiOutlineSetting } from "react-icons/ai";
+import CategorySettingModal from '../components/modal/CategorySettingModal'
+
+import AddCategoryModal from "../components/modal/AddCategoryModal"
 
 
-const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => f, setTeams = f => f, myProfile, member}) => {
+const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => f, setTeams = f => f, myProfile, member, categories, setCategories = f => f }) => {
     const onNewTask = function (id, category, title, date, hour, minute) { // id, category, title, date, hour, minute, check
         let indexs = tasks.map((task) => task.index).sort((a, b) => a - b)
         const newIndex = indexs[indexs.length - 1] + 1
         const newTasks = [...tasks, { index: newIndex, id, category, title, date, hour, minute, check: false }]
         setTasks(newTasks)
+    }
+
+    const onNewCategory = function (title) {
+        let index = categories.map(category => category.index).sort((a, b) => a - b)
+        const newIndex = index[index.length - 1] + 1
+        const newCategories = [...categories, { index: newIndex, title: title }]
+        setCategories(newCategories)
     }
 
     const onModifyTask = function (modifiedTask) {
@@ -39,9 +50,12 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
         return year + "-" + month + "-" + day;
     }
 
+
+
     const [addCategoryName, setAddCategoryName] = useState("");
     const [modalOpen, setModalOpen] = useState(false);
     const [addTaskModalOpen, setAddTaskModalOpen] = useState(false); // AddTask Modal 창 open, close State 확인
+    const [categorySettingModalOpen, setCategorySettingModalOpen] = useState(false);
     const [selectedDate, onChange] = useState(new Date()); // Mon Nov 14 2022 10:50:35 GMT+0900 (한국 표준시)
     // const selectedDateString = selectedDate.getFullYear()+"-"+('0' + (selectedDate.getMonth() + 1)).slice(-2)+"-"+('0' + selectedDate.getDate()).slice(-2); // 2022-11-14
     const selectedDateString = DateToYYYYMMDD(selectedDate)
@@ -73,6 +87,23 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
         onShowAddTaskModal();
         setAddCategoryName(categoryName);
     }
+
+    // Category 추가 모달
+    const [addCategoryModalOpen, setAddCategoryModalOpen] = useState(false);
+    const openAddCategoryModal = () => {
+        setAddCategoryModalOpen(true);
+    };
+    const closeAddCategoryModal = () => {
+        setAddCategoryModalOpen(false);
+    };
+    const onShowAddCategoryModal = () => {
+        openAddCategoryModal();
+    }
+
+    // const addCategoryHandler = () => {
+    //     onShowAddTaskModal();
+    //     setAddCategoryName(categoryName);
+    // }
 
     const modifyTaskHandler = (task) => {
         setSelectedTask(task)
@@ -107,6 +138,18 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
         openAddTaskModal();
     }
 
+    // 카테고리 추가 / 수정 / 삭제
+    const openCategorySettingModal = () => {
+        setCategorySettingModalOpen(true);
+    };
+    const closeCategorySettingModal = () => {
+        setCategorySettingModalOpen(false);
+    };
+    const onShowCategorySettingModal = () => {
+        openCategorySettingModal();
+    }
+
+    //장훈 코드(프로필 모달 )
     const [profileOpen, setProfileOpen] = useState(false);
 
     const handleProfileClickOpen = () => {
@@ -128,12 +171,12 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
         myProfile[0].intro = intro;
 
         //member의 정보를 수정
-        for(let i = 0; i < member.length; i++) {
-            if(member[i].name === originName) {
+        for (let i = 0; i < member.length; i++) {
+            if (member[i].name === originName) {
                 member[i].name = name;
             }
         }
-        
+
         //team data에 자신의 이름을 수정
         for (let i = 0; i < teams.length; i++) {
             for (let j = 0; j < teams[i].memberList.length; j++) {
@@ -175,11 +218,32 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
                     <CustomCalendar tasks={tasks} value={selectedDate} onChange={onChange} />
                 </GrayBox>
             </div>
-            <div className="box follower">팔로워</div>
+            <div className="box follower">
+                <AiOutlineSetting
+                    size="3.5vh"
+                    style={{
+                        color: "FF9AB5",
+                        marginTop: "auto",
+                        marginLeft: "56%"
+                    }}
+                    onClick={onShowCategorySettingModal} />
+                <CategorySettingModal
+                    open={categorySettingModalOpen}
+                    close={closeCategorySettingModal}
+                    header="카테고리"
+                    categories={categories}
+                    setCategories={setCategories}
+                    onShowAddCategoryModal={onShowAddCategoryModal} />
+                <AddCategoryModal
+                    open={addCategoryModalOpen}
+                    close={closeAddCategoryModal}
+                    header="카테고리 추가"
+                    onNewCategory={onNewCategory} />
+            </div>
             <div className="box tasklist">
-                <Scrollbars style={{ width: '100%', height: '100%', backgroundColor: "transparent", borderRadius: "0px 0px 10px 10px" }}>
+                <Scrollbars style={{ width: '90%', height: '100%', margin: '0rem', backgroundColor: "transparent", borderRadius: "0px 0px 10px 10px" }}>
                     <CategoryScrollList
-                        categories={categoryData}
+                        categories={categories}
                         tasks={selectedDateTasks}
                         onCheck={onCheck}
                         onModifyTaskModal={modifyTaskHandler}

@@ -16,7 +16,8 @@ import teamData from "./assets/team.json"
 import followerData from './assets/Follower.json';
 import profileData from './assets/MyProfile.json';
 import memberData from './assets/Member.json';
-import BUCKETLISTD from './assets/bucket.json'
+import BUCKETLISTD from './assets/bucket.json';
+import categoryData from './assets/category-data.json'
 
 function App() {
   const [member, setMember] = useState(memberData);
@@ -26,6 +27,7 @@ function App() {
   const [tasks, setTasks] = useState(taskData);
   const [BUCKETLIST, setBUCKETLIST] = useState(BUCKETLISTD);
   const [followers, setFollowers] = useState(followerData);
+  const [categories, setCategories] = useState(categoryData);
 
   return (
     <BrowserRouter>
@@ -55,6 +57,8 @@ function App() {
             followers={followers}
             myProfile={myProfile}
             setMyProfile={setMyProfile}
+            categories={categories}
+            setCategories={setCategories}
           />} />
           <Route path="TeamLink" element={<TeamLink
             myProfile={myProfile}
