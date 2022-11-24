@@ -14,7 +14,7 @@ export const Notfound = () => {
             <div id='box content' style={{ textAlign: 'center', width: '100%', height: '100%', marginTop: '5%', }}>
                 <h1>"Page not found at {location.pathname}"</h1>
             </div >
-            <div id="dino" style={{ overflow: 'hidden', height: "70%" }}>
+            <div id="dino" style={{ overflow: 'hidden', height: "60%" }}>
                 <ChromeDinoGame />
             </div>
             <div id="footer" style={{ textAlign: "right", marginRight: "5%" }}>

@@ -13,16 +13,13 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select'
 import { useState } from "react";
 
-<<<<<<< HEAD
-const FollowerModal = ({open, close, follower, member, createFollower}) => {
-=======
-const FollowerModal = ({open, close, follower, member, createFollower, myProfile}) => {
-    {/*장훈이가 만든 컴포넌트 */}
->>>>>>> 9dc36d4aeeef91e589042c455f2bc0e936d08fd4
+
+const FollowerModal = ({ open, close, follower, member, createFollower, myProfile }) => {
+    {/*장훈이가 만든 컴포넌트 */ }
     const [search, setSearch] = useState("");
     const [booleanView, setBooleanView] = useState(false)
-    const onChange = (e) => { 
-        if(e.target.value === "") {
+    const onChange = (e) => {
+        if (e.target.value === "") {
             setSearch("");
             setBooleanView(false);
         } else {
@@ -39,39 +36,39 @@ const FollowerModal = ({open, close, follower, member, createFollower, myProfile
     }
 
     //팔로워가 아닌 맴버들을 필터해주는 로직(나 자신 제외)
-    const filterSearch = member 
-                        .filter((data) => data.name !== myProfile[0].name)
-                        .filter(x1 => follower.every(x2 => x1.name !== x2.name))
-                        .filter((p) => {return p.name.toLocaleLowerCase().includes(search.toLocaleLowerCase().replace(" ", ""))})
+    const filterSearch = member
+        .filter((data) => data.name !== myProfile[0].name)
+        .filter(x1 => follower.every(x2 => x1.name !== x2.name))
+        .filter((p) => { return p.name.toLocaleLowerCase().includes(search.toLocaleLowerCase().replace(" ", "")) })
     return (
         <div>
             <Dialog open={open} onClose={close}>
                 <DialogTitle
-                    style={{ backgroundColor: "pink", color: "#FFFFFF"}}
-                    sx={{ alignItems : 'center'}}>
+                    style={{ backgroundColor: "pink", color: "#FFFFFF" }}
+                    sx={{ alignItems: 'center' }}>
                     팔로워 추가
                 </DialogTitle>
-                <DialogContent style={{ alignItems: "center", marginTop: "2vh"}}>
-                <FormControl>
-                    <input type="text" value={search} onChange={onChange}/>
-                    <div>
-                        {booleanView ? filterSearch.map(member => <div><span>{member.name}</span></div>) : <div></div>}
-                    </div>
-                </FormControl>
-                </DialogContent> 
+                <DialogContent style={{ alignItems: "center", marginTop: "2vh" }}>
+                    <FormControl>
+                        <input type="text" value={search} onChange={onChange} />
+                        <div>
+                            {booleanView ? filterSearch.map(member => <div><span>{member.name}</span></div>) : <div></div>}
+                        </div>
+                    </FormControl>
+                </DialogContent>
                 <DialogActions>
                     <Button                         //추가하는 버튼
-                        style={{ color: "pink"}} 
+                        style={{ color: "pink" }}
                         onClick={newFollower}>
                         추가
                     </Button>
                     <Button                         //닫는버튼
-                        style={{ color: "pink"}} 
+                        style={{ color: "pink" }}
                         onClick={() => {
-                        close()                     //닫고
-                        setBooleanView(false);      //안보이게하고
-                        setSearch("");              //input에 있는 값 비우기
-                    }}>취소</Button>
+                            close()                     //닫고
+                            setBooleanView(false);      //안보이게하고
+                            setSearch("");              //input에 있는 값 비우기
+                        }}>취소</Button>
                 </DialogActions>
             </Dialog>
         </div>
