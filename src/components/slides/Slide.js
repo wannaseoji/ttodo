@@ -1,7 +1,7 @@
 import React from 'react';
 //import { LineChart } from 'recharts';
-import MyLineChart from './LineChart.js';
-import MyResponsivePie from './piechart/Chart.js'
+import MyLineChart from '../linechart/LineChart.js';
+import MyResponsivePie from '../piechart/Chart.js'
 
 
 export default function Slide({ Piedata = [], LineData = [] }) {
@@ -9,7 +9,6 @@ export default function Slide({ Piedata = [], LineData = [] }) {
 
     return (
         <>
-
             <div style={{ width: '90%', height: '50%', }}>
                 <MyResponsivePie data={Piedata} />
             </div>

@@ -1,8 +1,6 @@
 import React from 'react';
 //import { LineChart } from 'recharts';
-import MyLineChart from './LineChart.js';
-import MyResponsivePie from './piechart/Chart.js'
-import MyBarCharts from './barchart/BarChart.js';
+import MyBarCharts from '../barchart/BarChart.js';
 
 export default function ProgressSlide({ data = [] }) {
 

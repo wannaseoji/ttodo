@@ -17,7 +17,8 @@ import ProfileModal from '../components/ProfileModal';
 import { AiOutlineSetting } from "react-icons/ai";
 import CategorySettingModal from '../components/modal/CategorySettingModal'
 
-const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => f, setTeams = f => f, myProfile, setMyProfile=f=>f}) => {
+
+const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => f, setTeams = f => f, myProfile, member}) => {
     const onNewTask = function (id, category, title, date, hour, minute) { // id, category, title, date, hour, minute, check
         let indexs = tasks.map((task) => task.index).sort((a, b) => a - b)
         const newIndex = indexs[indexs.length - 1] + 1
@@ -143,8 +144,15 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
         myProfile[0].name = name;
         myProfile[0].email = email;
         myProfile[0].intro = intro;
-        //team data에 자신의 이름을 수정
 
+        //member의 정보를 수정
+        for(let i = 0; i < member.length; i++) {
+            if(member[i].name === originName) {
+                member[i].name = name;
+            }
+        }
+        
+        //team data에 자신의 이름을 수정
         for (let i = 0; i < teams.length; i++) {
             for (let j = 0; j < teams[i].memberList.length; j++) {
                 if (teams[i].memberList[j] === originName) {

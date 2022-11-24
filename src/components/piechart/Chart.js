@@ -1,15 +1,10 @@
 import { ResponsivePie } from '@nivo/pie'
 import React from 'react';
 
-// make sure parent container have a defined height when using
-// responsive component, otherwise height will be 0 and
-// no chart will be rendered.
-// website examples showcase many properties,
-// you'll often use just a few of them.
-const MyResponsivePie = ({ data, length /* see data tab */ }) => (
+
+const MyResponsivePie = ({ data }) => (
 
     <ResponsivePie
-        length={length}
         data={data}
         margin={{ top: 60, right: 80, bottom: 0, left: 80 }}
         innerRadius={0.5}

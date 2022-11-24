@@ -8,11 +8,10 @@ import Profile from "../components/Profile";
 import StyledListItem from '../styles/linkStyle';
 import getPieData from '../components/piechart/getPieData';
 import getProgressData from '../components/barchart/getProgressData';
-import Slider from '../components/Slider'
+import Slider from '../components/slides/Slider'
 import Menu from '../components/Menu';
 import '../styles/linkButton.css';
-import getLineChartData from "../components/getLineChartData";
-import DetailChart from "../components/DetailChart";
+import getLineChartData from "../components/linechart/getLineChartData";
 import Chart from 'chart.js/auto'; //필수임
 import { CategoryScale } from 'chart.js';
 import { background } from "@chakra-ui/react";
@@ -20,14 +19,14 @@ import { BiBorderRadius } from "react-icons/bi";
 import GrayBox from '../components/GrayBox'
 import { useState } from 'react';
 import ProfileModal from '../components/ProfileModal';
-import Slide from '../components/Slide'
+import Slide from '../components/slides/Slide'
 import MyBarCharts from "../components/barchart/BarChart";
-import ProgressSlide from "../components/ProgressSlide";
+import ProgressSlide from "../components/slides/ProgressSlide";
 import CategoryTaskList from "../components/tasklist/CategoryTaskList";
 import ModifyTaskModal from '../components/modal/ModifyTaskModal'
 import AddTaskModal from "../components/modal/AddTaskModal"
 import Scrollbars from "react-custom-scrollbars";
-const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, myProfile }) => {
+const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, myProfile, member}) => {
 
     const initTask = {
         "index": 0,
@@ -70,35 +69,29 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, myPr
         })
         setBUCKETLIST(newTasks);
     }
-
     const addTaskHandler = (e, categoryName) => {
         onShowAddTaskModal();
         setAddCategoryName(categoryName);
     }
-
     const modifyTaskHandler = (task) => {
         setSelectedTask(task)
         onChange(new Date(task.date))
         onShowModifyTaskModal();
     }
-
     const openModifyTaskModal = () => {
         setModalOpen(true);
     };
     const closeModifyTaskModal = () => {
         setModalOpen(false);
     };
-
     const onShowModifyTaskModal = () => {
         openModifyTaskModal();
     }
-
     const onDeleteTask = function () {
         const modifiedTasks = BUCKETLIST.filter((task) => task.index !== selectedTask.index);
         setBUCKETLIST(modifiedTasks);
         closeModifyTaskModal();
     }
-
     const openAddTaskModal = () => {
         setAddTaskModalOpen(true);
     };
@@ -108,31 +101,15 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, myPr
     const onShowAddTaskModal = () => {
         openAddTaskModal();
     }
-
-
-    //const numOftasks = tasks;
-    //console.log(numOftasks)
-    //const { id, date } = tasks;
-
-    //console.log(numTrue)
-    //console.log("This is home and Tasks are transfered", tasks)
-    //const [numTasks, numTrue] = 
     const Piedata = getPieData(tasks);
-    // console.log("Piedata in Goal : ", Piedata);
-    //category별 진척도
-
     const categoryFilter = (keyWord) => keyWord.map(task => { return task.category });
-    //const dateFilter = (keyWord) => keyWord.map(task => { return task.date });
-
     const categories = categoryFilter(tasks)
-
     const uniqueArr = (array) => array.filter((element, index) => {
         return array.indexOf(element) === index;
     });
     const uniqueCategories = uniqueArr(categories);
     const dateFilter = (keyWord) => keyWord.map(task => { return task.date });
     const dates = dateFilter(tasks);
-
     const months = dates.map(date => date.slice(0, 7));
     const uniqueMonths = uniqueArr(months);
     tasks.map((task) => {
@@ -144,7 +121,6 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, myPr
         if (a === b) return 0;
         if (a < b) return -1;
     });
-    //console.log("uniqueCategories", uniqueCategories)
     const progressData = sortedUniqueMonths.map(
         month => {
             const data = uniqueCategories.map((category, i) => {
@@ -154,42 +130,31 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, myPr
         }
 
     )
-
-
     const uniqueProgressData = uniqueArr(progressData);
-    console.log("####################################")
-    console.log("progressData", sortedUniqueMonths);
-    console.log("####################################")
-
-    //장훈 코드
     const [profileOpen, setProfileOpen] = useState(false);
-
     const LineData = getLineChartData(tasks);
-    // console.log("#############################################")
-    // console.log("LineData in Gaol", LineData)
-    // console.log("Piedata in Gaol", Piedata)
-    // console.log("#############################################")
     const handleProfileClickOpen = () => {
         setProfileOpen(true)
     };
-
     const handleProfileClose = () => {
         setProfileOpen(false);
     }
-
-    // console.log("#############################################")
-    // console.log("LineData in Gaol", LineData)
-    // console.log("Piedata in Gaol", Piedata)
-    // console.log("#############################################")
     const onShowProfileModal = () => {
         handleProfileClickOpen();
     }
-    //프로필을 변경하는 메소드(장훈)
     const modifyProfile = (name, email, intro) => {
         let originName = myProfile[0].name;
         myProfile[0].name = name;
         myProfile[0].email = email;
         myProfile[0].intro = intro;
+
+        //member의 정보를 수정
+        for(let i = 0; i < member.length; i++) {
+            if(member[i].name === originName) {
+                member[i].name = name;
+            }
+        }
+
         //team data에 자신의 이름을 수정
 
         for (let i = 0; i < teams.length; i++) {

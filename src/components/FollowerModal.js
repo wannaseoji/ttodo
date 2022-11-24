@@ -13,7 +13,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select'
 import { useState } from "react";
 
-const FollowerModal = ({open, close, follower, member, createFollower}) => {
+const FollowerModal = ({open, close, follower, member, createFollower, myProfile}) => {
     {/*장훈이가 만든 컴포넌트 */}
     const [search, setSearch] = useState("");
     const [booleanView, setBooleanView] = useState(false)
@@ -35,8 +35,10 @@ const FollowerModal = ({open, close, follower, member, createFollower}) => {
         setSearch("");          //search를 초기화하고
     }
 
-    //팔로워가 아닌 맴버들을 필터해주는 로직
-    const filterSearch = member.filter(x1 => follower.every(x2 => x1.name !== x2.name))
+    //팔로워가 아닌 맴버들을 필터해주는 로직(나 자신 제외)
+    const filterSearch = member 
+                        .filter((data) => data.name !== myProfile[0].name)
+                        .filter(x1 => follower.every(x2 => x1.name !== x2.name))
                         .filter((p) => {return p.name.toLocaleLowerCase().includes(search.toLocaleLowerCase().replace(" ", ""))})
     return (
         <div>

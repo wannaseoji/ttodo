@@ -9,7 +9,7 @@
     },
     {
         "name": "광야의 작은 아씨들",
-        "memberList": ["seo","kim","cho"],
+        "memberList": ["seo","kim","cho","son"],
         "notice": ["일선도 전공처럼", "매주 월요일 면담", "발표 준비하기", "보고서 작성"],
         "intro": "광야의 작은 아씨들",
         "img": "default.jpg",
@@ -17,7 +17,7 @@
     },
     {
         "name": "폼생폼사",
-        "memberList": ["seo","park"],
+        "memberList": ["seo","park", "choi", "shin"],
         "notice": ["뜨거운 가슴으로 시작", "폼에 살고 죽기"],
         "intro": "폼생폼사.",
         "img": "default.jpg",
@@ -25,7 +25,7 @@
     },
     {
         "name": "Edsger Dijkstra",
-        "memberList": ["seo","park"],
+        "memberList": ["seo","park", "cho", "choi"],
         "notice": ["뜨거운 가슴으로 시작", "폼에 살고 죽기"],
         "intro": "제일 빠른 경로를 찾자",
         "img": "default.jpg",

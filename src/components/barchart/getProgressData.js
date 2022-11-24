@@ -11,8 +11,6 @@ const getProgressData = (tasks, category, month) => {
         return (task.category === category) && (task.check === true) && task.date.slice(0, 7) == month
     }).length
 
-    //console.log("in getProgress categoryNum:", categoryNum)
-    //console.log("in getProgress categoryTrue:", categoryTrue)
     const percent = (categoryTrue / categoryNum * 100) ? (categoryTrue / categoryNum * 100) : 0
 
 
