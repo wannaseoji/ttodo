@@ -6,7 +6,7 @@ import Task from './Task'
 
 export default function TaskList({ tasks = [], limit, onCheckTask = f => f, onModifyTaskModal = f => f }) {
     console.log(`tasks : ${tasks}`)
-    
+
     let nonCheckTasks = tasks.filter(({ check }) => check === false)
     let checkTasks = tasks.filter(({ check }) => check === true)
 

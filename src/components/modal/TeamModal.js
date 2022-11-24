@@ -15,31 +15,31 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 function getStyles(name, personName, theme) {
     return {
         fontWeight:
-        personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
+            personName.indexOf(name) === -1
+                ? theme.typography.fontWeightRegular
+                : theme.typography.fontWeightMedium,
     };
 }
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
-        PaperProps: {
-            style: {
+    PaperProps: {
+        style: {
             maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
             width: 250,
-            },
         },
-    };
-export default function TeamModal({open, close, onNewTeam, followers, leader}) {
+    },
+};
+export default function TeamModal({ open, close, onNewTeam, followers, leader }) {
     const [teamName, setTeamName] = useState()
     const [teamMessage, setTeamMessage] = useState()
     const newTeam = () => {
-            console.log(teamName)
-            onNewTeam(teamName, personName, teamMessage, leader)
-            setPersonName([])
-            close()
-        }
-    
+        console.log(teamName)
+        onNewTeam(teamName, personName, teamMessage, leader)
+        setPersonName([])
+        close()
+    }
+
     const theme = useTheme();
     const [personName, setPersonName] = useState([]);
 
@@ -56,8 +56,8 @@ export default function TeamModal({open, close, onNewTeam, followers, leader}) {
         <div>
             <Dialog open={open} onClose={close}>
                 <DialogTitle
-                    style={{ backgroundColor: "pink", color: "#FFFFFF"}}
-                    sx={{ alignItems : 'center'}}>
+                    style={{ backgroundColor: "pink", color: "#FFFFFF" }}
+                    sx={{ alignItems: 'center' }}>
                     팀 추가
                 </DialogTitle>
                 <DialogContent>
@@ -70,8 +70,8 @@ export default function TeamModal({open, close, onNewTeam, followers, leader}) {
                         fullWidth
                         variant="standard"
                         sx={{ input: { color: 'black' } }}
-                        onChange={e=>setTeamName(e.target.value)}
-                        />
+                        onChange={e => setTeamName(e.target.value)}
+                    />
                     <TextField
                         autoFocus
                         margin="dense"
@@ -81,33 +81,33 @@ export default function TeamModal({open, close, onNewTeam, followers, leader}) {
                         fullWidth
                         variant="standard"
                         sx={{ input: { color: 'black' } }}
-                        onChange={e=>setTeamMessage(e.target.value)}/>
+                        onChange={e => setTeamMessage(e.target.value)} />
                 </DialogContent>
-                <DialogContent style={{ alignItems: "center"}}>
-                <FormControl> 
-                    <InputLabel id="demo-simple-select-label"
-                    style={{marginLeft: "0.3vw"}}
-                    > 멤버</InputLabel>
-                    <Select
-                        style={{  width: '20vw', alignItems: 'center', marginLeft: "0.3vw"}}
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        multiple
-                        value={personName}
-                        MenuProps={MenuProps}
-                        onChange={handleChange}
-                        input={<OutlinedInput label="Name"/>}
+                <DialogContent style={{ alignItems: "center" }}>
+                    <FormControl>
+                        <InputLabel id="demo-simple-select-label"
+                            style={{ marginLeft: "0.3vw" }}
+                        > 멤버</InputLabel>
+                        <Select
+                            style={{ width: '20vw', alignItems: 'center', marginLeft: "0.3vw" }}
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            multiple
+                            value={personName}
+                            MenuProps={MenuProps}
+                            onChange={handleChange}
+                            input={<OutlinedInput label="Name" />}
                         >
                             {
-                                followers.map((v,i)=>(
-                                    <MenuItem key={i} value={v.name} style={getStyles(v.name,personName, theme)}>
+                                followers.map((v, i) => (
+                                    <MenuItem key={i} value={v.name} style={getStyles(v.name, personName, theme)}>
                                         {v.name}
                                     </MenuItem>
                                 ))
                             }
-                    </Select>
-                </FormControl>
-                </DialogContent> 
+                        </Select>
+                    </FormControl>
+                </DialogContent>
                 <DialogActions>
                     <Button onClick={newTeam}>추가</Button>
                     <Button onClick={close}>취소</Button>
