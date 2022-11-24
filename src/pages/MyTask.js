@@ -106,7 +106,6 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
         openAddTaskModal();
     }
 
-    //장훈 코드(프로필 모달 )
     const [profileOpen, setProfileOpen] = useState(false);
 
     const handleProfileClickOpen = () => {
@@ -121,7 +120,6 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
         handleProfileClickOpen();
     }
 
-    //프로필을 변경하는 메소드(장훈)(팀에 있는 내 이름과 관련된 정보를 다 바꿈)
     const modifyProfile = (name, email, intro) => {
         let originName = myProfile[0].name;
         myProfile[0].name = name;

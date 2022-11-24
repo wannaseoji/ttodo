@@ -47,7 +47,7 @@ const CategoryModal = ({open, close, onShowCategoryAddModal, onShowCategoryDelet
                 </FormControl>
                 </DialogContent> 
                 <DialogActions>
-                    <Button                         //닫는버튼
+                    <Button                         
                         style={{ color: "pink"}} 
                         onClick={close}>
                         취소

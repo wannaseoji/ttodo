@@ -30,7 +30,6 @@ const StyledTextField = styled(TextField)({
 
 
 const AddTaskModal = (props) => {
-  // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
   const { open, close, onNewTask, header, category, calendarSelectedDate, initTask, isBucket } = props;
   let title = "";
   let date = "";
@@ -38,11 +37,10 @@ const AddTaskModal = (props) => {
   let hour = "none";
   let minute = "none";
 
-  // const today = new Date();
   const changeSelectedDate = (selectedDate) => { date = selectedDate }
   const changeSelectedTime = (selectedTime) => { time = selectedTime }
 
-  const addNewTask = () => { // index, id, category, title, date, hour, minute
+  const addNewTask = () => {
     console.log(`aaaaaaaaaaaaaaaaa   ${time}`)
     if (time === "none:none" || time == "none" || time == "ne:none") {
       hour = "none"
@@ -58,7 +56,6 @@ const AddTaskModal = (props) => {
   }
 
   return (
-    // 모달이 열릴때 openModal 클래스가 생성된다.
     <div className={open ? 'openModal modal' : 'modal'} >
       {open ? (
         <section>

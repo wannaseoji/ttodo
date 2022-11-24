@@ -1,5 +1,3 @@
-// install (please make sure versions match peerDependencies)
-// yarn add @nivo/core @nivo/bullet
 
 import { ResponsiveContainer, BarChart, XAxis, YAxis, Tooltip, Legend, Bar, } from 'recharts'
 
@@ -8,7 +6,6 @@ const MyBarCharts = ({ data }) => {
 
     return (
         <>
-            {/* <h2>{data[0].month}</h2> */}
             <ResponsiveContainer width='100%' height={'120%'} aspect={4.0 / 4.0} >
                 <BarChart data={data} layout="vertical" fill="#B7B7B7" width={60} height={20} margin={{ top: 0, left: 40, right: 0, bottom: 0 }}>
                     <XAxis type="number" dataKey="maxPercent" hide />

@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from 'react';
 import './App.css';
+import { Notfound } from "./pages/NotFound";
 
 // ****************** Components ******************//
 import Layout from "./pages/Layout";
@@ -8,7 +9,6 @@ import Home from "./pages/Home";
 import Goal from "./pages/Goal";
 import MyTask from "./pages/MyTask";
 import TeamLink from "./pages/TeamLink";
-
 // ****************** Data ******************//
 import taskData from './assets/task-data.json';
 import teamTaskData from './assets/team-task-data.json'
@@ -19,10 +19,8 @@ import memberData from './assets/Member.json';
 import BUCKETLISTD from './assets/bucket.json'
 
 function App() {
-  //프로필 상태를 유지하는 상태변수와, 현재프로필 정보를 유지하는 상태변수 추가(장훈)
   const [member, setMember] = useState(memberData);
   const [myProfile, setMyProfile] = useState(profileData);
-  //===============================================================================
   const [teamTask, setTeamTask] = useState(teamTaskData)
   const [teams, setTeams] = useState(teamData);
   const [tasks, setTasks] = useState(taskData);
@@ -42,7 +40,7 @@ function App() {
             setTeams={setTeams}
             followers={followers}
             setFollowers={setFollowers}
-            myProfile={myProfile}         //프로필, 맴버추가(장훈)
+            myProfile={myProfile}
             setMyProfile={setMyProfile}
             member={member}
             setMember={setMember}
@@ -77,7 +75,7 @@ function App() {
             myProfile={myProfile}
             setMyProfile={setMyProfile}
           />} />
-
+          <Route path="*" element={<Notfound/>} />
         </Route>
       </Routes>
     </BrowserRouter>

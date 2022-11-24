@@ -83,8 +83,6 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
             teamCard[i] = <Team key={i} data={teams[i]} memberData={member} />;
         }
     }
-    //장훈이의 코드(프로필 변경, Follower 추가)
-    //Follower 변경 modal에 대한 코드(장훈)
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -111,7 +109,6 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
     const onShowProfileModal = () => {
         handleProfileClickOpen();
     }
-    //프로필을 변경하는 메소드(장훈)
     const modifyProfile = (name, email, intro) => {
         let originName = myProfile[0].name;
         myProfile[0].name = name;
@@ -138,7 +135,6 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
         }
         console.log(teamTask);
     }
-    //Follower를 추가하는 메소드 필요(장훈)
     const createFollower = (username) => {
         let newFollower = {
             "name" : username,
@@ -151,7 +147,6 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
         console.log(followers);
         setFollowers(newFollowerArr);
     }
-    //===========================================(장훈 코드)
     return (
         <div id="app" className="parent" >
             <div className="box menu" >
@@ -173,12 +168,10 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
                 </GrayBox>
             </div>
 
-            {/* FollowerList 컴포넌트에 Follower를 전달 (장훈)*/}
             <div className="box follower">
                 <FollowerList 
                     follower={followers} 
                     onShowModal={onShow}/>
-                {/*Modal을 열고 닫고와 팔로워를 추가하는 메소드를 props로 전달(장훈) */}
                 <FollowerModal 
                     open={open} 
                     close={handleClose} 

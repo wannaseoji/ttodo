@@ -29,7 +29,7 @@ const CategoryDeleteModal = ({open, close}) => {
                 </FormControl>
                 </DialogContent> 
                 <DialogActions>
-                    <Button                         //닫는버튼
+                    <Button                         
                         style={{ color: "pink"}} >
                         삭제
                     </Button>

@@ -65,7 +65,6 @@ const FollowerList = ({follower, onShowModal}) => {
                         setPage(page + 1);
                     }
                 }}/>
-            {/*프로필 변경하는 클릭 이벤트 지정(장훈) */} 
             <AiOutlinePlusCircle 
                     size="50" 
                     color="#FF9AB5"

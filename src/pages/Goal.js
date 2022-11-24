@@ -195,7 +195,7 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, myPr
             </div>
             <div className="box follower"></div>
             <div className="box tasklist" style={{ width: '100%', height: '95% ', borderRadius: '20px' }}>
-                <Scrollbars>{
+                <Scrollbars >{
                     <GrayBox title={"카테고리별 목표달성률"} >
 
                         <Slider Piedata={Piedata} progressData={progressData} children={

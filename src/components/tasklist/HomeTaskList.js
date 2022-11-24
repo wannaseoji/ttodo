@@ -3,7 +3,6 @@ import List from '@mui/material/List';
 import TaskList from './TaskList'
 import '../../styles/TaskList.css';
 
-// Home 화면에서 limit 개수만큼 고정으로 띄우는 TaskList
 function HomeTaskList({tasks = [], limit, onCheck = f => f, onModifyTaskModal = f => f}) {
     return (
         <>

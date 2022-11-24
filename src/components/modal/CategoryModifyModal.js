@@ -30,7 +30,7 @@ const CategoryModifyModal = ({open, close}) => {
                 </FormControl>
                 </DialogContent> 
                 <DialogActions>
-                    <Button                         //닫는버튼
+                    <Button                        
                         style={{ color: "pink"}} >
                         수정
                     </Button>

@@ -12,7 +12,6 @@ import '../styles/category.css';
 import Scrollbars from 'react-custom-scrollbars';
 import {AiOutlinePlusCircle} from "react-icons/ai";
 
-//장훈, 형민이가 같이 수정한 CategoryList 컴포넌트
 const CategoryList = ({curTeam, teamTask, onShowCategoryModal=f=>f}) => {
     var t1;
     console.log(curTeam)

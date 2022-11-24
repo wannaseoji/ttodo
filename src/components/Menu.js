@@ -12,38 +12,38 @@ import Button from '@material-ui/core/Button';
 import '../styles/linkButton.css';
 
 const Menu = () => {
-    return(
+    return (
         <nav className="seo_nav">
             <Box sx={{ width: '100%', maxWidth: 400, bgcolor: 'background.black', position: 'relative', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
                 <List component="nav">
-                        <nav>
-                            <StyledListItem >
-                                <Button className="linkButton" component={Link} to="/">
-                                    <VscHome /><ListItemText className="menuName"> Home</ListItemText>
-                                </Button>
-                            </StyledListItem>
-                        </nav>
-                        <nav >
-                            <StyledListItem>
-                                <Button className="linkButton" component={Link} to="/Goal">
-                                    <GiStairsGoal /><ListItemText className="menuName"> Goal</ListItemText>
-                                </Button>
-                            </StyledListItem>
-                        </nav>
-                        <nav>
-                            <StyledListItem>
-                                <Button className="linkButton" component={Link} to="/MyTask">
-                                    <IoPersonOutline /><ListItemText className="menuName"> My Task</ListItemText>
-                                </Button>
-                            </StyledListItem>
-                        </nav>
-                        <nav>
-                            <StyledListItem>
-                                <Button className="linkButton" component={Link} to="/TeamLink">
-                                    <BsPeople /><ListItemText className="menuName"> Team</ListItemText>
-                                </Button>
-                            </StyledListItem>
-                        </nav>
+                    <nav>
+                        <StyledListItem >
+                            <Button className="linkButton" component={Link} to="/">
+                                <VscHome /><ListItemText className="menuName"> Home</ListItemText>
+                            </Button>
+                        </StyledListItem>
+                    </nav>
+                    <nav >
+                        <StyledListItem>
+                            <Button className="linkButton" component={Link} to="/Goal">
+                                <GiStairsGoal /><ListItemText className="menuName"> Goal</ListItemText>
+                            </Button>
+                        </StyledListItem>
+                    </nav>
+                    <nav>
+                        <StyledListItem>
+                            <Button className="linkButton" component={Link} to="/MyTask">
+                                <IoPersonOutline /><ListItemText className="menuName"> My Task</ListItemText>
+                            </Button>
+                        </StyledListItem>
+                    </nav>
+                    <nav>
+                        <StyledListItem>
+                            <Button className="linkButton" component={Link} to="/TeamLink">
+                                <BsPeople /><ListItemText className="menuName"> Team</ListItemText>
+                            </Button>
+                        </StyledListItem>
+                    </nav>
                 </List>
             </Box>
         </nav >

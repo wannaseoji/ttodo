@@ -12,7 +12,6 @@ import { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
 
-//변경 시작
 function getStyles(name, personName, theme) {
     return {
         fontWeight:
@@ -31,7 +30,6 @@ const MenuProps = {
             },
         },
     };
-//변경 끝
 export default function TeamModal({open, close, onNewTeam, followers, leader}) {
     const [teamName, setTeamName] = useState()
     const [teamMessage, setTeamMessage] = useState()
@@ -42,7 +40,6 @@ export default function TeamModal({open, close, onNewTeam, followers, leader}) {
             close()
         }
     
-    //변경 시작
     const theme = useTheme();
     const [personName, setPersonName] = useState([]);
 
@@ -51,11 +48,9 @@ export default function TeamModal({open, close, onNewTeam, followers, leader}) {
             target: { value },
         } = event;
         setPersonName(
-            // On autofill we get a stringified value.
             typeof value === 'string' ? value.split(',') : value,
         );
     };
-    //변경 끝
 
     return (
         <div>
@@ -88,7 +83,6 @@ export default function TeamModal({open, close, onNewTeam, followers, leader}) {
                         sx={{ input: { color: 'black' } }}
                         onChange={e=>setTeamMessage(e.target.value)}/>
                 </DialogContent>
-                {/*Select 박스 옆으로 옮김*/}
                 <DialogContent style={{ alignItems: "center"}}>
                 <FormControl> 
                     <InputLabel id="demo-simple-select-label"

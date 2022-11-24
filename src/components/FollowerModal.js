@@ -14,10 +14,8 @@ import Select from '@mui/material/Select'
 import { useState } from "react";
 
 const FollowerModal = ({open, close, follower, member, createFollower}) => {
-    {/*장훈이가 만든 컴포넌트 */}
     const [search, setSearch] = useState("");
     const [booleanView, setBooleanView] = useState(false)
-    //text가 입력이 될때 검색이 되게 한다.
     const onChange = (e) => { 
         if(e.target.value === "") {
             setSearch("");
