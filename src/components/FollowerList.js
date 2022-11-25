@@ -39,6 +39,7 @@ const FollowerList = ({follower, onShowModal}) => {
                 follower.slice(offset, offset + limit).map((data,i) => (
                     <Avatar
                         key={i}
+                        title={data}
                         alt="Remy Sharp"
                         src= {data + ".jpg"}
                         sx={{ width: "50px", height: "50px"}} 

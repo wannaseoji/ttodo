@@ -16,6 +16,9 @@ import CategoryModal from '../components/modal/CategoryModal';
 import ModifyTaskModal from '../components/modal/ModifyTaskModal';
 import AddTaskModal from '../components/modal/AddTaskModal';
 import GrayBox from '../components/GrayBox'
+import AddTeamTaskModal from '../components/modal/AddTeamTaskModal';
+import MemberList from '../components/MemberList';
+
 
 
 const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=>f, setTeams=f=>f, myProfile}) => {
@@ -24,9 +27,21 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
     const [noticePage, setNoticePage] = useState(1);
     console.log(member)
 
-    const me = member.filter((v) => v.me === "true")[0] //내 데이터
+    const me = member.filter((v) => v.me === "true")[0]     //내 데이터(myProfile 대체)
     const myFollowers = me.followMembers
-    console.log(myFollowers)
+    console.log(myFollowers)                                //나의 팔로워된 애들의 리스트(followers 대체)
+
+    const [selectedDate, onChange] = useState(new Date()); // Mon Nov 14 2022 10:50:35 GMT+0900 (한국 표준시)
+    const [clickedMemberList, setClickedMemberList] = useState([]);
+    const initTask = {
+        "index": 0,
+        "title": "",
+        "date": selectedDate,
+        "hour": "none",
+        "minute": "none",
+        "check": false
+    }
+
 
     const onCheck = index => {
         // const newTeamTasks = tasks.map(task => {
@@ -150,6 +165,21 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
 
     //팀의 멤버의 배열에도 추가하면 된다.
     const createTeamMember = (username) => {
+        if(curTeam.memberList.includes(username)) {     //동일한 사용자를 넣으려고 하는 경우,
+            alert(`이미 등록된 맴버입니다.`);
+            return;
+        }
+
+
+        
+        let isFollower = false;
+        if(myFollowers.includes(username)) {
+            isFollower = true;
+        }
+        if(!isFollower) {
+            alert(`팔로우 되어있는 계정이 아닙니다.`);
+            return;
+        }
         const newMemberList = [...curTeam.memberList, username];
         curTeam.memberList = newMemberList;
         setCurTeam(curTeam);
@@ -204,23 +234,71 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
             "tasks": []
         }
         
-        console.log(myProfile);
-        console.log(myProfile[0].name);
+        console.log(me);
+        console.log(me.name);
         //console.log(newTask);
         //이제 분기를 해야함(프로필에 있는 나의 이름이 하나라도 있을 경우) => myTasks
         
-        if(newList.includes(myProfile[0].name)) {
-            console.log("1");
+        if(newList.includes(me.name)) {
             copyTeamTask[findIdx].myTask.push(newTask);
         }
         else {      //프로필이 있는 나의 이름이 하나라도 없는 경우,
-            console.log("2");
             copyTeamTask[findIdx].otherTask.push(newTask);
         }
         console.log(copyTeamTask);
         setTeamTask(copyTeamTask);
     }
-
+    //팀 태스크를 추가하는 메소드
+    const onNewTeamTask = (title, date, hour, minute) => {
+        let findIdx = -1;
+        for(let i = 0; i < teamTask.length; i++) {
+            if(curTeam.name === teamTask[i].name) {
+                findIdx = i;
+                break;
+            }
+        }
+        let maxIdx = 1;
+        for(let i = 0; i < teamTask.length; i++) {
+            for(let j = 0; j < teamTask[i].myTask.length; j++) {
+                for(let k = 0; k < teamTask[i].myTask[j].tasks.length; k++) {
+                    if(maxIdx < teamTask[i].myTask[j].tasks[k].index) {
+                        maxIdx = teamTask[i].myTask[j].tasks[k].index;
+                    }
+                }
+            }
+            for(let j = 0; j < teamTask[i].otherTask.length; j++) {
+                for(let k = 0; k < teamTask[i].otherTask[j].tasks.length; k++) {
+                    if(maxIdx < teamTask[i].otherTask[j].tasks[k].index) {
+                        maxIdx = teamTask[i].otherTask[j].tasks[k].index;
+                    }
+                }
+            }
+        }
+        let newIdx = maxIdx + 1;
+        let newTask =  {
+            "index" : newIdx,
+            "title" : title,
+            "date" : date,
+            "hour" : hour,
+            "minute" : minute,
+            "check" : false
+        }   
+        if(clickedMemberList.includes(me.name)) {
+            for(let i = 0; i < teamTask[findIdx].myTask.length; i++) {
+                if(JSON.stringify(clickedMemberList) === JSON.stringify(teamTask[findIdx].myTask[i].relatedMembers)) {
+                    teamTask[findIdx].myTask[i].tasks.push(newTask);
+                }
+            }
+        } 
+        else {
+            for(let i = 0; i < teamTask[findIdx].otherTask.length; i++) {
+                if(JSON.stringify(clickedMemberList) === JSON.stringify(teamTask[findIdx].otherTask[i].relatedMembers)) {
+                    teamTask[findIdx].otherTask[i].tasks.push(newTask);
+                }
+            }
+        }
+        setClickedMemberList([]);
+    }   
     //카테고리를 수정하는 상태변수
     const [CategoryOpen, setCategoryOpen] = useState(false);
 
@@ -233,9 +311,6 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
     const onShowCategoryModal = () => {
         handleCategoryClickOpen()
     }
-
-    const modifyCategory = () => {}
-    const deleteCategory = () => {}
 
 
     //카테고리를 추가
@@ -309,7 +384,37 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
         handleCategoryDeleteModifyOpen();
     }
 
+    const deleteCategory = (teamName, index, kindofTask, relatedMembers) => {
+        let findIdx = -1;
 
+        for(let i = 0; i < teamTask.length; i++) {
+            if(teamTask[i].name === teamName) {
+                console.log(teamTask[i].name)
+                console.log(teamName)
+                findIdx = i;
+                break;
+            }
+        }
+
+        const newTeamTask = [...teamTask]
+        if(kindofTask === 'myTask') {
+            for(let i = 0; i < newTeamTask[findIdx].myTask.length; i++) {
+                if(JSON.stringify(newTeamTask[findIdx].myTask[i].relatedMembers) === JSON.stringify(relatedMembers)) {
+                    newTeamTask[findIdx].myTask.splice(i, 1);
+                    break;
+                }
+            }
+        }
+        else if(kindofTask === 'otherTask') {
+            for(let i = 0; i < newTeamTask[findIdx].otherTask.length; i++) {
+                if(JSON.stringify(newTeamTask[findIdx].otherTask[i].relatedMembers) === JSON.stringify(relatedMembers)) {
+                    newTeamTask[findIdx].otherTask.splice(i, 1);
+                    break;
+                }
+            }
+        }
+        setTeamTask(newTeamTask);
+    }
 
     return (
         <div id="app" className="parent" >
@@ -335,7 +440,7 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
                 </GrayBox>
             </div>
             <div className="box follower">
-                {/* <MemberList
+                <MemberList
                     curTeam={curTeam}
                     onShowTeamMemberModal={onShowTeamMemberModal}
                     onShowCategoryModal={onShowCategoryModal} />
@@ -343,7 +448,7 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
                     open={TeamMemberModalOpen}
                     close={handleTeamMemberClose}
                     createTeamMember={createTeamMember}
-                    followers={followers}
+                    followers={myFollowers}
                     curTeam={curTeam} />
                 <CategoryModal
                     open={CategoryOpen}
@@ -351,26 +456,28 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
                     curTeam={curTeam}
                     teamTask={teamTask}
                     addCategory={addCategory}
+                    deleteCategory={deleteCategory}
                     onShowCategoryAddModal={onShowCategoryAddModal}
                     onShowCategoryDeleteModal={onShowCategoryDeleteModal}
-                    onShowCategoryModifyModal={onShowCategoryModifyModal}/> */}
+                    onShowCategoryModifyModal={onShowCategoryModifyModal}/>
             </div>
             <div className="box tasklist">
-                {/* <CategoryList 
+                <CategoryList 
+                    setClickedMemberList={setClickedMemberList}
                     curTeam={curTeam} 
                     teamTask={teamTask}
                     onShowCategoryTeamTask={onShowCategoryTeamTask}
                     onShowCategoryDeleteModify={onShowCategoryDeleteModify}
                     onCheck={onCheck}
-                    /> */}
-                {/*
-                <AddTaskModal
+                    />
+                <AddTeamTaskModal
                     open={CategoryAddTaskOpen}
-                    close={handleCategoryAddClickClose}/>
-                <ModifyTaskModal 
-                    open={CategoryDeleteModifyOpen}
-                    close={handleCategoryDeleteModifyClose}/>
-                */}
+                    close={handleCategoryTeamTaskClose}
+                    header={"일정 추가"}
+                    calendarSelectedDate={selectedDate}
+                    initTask={initTask}
+                    isBucket={false}
+                    onNewTeamTask={onNewTeamTask}/>
             </div>
             <div className="box notice">
                 <Notice onShowModal={onShowNoticeModal} notices={notices} page={noticePage} setPage={setNoticePage} />

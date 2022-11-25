@@ -27,6 +27,7 @@ export default function Profile({myProfile, onShowModal}) {
           <Avatar
             className="profile"
             alt="Remy Sharp"
+            title={name}
             src={image}
             sx={{ width: "90px", height: "90px" }} />
         </ListItemAvatar>
@@ -65,7 +66,10 @@ export default function Profile({myProfile, onShowModal}) {
             </React.Fragment>
           }
         />
-        <BiDotsVerticalRounded size={35} color="#D9D9D9" onClick={onShowModal}/>
+        <BiDotsVerticalRounded 
+          size={35} 
+          color="#D9D9D9" 
+          onClick={onShowModal}/>
       </ListItem>
     </List>
   );

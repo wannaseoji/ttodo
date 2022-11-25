@@ -147,6 +147,21 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
         console.log(teamTask);
     }
     const createFollower = (username) => {
+        if(me.followMembers.includes(username)) {       //이미 팔로우 된 계정을 팔로우하려고 할 경우,
+            alert('이미 팔로우된 계정입니다.');
+            return;
+        }
+        let isMember = false;
+        for(let i = 0; i < member.length; i++) {
+            if (member[i].name === username) {
+                isMember = true;
+                break;
+            }
+        }
+        if (!isMember) {                                //전체 맴버가 아닌 경우,
+            alert('가입한 계정이 아닙니다.');
+            return;
+        }
         me.followMembers = [...myFollowers, username]
     }
     return (
