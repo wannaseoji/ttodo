@@ -102,8 +102,8 @@ const MyResponsivePie = ({ data }) => (
                 anchor: 'top-left',
                 direction: 'column', //차트아래에 표시되는것
                 justify: false,
-                translateX: -80,
-                translateY: -60,
+                translateX: -75,
+                translateY: -55,
                 itemsSpacing: 0,
                 itemWidth: 100,
                 itemHeight: 30,
