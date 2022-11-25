@@ -13,21 +13,20 @@ import TeamLink from "./pages/TeamLink";
 import taskData from './assets/task-data.json';
 import teamTaskData from './assets/team-task-data.json'
 import teamData from "./assets/team.json"
-import followerData from './assets/Follower.json';
-import profileData from './assets/MyProfile.json';
 import memberData from './assets/Member.json';
 import BUCKETLISTD from './assets/bucket.json';
 import categoryData from './assets/category-data.json'
 
 function App() {
   const [member, setMember] = useState(memberData);
-  const [myProfile, setMyProfile] = useState(profileData);
   const [teamTask, setTeamTask] = useState(teamTaskData)
   const [teams, setTeams] = useState(teamData);
   const [tasks, setTasks] = useState(taskData);
   const [BUCKETLIST, setBUCKETLIST] = useState(BUCKETLISTD);
-  const [followers, setFollowers] = useState(followerData);
   const [categories, setCategories] = useState(categoryData);
+  
+  // const myFollowers = member.map((v) => v.name === "seo")[0].followMembers
+  // console.log(myFollowers)
 
   return (
     <BrowserRouter>
@@ -40,10 +39,6 @@ function App() {
             setTeamTask={setTeamTask}
             setTasks={setTasks}
             setTeams={setTeams}
-            followers={followers}
-            setFollowers={setFollowers}
-            myProfile={myProfile}
-            setMyProfile={setMyProfile}
             member={member}
             setMember={setMember}
           />} />
@@ -54,14 +49,11 @@ function App() {
             setTeamTask={setTeamTask}
             setTasks={setTasks}
             setTeams={setTeams}
-            followers={followers}
-            myProfile={myProfile}
-            setMyProfile={setMyProfile}
             categories={categories}
             setCategories={setCategories}
+            member={member}
           />} />
           <Route path="TeamLink" element={<TeamLink
-            myProfile={myProfile}
             tasks={tasks}
             teamTask={teamTask}
             teams={teams}
@@ -69,16 +61,13 @@ function App() {
             setTeamTask={setTeamTask}
             setTasks={setTasks}
             setTeams={setTeams}
-            followers={followers}
           />} />
           <Route path="Goal" element={<Goal tasks={tasks}
             BUCKETLIST={BUCKETLIST}
             setBUCKETLIST={setBUCKETLIST}
             teamTask={teamTask}
             teams={teams}
-            followers={followers}
-            myProfile={myProfile}
-            setMyProfile={setMyProfile}
+            member={member}
           />} />
           <Route path="*" element={<Notfound/>} />
         </Route>

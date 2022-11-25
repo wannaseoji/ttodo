@@ -100,8 +100,8 @@ export default function TeamModal({ open, close, onNewTeam, followers, leader })
                         >
                             {
                                 followers.map((v, i) => (
-                                    <MenuItem key={i} value={v.name} style={getStyles(v.name, personName, theme)}>
-                                        {v.name}
+                                    <MenuItem key={i} value={v} style={getStyles(v, personName, theme)}>
+                                        {v}
                                     </MenuItem>
                                 ))
                             }

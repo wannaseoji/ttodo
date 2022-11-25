@@ -19,7 +19,7 @@ import '../styles/Profile.css';
 import { createTheme, ThemeProvider } from '@mui/material';
 
 export default function Profile({myProfile, onShowModal}) {
-  const { name, image, intro, email } = myProfile[0];
+  const { name, image, intro, email } = myProfile;
   return (
     <List sx={{ width: '100%', maxWidth: 550, bgcolor: 'background.paper'}}>
       <ListItem sx={{padding:"0"}}>

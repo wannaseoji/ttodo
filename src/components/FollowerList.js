@@ -40,7 +40,7 @@ const FollowerList = ({follower, onShowModal}) => {
                     <Avatar
                         key={i}
                         alt="Remy Sharp"
-                        src={data.image}
+                        src= {data + ".jpg"}
                         sx={{ width: "50px", height: "50px"}} 
                         className="Member"/>
                     ))

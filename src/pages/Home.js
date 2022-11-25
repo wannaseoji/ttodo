@@ -17,11 +17,15 @@ import FollowerList from "../components/FollowerList";
 import FollowerModal from "../components/FollowerModal";
 
 
-const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams=f=>f, myProfile, setMyProfile, followers, member, setMember=f=>f, setFollowers=f=>f})=> {
+const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams=f=>f, myProfile, setMyProfile, member, setMember=f=>f})=> {
     const [modalOpen, setModalOpen] = useState(false); // 태스크 수정/삭제 Modal 창 open, close State 확인
     const date = new Date(); // Mon Nov 14 2022 10:50:35 GMT+0900 (한국 표준시)
     const today = date.getFullYear()+"-"+('0' + (date.getMonth() + 1)).slice(-2)+"-"+('0' + date.getDate()).slice(-2); // 2022-11-14
     let todayTasks = tasks.filter(({date})=>date===today) // 시간 상관 없이 당일에 해당하는 task로만 필터링
+    
+    const me = member.filter((v) => v.me === "true")[0] //내 데이터
+    const myFollowers = me.followMembers
+    console.log(myFollowers)
     // todayTasks.map((value) => console.log(value.title))
 
     // Task check 변경
@@ -110,10 +114,10 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
         handleProfileClickOpen();
     }
     const modifyProfile = (name, email, intro) => {
-        let originName = myProfile[0].name;
-        myProfile[0].name = name;
-        myProfile[0].email = email;
-        myProfile[0].intro = intro;
+        let originName = me.name;
+        me.name = name;
+        me.email = email;
+        me.intro = intro;
     
         //member의 정보를 수정
         for(let i = 0; i < member.length; i++) {
@@ -143,16 +147,7 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
         console.log(teamTask);
     }
     const createFollower = (username) => {
-        let newFollower = {
-            "name" : username,
-            "image" : username + ".jpg",
-            "intro" : "",
-            "email" : username + "@naver.com"
-        }
-        const newFollowerArr = [...followers, newFollower];
-        console.log(newFollowerArr);
-        console.log(followers);
-        setFollowers(newFollowerArr);
+        me.followMembers = [...myFollowers, username]
     }
     return (
         <div id="app" className="parent" >
@@ -161,10 +156,10 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
             </div >
             <div className="box profile">
                 <Profile 
-                    myProfile={myProfile}
+                    myProfile={me}
                     onShowModal={onShowProfileModal}/>
                 <ProfileModal
-                    myProfile={myProfile}
+                    myProfile={me}
                     open={profileOpen}
                     close={handleProfileClose}
                     modifyProfile={modifyProfile} />
@@ -177,13 +172,13 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
 
             <div className="box follower">
                 <FollowerList 
-                    follower={followers} 
+                    follower={myFollowers} 
                     onShowModal={onShow}/>
                 <FollowerModal 
-                    myProfile={myProfile}
+                    myProfile={me}
                     open={open} 
                     close={handleClose} 
-                    follower={followers} 
+                    follower={myFollowers} 
                     member={member} 
                     createFollower={createFollower}/>
             </div>
