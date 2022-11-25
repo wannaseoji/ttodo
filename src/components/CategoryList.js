@@ -14,15 +14,9 @@ import {AiOutlinePlusCircle} from "react-icons/ai";
 import { useState } from "react";
 import TaskList from "../components/tasklist/TaskList"
 
-<<<<<<< HEAD
-const CategoryList = ({curTeam, teamTask, onShowCategoryModal=f=>f}) => {
-=======
 //장훈, 형민이가 같이 수정한 CategoryList 컴포넌트
 const CategoryList = ({curTeam, teamTask, onShowCategoryModal=f=>f, onShowCategoryTeamTask, onShowCategoryDeleteModify, onCheck=f=>f}) => {
 
-    
-
->>>>>>> 9dc36d4aeeef91e589042c455f2bc0e936d08fd4
     var t1;
     console.log(` curTeam : ${curTeam}`)
     console.log(`team Task : ${teamTask}`)

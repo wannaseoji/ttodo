@@ -13,12 +13,9 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select'
 import { useState } from "react";
 
-<<<<<<< HEAD
-const FollowerModal = ({open, close, follower, member, createFollower}) => {
-=======
+
 const FollowerModal = ({open, close, follower, member, createFollower, myProfile}) => {
     {/*장훈이가 만든 컴포넌트 */}
->>>>>>> 9dc36d4aeeef91e589042c455f2bc0e936d08fd4
     const [search, setSearch] = useState("");
     const [booleanView, setBooleanView] = useState(false)
     const onChange = (e) => { 
