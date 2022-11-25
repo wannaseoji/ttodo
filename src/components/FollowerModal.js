@@ -40,8 +40,8 @@ const FollowerModal = ({ open, close, follower, member, createFollower, myProfil
 
     //팔로워가 아닌 맴버들을 필터해주는 로직(나 자신 제외)
     const filterSearch = member
-        .filter((data) => data.name !== myProfile[0].name)
-        .filter(x1 => follower.every(x2 => x1.name !== x2.name))
+        .filter((data) => data.name !== myProfile.name)
+        .filter(x1 => follower.every(x2 => x1.name !== x2))
         .filter((p) => { return p.name.toLocaleLowerCase().includes(search.toLocaleLowerCase().replace(" ", "")) })
     return (
         <div className={open ? 'openModal modal' : 'modal'}>

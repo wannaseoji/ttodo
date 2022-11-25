@@ -37,11 +37,16 @@ function getStyles(name, personName, theme) {
         };
 }
 
-const CategoryModal = ({open, close, curTeam, teamTask, addCategory}) => {
+const CategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteCategory}) => {
     //카테고리 추가 부분
     const theme = useTheme();
     const [personName, setPersonName] = React.useState([]);
+    const [Arr, setArr] = useState([]);
 
+    const [teamName, setTeamName] = useState("");
+    const [clickIdx, setClickIdx] = useState();
+    const [taskType, setTaskType] = useState("");
+    const [clickMembers, setClickMembers] = useState([]);
     const handleChange = (event) => {
         const { target: { value },
         } = event;
@@ -62,7 +67,7 @@ const CategoryModal = ({open, close, curTeam, teamTask, addCategory}) => {
     console.log(curTeam)
     t1 = teamTask.filter(x1 => curTeam.name === x1.name)[0];
     console.log(t1)
-    let categoryStr = ""
+    let categoryStr = "";
     return (
         <div>
             <Dialog 
@@ -83,10 +88,10 @@ const CategoryModal = ({open, close, curTeam, teamTask, addCategory}) => {
                         <AiOutlinePlus 
                             size="20" 
                             color="pink"
-                            onClick={() => {        //+버튼을 눌렀을때,
+                            onClick={() => {        
                                 setAddPage(true);
                                 setListViewPage(false);
-                                setDeleteModifyPage(false);     //삭제/수정 페이지
+                                setDeleteModifyPage(false);     
                             }}/>
                     </div>
                     <div>   {/* */}
@@ -95,13 +100,18 @@ const CategoryModal = ({open, close, curTeam, teamTask, addCategory}) => {
                                 <List>
                                 {t1.myTask.sort((a, b) => a.relatedMembers.length - b.relatedMembers.length)
                                     .map((element, index) => (
-                                    <ListItem disablePadding>
-                                        <ListItemButton onClick={() => {
+                                    <ListItem key={index} disablePadding>
+                                        <ListItemButton key={index} onClick={() => {
+                                            setTaskType("myTask");
+                                            setClickIdx(index);
+                                            setClickMembers(t1.myTask[index].relatedMembers);
+                                            setTeamName(t1.name);
+                                            setArr(t1.myTask[index].relatedMembers);
                                             setDeleteModifyPage(true);
                                             setAddPage(false);
                                             setListViewPage(false);
                                         }}>
-                                            { t1.myTask[index].relatedMembers.map((data) => {categoryStr += (data + "  ")})}
+                                            { t1.myTask[index].relatedMembers.map((data) => {categoryStr += (data + "  "); return null;})}
                                             <ListItemText primary={categoryStr} />    
                                             { categoryStr = ""}
                                         </ListItemButton>
@@ -109,14 +119,19 @@ const CategoryModal = ({open, close, curTeam, teamTask, addCategory}) => {
                                 ))}
                                 {t1.otherTask.sort((a, b) => a.relatedMembers.length - b.relatedMembers.length)
                                     .map((element, index) => (
-                                    <ListItem disablePadding>
-                                        <ListItemButton onClick={() => {
+                                    <ListItem key={index} disablePadding>
+                                        <ListItemButton key={index} onClick={() => {
+                                            setTaskType("otherTask");
+                                            setClickIdx(index);
+                                            setClickMembers(t1.otherTask[index].relatedMembers);
+                                            setTeamName(t1.name);
+                                            setArr(t1.otherTask[index].relatedMembers);
                                             setDeleteModifyPage(true);
                                             setAddPage(false);
                                             setListViewPage(false);
                                         }}>
-                                            { t1.otherTask[index].relatedMembers.map((data) => {categoryStr += (data + "  ")})}
-                                            <ListItemText primary={categoryStr} />    
+                                            { t1.otherTask[index].relatedMembers.map((data) => { categoryStr += (data + "  "); return null; })}
+                                            <ListItemText primary={categoryStr}/>    
                                             { categoryStr = ""}
                                         </ListItemButton>
                                     </ListItem>
@@ -156,6 +171,7 @@ const CategoryModal = ({open, close, curTeam, teamTask, addCategory}) => {
                                         onAddCategory(personName);
                                         setAddPage(false);
                                         setListViewPage(true);    
+                                        setDeleteModifyPage(false);
                                         setPersonName([]);
                                     }}>
                                     추가
@@ -166,6 +182,7 @@ const CategoryModal = ({open, close, curTeam, teamTask, addCategory}) => {
                                     onClick={() => { 
                                     setAddPage(false);
                                     setListViewPage(true);
+                                    setDeleteModifyPage(false);
                                     setPersonName([]);
                                 }}>
                                     취소
@@ -173,13 +190,51 @@ const CategoryModal = ({open, close, curTeam, teamTask, addCategory}) => {
                                 </div>
                             </>
                             : <></>}
+                            {deletemodifypage ?  
+                                <>
+                                    {Arr.map((data) => { categoryStr += (data + "  "); return null; })}
+                                    <List>
+                                        <ListItem 
+                                        sx={{ marginLeft: "0.1vw"}}
+                                        >
+                                        {categoryStr}
+                                        </ListItem>
+                                    </List> 
+                                    <Button
+                                    onClick={() => {
+                                        setAddPage(false);
+                                        setListViewPage(true);
+                                        setDeleteModifyPage(false);
+                                        setPersonName([]);
+                                        console.log(Arr);
+                                    }}>
+                                        리스트 목록
+                                    </Button>
+                                    <Button
+                                        onClick={() => {
+                                        deleteCategory(teamName, clickIdx, taskType, clickMembers);
+                                        setAddPage(false);
+                                        setListViewPage(true);
+                                        setDeleteModifyPage(false);
+                                        setPersonName([]);
+                                    }}>
+                                        삭제
+                                    </Button>
+                                </>
+                            : <></>}
                     </div>
                 </FormControl>
                 </DialogContent> 
                 <DialogActions>
                     <Button                         
                         style={{ color: "pink"}} 
-                        onClick={close}>
+                        onClick={ () => {
+                            setListViewPage(true);
+                            setAddPage(false);
+                            setDeleteModifyPage(false);
+                            setPersonName([]);
+                            close();
+                        }}>
                         취소
                     </Button>
                 </DialogActions>

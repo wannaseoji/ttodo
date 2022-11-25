@@ -1,30 +1,8 @@
-import { TextField, styled } from '@mui/material';
 import React from 'react';
-import "../../styles/TaskModal.css"
 import TimeToggle from './TimeToggle';
 import TaskDatePicker from './TaskDatePicker'
-
-const StyledTextField = styled(TextField)({
-  "&:hover .MuiInput-underline": {
-    borderBottomColor: "gray"
-  },
-  "& .MuiInput-underline:after": {
-    borderBottomColor: "#FF9AB5"
-  },
-  "& .MuiOutlinedInput-root": {
-    "& fieldset": {
-      borderColor: "white"
-    },
-    "&:hover fieldset": {
-      borderColor: "white",
-      borderBottomColor: "white",
-      borderWidth: 2
-    },
-    "&.Mui-focused fieldset": {
-      borderColor: "white"
-    }
-  }
-});
+import CustomTextField from './CustomTextField';
+import "../../styles/TaskModal.css"
 
 const ModifyTaskModal = (props) => {
   const { open, close, header, calendarSelectedDate, selectedTask, onModifyTask, onDeleteTask, isBucket } = props;
@@ -62,13 +40,13 @@ const ModifyTaskModal = (props) => {
             </button>
           </header>
           <main>
-            <div><span className="settingTitle">내용</span><StyledTextField id="standard-basic" label="" defaultValue={selectedTask.title} variant="standard" sx={{ width: "80%" }} onChange={e => title = e.target.value} /></div>
+            <div><span className="settingTitle">내용</span><CustomTextField sx={{ width: "80%" }} id="standard-basic" variant="standard" defaultValue={selectedTask.title} onChange={e => title = e.target.value} /></div>
             <div><span className="settingTitle">날짜</span><TaskDatePicker changeSelectedDate={changeSelectedDate} initSelectedDate={calendarSelectedDate} /></div>
             {(isBucket === true) ? <></> : <div><span className="settingTitle">시간 설정</span><TimeToggle changeSelectedTime={changeSelectedTime} selectedTask={selectedTask} /></div>}
           </main>
           <footer>
-            <button className="modify" onClick={modifyNewTask}>modify</button>
-            <button className="delete" onClick={onDeleteTask}>delete</button>
+            <button className="modify" onClick={modifyNewTask}>수정</button>
+            <button className="delete" onClick={onDeleteTask}>삭제</button>
           </footer>
         </section>
       ) : null}

@@ -20,7 +20,8 @@ import AddCategoryModal from "../components/modal/AddCategoryModal"
 import ModifyCategoryModal from '../components/modal/ModifyCategoryModal';
 
 
-const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => f, setTeams = f => f, myProfile, member, categories, setCategories = f => f }) => {
+const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => f, setTeams = f => f,  member, categories, setCategories = f => f }) => {
+    const me = member.filter((v) => v.me === "true")[0] //내 데이터
     const onNewTask = function (id, category, title, date, hour, minute) { // id, category, title, date, hour, minute, check
         let indexs = tasks.map((task) => task.index).sort((a, b) => a - b)
         const newIndex = indexs[indexs.length - 1] + 1
@@ -199,10 +200,10 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
     }
 
     const modifyProfile = (name, email, intro) => {
-        let originName = myProfile[0].name;
-        myProfile[0].name = name;
-        myProfile[0].email = email;
-        myProfile[0].intro = intro;
+        let originName = me.name;
+        me.name = name;
+        me.email = email;
+        me.intro = intro;
 
         //member의 정보를 수정
         for (let i = 0; i < member.length; i++) {
@@ -239,10 +240,10 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
             </div >
             <div className="box profile">
                 <Profile
-                    myProfile={myProfile}
+                    myProfile={me}
                     onShowModal={onShowProfileModal} />
                 <ProfileModal
-                    myProfile={myProfile}
+                    myProfile={me}
                     open={profileOpen}
                     close={handleProfileClose}
                     modifyProfile={modifyProfile} />

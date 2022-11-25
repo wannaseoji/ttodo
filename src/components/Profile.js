@@ -19,7 +19,7 @@ import '../styles/Profile.css';
 import { createTheme, ThemeProvider } from '@mui/material';
 
 export default function Profile({myProfile, onShowModal}) {
-  const { name, image, intro, email } = myProfile[0];
+  const { name, image, intro, email } = myProfile;
   return (
     <List sx={{ width: '100%', maxWidth: 550, bgcolor: 'background.paper'}}>
       <ListItem sx={{padding:"0"}}>
@@ -27,6 +27,7 @@ export default function Profile({myProfile, onShowModal}) {
           <Avatar
             className="profile"
             alt="Remy Sharp"
+            title={name}
             src={image}
             sx={{ width: "90px", height: "90px" }} />
         </ListItemAvatar>
@@ -65,7 +66,10 @@ export default function Profile({myProfile, onShowModal}) {
             </React.Fragment>
           }
         />
-        <BiDotsVerticalRounded size={35} color="#D9D9D9" onClick={onShowModal}/>
+        <BiDotsVerticalRounded 
+          size={35} 
+          color="#D9D9D9" 
+          onClick={onShowModal}/>
       </ListItem>
     </List>
   );

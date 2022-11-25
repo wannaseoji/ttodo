@@ -26,8 +26,9 @@ import CategoryTaskList from "../components/tasklist/CategoryTaskList";
 import ModifyTaskModal from '../components/modal/ModifyTaskModal'
 import AddTaskModal from "../components/modal/AddTaskModal"
 import Scrollbars from "react-custom-scrollbars";
-const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, myProfile, member }) => {
 
+const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, member}) => {
+    const me = member.filter((v) => v.me === "true")[0] //내 데이터
     const initTask = {
         "index": 0,
         "id": "",
@@ -143,10 +144,10 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, myPr
         handleProfileClickOpen();
     }
     const modifyProfile = (name, email, intro) => {
-        let originName = myProfile[0].name;
-        myProfile[0].name = name;
-        myProfile[0].email = email;
-        myProfile[0].intro = intro;
+        let originName = me.name;
+        me.name = name;
+        me.email = email;
+        me.intro = intro;
 
         //member의 정보를 수정
         for (let i = 0; i < member.length; i++) {
@@ -184,10 +185,10 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, myPr
             </div >
             <div className="box profile">
                 <Profile
-                    myProfile={myProfile}
+                    myProfile={me}
                     onShowModal={onShowProfileModal} />
                 <ProfileModal
-                    myProfile={myProfile}
+                    myProfile={me}
                     open={profileOpen}
                     close={handleProfileClose}
                     modifyProfile={modifyProfile} />

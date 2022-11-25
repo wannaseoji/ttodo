@@ -12,6 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select'
 import { useState } from "react";
+import CustomTextField from "./modal/CustomTextField";
 
 
 const TeamProfileModal = ({open, close, modifyTeamProfile}) => {
@@ -35,58 +36,32 @@ const TeamProfileModal = ({open, close, modifyTeamProfile}) => {
     }
 
     return (
-        <div>
-            <Dialog open={open} onClose={close}>
-                <DialogTitle
-                    style={{ backgroundColor: "pink", color: "#FFFFFF"}}
-                    sx={{ alignItems : 'center'}}>
-                    팀 프로필 변경
-                </DialogTitle>
-                <DialogContent style={{ alignItems: "center", marginTop: "2vh"}}>
-                <FormControl>
-                    <div style={{"marginBottom": "1vh", "marginTop": "1vh"}}>
-                        <span style={{"color" : "pink", "marginRight": "0.5vw"}}>
-                            <b>Name</b>
-                        </span>
-                        <span>
-                            <input 
-                                type="text" 
-                                style={{"border-bottom": "0.5px solid pink"}}
-                                value={name} 
-                                onChange={nameTextOnChange}/>
-                        </span>
-                    </div>
-                    <div style={{"marginBottom": "1vh", "marginTop": "1vh"}}>
-                        <span style={{"color" : "pink", "marginRight": "0.7vw"}}>
-                            <b>intro</b>
-                        </span>
-                        <span>
-                            <input 
-                                type="text" 
-                                style={{"border-bottom": "0.5px solid pink"}}
-                                value={intro}
-                                onChange={introTextOnChange}/>
-                        </span>
-                    </div>
-                </FormControl>
-                </DialogContent> 
-                <DialogActions>
-                    <Button                         //추가하는 버튼
-                        style={{ color: "pink"}}
-                        onClick={modify}>
-                        변경
-                    </Button>
-                    <Button                         //닫는버튼
-                        style={{ color: "pink"}} 
-                        onClick={() => {
-                        close();                     
-                        setName("");              
-                        setIntro("");
-                    }}>
-                        취소
-                    </Button>
-                </DialogActions>
-            </Dialog>
+        <div className={open ? 'openModal modal' : 'modal'} >
+            {open ? (
+                <section>
+                    <header> 팀 프로필 변경 </header>
+                    <main>
+                        <div>
+                            <span className="settingTitle">팀 이름</span>
+                            <CustomTextField id="standard-basic" variant="standard" defaultValue={name} onChange={nameTextOnChange}/>
+                        </div>
+                        <div>
+                        <span className="settingTitle">팀 소개</span>
+                            <CustomTextField id="standard-basic" variant="standard" defaultValue={intro} onChange={introTextOnChange}/>
+                        </div>
+                    </main>
+                    <footer>
+                        <button className="monify" onClick={modify}>변경</button>
+                        <button 
+                            className="cancel"
+                            onClick={() => {
+                                close();                     
+                                setName("");              
+                                setIntro("");
+                            }}>취소</button>
+                    </footer>
+                </section>
+            ) : null}
         </div>
     );
 }

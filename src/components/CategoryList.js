@@ -15,9 +15,8 @@ import { useState } from "react";
 import TaskList from "../components/tasklist/TaskList"
 
 
-
-const CategoryList = ({ curTeam, teamTask, onShowCategoryModal = f => f, onShowCategoryTeamTask, onShowCategoryDeleteModify, onCheck = f => f }) => {
-
+//장훈, 형민이가 같이 수정한 CategoryList 컴포넌트
+const CategoryList = ({setClickedMemberList, curTeam, teamTask, onShowCategoryModal=f=>f, onShowCategoryTeamTask, onShowCategoryDeleteModify, onCheck=f=>f}) => {
     var t1;
     console.log(` curTeam : ${curTeam}`)
     console.log(`team Task : ${teamTask}`)
@@ -29,62 +28,68 @@ const CategoryList = ({ curTeam, teamTask, onShowCategoryModal = f => f, onShowC
     // console.log(t1)
     return (
         <Scrollbars>
-            {
-                t1.myTask.sort((a, b) => a.relatedMembers.length - b.relatedMembers.length)
-                    .map((element, index) => (
-                        <Accordion
-                            style={{ "backgroundColor": "#FFE2E9", "borderRadius": 10 }}>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel1a-content"
-                                id="panel1a-header">
-                                {/*동그란 이미지가 나오는 부분*/}
-                                {element.relatedMembers.map((data) => (
-                                    <Avatar
-                                        src={data + ".jpg"}
-                                        sx={{ width: "30px", height: "30px" }} />
-                                ))}
-                                <AiOutlinePlusCircle
-                                    style={{ "marginLeft": "0.3vw" }}
-                                    size="32"
-                                    color="#FF9AB5"
-                                    onClick={(e) => onShowCategoryTeamTask(e, t1, element.relatedMembers)} />
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <TaskList tasks={element.tasks} limit={element.tasks.length} onCheckTask={onCheck} onModifyTaskModal={onShowCategoryDeleteModify} />
-
-                            </AccordionDetails>
-                        </Accordion>
-                    ))
-            }
-            {
-                t1.otherTask.sort((a, b) => a.relatedMembers.length - b.relatedMembers.length)
-                    .map((element) => (
-                        <Accordion
-                            style={{ backgroundColor: "#FFE2E9", borderRadius: 10 }}>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel1a-content"
-                                id="panel1a-header">
-                                {/*동그란 이미지가 나오는 부분*/}
-                                {element.relatedMembers.map((data) => (
-                                    <Avatar
-                                        src={data + ".jpg"}
-                                        sx={{ width: "30px", height: "30px" }} />
-                                ))}
-                                <AiOutlinePlusCircle
-                                    style={{ "marginLeft": "0.3vw" }}
-                                    size="32"
-                                    color="#FF9AB5"
-                                    onClick={() => { alert(`아이콘 클릭`) }} />
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <TaskList tasks={element.tasks} limit={element.tasks.length} onCheckTask={onCheck} onModifyTaskModal={onShowCategoryDeleteModify} />
-
-                            </AccordionDetails>
-                        </Accordion>
-                    ))
-            }
+        { 
+            t1.myTask.sort((a, b) => a.relatedMembers.length - b.relatedMembers.length)
+            .map((element, index) => (
+            <Accordion 
+            style={{ "backgroundColor": "#FFE2E9", "borderRadius": 10, maxWidth: "95%"}}>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header">
+                    {/*동그란 이미지가 나오는 부분*/}
+                    {element.relatedMembers.map((data) => (
+                        <Avatar
+                        title={data}
+                        src={data + ".jpg"}
+                        sx={{ width: "30px", height: "30px"}} />
+                    ))}
+                    <AiOutlinePlusCircle 
+                        style={{ "marginLeft": "0.3vw"}}
+                        size="32" 
+                        color="#FF9AB5"
+                        onClick={(e) => {
+                            onShowCategoryTeamTask(e,t1, element.relatedMembers);
+                            setClickedMemberList([...element.relatedMembers]);
+                            }}/>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <TaskList tasks={element.tasks} limit={element.tasks.length} onCheckTask={onCheck} onModifyTaskModal={onShowCategoryDeleteModify}/>
+                </AccordionDetails>
+            </Accordion>
+        ))
+        }
+        {
+            t1.otherTask.sort((a, b) => a.relatedMembers.length - b.relatedMembers.length)
+            .map((element) => (
+                <Accordion 
+                style={{ backgroundColor: "#FFE2E9", borderRadius: 10, maxWidth: "95%"}}>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header">
+                        {/*동그란 이미지가 나오는 부분*/}
+                        {element.relatedMembers.map((data) => (
+                            <Avatar
+                            title={data}
+                            src={data + ".jpg"}
+                            sx={{ width: "30px", height: "30px"}} />
+                        ))}
+                        <AiOutlinePlusCircle 
+                            style={{ "marginLeft": "0.3vw"}}
+                            size="32" 
+                            color="#FF9AB5"
+                            onClick={(e) => {
+                                onShowCategoryTeamTask(e,t1, element.relatedMembers);
+                                setClickedMemberList([...element.relatedMembers]);
+                                }}/>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <TaskList tasks={element.tasks} limit={element.tasks.length} onCheckTask={onCheck} onModifyTaskModal={onShowCategoryDeleteModify}/>
+                    </AccordionDetails>
+                </Accordion>
+            ))
+        }
         </Scrollbars>
     );
 }

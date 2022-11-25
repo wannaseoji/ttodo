@@ -36,8 +36,8 @@ const MemberAddModal = ({ open, close, createTeamMember, followers, curTeam }) =
     
     //팔로워중 팀맴버가 아닌 사람들을 필터링
     const filterSearch = followers
-                        .filter(x1 => curTeam.memberList.every(x2 => x1.name !== x2))
-                        .filter((p) => {return p.name.toLocaleLowerCase().includes(search.toLocaleLowerCase().replace(" ", ""))})
+                        .filter(x1 => curTeam.memberList.every(x2 => x1 !== x2))
+                        .filter((p) => {return p.toLocaleLowerCase().includes(search.toLocaleLowerCase().replace(" ", ""))})
     return (
         <div>
             <Dialog open={open} onClose={close}>
@@ -50,7 +50,7 @@ const MemberAddModal = ({ open, close, createTeamMember, followers, curTeam }) =
                     <FormControl>
                         <input type="text" value={search} onChange={onChange} />
                         <div>
-                            {booleanView ? filterSearch.map(member => <div><span>{member.name}</span></div>) : <div></div>}
+                            {booleanView ? filterSearch.map(member => <div><span>{member}</span></div>) : <div></div>}
                         </div>
                     </FormControl>
                 </DialogContent>
