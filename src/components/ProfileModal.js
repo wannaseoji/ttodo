@@ -107,7 +107,7 @@ const ProfileModal = ({myProfile, open, close, modifyProfile}) => {
                     {/* </FormControl> */}
                     </main> 
                     <footer>
-                        <button className="modify" onClick={modify}>modify</button>
+                        <button className="modify" onClick={modify}>수정</button>
                         <button 
                             className="cancel" 
                             onClick={() => {
@@ -115,7 +115,7 @@ const ProfileModal = ({myProfile, open, close, modifyProfile}) => {
                                 setName("");              
                                 setEmail("");
                                 setIntro("");
-                        }}>cancel</button>
+                        }}>취소</button>
                     </footer>
                 </section>
             ) : null}
