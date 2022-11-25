@@ -50,7 +50,7 @@ const FollowerModal = ({ open, close, follower, member, createFollower, myProfil
                     <header> 팔로워 추가 </header>
                     <main>
                         <div style={{justifyContent: "center"}}>
-                        <span style={{marginRight:"2vw"}}>친구 검색</span>
+                        <span style={{marginRight:"2vw", fontWeight:800}}>친구 검색</span>
                         <StyledTextField id="outlined-basic" value={search} onChange={onChange} variant="outlined"/>
                         {booleanView ? filterSearch.map(member => <div><span>{member.name}</span></div>) : <div></div>}
                         </div>
