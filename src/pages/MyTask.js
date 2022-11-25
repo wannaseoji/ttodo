@@ -18,6 +18,7 @@ import { AiOutlineSetting } from "react-icons/ai";
 import CategorySettingModal from '../components/modal/CategorySettingModal'
 
 import AddCategoryModal from "../components/modal/AddCategoryModal"
+import ModifyCategoryModal from '../components/modal/ModifyCategoryModal';
 
 
 const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => f, setTeams = f => f, myProfile, member, categories, setCategories = f => f }) => {
@@ -40,6 +41,13 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
             return task.index === modifiedTask.index ? modifiedTask : task
         })
         setTasks(modifiedTasks)
+    }
+
+    const onModifyCategory = function (modifiedCategory) {
+        const modifiedCategories = categories.map((category) => {
+            return category.index === modifiedCategory.index ? modifiedCategory : category
+        })
+        setCategories(modifiedCategories)
     }
 
     const DateToYYYYMMDD = (date) => {
@@ -88,23 +96,6 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
         setAddCategoryName(categoryName);
     }
 
-    // Category 추가 모달
-    const [addCategoryModalOpen, setAddCategoryModalOpen] = useState(false);
-    const openAddCategoryModal = () => {
-        setAddCategoryModalOpen(true);
-    };
-    const closeAddCategoryModal = () => {
-        setAddCategoryModalOpen(false);
-    };
-    const onShowAddCategoryModal = () => {
-        openAddCategoryModal();
-    }
-
-    // const addCategoryHandler = () => {
-    //     onShowAddTaskModal();
-    //     setAddCategoryName(categoryName);
-    // }
-
     const modifyTaskHandler = (task) => {
         setSelectedTask(task)
         onChange(new Date(task.date))
@@ -147,6 +138,50 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
     };
     const onShowCategorySettingModal = () => {
         openCategorySettingModal();
+    }
+
+    // Category 추가 모달
+    const [addCategoryModalOpen, setAddCategoryModalOpen] = useState(false);
+    const openAddCategoryModal = () => {
+        setAddCategoryModalOpen(true);
+    };
+    const closeAddCategoryModal = () => {
+        setAddCategoryModalOpen(false);
+    };
+    const onShowAddCategoryModal = () => {
+        openAddCategoryModal();
+    }
+
+    // Category 수정 모달
+    const [modifyCategoryModalOpen, setModifyCategoryModalOpen] = useState(false)
+    const openModifyCategoryModal = () => {
+        setModifyCategoryModalOpen(true);
+    };
+    const closeModifyCategoryModal = () => {
+        setModifyCategoryModalOpen(false);
+    };
+
+    const onShowModifyCategoryModal = () => {
+        openModifyCategoryModal();
+    }
+
+    const initCategory = {
+        "index": 0,
+        "title": ""
+    }
+
+    const [selectedCategory, setSelectedCategory] = useState(initCategory)
+
+    const modifyCategoryHandler = (category) => {
+        setSelectedCategory(category)
+        onShowModifyCategoryModal();
+    }
+
+    //카테고리 삭제
+    const onDeleteCategory = function () {
+        const modifiedCategories = categories.filter((category) => category.index !== selectedCategory.index);
+        setCategories(modifiedCategories);
+        closeModifyCategoryModal();
     }
 
     //장훈 코드(프로필 모달 )
@@ -232,13 +267,20 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
                     close={closeCategorySettingModal}
                     header="카테고리"
                     categories={categories}
-                    setCategories={setCategories}
-                    onShowAddCategoryModal={onShowAddCategoryModal} />
+                    onShowAddCategoryModal={onShowAddCategoryModal}
+                    modifyCategoryHandler={modifyCategoryHandler} />
                 <AddCategoryModal
                     open={addCategoryModalOpen}
                     close={closeAddCategoryModal}
                     header="카테고리 추가"
                     onNewCategory={onNewCategory} />
+                <ModifyCategoryModal
+                    open={modifyCategoryModalOpen}
+                    close={closeModifyCategoryModal}
+                    header={"카테고리 수정 및 삭제"}
+                    selectedCategory={selectedCategory}
+                    onModifyCategory={onModifyCategory}
+                    onDeleteCategory={onDeleteCategory} />
             </div>
             <div className="box tasklist">
                 <Scrollbars style={{ width: '90%', height: '100%', margin: '0rem', backgroundColor: "transparent", borderRadius: "0px 0px 10px 10px" }}>
