@@ -28,10 +28,10 @@ const useStyles = makeStyles((theme) => createStyles({
         "&.MuiOutlinedInput-root":{
             "& fieldset": {
                 borderColor: "#555555"
-              },
-              "&.Mui-focused fieldset": {
+            },
+            "&.Mui-focused fieldset": {
                 borderColor: "#FF9AB5"
-              }
+            }
         }
     }
 }))
@@ -47,12 +47,18 @@ const MenuProps = {
     },
 };
 export default function TeamModal({ open, close, onNewTeam, followers, leader }) {
-    const [teamName, setTeamName] = useState()
-    const [teamMessage, setTeamMessage] = useState()
+    const [teamName, setTeamName] = useState("");
+    const [teamMessage, setTeamMessage] = useState("");
     const newTeam = () => {
-        console.log(teamName)
+        console.log("팀이름: " + teamName)
+        if(teamName === "") {
+            alert("팀 이름을 입력하세요.")
+            return
+        }
         onNewTeam(teamName, personName, teamMessage, leader)
         setPersonName([])
+        setTeamName("")
+        setTeamMessage("")
         close()
     }
 
@@ -84,29 +90,26 @@ export default function TeamModal({ open, close, onNewTeam, followers, leader })
                             <CustomTextField id="standard-basic" variant="standard" onChange={e => setTeamMessage(e.target.value)}/>
                         </div>
                         <div>
-                            {/* <span className="settingTitle">팀 이름</span> */}
                             <span className="settingTitle">멤버 추가</span>
                             <FormControl>
-                            
-                        <Select
-                            className={classes.select}
-                            style={{ width: '18vw', height:'4vh'}}
-                            id="demo-simple-select"
-                            multiple
-                            value={personName}
-                            MenuProps={MenuProps}
-                            onChange={handleChange}
-                            inputProps={{ 'aria-label': 'Without label' }}
-                        >
-                            {
-                                followers.map((v, i) => (
-                                    <MenuItem key={i} value={v} style={getStyles(v, personName, theme)}>
-                                        {v}
-                                    </MenuItem>
-                                ))
-                            }
-                        </Select>
-                    </FormControl>
+                                <Select
+                                    className={classes.select}
+                                    style={{ width: '18vw', height:'4vh'}}
+                                    id="demo-simple-select"
+                                    multiple
+                                    value={personName}
+                                    MenuProps={MenuProps}
+                                    onChange={handleChange}
+                                    inputProps={{ 'aria-label': 'Without label' }}>
+                                    {
+                                        followers.map((v, i) => (
+                                            <MenuItem key={i} value={v} style={getStyles(v, personName, theme)}>
+                                                {v}
+                                            </MenuItem>
+                                        ))
+                                    }
+                                </Select>
+                            </FormControl>
                         </div>
                     </main>
                     <footer>

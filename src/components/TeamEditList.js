@@ -8,14 +8,14 @@ function TeamEditList({onShowModal, teamData, changeCurTeamIdx, member}) {
         <Scrollbars thumbSize={90} autoHeightMax={"70vh"} autoHeight={true}>
             {
                 teamData.map((v,i) => (
-                    <div style={{width:"190", height:"195", display:"inline", float:"left", marginLeft:"1.5vw"}}>
+                    <div key={i} style={{width:"190", height:"195", display:"inline", float:"left", marginLeft:"1.5vw"}}>
                         <button onClick={()=>changeCurTeamIdx(i)}>{<Team key={i} data={v} memberData={member}/>}</button>
                     </div>
                 )
                 )
             }
             {
-                <div style={{width:"190", height:"195", display:"inline", float:"left", marginLeft:"6.3vw", marginTop:"12vh", marginBottom:"12vh"}}>
+                <div key={10} style={{width:"190", height:"195", display:"inline", float:"left", marginLeft:"6.3vw", marginTop:"12vh", marginBottom:"12vh"}}>
                     <center><button onClick={onShowModal}><BsPlusCircleFill size="60" color="#FEA4BC" /></button></center>
                 </div>
             }
