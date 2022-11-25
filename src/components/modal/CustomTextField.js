@@ -23,9 +23,9 @@ const StyledTextField = styled(TextField)({
 });
 
 const CustomTextField = (props) => {
-    const {id, variant, onChange} = props
+    const {id, variant, defaultValue, onChange} = props
     return(
-        <StyledTextField sx={{ width: "80%" }} id={id} variant={variant} onChange={onChange}/>
+        <StyledTextField sx={{ width: "80%" }} id={id} variant={variant} defaultValue={defaultValue} onChange={onChange}/>
     )
 }
 
