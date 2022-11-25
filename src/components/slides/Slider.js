@@ -30,7 +30,7 @@ const SlideComponent = ({ Piedata = [], LineData = [], progressData = [], childr
 
     return (
         <>
-            <StyledButton onClick={PrevSlide}>prev</StyledButton><span></span>
+            <StyledButton onClick={PrevSlide}>prev</StyledButton>
             <StyledButton onClick={NextSlide}>next</StyledButton>
             <Wrapper>
                 <SlideWrapper ref={slideRef} style={{ width: '100%', height: '100%' }}>

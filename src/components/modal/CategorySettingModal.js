@@ -24,7 +24,7 @@ function CategorySettingModal({ open, close, header, categories, onShowAddCatego
                     </main>
                     <footer>
                         <button className="add" onClick={onShowAddCategoryModal}>추가</button>
-                        <button className="cancel" onClick={close}>취소</button>
+                        <button className="cancel" onClick={close}>닫기</button>
                     </footer>
                 </section>
             ) : null}

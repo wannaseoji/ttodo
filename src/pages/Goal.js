@@ -26,7 +26,7 @@ import CategoryTaskList from "../components/tasklist/CategoryTaskList";
 import ModifyTaskModal from '../components/modal/ModifyTaskModal'
 import AddTaskModal from "../components/modal/AddTaskModal"
 import Scrollbars from "react-custom-scrollbars";
-const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, myProfile, member}) => {
+const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, myProfile, member }) => {
 
     const initTask = {
         "index": 0,
@@ -149,8 +149,8 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, myPr
         myProfile[0].intro = intro;
 
         //member의 정보를 수정
-        for(let i = 0; i < member.length; i++) {
-            if(member[i].name === originName) {
+        for (let i = 0; i < member.length; i++) {
+            if (member[i].name === originName) {
                 member[i].name = name;
             }
         }
@@ -193,9 +193,8 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, myPr
                     modifyProfile={modifyProfile} />
             </div>
             <div className="box content"  >
-                <GrayBox title={"월별 목표달성률"} settingHeight="70vh">
-                    <div style={{ paddingLeft: '10%', width: '100%', height: '120%', }}>
-
+                <GrayBox title={"월별 목표달성률"} settingHeight="70vh" sx={{}}>
+                    <div style={{ paddingLeft: '10%', width: '100%', height: '120%'}}>
                         <Slider Piedata={Piedata} LineData={LineData} children={
                             Piedata.map((pie, i) => <div key={i} style={{ width: '100%', height: '100%', flex: 'none' }}> <Slide key={i} Piedata={pie} LineData={LineData[i]} /> </div>)
                         } />
@@ -216,9 +215,6 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, myPr
                             )
                         }
                         />
-
-
-
                     </GrayBox>
                 } </Scrollbars >
                 {/* <MyBarCharts data={uniqueProgressData} /> */}
@@ -239,6 +235,3 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, myPr
 
 
 export default Goal;
-
-
-

@@ -4,7 +4,6 @@ import Team from "../components/Team";
 import Profile from "../components/Profile";
 import CustomTimeLine from "../components/timeline/CustomTimeline";
 import React, { useState, useEffect } from "react";
-// import categoryData from '../assets/category-data.json'
 import Scrollbars from 'react-custom-scrollbars';
 import ModifyTaskModal from "../components/modal/ModifyTaskModal";
 import AddTaskModal from "../components/modal/AddTaskModal";
@@ -273,11 +272,13 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
                     open={addCategoryModalOpen}
                     close={closeAddCategoryModal}
                     header="카테고리 추가"
-                    onNewCategory={onNewCategory} />
+                    categories={categories}
+                    onNewCategory={onNewCategory}/>
                 <ModifyCategoryModal
                     open={modifyCategoryModalOpen}
                     close={closeModifyCategoryModal}
                     header={"카테고리 수정 및 삭제"}
+                    categories={categories}
                     selectedCategory={selectedCategory}
                     onModifyCategory={onModifyCategory}
                     onDeleteCategory={onDeleteCategory} />

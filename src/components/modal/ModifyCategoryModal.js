@@ -2,6 +2,9 @@ import { TextField, styled } from '@mui/material';
 import React from 'react';
 import "../../styles/TaskModal.css"
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const StyledTextField = styled(TextField)({
     "&:hover .MuiInput-underline": {
         borderBottomColor: "gray"
@@ -24,22 +27,45 @@ const StyledTextField = styled(TextField)({
     }
 });
 
-function ModifyCategoryModal({ open, close, header, selectedCategory = f => f, onModifyCategory = f => f, onDeleteCategory = f => f }) {
+function ModifyCategoryModal({ open, close, header, categories, selectedCategory = f => f, onModifyCategory = f => f, onDeleteCategory = f => f }) {
     let title = selectedCategory.title;
 
-    const modifyNewCategory = () => {
+    const notify = () => toast.error(`"${title}" already exist`, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
+
+    const nextStep = (title) => {
         const modifiedCategory = { ...selectedCategory, title }
         onModifyCategory(modifiedCategory)
+        toast.dismiss()
+        close()
+    }
+
+    const modifyNewCategory = () => {
+        if(categories.findIndex(category => category.title === title) !== -1) notify()
+        else nextStep(title)
+    }
+
+    const closeEvent=() => {
+        toast.dismiss()
         close()
     }
 
     return (
         <div className={open ? 'openModal modal' : 'modal'} >
+            <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss={false} draggable pauseOnHover theme="colored" />
             {open ? (
                 <section>
                     <header>
                         {header}
-                        <button className="close" onClick={close}>
+                        <button className="close" onClick={closeEvent}>
                             &times;
                         </button>
                     </header>
@@ -47,8 +73,8 @@ function ModifyCategoryModal({ open, close, header, selectedCategory = f => f, o
                         <div><span className="settingTitle">이름</span><StyledTextField id="standard-basic" label="" defaultValue={selectedCategory.title} variant="standard" sx={{ width: "80%" }} onChange={e => title = e.target.value} /></div>
                     </main>
                     <footer>
-                        <button className="modify" onClick={modifyNewCategory}>modify</button>
-                        <button className="delete" onClick={onDeleteCategory}>delete</button>
+                        <button className="modify" onClick={modifyNewCategory}>수정</button>
+                        <button className="delete" onClick={onDeleteCategory}>삭제</button>
                     </footer>
                 </section>
             ) : null}
