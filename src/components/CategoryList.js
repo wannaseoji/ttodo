@@ -15,9 +15,8 @@ import { useState } from "react";
 import TaskList from "../components/tasklist/TaskList"
 
 
+
 const CategoryList = ({ curTeam, teamTask, onShowCategoryModal = f => f, onShowCategoryTeamTask, onShowCategoryDeleteModify, onCheck = f => f }) => {
-
-
 
     var t1;
     console.log(` curTeam : ${curTeam}`)
