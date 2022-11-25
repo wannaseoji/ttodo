@@ -24,7 +24,7 @@ const CustomTimeLine = function({tasks=[]}){
                 {
                     hours.map(
                         (hour,i)=>(<TimelineItem key={i}>
-                            <TimelineOppositeContent style={{flex:(hour<10)?0.115:0.1, fontWeight:(nowHour==hour)?"bold":"normal", color:(nowHour==hour)?"#FF9AB5":(nowHour>hour)?"grey":"black"}}>{hour}:00</TimelineOppositeContent>
+                            <TimelineOppositeContent style={{flex:0.1, fontWeight:(nowHour==hour)?"bold":"normal", color:(nowHour==hour)?"#FF9AB5":(nowHour>hour)?"grey":"black"}}>{hour}:00</TimelineOppositeContent>
                             <TimelineSeparator >
                                 <TimelineDot style={{backgroundColor:(hour==nowHour)?"#FF9AB5":"text.secondary"}}/>
                                 <TimelineConnector />
