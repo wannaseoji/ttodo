@@ -11,6 +11,8 @@ import Select from '@mui/material/Select'
 import { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
+import CustomTextField from './CustomTextField';
+import { makeStyles, createStyles } from '@material-ui/core/styles'
 
 function getStyles(name, personName, theme) {
     return {
@@ -20,6 +22,20 @@ function getStyles(name, personName, theme) {
                 : theme.typography.fontWeightMedium,
     };
 }
+
+const useStyles = makeStyles((theme) => createStyles({
+    select: { 
+        "&.MuiOutlinedInput-root":{
+            "& fieldset": {
+                borderColor: "#555555"
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: "#FF9AB5"
+              }
+        }
+    }
+}))
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -41,6 +57,7 @@ export default function TeamModal({ open, close, onNewTeam, followers, leader })
     }
 
     const theme = useTheme();
+    const classes = useStyles()
     const [personName, setPersonName] = useState([]);
 
     const handleChange = (event) => {
@@ -53,50 +70,33 @@ export default function TeamModal({ open, close, onNewTeam, followers, leader })
     };
 
     return (
-        <div>
-            <Dialog open={open} onClose={close}>
-                <DialogTitle
-                    style={{ backgroundColor: "pink", color: "#FFFFFF" }}
-                    sx={{ alignItems: 'center' }}>
-                    팀 추가
-                </DialogTitle>
-                <DialogContent>
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="name"
-                        label="팀 이름"
-                        type="warmming"
-                        fullWidth
-                        variant="standard"
-                        sx={{ input: { color: 'black' } }}
-                        onChange={e => setTeamName(e.target.value)}
-                    />
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="teamProfileMessage"
-                        label="팀 프로필 메시지"
-                        type="warmming"
-                        fullWidth
-                        variant="standard"
-                        sx={{ input: { color: 'black' } }}
-                        onChange={e => setTeamMessage(e.target.value)} />
-                </DialogContent>
-                <DialogContent style={{ alignItems: "center" }}>
-                    <FormControl>
-                        <InputLabel id="demo-simple-select-label"
-                            style={{ marginLeft: "0.3vw" }}
-                        > 멤버</InputLabel>
+        <div className={open ? 'openModal modal' : 'modal'} >
+            {open ? (
+                <section>
+                    <header> 팀 추가 </header>
+                    <main>
+                        <div>
+                            <span className="settingTitle">팀 이름</span>
+                            <CustomTextField id="standard-basic" variant="standard" onChange={e => setTeamName(e.target.value)}/>
+                        </div>
+                        <div>
+                            <span className="settingTitle">팀 소개</span>
+                            <CustomTextField id="standard-basic" variant="standard" onChange={e => setTeamMessage(e.target.value)}/>
+                        </div>
+                        <div>
+                            {/* <span className="settingTitle">팀 이름</span> */}
+                            <span className="settingTitle">멤버 추가</span>
+                            <FormControl>
+                            
                         <Select
-                            style={{ width: '20vw', alignItems: 'center', marginLeft: "0.3vw" }}
-                            labelId="demo-simple-select-label"
+                            className={classes.select}
+                            style={{ width: '18vw', height:'4vh'}}
                             id="demo-simple-select"
                             multiple
                             value={personName}
                             MenuProps={MenuProps}
                             onChange={handleChange}
-                            input={<OutlinedInput label="Name" />}
+                            inputProps={{ 'aria-label': 'Without label' }}
                         >
                             {
                                 followers.map((v, i) => (
@@ -107,12 +107,14 @@ export default function TeamModal({ open, close, onNewTeam, followers, leader })
                             }
                         </Select>
                     </FormControl>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={newTeam}>추가</Button>
-                    <Button onClick={close}>취소</Button>
-                </DialogActions>
-            </Dialog>
+                        </div>
+                    </main>
+                    <footer>
+                        <button className="add" onClick={newTeam}>추가</button>
+                        <button className="cancel" onClick={close}>취소</button>
+                    </footer>
+                </section>
+            ) : null}
         </div>
     );
 }
