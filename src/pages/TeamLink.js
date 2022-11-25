@@ -1,20 +1,20 @@
 
 import '../App.css';
 import '../styles/grid.css';
+import '../styles/linkButton.css';
+
 import React, { useState } from "react";
+
 import TeamEditList from "../components/TeamEditList"
 import Notice from "../components/Notice";
 import TeamModal from "../components/modal/TeamModal";
 import CategoryList from "../components/CategoryList";
-import '../styles/linkButton.css';
 import Menu from "../components/Menu";
 import NoticeModal from '../components/modal/NoticeModal';
 import TeamProfile from '../components/TeamProfile';
 import MemberAddModal from '../components/MemberAddModal';
 import TeamProfileModal from '../components/TeamProfileModal';
 import CategoryModal from '../components/modal/CategoryModal';
-import ModifyTaskModal from '../components/modal/ModifyTaskModal';
-import AddTaskModal from '../components/modal/AddTaskModal';
 import GrayBox from '../components/GrayBox'
 import AddTeamTaskModal from '../components/modal/AddTeamTaskModal';
 import MemberList from '../components/MemberList';
@@ -31,7 +31,7 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
     const myFollowers = me.followMembers
     console.log(myFollowers)                                //나의 팔로워된 애들의 리스트(followers 대체)
 
-    const [selectedDate, onChange] = useState(new Date()); // Mon Nov 14 2022 10:50:35 GMT+0900 (한국 표준시)
+    const [selectedDate] = useState(new Date()); // Mon Nov 14 2022 10:50:35 GMT+0900 (한국 표준시)
     const [clickedMemberList, setClickedMemberList] = useState([]);
     const initTask = {
         "index": 0,
@@ -44,13 +44,6 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
 
 
     const onCheck = index => {
-        // const newTeamTasks = tasks.map(task => {
-        //     if (task.index === index)
-        //         task.check = !(task.check);
-        //     return task;
-        // })
-        // setTasks(newTasks);
-        
         const newTeamTasks = teamTask.map(team => {
             team.myTask.sort((a, b) => a.relatedMembers.length - b.relatedMembers.length)
             .map((element) => {
@@ -116,11 +109,10 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
     //Notice 추가 Modal 관련 코드 끝
 
     const notices = [...curTeam.notice] //현재 팀의 notice 목록
-    console.log(teams)
-    console.log(notices)
 
     //Team 생성
     const onNewTeam = function (name, memberList, intro, leader) {
+
         console.log("new team 추가")
         // name, memberList, notice, intro, reader
         const newTeams = {
@@ -143,7 +135,6 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
     }
 
     //Notice 생성
-
     const onNewNotice = function(notice) {
         const newNotices = [...notices, notice]
         curTeam.notice = newNotices
@@ -169,9 +160,6 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
             alert(`이미 등록된 맴버입니다.`);
             return;
         }
-
-
-        
         let isFollower = false;
         if(myFollowers.includes(username)) {
             isFollower = true;
@@ -202,14 +190,17 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
 
     //팀 프로필을 변경하는 메소드
     const modifyTeamProfile = (name, intro) => {
+        if(name === "" || intro === "") {
+            alert(`공백을 입력할 수 없습니다.`);
+            return;
+        }
         let originName = teams[index].name;
         teams[index].name = name;
         teams[index].intro = intro;
-        let findIdx = -1;
         for (let i = 0; i < teamTask.length; i++) {
             if (teamTask[i].name === originName) {
                 teamTask[i].name = name;
-                findIdx = i;
+                break;
             }
         }
         setIndex(index);
@@ -250,6 +241,11 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
     }
     //팀 태스크를 추가하는 메소드
     const onNewTeamTask = (title, date, hour, minute) => {
+        if(title === "") {
+            alert('Todo에 공백을 입력할 수 없습니다.');
+            return;
+        }
+
         let findIdx = -1;
         for(let i = 0; i < teamTask.length; i++) {
             if(curTeam.name === teamTask[i].name) {

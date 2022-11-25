@@ -200,6 +200,11 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
     }
 
     const modifyProfile = (name, email, intro) => {
+        //공백 처리
+        if(name === "" || email === "" || intro === "")  { 
+            alert(`공백을 입력했습니다.`)
+            return;
+        }
         let originName = me.name;
         me.name = name;
         me.email = email;

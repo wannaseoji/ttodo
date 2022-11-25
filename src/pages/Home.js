@@ -114,6 +114,12 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
         handleProfileClickOpen();
     }
     const modifyProfile = (name, email, intro) => {
+        //공백 처리
+        if(name === "" || email === "" || intro === "")  { 
+            alert(`공백을 입력할 수 없습니다.`)
+            return;
+        }
+        
         let originName = me.name;
         me.name = name;
         me.email = email;
@@ -147,6 +153,11 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
         console.log(teamTask);
     }
     const createFollower = (username) => {
+        if(username === "") {
+            alert(`공백을 입력했습니다.`);
+            return;
+        }
+
         if(me.followMembers.includes(username)) {       //이미 팔로우 된 계정을 팔로우하려고 할 경우,
             alert('이미 팔로우된 계정입니다.');
             return;
@@ -184,7 +195,6 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
                     <CustomTimeLine tasks={tasks} />
                 </GrayBox>
             </div>
-
             <div className="box follower">
                 <FollowerList 
                     follower={myFollowers} 

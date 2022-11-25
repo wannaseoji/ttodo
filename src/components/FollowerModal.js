@@ -15,7 +15,6 @@ const StyledTextField = styled(TextField)({
             height:"0.7em"
         }
     }
-    
 });
 
 const FollowerModal = ({ open, close, follower, member, createFollower, myProfile }) => {
@@ -52,11 +51,15 @@ const FollowerModal = ({ open, close, follower, member, createFollower, myProfil
                         <div style={{justifyContent: "center"}}>
                         <span style={{marginRight:"2vw", fontWeight:800}}>친구 검색</span>
                         <StyledTextField id="outlined-basic" value={search} onChange={onChange} variant="outlined"/>
+                        </div>
+                        <div style={{justifyContent: "center"}}>
                         {booleanView ? filterSearch.map(member => <div><span>{member.name}</span></div>) : <div></div>}
                         </div>
                     </main>
                     <footer>
-                        <button className="add" onClick={newFollower}>추가</button>
+                        <button 
+                        className="add" 
+                        onClick={newFollower}>추가</button>
                         <button 
                             className="cancel" 
                             onClick={() => {
