@@ -21,19 +21,19 @@ function TeamEditList({onShowModal, teamData, changeCurTeamIdx, member}) {
     list = teamData.slice(offset, offset + limit);
 
     return (
-        <table width="480" height="550" style={{backgroundColor:"#F0F0F0", borderRadius: "10px", marginLeft:"auto", marginRight:"auto"}}>
+        <table width="450px" height="490px" style={{marginLeft:"auto", marginRight:"auto", tableLayout:"fixed"}}>
         {
             list.length === 0 ?
             <><thead>
                 <tr>
-                    <td width="240" height="264">
+                    <td width="225px" height="230px">
                         <center>{<button style={{border:"0", outline:"0"}} onClick={onShowModal}><BsPlusCircleFill size="60" color="#FEA4BC" /></button>}</center>
                     </td >
-                    <td width="240" height="264"> </td>
+                    <td width="225px" height="230px"> </td>
                 </tr>
                 <tr>
-                    <td width="240" height="264"> </td>
-                    <td width="240" height="264"> </td>
+                    <td width="225px" height="230px"> </td>
+                    <td width="225px" height="230px"> </td>
                 </tr>
             </thead><tbody></tbody></> : <><thead><tr><td></td></tr></thead><tbody></tbody></>
         }
@@ -41,16 +41,16 @@ function TeamEditList({onShowModal, teamData, changeCurTeamIdx, member}) {
             list.length === 1 ?
                 <><thead>
                     <tr>
-                        <td width="240" height="275">
+                        <td width="225px" height="230px">
                             <center><button onClick={()=>changeCurTeamIdx(offset)}>{<Team key={offset} data={list[0]} memberData={member}/>}</button></center>
                         </td >
-                        <td width="240" height="275">
+                        <td width="225px" height="230px">
                             <center>{<button onClick={onShowModal}><BsPlusCircleFill size="60" color="#FEA4BC" /></button>}</center>
                         </td>
                     </tr>
                     <tr>
-                        <td width="240" height="275"></td>
-                        <td width="240" height="275"></td>
+                        <td width="225px" height="230px"></td>
+                        <td width="225px" height="230px"></td>
                     </tr>
                 </thead><tbody></tbody></> : <><thead><tr><td></td></tr></thead><tbody></tbody></>
         }
@@ -58,18 +58,18 @@ function TeamEditList({onShowModal, teamData, changeCurTeamIdx, member}) {
             list.length === 2 ?
             <><thead>
                 <tr>
-                    <td width="240" height="275">
+                    <td width="225px" height="230px">
                         <center><button onClick={()=>changeCurTeamIdx(offset)}>{<Team key={offset} data={list[0]} memberData={member}/>}</button></center>
                     </td >
-                    <td width="240" height="275">
+                    <td width="225px" height="230px">
                         <center><button onClick={()=>changeCurTeamIdx(offset+1)}>{<Team key={offset+1} data={list[1]} memberData={member}/>}</button></center>
                     </td>
                 </tr>
                 <tr>
-                    <td width="240" height="275">
+                    <td width="225px" height="230px">
                         <center>{<button onClick={onShowModal}><BsPlusCircleFill size="60" color="#FEA4BC" /></button>}</center>
                     </td>
-                    <td width="240" height="275"></td>
+                    <td width="225px" height="230px"></td>
                 </tr>
             </thead><tbody></tbody></> : <><thead><tr><td></td></tr></thead><tbody></tbody></>
         }
@@ -77,18 +77,18 @@ function TeamEditList({onShowModal, teamData, changeCurTeamIdx, member}) {
             list.length === 3 ?
             <><thead>
                 <tr>
-                    <td width="240" height="275">
+                    <td width="225px" height="230px">
                         <center><button onClick={()=>changeCurTeamIdx(offset)}>{<Team key={offset} data={list[0]} memberData={member}/>}</button></center>
                     </td >
-                    <td width="240" height="275">
+                    <td width="225px" height="230px">
                         <center><button onClick={()=>changeCurTeamIdx(offset+1)}>{<Team key={offset+1} data={list[1]} memberData={member}/>}</button></center>
                     </td>
                 </tr>
                 <tr>
-                    <td width="240" height="275">
+                    <td width="225px" height="230px">
                         <center><button onClick={()=>changeCurTeamIdx(offset+2)}>{<Team key={offset+2} data={list[2]} memberData={member}/>}</button></center>
                     </td>
-                    <td width="240" height="275">
+                    <td width="225px" height="230px">
                         <center>{<button onClick={onShowModal}><BsPlusCircleFill size="60" color="#FEA4BC" /></button>}</center>
                     </td>
                 </tr>
@@ -98,18 +98,18 @@ function TeamEditList({onShowModal, teamData, changeCurTeamIdx, member}) {
             list.length === 4 ?
             <><thead>
                 <tr>
-                    <td width="240" height="275">
+                    <td width="225px" height="230px">
                         <center><button onClick={()=>changeCurTeamIdx(offset)}>{<Team key={offset} data={list[0]} memberData={member}/>}</button></center>
                     </td >
-                    <td width="240" height="275">
+                    <td width="225px" height="230px">
                         <center><button onClick={()=>changeCurTeamIdx(offset+1)}>{<Team key={offset+1} data={list[1]} memberData={member}/>}</button></center>
                     </td>
                 </tr>
                 <tr>
-                    <td width="240" height="275">
+                    <td width="225px" height="230px">
                         <center><button onClick={()=>changeCurTeamIdx(offset+2)}>{<Team key={offset+2} data={list[2]} memberData={member}/>}</button></center>
                     </td>
-                    <td width="240" height="275">
+                    <td width="225px" height="230px">
                         <center><button onClick={()=>changeCurTeamIdx(offset+3)}>{<Team key={offset+3} data={list[3]} memberData={member}/>}</button></center>
                     </td>
                 </tr>
@@ -119,7 +119,7 @@ function TeamEditList({onShowModal, teamData, changeCurTeamIdx, member}) {
             <><thead></thead>
             <tbody>
             <tr>
-                <td width="240" height="29">
+                <td width="225px" height="29px">
                     <center>
                         <GoChevronLeft size="27" color="#878787" 
                             onClick={() => {
@@ -130,7 +130,7 @@ function TeamEditList({onShowModal, teamData, changeCurTeamIdx, member}) {
                         />
                     </center>
                 </td>
-                <td width="240" height="29"> 
+                <td width="225px" height="29px"> 
                     <center>
                         <GoChevronRight size="27" color="#878787" 
                             onClick={ () => { 

@@ -6,7 +6,6 @@ import TeamEditList from "../components/TeamEditList"
 import Notice from "../components/Notice";
 import TeamModal from "../components/modal/TeamModal";
 import CategoryList from "../components/CategoryList";
-import MemberList from "../components/MemberList";
 import '../styles/linkButton.css';
 import Menu from "../components/Menu";
 import NoticeModal from '../components/modal/NoticeModal';
@@ -16,14 +15,18 @@ import TeamProfileModal from '../components/TeamProfileModal';
 import CategoryModal from '../components/modal/CategoryModal';
 import ModifyTaskModal from '../components/modal/ModifyTaskModal';
 import AddTaskModal from '../components/modal/AddTaskModal';
+import GrayBox from '../components/GrayBox'
 
 
-const TeamLink = ({tasks, teamTask, teams, member, followers, setTeamTask=f=>f, setTasks=f=>f, setTeams=f=>f, myProfile}) => {
+const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=>f, setTeams=f=>f, myProfile}) => {
     const [curTeam, setCurTeam] = useState(teams[0])
     const [index, setIndex] = useState(0)
     const [noticePage, setNoticePage] = useState(1);
+    console.log(member)
 
-
+    const me = member.filter((v) => v.me === "true")[0] //내 데이터
+    const myFollowers = me.followMembers
+    console.log(myFollowers)
 
     const onCheck = index => {
         // const newTeamTasks = tasks.map(task => {
@@ -99,7 +102,6 @@ const TeamLink = ({tasks, teamTask, teams, member, followers, setTeamTask=f=>f, 
 
     const notices = [...curTeam.notice] //현재 팀의 notice 목록
     console.log(teams)
-    console.log(followers)
     console.log(notices)
 
     //Team 생성
@@ -325,11 +327,15 @@ const TeamLink = ({tasks, teamTask, teams, member, followers, setTeamTask=f=>f, 
                 />
             </div>
             <div className="box content">
-                <TeamEditList onShowModal={onShow} teamData={teams} changeCurTeamIdx={changeCurTeamIdx} member={member} />
-                <TeamModal open={open} close={handleClose} onNewTeam={onNewTeam} followers={followers} leader={curTeam.leader} />
+                <GrayBox title={"속한 팀 목록"} settingHeight="70vh">
+                    <div style={{ width: '100%', height: '120%', }}>
+                    <TeamEditList onShowModal={onShow} teamData={teams} changeCurTeamIdx={changeCurTeamIdx} member={member}/>
+                    <TeamModal open={open} close={handleClose} onNewTeam={onNewTeam} followers={myFollowers} leader={curTeam.leader}/>
+                    </div>
+                </GrayBox>
             </div>
             <div className="box follower">
-                <MemberList
+                {/* <MemberList
                     curTeam={curTeam}
                     onShowTeamMemberModal={onShowTeamMemberModal}
                     onShowCategoryModal={onShowCategoryModal} />
@@ -347,16 +353,16 @@ const TeamLink = ({tasks, teamTask, teams, member, followers, setTeamTask=f=>f, 
                     addCategory={addCategory}
                     onShowCategoryAddModal={onShowCategoryAddModal}
                     onShowCategoryDeleteModal={onShowCategoryDeleteModal}
-                    onShowCategoryModifyModal={onShowCategoryModifyModal}/>
+                    onShowCategoryModifyModal={onShowCategoryModifyModal}/> */}
             </div>
             <div className="box tasklist">
-                <CategoryList 
+                {/* <CategoryList 
                     curTeam={curTeam} 
                     teamTask={teamTask}
                     onShowCategoryTeamTask={onShowCategoryTeamTask}
                     onShowCategoryDeleteModify={onShowCategoryDeleteModify}
                     onCheck={onCheck}
-                    />
+                    /> */}
                 {/*
                 <AddTaskModal
                     open={CategoryAddTaskOpen}

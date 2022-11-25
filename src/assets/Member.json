@@ -40,7 +40,9 @@
         "name": "seo",
         "image": "seo.jpg",
         "intro": ".11, .11, .11",
-        "email": "hasnunf@naver.com"
+        "email": "hasnunf@naver.com",
+        "followMembers": ["park","kim","cho","shin","choi"],
+        "me": "true"
     },
     {
         "name": "son",
