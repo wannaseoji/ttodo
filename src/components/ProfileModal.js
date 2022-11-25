@@ -62,7 +62,7 @@ const ProfileModal = ({myProfile, open, close, modifyProfile}) => {
         <div className={open ? 'openModal modal' : 'modal'} >
             {open ? (
                 <section className="profileModal">
-                    <header style={{paddingRight:"16px"}}> 프로필 변경 </header>
+                    <header> 프로필 변경 </header>
                     <main style={{paddingLeft:"1vw"}}>
                     {/* <FormControl> */}
                         <div>
