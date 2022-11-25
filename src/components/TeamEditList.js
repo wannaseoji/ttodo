@@ -1,150 +1,26 @@
 import Team from "../components/Team";
-import { useState } from "react";
 import {BsPlusCircleFill} from "react-icons/bs";
-import {GoChevronLeft} from "react-icons/go";
-import {GoChevronRight} from "react-icons/go";
+import Scrollbars from 'react-custom-scrollbars';
 
 function TeamEditList({onShowModal, teamData, changeCurTeamIdx, member}) {
-    
-    const [limit, setLimit] = useState(4);
-    const [page, setPage] = useState(1);
-    const offset = (page - 1) * limit;
-    let count = teamData.length; //팀의 개수
-    let maxCount = (count / 4); //총 페이지 개수
-    if(count / 4 > 0) { 
-        maxCount += 1;
-    }
-    console.log(count)
-    maxCount = parseInt(maxCount);
-
-    var list;
-    list = teamData.slice(offset, offset + limit);
-
     return (
-        <table width="450px" height="490px" style={{marginLeft:"auto", marginRight:"auto", tableLayout:"fixed"}}>
-        {
-            list.length === 0 ?
-            <><thead>
-                <tr>
-                    <td width="225px" height="230px">
-                        <center>{<button style={{border:"0", outline:"0"}} onClick={onShowModal}><BsPlusCircleFill size="60" color="#FEA4BC" /></button>}</center>
-                    </td >
-                    <td width="225px" height="230px"> </td>
-                </tr>
-                <tr>
-                    <td width="225px" height="230px"> </td>
-                    <td width="225px" height="230px"> </td>
-                </tr>
-            </thead><tbody></tbody></> : <><thead><tr><td></td></tr></thead><tbody></tbody></>
-        }
-        {
-            list.length === 1 ?
-                <><thead>
-                    <tr>
-                        <td width="225px" height="230px">
-                            <center><button onClick={()=>changeCurTeamIdx(offset)}>{<Team key={offset} data={list[0]} memberData={member}/>}</button></center>
-                        </td >
-                        <td width="225px" height="230px">
-                            <center>{<button onClick={onShowModal}><BsPlusCircleFill size="60" color="#FEA4BC" /></button>}</center>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="225px" height="230px"></td>
-                        <td width="225px" height="230px"></td>
-                    </tr>
-                </thead><tbody></tbody></> : <><thead><tr><td></td></tr></thead><tbody></tbody></>
-        }
-        {
-            list.length === 2 ?
-            <><thead>
-                <tr>
-                    <td width="225px" height="230px">
-                        <center><button onClick={()=>changeCurTeamIdx(offset)}>{<Team key={offset} data={list[0]} memberData={member}/>}</button></center>
-                    </td >
-                    <td width="225px" height="230px">
-                        <center><button onClick={()=>changeCurTeamIdx(offset+1)}>{<Team key={offset+1} data={list[1]} memberData={member}/>}</button></center>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="225px" height="230px">
-                        <center>{<button onClick={onShowModal}><BsPlusCircleFill size="60" color="#FEA4BC" /></button>}</center>
-                    </td>
-                    <td width="225px" height="230px"></td>
-                </tr>
-            </thead><tbody></tbody></> : <><thead><tr><td></td></tr></thead><tbody></tbody></>
-        }
-        {
-            list.length === 3 ?
-            <><thead>
-                <tr>
-                    <td width="225px" height="230px">
-                        <center><button onClick={()=>changeCurTeamIdx(offset)}>{<Team key={offset} data={list[0]} memberData={member}/>}</button></center>
-                    </td >
-                    <td width="225px" height="230px">
-                        <center><button onClick={()=>changeCurTeamIdx(offset+1)}>{<Team key={offset+1} data={list[1]} memberData={member}/>}</button></center>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="225px" height="230px">
-                        <center><button onClick={()=>changeCurTeamIdx(offset+2)}>{<Team key={offset+2} data={list[2]} memberData={member}/>}</button></center>
-                    </td>
-                    <td width="225px" height="230px">
-                        <center>{<button onClick={onShowModal}><BsPlusCircleFill size="60" color="#FEA4BC" /></button>}</center>
-                    </td>
-                </tr>
-            </thead><tbody></tbody></> : <><thead><tr><td></td></tr></thead><tbody></tbody></>
-        }
-        {
-            list.length === 4 ?
-            <><thead>
-                <tr>
-                    <td width="225px" height="230px">
-                        <center><button onClick={()=>changeCurTeamIdx(offset)}>{<Team key={offset} data={list[0]} memberData={member}/>}</button></center>
-                    </td >
-                    <td width="225px" height="230px">
-                        <center><button onClick={()=>changeCurTeamIdx(offset+1)}>{<Team key={offset+1} data={list[1]} memberData={member}/>}</button></center>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="225px" height="230px">
-                        <center><button onClick={()=>changeCurTeamIdx(offset+2)}>{<Team key={offset+2} data={list[2]} memberData={member}/>}</button></center>
-                    </td>
-                    <td width="225px" height="230px">
-                        <center><button onClick={()=>changeCurTeamIdx(offset+3)}>{<Team key={offset+3} data={list[3]} memberData={member}/>}</button></center>
-                    </td>
-                </tr>
-            </thead><tbody></tbody></> : <><thead><tr><td></td></tr></thead><tbody></tbody></>
-        }
-        {
-            <><thead></thead>
-            <tbody>
-            <tr>
-                <td width="225px" height="29px">
-                    <center>
-                        <GoChevronLeft size="27" color="#878787" 
-                            onClick={() => {
-                                if(page !== 1) {
-                                    setPage(page - 1);
-                                }
-                            }}
-                        />
-                    </center>
-                </td>
-                <td width="225px" height="29px"> 
-                    <center>
-                        <GoChevronRight size="27" color="#878787" 
-                            onClick={ () => { 
-                                if(page !== maxCount) { //즉 페이지 이동을 할 수 있는 경우,
-                                    setPage(page + 1);    
-                                } 
-                            }}
-                        />
-                    </center>
-                </td>
-            </tr>
-            </tbody></>
-        }
-        </table>
+        <>
+        <Scrollbars thumbSize={90} autoHeightMax={"70vh"} autoHeight={true}>
+            {
+                teamData.map((v,i) => (
+                    <div style={{width:"190", height:"195", display:"inline", float:"left", marginLeft:"1.5vw"}}>
+                        <button onClick={()=>changeCurTeamIdx(i)}>{<Team key={i} data={v} memberData={member}/>}</button>
+                    </div>
+                )
+                )
+            }
+            {
+                <div style={{width:"190", height:"195", display:"inline", float:"left", marginLeft:"6.3vw", marginTop:"12vh", marginBottom:"12vh"}}>
+                    <center><button onClick={onShowModal}><BsPlusCircleFill size="60" color="#FEA4BC" /></button></center>
+                </div>
+            }
+        </Scrollbars>
+        </>
     )
 }
 
