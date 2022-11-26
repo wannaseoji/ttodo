@@ -199,8 +199,8 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, memb
                     modifyProfile={modifyProfile} />
             </div>
             <div className="box content"  >
-                <GrayBox title={"월별 목표달성률"} settingHeight="70vh" sx={{}}>
-                    <div style={{ paddingLeft: '10%', width: '100%', height: '120%'}}>
+                <GrayBox title={"월별 목표달성률"} settingHeight="70vh">
+                    <div style={{  width: '100%', height: '120%', paddingLeft: '5%', paddingRight: "5%"}}>
                         <Slider Piedata={Piedata} LineData={LineData} children={
                             Piedata.map((pie, i) => <div key={i} style={{ width: '100%', height: '100%', flex: 'none' }}> <Slide key={i} Piedata={pie} LineData={LineData[i]} /> </div>)
                         } />
