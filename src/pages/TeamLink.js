@@ -14,7 +14,7 @@ import NoticeModal from '../components/modal/NoticeModal';
 import TeamProfile from '../components/TeamProfile';
 import MemberAddModal from '../components/MemberAddModal';
 import TeamProfileModal from '../components/TeamProfileModal';
-import CategoryModal from '../components/modal/CategoryModal';
+import TeamCategoryModal from '../components/modal/TeamCategoryModal';
 import GrayBox from '../components/GrayBox'
 import AddTeamTaskModal from '../components/modal/AddTeamTaskModal';
 import MemberList from '../components/MemberList';
@@ -446,7 +446,7 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
                     createTeamMember={createTeamMember}
                     followers={myFollowers}
                     curTeam={curTeam} />
-                <CategoryModal
+                <TeamCategoryModal
                     open={CategoryOpen}
                     close={handleCategoryClickClose}
                     curTeam={curTeam}

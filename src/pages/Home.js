@@ -153,6 +153,11 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
         console.log(teamTask);
     }
     const createFollower = (username) => {
+        if(me.name === username) {
+            alert(`나를 팔로우 할 수 없습니다.`);
+            return;
+        }
+
         if(username === "") {
             alert(`공백을 입력했습니다.`);
             return;
