@@ -42,7 +42,7 @@ const FollowerList = ({follower, onShowModal}) => {
                         title={data}
                         alt="Remy Sharp"
                         src= {data + ".jpg"}
-                        sx={{ width: "50px", height: "50px"}} 
+                        sx={{ width: "6vh", height: "6vh"}}
                         className="Member"/>
                     ))
             }
@@ -51,8 +51,8 @@ const FollowerList = ({follower, onShowModal}) => {
                         <Avatar
                         key={i}
                         alt="Remy Sharp"
-                        sx={{ width: "50px", height: "50px"}} 
-                        style={{ background: "#FFFFFF", border: "5px dotted pink"}}
+                        sx={{ width: "6vh", height: "6vh"}}
+                        style={{ background: "#FFFFFF", border: "4px dotted pink"}}
                         className="Member"/>
                 )
             }
