@@ -75,28 +75,32 @@ const CategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteCateg
                 onClose={close}
                 maxWidth={"100vw"}
                 maxHeight={"100vh"}
-                PaperProps={{ sx:{  width: "50%", height: "70%"}}}
+                PaperProps={{ sx:{  width: "25%", height: "50%"}}}
                 >
                 <DialogTitle
-                    style={{ backgroundColor: "pink", color: "#FFFFFF"}}
+                    style={{ backgroundColor: "#FF9AB5", color: "white"}}
                     sx={{ alignItems : 'center'}}>
                     카테고리 설정
                 </DialogTitle>
                 <DialogContent style={{ alignItems: "center", marginTop: "2vh"}}>
                 <FormControl>
-                    <div style={{ "marginLeft": "46vw"}}>
-                        <AiOutlinePlus 
-                            size="20" 
-                            color="pink"
-                            onClick={() => {        
-                                setAddPage(true);
-                                setListViewPage(false);
-                                setDeleteModifyPage(false);     
-                            }}/>
-                    </div>
                     <div>   {/* */}
                         { listViewPage ? 
                             <>         
+                                <div>
+                                    <span style={{ "fontSize" : 20, color: "#FF9AB5"}}> 
+                                        카테고리 목록 
+                                        <AiOutlinePlus 
+                                            size="20" 
+                                            color="pink"
+                                            style={{"marginLeft" : "21vw"}}
+                                            onClick={() => {        
+                                                setAddPage(true);
+                                                setListViewPage(false);
+                                                setDeleteModifyPage(false);     
+                                            }}/>
+                                    </span>
+                                </div>
                                 <List>
                                 {t1.myTask.sort((a, b) => a.relatedMembers.length - b.relatedMembers.length)
                                     .map((element, index) => (
@@ -142,12 +146,20 @@ const CategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteCateg
                         { addpage ? 
                             <>
                                 <div>
+                                <span style={{ "fontSize" : 20, color: "#FF9AB5"}}> 
+                                        카테고리 추가
+                                </span>
                                 <FormControl sx={{ m: 1, width: 300 }}>
-                                    <InputLabel id="demo-multiple-name-label">Name</InputLabel>
+                                    <InputLabel 
+                                    id="demo-multiple-name-label"
+                                    style={{marginTop: "2vh"}}>
+                                        Name
+                                    </InputLabel>
                                     <Select
                                     labelId="demo-multiple-name-label"
                                     id="demo-multiple-name"
                                     multiple
+                                    style={{"width": "21vw", marginTop: "2vh"}}
                                     value={personName}
                                     onChange={handleChange}
                                     input={<OutlinedInput label="Name" />}
@@ -166,7 +178,7 @@ const CategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteCateg
                                 </div> 
                                 <div>
                                 <Button variant="contained" 
-                                    style={{"backgroundColor" : "pink"}}
+                                    style={{ color: "white", backgroundColor: "#FF9AB5", width: "11vw"}}      
                                     onClick={ () => {
                                         onAddCategory(personName);
                                         setAddPage(false);
@@ -178,7 +190,7 @@ const CategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteCateg
                                 </Button>
                                 <Button 
                                     variant="contained" 
-                                    style={{"backgroundColor" : "pink"}}
+                                    style={{ color: "white", backgroundColor: "#FF9AB5", width: "11vw"}}      
                                     onClick={() => { 
                                     setAddPage(false);
                                     setListViewPage(true);
@@ -192,25 +204,19 @@ const CategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteCateg
                             : <></>}
                             {deletemodifypage ?  
                                 <>
+                                    <div>
                                     {Arr.map((data) => { categoryStr += (data + "  "); return null; })}
                                     <List>
                                         <ListItem 
-                                        sx={{ marginLeft: "0.1vw"}}
-                                        >
+                                        sx={{ marginLeft: "0.1vw"}}>
                                         {categoryStr}
                                         </ListItem>
                                     </List> 
+                                    </div> 
+                                    <div style={{marginTop: "1vh"}}>
                                     <Button
-                                    onClick={() => {
-                                        setAddPage(false);
-                                        setListViewPage(true);
-                                        setDeleteModifyPage(false);
-                                        setPersonName([]);
-                                        console.log(Arr);
-                                    }}>
-                                        리스트 목록
-                                    </Button>
-                                    <Button
+                                        variant="contained"  
+                                        style={{ color: "white", backgroundColor: "#FF9AB5", width: "11vw"}}      
                                         onClick={() => {
                                         deleteCategory(teamName, clickIdx, taskType, clickMembers);
                                         setAddPage(false);
@@ -220,14 +226,28 @@ const CategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteCateg
                                     }}>
                                         삭제
                                     </Button>
+                                    <Button
+                                    variant="contained"     
+                                    style={{ color: "white", backgroundColor: "#FF9AB5", width: "11vw"}}      
+                                    onClick={() => {
+                                        setAddPage(false);
+                                        setListViewPage(true);
+                                        setDeleteModifyPage(false);
+                                        setPersonName([]);
+                                        console.log(Arr);
+                                    }}>
+                                        다시 목록으로
+                                    </Button>
+                                    </div> 
                                 </>
                             : <></>}
                     </div>
                 </FormControl>
                 </DialogContent> 
                 <DialogActions>
-                    <Button                         
-                        style={{ color: "pink"}} 
+                    <Button                  
+                        variant="contained"       
+                        style={{ color: "white", backgroundColor: "#FF9AB5"}} 
                         onClick={ () => {
                             setListViewPage(true);
                             setAddPage(false);
