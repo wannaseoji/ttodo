@@ -264,7 +264,7 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
                     style={{
                         color: "FF9AB5",
                         marginTop: "auto",
-                        marginLeft: "56%"
+                        marginLeft: "85%"
                     }}
                     onClick={onShowCategorySettingModal} />
                 <CategorySettingModal
@@ -289,7 +289,7 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
                     onModifyCategory={onModifyCategory}
                     onDeleteCategory={onDeleteCategory} />
             </div>
-            <div className="box tasklist">
+            <div className="box tasklist"  style={{height : "75vh"}}>
                 <Scrollbars style={{ width: '90%', height: '100%', margin: '0rem', backgroundColor: "transparent", borderRadius: "0px 0px 10px 10px" }}>
                     <CategoryScrollList
                         categories={categories}

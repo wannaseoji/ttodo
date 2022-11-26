@@ -18,6 +18,7 @@ import TeamCategoryModal from '../components/modal/TeamCategoryModal';
 import GrayBox from '../components/GrayBox'
 import AddTeamTaskModal from '../components/modal/AddTeamTaskModal';
 import MemberList from '../components/MemberList';
+import CategorySettingModal from '../components/modal/CategorySettingModal';
 
 
 
