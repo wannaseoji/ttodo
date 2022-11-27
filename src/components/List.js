@@ -70,12 +70,14 @@ const List = ({ list, onShowModal, onShowCategoryModal, flag }) => {
                 size="30"
                 color="#FF9AB5"
                 className="Member"
+                style={{marginRight:"0.5vw"}}
                 onClick={onShowModal} />
             {flag === "true"?
             <AiOutlineSetting
                 size="30"
                 color="#FF9AB5"
                 className="Member"
+                style={{marginRight:"0.5vw"}}
                 onClick={onShowCategoryModal} />
                 :<></>}
         </>
