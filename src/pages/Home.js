@@ -234,7 +234,7 @@ const Home = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => f,
                     <div id='category_top'>
                         <span id="category_name" style={{marginBottom:"1vh"}}>My Team</span>
                     </div>
-                    <div style={{marginRight:"6vw", width:"100%", display:"flex", justifyContent:"space-between"}}>
+                    <div style={{marginRight:"6vw", width:"90%", display:"flex", justifyContent:"space-between"}}>
                         {initTeamCard()}
                         {teamCard.map(v => v)}
                     </div>
