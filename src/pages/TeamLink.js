@@ -19,6 +19,7 @@ import GrayBox from '../components/GrayBox'
 import AddTeamTaskModal from '../components/modal/AddTeamTaskModal';
 import List from '../components/List';
 import CategorySettingModal from '../components/modal/CategorySettingModal';
+import { GiConsoleController } from 'react-icons/gi';
 
 
 
@@ -26,11 +27,11 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
     const [curTeam, setCurTeam] = useState(teams[0])
     const [index, setIndex] = useState(0)
     const [noticePage, setNoticePage] = useState(1);
-    console.log(member)
+    // console.log(member)
 
     const me = member.filter((v) => v.me === "true")[0]     //내 데이터(myProfile 대체)
     const myFollowers = me.followMembers
-    console.log(myFollowers)                                //나의 팔로워된 애들의 리스트(followers 대체)
+    // console.log(myFollowers)                                //나의 팔로워된 애들의 리스트(followers 대체)
 
     const [selectedDate] = useState(new Date()); // Mon Nov 14 2022 10:50:35 GMT+0900 (한국 표준시)
     const [clickedMemberList, setClickedMemberList] = useState([]);
@@ -412,6 +413,24 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
         }
         setTeamTask(newTeamTask);
     }
+
+
+    teamTask.map(teamt => {
+        console.log(`Team Name : ${teamt.name}`)
+        console.log(`curTeam : ${curTeam.name}`)
+        teamt.myTask.map(team => {
+            console.log(`team related Member : ${team.relatedMembers}`)
+        })
+    })
+
+    // ******* 클릭한 팀 카테고리 ******** //
+    const clickedTeam = teamTask.filter(teamT => teamT.name === curTeam.name)
+    console.log(`clickedTeam  : ${clickedTeam[0].name}`)
+    const clickedTeamCategory = clickedTeam[0].myTask.map(category=> {
+        console.log(`category.relatedMem : ${category.relatedMembers}`)
+        return category.relatedMembers})
+    console.log(`clickedTeamCategory : ${clickedTeamCategory}`)
+
 
     return (
         <div id="app" className="parent" >

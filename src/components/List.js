@@ -24,7 +24,7 @@ const List = ({ list, onShowModal, onShowCategoryModal, flag }) => {
         <>
             {/*왼쪽 버튼 */}
             <BsFillArrowLeftCircleFill
-                size="50"
+                size="30"
                 color="#FF9AB5"
                 className="Member"
                 onClick={() => {
@@ -56,7 +56,7 @@ const List = ({ list, onShowModal, onShowCategoryModal, flag }) => {
                 )
             }
             <BsFillArrowRightCircleFill
-                size="50"
+                size="30"
                 color="#FF9AB5"
                 className="Member"
                 onClick={() => {
@@ -67,13 +67,13 @@ const List = ({ list, onShowModal, onShowCategoryModal, flag }) => {
                     }
                 }} />
             <AiOutlinePlusCircle
-                size="50"
+                size="30"
                 color="#FF9AB5"
                 className="Member"
                 onClick={onShowModal} />
             {flag === "true"?
             <AiOutlineSetting
-                size="50"
+                size="30"
                 color="#FF9AB5"
                 className="Member"
                 onClick={onShowCategoryModal} />

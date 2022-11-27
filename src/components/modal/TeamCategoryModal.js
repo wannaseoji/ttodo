@@ -80,18 +80,24 @@ const TeamCategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteC
                 PaperProps={{ sx:{  width: "25%", height: "50%"}}}
                 >
                 <DialogTitle
-                    style={{ backgroundColor: "#FF9AB5", color: "white"}}
-                    sx={{ alignItems : 'center'}}>
-                    카테고리 설정
+                    style={{ backgroundColor: "#FF9AB5", color: "white" }}
+                    sx={{
+                        position: "relative",
+                        textAlign: "center",
+                        padding: "16px 16px 16px 16px",
+                        fontWeight: "700"
+                    }}>
+                    카테고리
                 </DialogTitle>
-                <DialogContent style={{ alignItems: "center", marginTop: "2vh"}}>
-                <FormControl>
+                <DialogContent style={{ alignItems: "center", marginTop: "2vh", overflow:"hidden"}}>
+                    <Scrollbars>
+                    <FormControl>
                     <div>   {/* */}
                         { listViewPage ? 
                             <>         
                                 <div>
                                     <span style={{ "fontSize" : 20, color: "#FF9AB5"}}> 
-                                        카테고리 목록 
+                                        {/* 카테고리 목록  */}
                                         <AiOutlinePlus 
                                             size="20" 
                                             color="pink"
@@ -245,6 +251,7 @@ const TeamCategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteC
                             : <></>}
                     </div>
                 </FormControl>
+                    </Scrollbars>
                 </DialogContent> 
                 <DialogActions>
                     <Button                  

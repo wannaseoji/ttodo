@@ -17,7 +17,7 @@ function HomeTaskList({tasks = [], limit, onCheck = f => f, onModifyTaskModal = 
                     tasks={tasks}
                     limit={limit}
                     onCheckTask={onCheck}
-                    onModifyTaskModal={onModifyTaskModal}/> : <div>할 일을 추가해 보세요!</div>}
+                    onModifyTaskModal={onModifyTaskModal}/> : <div style={{color: "#575757", fontWeight:"bold"}}>할 일을 추가해 보세요!</div>}
             </List>
         </>
     )
