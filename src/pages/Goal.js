@@ -226,7 +226,7 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, memb
                 {/* <MyBarCharts data={uniqueProgressData} /> */}
             </div>
             <div className="box teamlist">
-                <Scrollbars style={{ width: '100%', height: '90%', backgroundColor: "transparent", borderRadius: "0px 0px 0px 0px" }}>
+                <Scrollbars style={{ width: '100%', height: '90%', marginLeft: "-3rem",  backgroundColor: "transparent", borderRadius: "0px 0px 0px 0px" }}>
                     <CategoryTaskList tasks={BUCKETLIST} categoryName={'BUCKET LIST'} onCheck={onCheck} onModifyTaskModal={modifyTaskHandler} onAddTaskModal={addTaskHandler}
                         style={{ width: '100%', height: '100%', backgroundColor: "transparent", borderRadius: "0px 0px 10px 10px", margin: "20px 50px 30px 50px;" }}></CategoryTaskList>
                 </Scrollbars>

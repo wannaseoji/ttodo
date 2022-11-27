@@ -14,7 +14,7 @@ function CategoryScrollList({ categories = [], tasks = [], onCheck = f => f, onM
                 tasks={categoryTasks}
                 onCheck={onCheck}
                 onModifyTaskModal={onModifyTaskModal}
-                onAddTaskModal={onAddTaskModal} />
+                onAddTaskModal={onAddTaskModal}/>
         })
     )
 }
