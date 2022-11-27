@@ -47,7 +47,7 @@ const SlideComponent = ({ Piedata = [], LineData = [], progressData = [], childr
 export default SlideComponent;
 
 const Wrapper = styeld.div`
-  width: 100%;
+  width: 97%;
   height: 80%;
 //   border-radius:20px;
    overflow: hidden;
