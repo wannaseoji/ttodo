@@ -13,6 +13,7 @@ import Scrollbars from 'react-custom-scrollbars';
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useState } from "react";
 import TaskList from "../components/tasklist/TaskList"
+import "../styles/TeamCategoryList.css"
 
 
 //장훈, 형민이가 같이 수정한 CategoryList 컴포넌트
