@@ -1,58 +1,52 @@
 
 [
     {
-        "name": "park",
-        "image": "park.jpg",
+        "name": "doldung",
+        "image": "doldung.jpg",
         "intro": ".11, .11, .11",
         "email": "hasnunf@naver.com"
     },
     {
-        "name": "kim",
-        "image": "kim.jpg",
+        "name": "muppy",
+        "image": "muppy.jpg",
         "intro": ".22",
         "email": "hasnunf@naver.com"
     },
     {
-        "name": "cho",
-        "image": "cho.jpg",
+        "name": "tmxp",
+        "image": "tmxp.jpg",
         "intro": ".11, .11, .11",
         "email": "hasnunf@naver.com"
     },
     {
-        "name": "shin",
-        "image": "shin.jpg",
+        "name": "fkgnssla",
+        "image": "fkgnssla.jpg",
         "intro": ".11, .11, .11",
         "email": "hasnunf@naver.com"
     },
     {
-        "name": "choi",
-        "image": "choi.jpg",
+        "name": "YouU",
+        "image": "YouU.jpg",
         "intro": ".11, .11, .11",
         "email": "hasnunf@naver.com"
     },
     {
-        "name": "lee",
-        "image": "lee.jpg",
+        "name": "kyumq",
+        "image": "kyumq.jpg",
         "intro": ".11, .11, .11",
         "email": "hasnunf@naver.com"
     },
     {
-        "name": "seo",
-        "image": "seo.jpg",
+        "name": "wanna seo",
+        "image": "wanna seo.jpg",
         "intro": ".11, .11, .11",
         "email": "hasnunf@naver.com",
-        "followMembers": ["park","kim","chae","son","shin","lee","choi","cho"],
+        "followMembers": ["doldung","muppy","tmxp","fkgnssla","YouU","kyumq","ssong"],
         "me": "true"
     },
     {
-        "name": "son",
-        "image": "son.jpg",
-        "intro": ".11, .11, .11",
-        "email": "hasnunf@naver.com"
-    },
-    {
-        "name": "chae",
-        "image": "son.jpg",
+        "name": "ssong",
+        "image": "ssong.jpg",
         "intro": ".11, .11, .11",
         "email": "hasnunf@naver.com"
     }
