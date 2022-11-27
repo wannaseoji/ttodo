@@ -208,21 +208,23 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, memb
                 </GrayBox>
             </div>
             <div className="box follower"></div>
-            <div className="box tasklist" style={{ width: '100%', height: '95% ', borderRadius: '20px' }}>
-                <Scrollbars >{
-                    <GrayBox title={"카테고리별 목표달성률"} >
+            <div className="box tasklist" style={{ width: '100%', height: '95% ' }}>
+                <GrayBox title={"카테고리별 목표달성률"} settingHeight="43vh" >
+                    
 
                         <Slider Piedata={Piedata} progressData={progressData} children={
                             progressData.map(
                                 (data, i) =>
                                     <div key={i} style={{ width: '100%', height: '100%', flex: 'none' }}>
+                                        <Scrollbars>
                                         <ProgressSlide key={i} data={data} />
+                                        </Scrollbars >
                                     </div>
                             )
                         }
                         />
-                    </GrayBox>
-                } </Scrollbars >
+                    
+                </GrayBox>
                 {/* <MyBarCharts data={uniqueProgressData} /> */}
             </div>
             <div className="box teamlist">
