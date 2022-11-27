@@ -54,7 +54,7 @@ const MemberAddModal = ({ open, close, createTeamMember, followers, curTeam }) =
                         <StyledTextField id="outlined-basic" value={search} onChange={onChange} variant="outlined"/>
                         </div>
                         <div style={{justifyContent: "center"}}>
-                        {booleanView ? filterSearch.map(member => <div><span>{member}</span></div>) : <div></div>}
+                        {booleanView ? filterSearch.map(member => <div><span>{member}&nbsp;&nbsp;</span></div>) : <div></div>}
                         </div>
                     </main>
                     <footer>

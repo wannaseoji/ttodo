@@ -53,7 +53,7 @@ const FollowerModal = ({ open, close, follower, member, createFollower, myProfil
                         <StyledTextField id="outlined-basic" value={search} onChange={onChange} variant="outlined"/>
                         </div>
                         <div style={{justifyContent: "center"}}>
-                        {booleanView ? filterSearch.map(member => <div><span>{member.name + "  "}</span></div>) : <div></div>}
+                        {booleanView ? filterSearch.map(member => <div><span>{member.name}&nbsp;&nbsp;</span></div>) : <div></div>}
                         </div>
                     </main>
                     <footer>
