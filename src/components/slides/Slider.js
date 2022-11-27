@@ -3,9 +3,9 @@ import styeld from "styled-components";
 import { useState, useRef, useEffect } from "react";
 import Slide from './Slide';
 import styled from "styled-components";
-import {GoChevronLeft, GoChevronRight} from 'react-icons/go'
+import { GoChevronLeft, GoChevronRight } from 'react-icons/go'
 // 전체 슬라이드 개수(총3개. 배열로 계산)
-const SlideComponent = ({ Piedata = [], LineData = [], progressData = [], children }) => {
+const SlideComponent = ({ Piedata = [], LineData = [], progressData = [], children, sxL = {}, sxR = {} }) => {
     const [currentSlide, setCurrentSlide] = useState(Piedata && Piedata.map(() => { }).length - 1);
     const slideRef = useRef(null);
     const TOTAL_SLIDES = Piedata && Piedata.map(() => { }).length - 1;
@@ -33,8 +33,8 @@ const SlideComponent = ({ Piedata = [], LineData = [], progressData = [], childr
         <>
             {/* <StyledButton onClick={PrevSlide} style={{float: "left",marginLeft: "10%"}}>&lt;</StyledButton>
             <StyledButton onClick={NextSlide} style={{float: "right", marginRight: "10%"}}>&gt;</StyledButton> */}
-            <GoChevronLeft onClick={PrevSlide} size="20" color="#878787" style={{float: "left",marginLeft: "5%"}}/>
-            <GoChevronRight onClick={NextSlide} size="20" color="#878787" style={{float: "right",marginRight: "10%"}}/>
+            <GoChevronLeft onClick={PrevSlide} size="20" color="#878787" style={sxL} />
+            <GoChevronRight onClick={NextSlide} size="20" color="#878787" style={sxR} />
             <Wrapper>
                 <SlideWrapper ref={slideRef} style={{ width: '100%', height: '100%' }}>
                     {children}

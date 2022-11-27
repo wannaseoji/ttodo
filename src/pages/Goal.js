@@ -27,7 +27,7 @@ import ModifyTaskModal from '../components/modal/ModifyTaskModal'
 import AddTaskModal from "../components/modal/AddTaskModal"
 import Scrollbars from "react-custom-scrollbars";
 
-const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, member}) => {
+const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, member }) => {
     const me = member.filter((v) => v.me === "true")[0] //내 데이터
     const initTask = {
         "index": 0,
@@ -145,7 +145,7 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, memb
     }
     const modifyProfile = (name, email, intro) => {
         //공백 처리
-        if(name === "" || email === "" || intro === "")  { 
+        if (name === "" || email === "" || intro === "") {
             alert(`공백을 입력할 수 없습니다.`)
             return;
         }
@@ -200,8 +200,8 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, memb
             </div>
             <div className="box content"  >
                 <GrayBox title={"월별 목표달성률"} settingHeight="70vh">
-                    <div style={{  width: '100%', height: '120%', paddingLeft: '5%', paddingRight: "5%"}}>
-                        <Slider Piedata={Piedata} LineData={LineData} children={
+                    <div style={{ width: '100%', height: '120%', paddingLeft: '10%', paddingRight: "5%" }}>
+                        <Slider sxL={{ float: "left", marginLeft: "-0%" }} sxR={{ float: "right", marginRight: "20%" }} Piedata={Piedata} LineData={LineData} children={
                             Piedata.map((pie, i) => <div key={i} style={{ width: '100%', height: '100%', flex: 'none' }}> <Slide key={i} Piedata={pie} LineData={LineData[i]} /> </div>)
                         } />
                     </div>
@@ -212,10 +212,10 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, memb
                 <Scrollbars >{
                     <GrayBox title={"카테고리별 목표달성률"} >
 
-                        <Slider Piedata={Piedata} progressData={progressData} children={
+                        <Slider sxL={{ float: "left", marginLeft: "10%" }} sxR={{ float: "right", marginRight: "10%" }} Piedata={Piedata} progressData={progressData} children={
                             progressData.map(
                                 (data, i) =>
-                                    <div key={i} style={{ width: '100%', height: '100%', flex: 'none' }}>
+                                    <div key={i} style={{ width: '100%', height: '100%', flex: 'none', }}>
                                         <ProgressSlide key={i} data={data} />
                                     </div>
                             )
