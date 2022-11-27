@@ -186,7 +186,7 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, memb
     return (
         <div id="app" className="parent" >
             <div className="box menu" >
-                <Menu />
+                <Menu pageNum={1}/>
             </div >
             <div className="box profile">
                 <Profile
