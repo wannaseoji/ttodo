@@ -5,22 +5,28 @@ import Slide from './Slide';
 import styled from "styled-components";
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go'
 // 전체 슬라이드 개수(총3개. 배열로 계산)
-const SlideComponent = ({ Piedata = [], LineData = [], progressData = [], children, sxL = {}, sxR = {} }) => {
+const SlideComponent = ({ Piedata = [], LineData = [], progressData = [], children, sxL = {}, sxR = {}, changeHeader=f=>f }) => {
     const [currentSlide, setCurrentSlide] = useState(Piedata && Piedata.map(() => { }).length - 1);
     const slideRef = useRef(null);
     const TOTAL_SLIDES = Piedata && Piedata.map(() => { }).length - 1;
+    console.log(currentSlide)
+
     const NextSlide = () => {
         if (currentSlide >= TOTAL_SLIDES) {
             setCurrentSlide(0); // 1번째 사진으로 넘어갑니다.
+            changeHeader(0);
         } else {
             setCurrentSlide(currentSlide + 1);
+            changeHeader(currentSlide + 1);
         }
     };
     const PrevSlide = () => {
         if (currentSlide === 0) {
             setCurrentSlide(TOTAL_SLIDES); // 마지막 사진으로 넘어갑니다.
+            changeHeader(TOTAL_SLIDES);
         } else {
             setCurrentSlide(currentSlide - 1);
+            changeHeader(currentSlide - 1);
         }
     };
 

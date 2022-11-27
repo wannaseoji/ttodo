@@ -183,6 +183,12 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, memb
         console.log(teamTask);
     }
 
+    const [header,setHeader] = useState(progressData[progressData.length-1][0].month)
+    const changeHeader = (pageNum) => {
+        setHeader(progressData[pageNum][0].month)
+    }
+    
+
     return (
         <div id="app" className="parent" >
             <div className="box menu" >
@@ -210,12 +216,14 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, memb
             <div className="box follower"></div>
             <div className="box tasklist" style={{ width: '100%', height: '95% ' }}>
 
-                <GrayBox sxW={{padding: "2px", display:"inline-block", width:"100%", marginRight:"3%", marginLeft:"-1.3rem"}} title={"카테고리별 목표달성률"} settingHeight="43vh" >
-                    <Slider sxL={{ float: "left", marginLeft: "10%" }} sxR={{ float: "right", marginRight: "10%" }} Piedata={Piedata} progressData={progressData}  children={
+                <GrayBox sxW={{padding: "2px", display:"inline-block", width:"100%", marginRight:"3%", marginLeft:"-1.3rem"}} title={header+"월 카테고리별 달성률"} settingHeight="43vh" >
+                    <Slider sxL={{ float: "left", marginLeft: "10%" }} sxR={{ float: "right", marginRight: "10%" }} Piedata={Piedata} progressData={progressData} changeHeader={changeHeader}  children={
                         progressData.map(
                             (data, i) =>
                                 <div key={i} style={{ width: '100%', height: '100%', flex: 'none' }}>
-
+                                    {console.log(`data=`)}
+                                    {console.log(data[0].month)}
+                                    {console.log(`i = ${i}`)}
                                     <Scrollbars>
                                         <ProgressSlide key={i} data={data} />
                                     </Scrollbars >
