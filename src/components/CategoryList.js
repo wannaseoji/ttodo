@@ -32,7 +32,7 @@ const CategoryList = ({setClickedMemberList, curTeam, teamTask, onShowCategoryMo
             t1.myTask.sort((a, b) => a.relatedMembers.length - b.relatedMembers.length)
             .map((element, index) => (
             <Accordion 
-            style={{ "backgroundColor": "#FFE2E9", "borderRadius": 10, maxWidth: "95%"}}>
+            style={{ "backgroundColor": "#FFE2E9", "borderRadius": 10, maxWidth: "95%", "marginTop" : "1vh", "marginBottom" : "1vh"}}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1a-content"
@@ -56,14 +56,14 @@ const CategoryList = ({setClickedMemberList, curTeam, teamTask, onShowCategoryMo
                 <AccordionDetails>
                     <TaskList tasks={element.tasks} limit={element.tasks.length} onCheckTask={onCheck} onModifyTaskModal={onShowCategoryDeleteModify}/>
                 </AccordionDetails>
-            </Accordion>
+            </Accordion>    
         ))
         }
         {
             t1.otherTask.sort((a, b) => a.relatedMembers.length - b.relatedMembers.length)
             .map((element) => (
                 <Accordion 
-                style={{ backgroundColor: "#FFE2E9", borderRadius: 10, maxWidth: "95%"}}>
+                style={{ backgroundColor: "#FFE2E9", borderRadius: 10, maxWidth: "95%", "marginTop" : "1vh", "marginBottom" : "1vh"}}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
