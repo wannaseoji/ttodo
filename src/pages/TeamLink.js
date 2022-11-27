@@ -231,11 +231,10 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
         console.log(me.name);
         //console.log(newTask);
         //이제 분기를 해야함(프로필에 있는 나의 이름이 하나라도 있을 경우) => myTasks
-        
         if(newList.includes(me.name)) {
             copyTeamTask[findIdx].myTask.push(newTask);
         }
-        else {      //프로필이 있는 나의 이름이 하나라도 없는 경우,
+        else {     
             copyTeamTask[findIdx].otherTask.push(newTask);
         }
         console.log(copyTeamTask);

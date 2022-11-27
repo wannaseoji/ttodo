@@ -4,7 +4,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
-import { AiFillFolder } from "react-icons/ai";;
+import { AiFillFolder } from "react-icons/ai";
 
 function CategoryItem({ category, modifyCategoryHandler = f => f }) {
     const modifyCategory = () => modifyCategoryHandler(category)

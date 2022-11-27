@@ -3,26 +3,42 @@
         "name":"낙인",
         "myTask": [             
             {
-                "relatedMembers": ["seo"],
+                "relatedMembers": ["wanna seo", "tmxp"],
                 "tasks" : [
                     {
                         "index" : 1,
-                        "title":"고모프 6주차 녹강듣기",
+                        "title":"웹프레임워크1 14주차 강의듣기",
                         "date":"2022-11-13",
                         "hour": "10",
+                        "minute": "30",
+                        "check": false
+                    }, 
+                    {
+                        "index" : 2,
+                        "title":"웹프레임워크1 15주차 강의듣기",
+                        "date":"2022-11-13",
+                        "hour": "11",
                         "minute": "30",
                         "check": false
                     }
                 ]
             },
             {
-                "relatedMembers": ["seo", "park"],
+                "relatedMembers": ["wanna seo", "muppy"],
                 "tasks" : [
                     {
-                        "index" : 2,
-                        "title":"고모프 6주차 녹강듣기",
+                        "index" : 3,
+                        "title":"네트워크 프로그래밍 14주차 강의듣기",
                         "date":"2022-11-13",
                         "hour": "10",
+                        "minute": "30",
+                        "check": false
+                    },
+                    {
+                        "index" : 4,
+                        "title":"네트워크 프로그래밍 15주차 강의듣기",
+                        "date":"2022-11-13",
+                        "hour": "11",
                         "minute": "30",
                         "check": false
                     }
@@ -32,24 +48,19 @@
 
         "otherTask": [
             {
-                "relatedMembers": ["park", "kim"],
+                "relatedMembers": ["tmxp", "doldung", "muppy"],
                 "tasks" : [
                     {
-                        "index" : 3,
-                        "title":"시프 6주차 녹강듣기",
+                        "index" : 5,
+                        "title":"고급모바일프로그래밍 14주차 강의듣기",
                         "date":"2022-11-13",
                         "hour": "10",
                         "minute": "30",
                         "check": false
-                    }
-                ]
-            },
-            {
-                "relatedMembers": ["kim", "cho", "park"],
-                "tasks" : [
+                    },
                     {
-                        "index" : 4,
-                        "title":"시프 7주차 녹강듣기",
+                        "index" : 6,
+                        "title":"고급모바일프로그래밍 15주차 강의듣기",
                         "date":"2022-11-13",
                         "hour": "11",
                         "minute": "30",
@@ -63,12 +74,20 @@
         "name": "광야의 작은 아씨들",
         "myTask": [
             {
-                "relatedMembers": ["seo", "cho"],
+                "relatedMembers": ["wanna seo", "kyumq"],
                 "tasks" : [
                     {
-                        "index" : 5,
-                        "title":"설패 6주차 녹강듣기",
-                        "date":"2022-11-13",
+                        "index" : 7,
+                        "title":"북한산 등반하기",
+                        "date":"2022-11-14",
+                        "hour": "15",
+                        "minute": "30",
+                        "check": false
+                    },
+                    {
+                        "index" : 8,
+                        "title":"박승현 교수님 면담하기",
+                        "date":"2022-11-14",
                         "hour": "10",
                         "minute": "30",
                         "check": false
@@ -76,13 +95,21 @@
                 ]
             },
             {
-                "relatedMembers": ["seo", "cho", "kim"],
+                "relatedMembers": ["wanna seo", "muppy", "tmxp"],
                 "tasks" : [
                     {
-                        "index" : 6,
-                        "title":"설패 7주차 녹강듣기",
-                        "date":"2022-11-13",
-                        "hour": "11",
+                        "index" : 9,
+                        "title":"전시회 다녀오기",
+                        "date":"2022-11-14",
+                        "hour": "12",
+                        "minute": "30",
+                        "check": false
+                    },
+                    {
+                        "index" : 10,
+                        "title":"준비물 사오기",
+                        "date":"2022-11-14",
+                        "hour": "13",
                         "minute": "30",
                         "check": false
                     }
@@ -92,144 +119,50 @@
         "otherTask": 
         [
             {
-                "relatedMembers": ["kim", "cho", "son"],
-                "tasks" : [
-                    {
-                        "index" : 7,
-                        "title":"네프 6주차 녹강듣기",
-                        "date":"2022-11-13",
-                        "hour": "10",
-                        "minute": "30",
-                        "check": false
-                    }
-                ]
-            },
-            {
-                "relatedMembers": ["kim", "cho"],
-                "tasks" : [
-                    {
-                        "index" : 8,
-                        "title":"네프 7주차 녹강듣기",
-                        "date":"2022-11-13",
-                        "hour": "11",
-                        "minute": "30",
-                        "check": false
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "name": "폼생폼사",
-        "myTask": [
-            {
-                "relatedMembers": ["seo", "choi", "park"],
-                "tasks" : [
-                    {
-                        "index" : 9,
-                        "title":"설패 6주차 녹강듣기",
-                        "date":"2022-11-13",
-                        "hour": "10",
-                        "minute": "30",
-                        "check": false
-                    }
-                ]
-            },
-            {
-                "relatedMembers": ["seo", "choi"],
-                "tasks" : [
-                    {
-                        "index" : 10,
-                        "title":"설패 7주차 녹강듣기",
-                        "date":"2022-11-13",
-                        "hour": "11",
-                        "minute": "30",
-                        "check": false
-                    }
-                ]
-            }
-        ],
-        "otherTask": [
-            {
-                "relatedMembers": ["park", "choi", "shin"],
+                "relatedMembers": ["muppy", "tmxp"],
                 "tasks" : [
                     {
                         "index" : 11,
-                        "title":"네프 6주차 녹강듣기",
-                        "date":"2022-11-13",
-                        "hour": "10",
-                        "minute": "30",
-                        "check": false
-                    }
-                ]
-            },
-            {
-                "relatedMembers": ["choi", "shin"],
-                "tasks" : [
-                    {
-                        "index" : 12,
-                        "title":"네프 7주차 녹강듣기",
-                        "date":"2022-11-13",
+                        "title":"돈 정산하기",
+                        "date":"2022-11-14",
                         "hour": "11",
                         "minute": "30",
                         "check": false
+                    },
+                    {
+                        "index" : 12,
+                        "title":"롯데월드 가기",
+                        "date":"2022-11-14",
+                        "hour": "14",
+                        "minute": "30",
+                        "check": false
                     }
                 ]
-            }
-        ]
-    },
-    {
-        "name": "Edsger Dijkstra",
-        "myTask": [
+            },
             {
-                "relatedMembers": ["seo", "park", "cho"],
+                "relatedMembers": ["tmxp", "kyumq"],
                 "tasks" : [
                     {
                         "index" : 13,
-                        "title":"설패 6주차 녹강듣기",
-                        "date":"2022-11-13",
-                        "hour": "10",
+                        "title":"카페에서 공부하기",
+                        "date":"2022-11-14",
+                        "hour": "19",
                         "minute": "30",
                         "check": false
-                    }
-                ]
-            },
-            {
-                "relatedMembers": ["seo", "choi"],
-                "tasks" : [
+                    },
                     {
                         "index" : 14,
-                        "title":"설패 6주차 녹강듣기",
-                        "date":"2022-11-13",
-                        "hour": "10",
+                        "title":"쓰리팝 가기",
+                        "date":"2022-11-14",
+                        "hour": "20",
                         "minute": "30",
                         "check": false
-                    }
-                ]
-            }
-        ],
-        "otherTask": [
-            {
-                "relatedMembers": ["park", "cho", "choi"],
-                "tasks" : [
+                    },
                     {
                         "index" : 15,
-                        "title":"네프 6주차 녹강듣기",
-                        "date":"2022-11-13",
-                        "hour": "10",
-                        "minute": "30",
-                        "check": false
-                    }
-                ]
-            },
-            {
-                "relatedMembers": ["choi", "park"],
-                "tasks" : [
-                    {
-                        "index" : 16,
-                        "title":"네프 6주차 녹강듣기",
-                        "date":"2022-11-13",
-                        "hour": "10",
+                        "title":"올리브영가기",
+                        "date":"2022-11-14",
+                        "hour": "21",
                         "minute": "30",
                         "check": false
                     }
