@@ -5,20 +5,20 @@ import Avatar from '@mui/material/Avatar';
 import { useState } from "react";
 import '../styles/Member.css';
 import { AiOutlineSetting } from "react-icons/ai";
-
+import { AiFillFolderAdd } from "react-icons/ai";
 
 const List = ({ list, onShowModal, onShowCategoryModal, flag }) => {
-    const [limit, setLimit] = useState(8);
+    const [limit, setLimit] = useState(7);
     const [page, setPage] = useState(1);
     const offset = (page - 1) * limit;
     const allCount = list.length
     const count = list.slice(offset, offset + limit).length
-    let maxCount = (allCount / 8);
-    if (allCount % 8 > 0) {
+    let maxCount = (allCount / 7);
+    if (allCount % 7 > 0) {
         maxCount += 1;
     }
     maxCount = parseInt(maxCount);
-    var i = 8 - count //빈 원형 점선 아이콘 개수
+    var i = 7 - count //빈 원형 점선 아이콘 개수
 
     return (
         <>
@@ -73,7 +73,7 @@ const List = ({ list, onShowModal, onShowCategoryModal, flag }) => {
                 style={{marginRight:"0.5vw"}}
                 onClick={onShowModal} />
             {flag === "true"?
-            <AiOutlineSetting
+            <AiFillFolderAdd
                 size="30"
                 color="#FF9AB5"
                 className="Member"
