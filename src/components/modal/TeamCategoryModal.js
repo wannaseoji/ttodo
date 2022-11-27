@@ -94,10 +94,9 @@ const TeamCategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteC
             <Dialog 
                 open={open} 
                 onClose={close}
-                maxWidth={"100vw"}
-                maxHeight={"100vh"}
-                PaperProps={{ sx:{  width: "25%", height: "50%"}}}
-                >
+                maxWidth={"100%"}
+                maxHeight={"100%"}
+                PaperProps={{ sx:{  width: "500px", height: "380px"}}}>
                 <DialogTitle
                     style={{ backgroundColor: "#FF9AB5", color: "white" }}
                     sx={{
@@ -120,7 +119,7 @@ const TeamCategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteC
                                         <AiOutlinePlus 
                                             size="20" 
                                             color="pink"
-                                            style={{"marginLeft" : "21vw"}}
+                                            style={{"marginLeft" : "100%"}}
                                             onClick={() => {        
                                                 setAddPage(true);
                                                 setListViewPage(false);
@@ -179,16 +178,16 @@ const TeamCategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteC
                         { addpage ? 
                             <>
                                 <div>
-                                <span style={{ "fontSize" : 20, color: "#FF9AB5"}}> 
+                                <span style={{ "fontSize" : 20, color: "#FF9AB5", marginLeft: "13%"}}> 
                                         카테고리 추가
                                 </span>
-                                <FormControl sx={{ m: 1, width: 300 }}>
+                                <FormControl sx={{ m: 1, width: "100%", height: "100%" }}>
                                     <Select
                                     className={classes.select}
                                     labelId="demo-multiple-name-label"
                                     id="demo-multiple-name"
                                     multiple
-                                    style={{"width": "21vw", marginTop: "2vh"}}
+                                    style={{width: "80%", marginLeft:"10%", marginTop: "5%"}}
                                     value={personName}
                                     onChange={handleChange}
                                     //input={<OutlinedInput label="Name" />}
@@ -207,7 +206,7 @@ const TeamCategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteC
                                 </div> 
                                 <div style={{ marginTop: "2vh"}}>
                                     <Button variant="contained" 
-                                        style={{ color: "white", backgroundColor: "#FF9AB5", width: "8vw", float: "left", marginLeft : "2vw"}}      
+                                        style={{ color: "white", backgroundColor: "#FF9AB5", width: "30%", float: "left", marginLeft : "12%"}}      
                                         onClick={ () => {
                                             onAddCategory(personName);
                                             setAddPage(false);
@@ -219,7 +218,7 @@ const TeamCategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteC
                                     </Button>
                                     <Button    
                                         variant="contained" 
-                                        style={{ color: "white", backgroundColor: "#FF9AB5", width: "8vw", float: "right", marginRight : "2vw"}}      
+                                        style={{ color: "white", backgroundColor: "#FF9AB5", width: "30%", float: "right", marginRight : "8%"}}      
                                         onClick={() => { 
                                         setAddPage(false);
                                         setListViewPage(true);
@@ -245,7 +244,7 @@ const TeamCategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteC
                                     <div style={{marginTop: "2vh"}}>  
                                         <Button
                                             variant="contained"  
-                                            style={{ color: "white", backgroundColor: "#FF9AB5", width: "8vw", float:"left", marginLeft: "1vw"}}        
+                                            style={{ color: "white", backgroundColor: "#FF9AB5", width: "30%", float:"left", marginLeft: "10%"}}        
                                             onClick={() => {
                                             deleteCategory(teamName, clickIdx, taskType, clickMembers);
                                             setAddPage(false);
@@ -257,7 +256,7 @@ const TeamCategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteC
                                         </Button>
                                         <Button
                                         variant="contained"  
-                                        style={{ color: "white", backgroundColor: "#FF9AB5", width: "8vw", float:"right", marginRight: "1vw"}}        
+                                        style={{ color: "white", backgroundColor: "#FF9AB5", width: "30%", float:"right", marginRight: "10%"}}        
                                         onClick={() => {
                                             setAddPage(false);
                                             setListViewPage(true);
@@ -272,7 +271,7 @@ const TeamCategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteC
                             : <></>}
                     </div>
                 </FormControl>
-                    </Scrollbars>
+                </Scrollbars>
                 </DialogContent> 
                 <DialogActions>
                     <Button               
