@@ -7,12 +7,12 @@ import '../styles/Member.css';
 import { AiOutlineSetting } from "react-icons/ai";
 
 
-const MemberList = ({ curTeam, onShowTeamMemberModal, onShowCategoryModal }) => {
+const List = ({ list, onShowModal, onShowCategoryModal, flag }) => {
     const [limit, setLimit] = useState(8);
     const [page, setPage] = useState(1);
     const offset = (page - 1) * limit;
-    const allCount = curTeam.memberList.length
-    const count = curTeam.memberList.slice(offset, offset + limit).length
+    const allCount = list.length
+    const count = list.slice(offset, offset + limit).length
     let maxCount = (allCount / 8);
     if (allCount % 8 > 0) {
         maxCount += 1;
@@ -35,7 +35,7 @@ const MemberList = ({ curTeam, onShowTeamMemberModal, onShowCategoryModal }) => 
             />
 
             {
-                curTeam.memberList.slice(offset, offset + limit).map((data, i) => (
+                list.slice(offset, offset + limit).map((data, i) => (
                     <Avatar
                         key={i}
                         title={data}
@@ -70,14 +70,16 @@ const MemberList = ({ curTeam, onShowTeamMemberModal, onShowCategoryModal }) => 
                 size="50"
                 color="#FF9AB5"
                 className="Member"
-                onClick={onShowTeamMemberModal} />
+                onClick={onShowModal} />
+            {flag === "true"?
             <AiOutlineSetting
                 size="50"
                 color="#FF9AB5"
                 className="Member"
                 onClick={onShowCategoryModal} />
+                :<></>}
         </>
     );
 }
 
-export default MemberList;
+export default List;

@@ -13,8 +13,8 @@ import CustomTimeLine from "../components/timeline/CustomTimeline";
 import ModifyTaskModal from "../components/modal/ModifyTaskModal";
 import HomeTaskList from "../components/tasklist/HomeTaskList";
 import GrayBox from "../components/GrayBox.js"
-import FollowerList from "../components/FollowerList";
 import FollowerModal from "../components/FollowerModal";
+import List from '../components/List';
 
 
 const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams=f=>f, myProfile, setMyProfile, member, setMember=f=>f})=> {
@@ -201,9 +201,9 @@ const Home = ({tasks, teamTask, teams, setTeamTask=f=>f, setTasks=f=>f, setTeams
                 </GrayBox>
             </div>
             <div className="box follower">
-                <FollowerList 
-                    follower={myFollowers} 
-                    onShowModal={onShow}/>
+                <List 
+                    list={myFollowers} onShowModal={onShow} onShowCategoryModal={null} flag="false" />
+                    
                 <FollowerModal 
                     myProfile={me}
                     open={open} 
