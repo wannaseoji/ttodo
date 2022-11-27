@@ -180,8 +180,14 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
 
     //카테고리 삭제
     const onDeleteCategory = function () {
+        
+        const modifiedTasks = tasks.filter(task=> {
+            console.log(`task category : ${task.category}  selectedCategory : ${selectedCategory.title}`)
+            return (task.category !== selectedCategory.title)})
         const modifiedCategories = categories.filter((category) => category.index !== selectedCategory.index);
+        
         setCategories(modifiedCategories);
+        setTasks(modifiedTasks)
         closeModifyCategoryModal();
     }
 

@@ -276,7 +276,7 @@ const TeamCategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteC
                 <DialogActions>
                     <Button               
                         variant="contained"       
-                        style={{ color: "white", backgroundColor: "gray"}} 
+                        style={{ color: "white", backgroundColor: "#aaa9a9"}} 
                         onClick={ () => {
                             setListViewPage(true);
                             setAddPage(false);
