@@ -7,7 +7,9 @@ const MyBarCharts = ({ data }) => {
     return (
         <>
             <ResponsiveContainer width='100%' height={'120%'} aspect={4.0 / 4.0} >
-                <BarChart data={data} layout="vertical" fill="#B7B7B7" width={60} height={20} margin={{ top: 0, left: 40, right: 0, bottom: 0 }}>
+
+                <BarChart title={data.month} data={data} layout="vertical" fill="#B7B7B7" width={60} height={20} margin={{ top: 0, left: 40, right: 0, bottom: 0 }}>
+
                     <XAxis type="number" dataKey="maxPercent" hide />
                     <YAxis dataKey="name" reversed type="category" />
                     <Tooltip />

@@ -27,7 +27,7 @@ import ModifyTaskModal from '../components/modal/ModifyTaskModal'
 import AddTaskModal from "../components/modal/AddTaskModal"
 import Scrollbars from "react-custom-scrollbars";
 
-const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, member}) => {
+const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, member }) => {
     const me = member.filter((v) => v.me === "true")[0] //내 데이터
     const initTask = {
         "index": 0,
@@ -145,7 +145,7 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, memb
     }
     const modifyProfile = (name, email, intro) => {
         //공백 처리
-        if(name === "" || email === "" || intro === "")  { 
+        if (name === "" || email === "" || intro === "") {
             alert(`공백을 입력할 수 없습니다.`)
             return;
         }
@@ -186,7 +186,7 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, memb
     return (
         <div id="app" className="parent" >
             <div className="box menu" >
-                <Menu pageNum={1}/>
+                <Menu pageNum={1} />
             </div >
             <div className="box profile">
                 <Profile
@@ -200,33 +200,34 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, memb
             </div>
             <div className="box content"  >
                 <GrayBox title={"월별 목표달성률"} settingHeight="70vh">
-                    <div style={{  width: '100%', height: '120%', paddingLeft: '5%', paddingRight: "5%"}}>
-                        <Slider Piedata={Piedata} LineData={LineData} children={
+                    <div style={{ width: '100%', height: '120%', paddingLeft: '0%', paddingRight: "5%" }}>
+                        <Slider sxL={{ float: "left", marginLeft: "10%" }} sxR={{ float: "right", marginRight: "10%" }} Piedata={Piedata} LineData={LineData} children={
                             Piedata.map((pie, i) => <div key={i} style={{ width: '100%', height: '100%', flex: 'none' }}> <Slide key={i} Piedata={pie} LineData={LineData[i]} /> </div>)
                         } />
                     </div>
                 </GrayBox>
             </div>
             <div className="box follower"></div>
-            <div className="box tasklist" style={{ width: '100%', height: '95% ', borderRadius: '20px' }}>
-                <Scrollbars >{
-                    <GrayBox title={"카테고리별 목표달성률"} >
+            <div className="box tasklist" style={{ width: '100%', height: '95% ' }}>
 
-                        <Slider Piedata={Piedata} progressData={progressData} children={
-                            progressData.map(
-                                (data, i) =>
-                                    <div key={i} style={{ width: '100%', height: '100%', flex: 'none' }}>
+                <GrayBox sxW={{padding: "2px", display:"inline-block", width:"100%", marginRight:"3%", marginLeft:"-1.3rem"}} title={"카테고리별 목표달성률"} settingHeight="43vh" >
+                    <Slider sxL={{ float: "left", marginLeft: "10%" }} sxR={{ float: "right", marginRight: "10%" }} Piedata={Piedata} progressData={progressData}  children={
+                        progressData.map(
+                            (data, i) =>
+                                <div key={i} style={{ width: '100%', height: '100%', flex: 'none' }}>
+
+                                    <Scrollbars>
                                         <ProgressSlide key={i} data={data} />
-                                    </div>
-                            )
-                        }
-                        />
-                    </GrayBox>
-                } </Scrollbars >
+                                    </Scrollbars >
+                                </div>
+                        )
+                    }
+                    />
+                </GrayBox>
                 {/* <MyBarCharts data={uniqueProgressData} /> */}
             </div>
             <div className="box teamlist">
-                <Scrollbars style={{ width: '100%', height: '90%', backgroundColor: "transparent", borderRadius: "0px 0px 0px 0px" }}>
+                <Scrollbars style={{ width: '100%', height: '90%', marginLeft: "-3rem", backgroundColor: "transparent", borderRadius: "0px 0px 0px 0px" }}>
                     <CategoryTaskList tasks={BUCKETLIST} categoryName={'BUCKET LIST'} onCheck={onCheck} onModifyTaskModal={modifyTaskHandler} onAddTaskModal={addTaskHandler}
                         style={{ width: '100%', height: '100%', backgroundColor: "transparent", borderRadius: "0px 0px 10px 10px", margin: "20px 50px 30px 50px;" }}></CategoryTaskList>
                 </Scrollbars>
