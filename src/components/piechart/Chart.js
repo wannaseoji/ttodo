@@ -6,7 +6,7 @@ const MyResponsivePie = ({ data }) => (
 
     <ResponsivePie
         data={data}
-        margin={{ top: 60, right: 80, bottom: 0, left: 80 }}
+        margin={{ top: 60, right: 80, bottom: 10, left: 80 }}
         innerRadius={0.5}
         padAngle={1}
         cornerRadius={3}
