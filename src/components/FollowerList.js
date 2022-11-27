@@ -25,7 +25,7 @@ const FollowerList = ({follower, onShowModal}) => {
         <> 
             {/*왼쪽 버튼 */}
             <BsFillArrowLeftCircleFill 
-                size="50" 
+                size="30" 
                 color="#FF9AB5"
                 className="Member"
                 onClick={() => {
@@ -42,7 +42,7 @@ const FollowerList = ({follower, onShowModal}) => {
                         title={data}
                         alt="Remy Sharp"
                         src= {data + ".jpg"}
-                        sx={{ width: "50px", height: "50px"}} 
+                        sx={{ width: "6vh", height: "6vh"}}
                         className="Member"/>
                     ))
             }
@@ -51,14 +51,14 @@ const FollowerList = ({follower, onShowModal}) => {
                         <Avatar
                         key={i}
                         alt="Remy Sharp"
-                        sx={{ width: "50px", height: "50px"}} 
-                        style={{ background: "#FFFFFF", border: "5px dotted pink"}}
+                        sx={{ width: "6vh", height: "6vh"}}
+                        style={{ background: "#FFFFFF", border: "4px dotted pink"}}
                         className="Member"/>
                 )
             }
             {/*오른쪽 버튼 */}
             <BsFillArrowRightCircleFill 
-                size="50" 
+                size="30" 
                 color="#FF9AB5"
                 className="Member"
                 onClick={ () => { 
@@ -67,15 +67,10 @@ const FollowerList = ({follower, onShowModal}) => {
                     }
                 }}/>
             <AiOutlinePlusCircle 
-                    size="50" 
+                    size="30" 
                     color="#FF9AB5"
                     className="Member"
                     onClick={onShowModal}/>
-            <IoPeopleCircleOutline 
-                size="50" 
-                color="#FF9AB5"
-                className="Member"
-                onClick={() => { alert('프로필 아이콘 눌러짐');}}/>
         </>
     );
 }

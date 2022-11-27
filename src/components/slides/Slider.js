@@ -3,6 +3,7 @@ import styeld from "styled-components";
 import { useState, useRef, useEffect } from "react";
 import Slide from './Slide';
 import styled from "styled-components";
+import {GoChevronLeft, GoChevronRight} from 'react-icons/go'
 // 전체 슬라이드 개수(총3개. 배열로 계산)
 const SlideComponent = ({ Piedata = [], LineData = [], progressData = [], children }) => {
     const [currentSlide, setCurrentSlide] = useState(Piedata && Piedata.map(() => { }).length - 1);
@@ -30,8 +31,10 @@ const SlideComponent = ({ Piedata = [], LineData = [], progressData = [], childr
 
     return (
         <>
-            <StyledButton onClick={PrevSlide}>prev</StyledButton>
-            <StyledButton onClick={NextSlide}>next</StyledButton>
+            {/* <StyledButton onClick={PrevSlide} style={{float: "left",marginLeft: "10%"}}>&lt;</StyledButton>
+            <StyledButton onClick={NextSlide} style={{float: "right", marginRight: "10%"}}>&gt;</StyledButton> */}
+            <GoChevronLeft onClick={PrevSlide} size="20" color="#878787" style={{float: "left",marginLeft: "5%"}}/>
+            <GoChevronRight onClick={NextSlide} size="20" color="#878787" style={{float: "right",marginRight: "10%"}}/>
             <Wrapper>
                 <SlideWrapper ref={slideRef} style={{ width: '100%', height: '100%' }}>
                     {children}
@@ -64,7 +67,8 @@ const StyledButton = styled.button`
   font-size: var(--button-font-size, 1  rem);
   padding: var(--button-padding, 8px 12px);
   border-radius: var(--button-radius, 8px);
-  background: var(--button-bg-color, #fbdae3);
-  color: var(--button-color, #FF9AB5);
+//   background: var(--button-bg-color, #fbdae3);
+  color: var(--button-color, #555555);
+  font-weight: var(--button-font-weight, bold)
  
 `;

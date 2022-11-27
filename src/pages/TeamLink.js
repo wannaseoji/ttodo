@@ -14,10 +14,11 @@ import NoticeModal from '../components/modal/NoticeModal';
 import TeamProfile from '../components/TeamProfile';
 import MemberAddModal from '../components/MemberAddModal';
 import TeamProfileModal from '../components/TeamProfileModal';
-import CategoryModal from '../components/modal/CategoryModal';
+import TeamCategoryModal from '../components/modal/TeamCategoryModal';
 import GrayBox from '../components/GrayBox'
 import AddTeamTaskModal from '../components/modal/AddTeamTaskModal';
-import MemberList from '../components/MemberList';
+import List from '../components/List';
+import CategorySettingModal from '../components/modal/CategorySettingModal';
 
 
 
@@ -436,17 +437,18 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
                 </GrayBox>
             </div>
             <div className="box follower">
-                <MemberList
-                    curTeam={curTeam}
-                    onShowTeamMemberModal={onShowTeamMemberModal}
-                    onShowCategoryModal={onShowCategoryModal} />
+                <List 
+                    list={curTeam.memberList} 
+                    onShowModal={onShowTeamMemberModal} 
+                    onShowCategoryModal={onShowCategoryModal} 
+                    flag="true" />
                 <MemberAddModal
                     open={TeamMemberModalOpen}
                     close={handleTeamMemberClose}
                     createTeamMember={createTeamMember}
                     followers={myFollowers}
                     curTeam={curTeam} />
-                <CategoryModal
+                <TeamCategoryModal
                     open={CategoryOpen}
                     close={handleCategoryClickClose}
                     curTeam={curTeam}

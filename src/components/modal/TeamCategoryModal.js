@@ -4,6 +4,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import "../../styles/TaskModal.css";
 import FormControl from '@mui/material/FormControl';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -16,6 +17,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { useState } from "react";
 import { AiOutlinePlus } from  "react-icons/ai";
+import Scrollbars from 'react-custom-scrollbars';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -37,7 +39,7 @@ function getStyles(name, personName, theme) {
         };
 }
 
-const CategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteCategory}) => {
+const TeamCategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteCategory}) => {
     //카테고리 추가 부분
     const theme = useTheme();
     const [personName, setPersonName] = React.useState([]);
@@ -263,4 +265,4 @@ const CategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteCateg
     );
 }
 
-export default CategoryModal;
+export default TeamCategoryModal;
