@@ -8,6 +8,7 @@ import "../../styles/TaskModal.css";
 import FormControl from '@mui/material/FormControl';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
+import { ListItemIcon } from "@mui/material";
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { useTheme } from '@mui/material/styles';
@@ -18,6 +19,22 @@ import Select from '@mui/material/Select';
 import { useState } from "react";
 import { AiOutlinePlus } from  "react-icons/ai";
 import Scrollbars from 'react-custom-scrollbars';
+import { AiFillFolder } from "react-icons/ai";
+import { makeStyles, createStyles } from '@material-ui/core/styles'
+import { width } from "@mui/system";
+
+const useStyles = makeStyles((theme) => createStyles({
+    select: { 
+        "&.MuiOutlinedInput-root":{
+            "& fieldset": {
+                borderColor: "#555555"
+            },
+            "&.Mui-focused fieldset": {
+                borderColor: "#FF9AB5"
+            }
+        }
+    }
+}))
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -61,6 +78,8 @@ const TeamCategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteC
         console.log("onAddCategory 호출");
         addCategory(personName);
     }
+    const classes = useStyles()
+    
     //팔로우 
     const [addpage, setAddPage] = useState(false);
     const [deletemodifypage, setDeleteModifyPage] = useState(false);
@@ -91,7 +110,7 @@ const TeamCategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteC
                 </DialogTitle>
                 <DialogContent style={{ alignItems: "center", marginTop: "2vh", overflow:"hidden"}}>
                     <Scrollbars>
-                    <FormControl>
+                    <FormControl sx={{ width:"94%", height:"100%"}}>
                     <div>   {/* */}
                         { listViewPage ? 
                             <>         
@@ -123,6 +142,9 @@ const TeamCategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteC
                                             setAddPage(false);
                                             setListViewPage(false);
                                         }}>
+                                            <ListItemIcon>
+                                                <AiFillFolder />
+                                            </ListItemIcon>
                                             { t1.myTask[index].relatedMembers.map((data) => {categoryStr += (data + "  "); return null;})}
                                             <ListItemText primary={categoryStr} />    
                                             { categoryStr = ""}
@@ -142,6 +164,9 @@ const TeamCategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteC
                                             setAddPage(false);
                                             setListViewPage(false);
                                         }}>
+                                            <ListItemIcon>
+                                                <AiFillFolder />
+                                            </ListItemIcon>
                                             { t1.otherTask[index].relatedMembers.map((data) => { categoryStr += (data + "  "); return null; })}
                                             <ListItemText primary={categoryStr}/>    
                                             { categoryStr = ""}
@@ -158,19 +183,15 @@ const TeamCategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteC
                                         카테고리 추가
                                 </span>
                                 <FormControl sx={{ m: 1, width: 300 }}>
-                                    <InputLabel 
-                                    id="demo-multiple-name-label"
-                                    style={{marginTop: "2vh"}}>
-                                        Name
-                                    </InputLabel>
                                     <Select
+                                    className={classes.select}
                                     labelId="demo-multiple-name-label"
                                     id="demo-multiple-name"
                                     multiple
                                     style={{"width": "21vw", marginTop: "2vh"}}
                                     value={personName}
                                     onChange={handleChange}
-                                    input={<OutlinedInput label="Name" />}
+                                    //input={<OutlinedInput label="Name" />}
                                     MenuProps={MenuProps}>
                                     {curTeam.memberList.map((name) => (
                                         <MenuItem
@@ -184,29 +205,29 @@ const TeamCategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteC
                                     </Select>
                                 </FormControl>
                                 </div> 
-                                <div>
-                                <Button variant="contained" 
-                                    style={{ color: "white", backgroundColor: "#FF9AB5", width: "11vw"}}      
-                                    onClick={ () => {
-                                        onAddCategory(personName);
+                                <div style={{ marginTop: "2vh"}}>
+                                    <Button variant="contained" 
+                                        style={{ color: "white", backgroundColor: "#FF9AB5", width: "8vw", float: "left", marginLeft : "2vw"}}      
+                                        onClick={ () => {
+                                            onAddCategory(personName);
+                                            setAddPage(false);
+                                            setListViewPage(true);    
+                                            setDeleteModifyPage(false);
+                                            setPersonName([]);
+                                        }}>
+                                        추가
+                                    </Button>
+                                    <Button    
+                                        variant="contained" 
+                                        style={{ color: "white", backgroundColor: "#FF9AB5", width: "8vw", float: "right", marginRight : "2vw"}}      
+                                        onClick={() => { 
                                         setAddPage(false);
-                                        setListViewPage(true);    
+                                        setListViewPage(true);
                                         setDeleteModifyPage(false);
                                         setPersonName([]);
                                     }}>
-                                    추가
-                                </Button>
-                                <Button 
-                                    variant="contained" 
-                                    style={{ color: "white", backgroundColor: "#FF9AB5", width: "11vw"}}      
-                                    onClick={() => { 
-                                    setAddPage(false);
-                                    setListViewPage(true);
-                                    setDeleteModifyPage(false);
-                                    setPersonName([]);
-                                }}>
-                                    취소
-                                </Button>   
+                                        취소
+                                    </Button>   
                                 </div>
                             </>
                             : <></>}
@@ -216,36 +237,36 @@ const TeamCategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteC
                                     {Arr.map((data) => { categoryStr += (data + "  "); return null; })}
                                     <List>
                                         <ListItem 
-                                        sx={{ marginLeft: "0.1vw"}}>
+                                        sx={{ marginLeft: "1.2vw"}}>
                                         {categoryStr}
                                         </ListItem>
                                     </List> 
                                     </div> 
-                                    <div style={{marginTop: "1vh"}}>
-                                    <Button
+                                    <div style={{marginTop: "2vh"}}>  
+                                        <Button
+                                            variant="contained"  
+                                            style={{ color: "white", backgroundColor: "#FF9AB5", width: "8vw", float:"left", marginLeft: "1vw"}}        
+                                            onClick={() => {
+                                            deleteCategory(teamName, clickIdx, taskType, clickMembers);
+                                            setAddPage(false);
+                                            setListViewPage(true);
+                                            setDeleteModifyPage(false);
+                                            setPersonName([]);
+                                        }}>
+                                            삭제
+                                        </Button>
+                                        <Button
                                         variant="contained"  
-                                        style={{ color: "white", backgroundColor: "#FF9AB5", width: "11vw"}}      
+                                        style={{ color: "white", backgroundColor: "#FF9AB5", width: "8vw", float:"right", marginRight: "1vw"}}        
                                         onClick={() => {
-                                        deleteCategory(teamName, clickIdx, taskType, clickMembers);
-                                        setAddPage(false);
-                                        setListViewPage(true);
-                                        setDeleteModifyPage(false);
-                                        setPersonName([]);
-                                    }}>
-                                        삭제
-                                    </Button>
-                                    <Button
-                                    variant="contained"     
-                                    style={{ color: "white", backgroundColor: "#FF9AB5", width: "11vw"}}      
-                                    onClick={() => {
-                                        setAddPage(false);
-                                        setListViewPage(true);
-                                        setDeleteModifyPage(false);
-                                        setPersonName([]);
-                                        console.log(Arr);
-                                    }}>
-                                        다시 목록으로
-                                    </Button>
+                                            setAddPage(false);
+                                            setListViewPage(true);
+                                            setDeleteModifyPage(false);
+                                            setPersonName([]);
+                                            console.log(Arr);
+                                        }}>
+                                            다시 목록으로
+                                        </Button>
                                     </div> 
                                 </>
                             : <></>}
@@ -254,9 +275,9 @@ const TeamCategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteC
                     </Scrollbars>
                 </DialogContent> 
                 <DialogActions>
-                    <Button                  
+                    <Button               
                         variant="contained"       
-                        style={{ color: "white", backgroundColor: "#FF9AB5"}} 
+                        style={{ color: "white", backgroundColor: "gray"}} 
                         onClick={ () => {
                             setListViewPage(true);
                             setAddPage(false);
@@ -264,7 +285,7 @@ const TeamCategoryModal = ({open, close, curTeam, teamTask, addCategory, deleteC
                             setPersonName([]);
                             close();
                         }}>
-                        취소
+                        닫기
                     </Button>
                 </DialogActions>
             </Dialog>
