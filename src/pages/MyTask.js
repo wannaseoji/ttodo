@@ -265,7 +265,7 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
                     style={{
                         color: "FF9AB5",
                         marginTop: "auto",
-                        marginLeft: "80%"
+                        marginLeft: "75%"
                     }}
                     onClick={onShowCategorySettingModal} />
                 <CategorySettingModal

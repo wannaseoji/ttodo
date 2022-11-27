@@ -4,7 +4,7 @@
         "memberList": ["seo","kim","cho","park"],
         "notice": ["극Rock도 Rock이다", "나Rock도 Rock이다", "오Rock도 Rock이다"],
         "intro": "낙인 팀",
-        "img": "default.jpg",
+        "image": "default.jpg",
         "leader":"seo"
     },
     {
@@ -12,7 +12,7 @@
         "memberList": ["seo","kim","cho","son"],
         "notice": ["일선도 전공처럼", "매주 월요일 면담", "발표 준비하기", "보고서 작성"],
         "intro": "광야의 작은 아씨들",
-        "img": "default.jpg",
+        "image": "default.jpg",
         "leader":"seo"
     },
     {
@@ -20,7 +20,7 @@
         "memberList": ["seo","park", "choi", "shin"],
         "notice": ["뜨거운 가슴으로 시작", "폼에 살고 죽기"],
         "intro": "폼생폼사.",
-        "img": "default.jpg",
+        "image": "default.jpg",
         "leader":"seo"
     },
     {
@@ -28,7 +28,7 @@
         "memberList": ["seo","park", "cho", "choi"],
         "notice": ["뜨거운 가슴으로 시작", "폼에 살고 죽기"],
         "intro": "제일 빠른 경로를 찾자",
-        "img": "default.jpg",
+        "image": "default.jpg",
         "leader":"seo"
     }
 ]

@@ -11,7 +11,7 @@ import TeamModal from "../components/modal/TeamModal";
 import CategoryList from "../components/CategoryList";
 import Menu from "../components/Menu";
 import NoticeModal from '../components/modal/NoticeModal';
-import TeamProfile from '../components/TeamProfile';
+import Profile from '../components/Profile';
 import MemberAddModal from '../components/MemberAddModal';
 import TeamProfileModal from '../components/TeamProfileModal';
 import TeamCategoryModal from '../components/modal/TeamCategoryModal';
@@ -19,7 +19,6 @@ import GrayBox from '../components/GrayBox'
 import AddTeamTaskModal from '../components/modal/AddTeamTaskModal';
 import List from '../components/List';
 import CategorySettingModal from '../components/modal/CategorySettingModal';
-import { GiConsoleController } from 'react-icons/gi';
 
 
 
@@ -27,11 +26,11 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
     const [curTeam, setCurTeam] = useState(teams[0])
     const [index, setIndex] = useState(0)
     const [noticePage, setNoticePage] = useState(1);
-    // console.log(member)
+    console.log(member)
 
     const me = member.filter((v) => v.me === "true")[0]     //내 데이터(myProfile 대체)
     const myFollowers = me.followMembers
-    // console.log(myFollowers)                                //나의 팔로워된 애들의 리스트(followers 대체)
+    console.log(myFollowers)                                //나의 팔로워된 애들의 리스트(followers 대체)
 
     const [selectedDate] = useState(new Date()); // Mon Nov 14 2022 10:50:35 GMT+0900 (한국 표준시)
     const [clickedMemberList, setClickedMemberList] = useState([]);
@@ -122,6 +121,7 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
             memberList: [leader, ...memberList],
             notice: [],
             intro: intro,
+            image: "default.jpg",
             leader: leader
         }
         const t1 = [...teams, newTeams]
@@ -415,6 +415,7 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
     }
 
 
+
     teamTask.map(teamt => {
         console.log(`Team Name : ${teamt.name}`)
         console.log(`curTeam : ${curTeam.name}`)
@@ -430,17 +431,17 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
         console.log(`category.relatedMem : ${category.relatedMembers}`)
         return category.relatedMembers})
     console.log(`clickedTeamCategory : ${clickedTeamCategory}`)
-
-
+    
+    
     return (
         <div id="app" className="parent" >
             <div className="box menu" >
                 <Menu pageNum={3}/>
             </div>
             <div className="box profile">
-                <TeamProfile
-                    curTeam={curTeam}
-                    onShowTeamProfileModal={onShowTeamProfileModal} />
+                <Profile
+                    myProfile={curTeam}
+                    onShowModal={onShowTeamProfileModal} />
                 <TeamProfileModal
                     open={TeamProfileOpen}
                     close={handleTeamProfileClose}
@@ -448,7 +449,7 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
                 />
             </div>
             <div className="box content">
-                <GrayBox title={"속한 팀 목록"} settingHeight="70vh">
+                <GrayBox title={"Team List"} settingHeight="70vh">
                     <div style={{ width: '100%', height: '120%', }}>
                     <TeamEditList onShowModal={onShow} teamData={teams} changeCurTeamIdx={changeCurTeamIdx} member={member}/>
                     <TeamModal open={open} close={handleClose} onNewTeam={onNewTeam} followers={myFollowers} leader={curTeam.leader}/>
