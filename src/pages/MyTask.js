@@ -241,7 +241,7 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
     return (
         <div id="app" className="parent" >
             <div className="box menu" >
-                <Menu />
+                <Menu pageNum={2}/>
             </div >
             <div className="box profile">
                 <Profile

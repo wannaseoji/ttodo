@@ -7,7 +7,16 @@
     width: 100%;
 }
 
-.linkButton .menuName{
+.selectedLinkButton{
+    color:#FF9AB5 !important;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height:5em;
+    width: 100%;
+}
+
+.menuName{
     padding-left: 0.5em;
     text-transform: none
 }

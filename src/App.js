@@ -24,7 +24,6 @@ function App() {
   const [tasks, setTasks] = useState(taskData);
   const [BUCKETLIST, setBUCKETLIST] = useState(BUCKETLISTD);
   const [categories, setCategories] = useState(categoryData);
-  
   // const myFollowers = member.map((v) => v.name === "seo")[0].followMembers
   // console.log(myFollowers)
 

@@ -435,7 +435,7 @@ const TeamLink = ({tasks, teamTask, teams, member, setTeamTask=f=>f, setTasks=f=
     return (
         <div id="app" className="parent" >
             <div className="box menu" >
-                <Menu />
+                <Menu pageNum={3}/>
             </div>
             <div className="box profile">
                 <TeamProfile
