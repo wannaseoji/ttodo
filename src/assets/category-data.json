@@ -1,12 +1,22 @@
 [
     {
         "index": 1,
-        "title":"Study✏️"
-    },{
+        "title": "Study✏"
+    },
+    {
         "index": 2,
-        "title":"Exercise⚽"
-    },{
+        "title": "Exercise⚽"
+    },
+    {
         "index": 3,
-        "title":"Friend💖"
+        "title": "Friend💖"
+    },
+    {
+        "index": 4,
+        "title": "Company🏢"
+    },
+    {
+        "index": 5,
+        "title": "School🏫"
     }
 ]

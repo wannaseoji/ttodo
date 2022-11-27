@@ -18,7 +18,14 @@ const MyLineChart = ({ data }) => {
 const options = {
     fill: true,
     fontSize: '10%',
-
+    scales: {
+        y:
+        {
+            min: 0,
+            max: 100,
+            stepSize: 10,
+        },
+    }
 }
 
 
