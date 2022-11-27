@@ -8,7 +8,7 @@ import { MdPushPin } from 'react-icons/md';
 
 function Team({ data, memberData }) {
     return (
-        <Card style={{ backgroundColor: "#FFE2E9", margin: "0", display:"inline-block" }} sx={{ maxWidth: 190, minWidth: 190, height:"21vh" , borderRadius: 3 }} >
+        <Card style={{ backgroundColor: "#FFE2E9", margin: "0", display:"inline-block" }} sx={{ maxWidth: 190, minWidth: 190, maxHeight: 195, minHeight: 195 , borderRadius: 3 }} >
             <CardContent>
                 {/* component={"span"} */}
                 <Typography align="left" sx={{fontWeight: 'bold', width:"8vw", overflow: 'hidden'
