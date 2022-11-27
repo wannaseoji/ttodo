@@ -7,8 +7,8 @@ function Notice({onShowModal, notices, page, setPage}) {
     let count = notices.length; //공지사항의 개수, 총 페이지의 개수
     return (
         <>
-            <span style={{color:"#FF9AB5", fontWeight: "bold", fontSize:"25px", textAlign:"left", marginBottom:"0.8vh"}}>
-                NOTICE <IoMdAddCircleOutline size="3.1vh" color="#FF9AB5" onClick={onShowModal} style={{display:"inline"}}/>  
+            <span style={{color:"#FF9AB5", fontWeight: "bold", fontSize:"25px", textAlign:"left", marginBottom:"0.8vh", display: "flex", alignItems: "center"}}>
+                NOTICE <IoMdAddCircleOutline size="3.1vh" color="#FF9AB5" onClick={onShowModal} style={{display:"inline", marginLeft:"0.5vw"}}/>  
             </span>    
             <div style={{backgroundColor:"#F0F0F0", borderRadius: "10px", width:"95%", height:"43%", textAlign:"left", paddingTop:"1vh", paddingLeft:"2vw"}} >
                 <div style={{align: "right", paddingLeft:"34vw", paddingTop:"0.3vh"}}>

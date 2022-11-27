@@ -1,10 +1,4 @@
 import React from "react";
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import FormControl from '@mui/material/FormControl';
 import { TextField, styled } from '@mui/material';
 
 import { useState } from "react";
@@ -53,7 +47,7 @@ const MemberAddModal = ({ open, close, createTeamMember, followers, curTeam }) =
         <div className={open ? 'openModal modal' : 'modal'}>
             {open ? (
                 <section>
-                    <header> 팔로워 추가 </header>
+                    <header> 팀원 추가 </header>
                     <main>
                         <div style={{justifyContent: "center"}}>
                         <span style={{marginRight:"2vw", fontWeight:800}}>친구 검색</span>
