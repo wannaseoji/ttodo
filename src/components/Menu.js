@@ -11,35 +11,35 @@ import { BsPeople } from 'react-icons/bs' //GiStairsGoal, IoPersonOutline,BsPeop
 import Button from '@material-ui/core/Button';
 import '../styles/linkButton.css';
 
-const Menu = () => {
+const Menu = ({pageNum}) => {
     return (
         <nav className="seo_nav">
             <Box sx={{ width: '100%', maxWidth: 400, bgcolor: 'background.black', position: 'relative', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
                 <List component="nav">
                     <nav>
                         <StyledListItem >
-                            <Button className="linkButton" component={Link} to="/">
-                                <VscHome /><ListItemText className="menuName"> Home</ListItemText>
+                            <Button className={(pageNum==0)?"selectedLinkButton":"linkButton"} component={Link} to="/" sx={{color:"pink !important"}}>
+                                <VscHome /><ListItemText className="menuName" > Home</ListItemText>
                             </Button>
                         </StyledListItem>
                     </nav>
                     <nav >
                         <StyledListItem>
-                            <Button className="linkButton" component={Link} to="/Goal">
+                            <Button className={(pageNum==1)?"selectedLinkButton":"linkButton"} component={Link} to="/Goal">
                                 <GiStairsGoal /><ListItemText className="menuName"> Goal</ListItemText>
                             </Button>
                         </StyledListItem>
                     </nav>
                     <nav>
                         <StyledListItem>
-                            <Button className="linkButton" component={Link} to="/MyTask">
+                            <Button className={(pageNum==2)?"selectedLinkButton":"linkButton"} component={Link} to="/MyTask">
                                 <IoPersonOutline /><ListItemText className="menuName"> My Task</ListItemText>
                             </Button>
                         </StyledListItem>
                     </nav>
                     <nav>
                         <StyledListItem>
-                            <Button className="linkButton" component={Link} to="/TeamLink">
+                            <Button className={(pageNum==3)?"selectedLinkButton":"linkButton"} component={Link} to="/TeamLink">
                                 <BsPeople /><ListItemText className="menuName"> Team</ListItemText>
                             </Button>
                         </StyledListItem>

@@ -183,7 +183,7 @@ const Home = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => f,
     return (
         <div id="app" className="parent" >
             <div className="box menu" >
-                <Menu />
+                <Menu pageNum={0}/>
             </div >
             <div className="box profile">
                 <Profile

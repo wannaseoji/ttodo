@@ -14,6 +14,7 @@ import GrayBox from "../components/GrayBox"
 import '../styles/linkButton.css';
 import ProfileModal from '../components/ProfileModal';
 import { AiOutlineSetting } from "react-icons/ai";
+import { AiFillFolderAdd } from "react-icons/ai";
 import CategorySettingModal from '../components/modal/CategorySettingModal'
 
 import AddCategoryModal from "../components/modal/AddCategoryModal"
@@ -241,7 +242,7 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
     return (
         <div id="app" className="parent" >
             <div className="box menu" >
-                <Menu />
+                <Menu pageNum={2}/>
             </div >
             <div className="box profile">
                 <Profile
@@ -259,12 +260,12 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
                 </GrayBox>
             </div>
             <div className="box follower">
-                <AiOutlineSetting
-                    size="3.5vh"
+                <AiFillFolderAdd
+                    size="5vh"
                     style={{
                         color: "FF9AB5",
                         marginTop: "auto",
-                        marginLeft: "85%"
+                        marginLeft: "80%"
                     }}
                     onClick={onShowCategorySettingModal} />
                 <CategorySettingModal
@@ -290,7 +291,7 @@ const MyTask = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => 
                     onDeleteCategory={onDeleteCategory} />
             </div>
             <div className="box tasklist"  style={{height : "75vh"}}>
-                <Scrollbars style={{ width: '90%', height: '100%', margin: '0rem', backgroundColor: "transparent", borderRadius: "0px 0px 10px 10px" }}>
+                <Scrollbars style={{ width: '90%', height: '100%', marginLeft: '-3rem', backgroundColor: "transparent", borderRadius: "0px 0px 10px 10px" }}>
                     <CategoryScrollList
                         categories={categories}
                         tasks={selectedDateTasks}

@@ -186,7 +186,7 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, memb
     return (
         <div id="app" className="parent" >
             <div className="box menu" >
-                <Menu />
+                <Menu pageNum={1} />
             </div >
             <div className="box profile">
                 <Profile
@@ -208,25 +208,27 @@ const Goal = ({ tasks, BUCKETLIST, setBUCKETLIST = f => f, teamTask, teams, memb
                 </GrayBox>
             </div>
             <div className="box follower"></div>
-            <div className="box tasklist" style={{ width: '100%', height: '95% ', borderRadius: '20px' }}>
-                <Scrollbars >{
-                    <GrayBox title={"카테고리별 목표달성률"} >
+            <div className="box tasklist" style={{ width: '100%', height: '95% ' }}>
+                <GrayBox title={"카테고리별 목표달성률"} settingHeight="43vh" >
 
-                        <Slider sxL={{ float: "left", marginLeft: "10%" }} sxR={{ float: "right", marginRight: "10%" }} Piedata={Piedata} progressData={progressData} children={
-                            progressData.map(
-                                (data, i) =>
-                                    <div key={i} style={{ width: '100%', height: '100%', flex: 'none', }}>
+
+                    <Slider sxL={{ float: "left", marginLeft: "10%" }} sxR={{ float: "right", marginRight: "10%" }} Piedata={Piedata} progressData={progressData} children={
+                        progressData.map(
+                            (data, i) =>
+                                <div key={i} style={{ width: '100%', height: '100%', flex: 'none', }}>
+                                    <Scrollbars>
                                         <ProgressSlide key={i} data={data} />
-                                    </div>
-                            )
-                        }
-                        />
-                    </GrayBox>
-                } </Scrollbars >
+                                    </Scrollbars >
+                                </div>
+                        )
+                    }
+                    />
+
+                </GrayBox>
                 {/* <MyBarCharts data={uniqueProgressData} /> */}
             </div>
             <div className="box teamlist">
-                <Scrollbars style={{ width: '100%', height: '90%', backgroundColor: "transparent", borderRadius: "0px 0px 0px 0px" }}>
+                <Scrollbars style={{ width: '100%', height: '90%', marginLeft: "-3rem", backgroundColor: "transparent", borderRadius: "0px 0px 0px 0px" }}>
                     <CategoryTaskList tasks={BUCKETLIST} categoryName={'BUCKET LIST'} onCheck={onCheck} onModifyTaskModal={modifyTaskHandler} onAddTaskModal={addTaskHandler}
                         style={{ width: '100%', height: '100%', backgroundColor: "transparent", borderRadius: "0px 0px 10px 10px", margin: "20px 50px 30px 50px;" }}></CategoryTaskList>
                 </Scrollbars>
