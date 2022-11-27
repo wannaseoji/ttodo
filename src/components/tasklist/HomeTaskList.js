@@ -8,7 +8,7 @@ function HomeTaskList({tasks = [], limit, onCheck = f => f, onModifyTaskModal = 
         <>
             <List className='tasklist_container'
                 sx={{ bgcolor: 'background.paper', 
-                marginTop:'1vh', marginRight:'6vw' }}>
+                marginTop:'1vh', width: "100%"}}>
                 <div id='category_top'>
                     <span id="category_name">My Task</span>
                 </div>

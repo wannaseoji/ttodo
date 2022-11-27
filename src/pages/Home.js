@@ -213,7 +213,7 @@ const Home = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => f,
             </div>
 
 
-            <div className="box tasklist">
+            <div className="box tasklist" style={{marginRight:"4vw"}}>
                 <HomeTaskList
                     tasks={todayTasks}
                     limit={todayTasks.length > 5 ? 5 : todayTasks.length}
@@ -229,9 +229,16 @@ const Home = ({ tasks, teamTask, teams, setTeamTask = f => f, setTasks = f => f,
                     onModifyTask={onModifyTask}
                     onDeleteTask={onDeleteTask} />
             </div>
-            <div className="box teamlist">
-                {initTeamCard()}
-                {teamCard.map(v => v)}
+            <div className="box teamlist" style={{display:"flex", alignContent:"flex-start", flexWrap:"wrap", justifyContent:"flex-start"}}>
+                <div>
+                    <div id='category_top'>
+                        <span id="category_name" style={{marginBottom:"1vh"}}>My Team</span>
+                    </div>
+                    <div style={{marginRight:"6vw", width:"100%", display:"flex", justifyContent:"space-between"}}>
+                        {initTeamCard()}
+                        {teamCard.map(v => v)}
+                    </div>
+                </div>
             </div>
         </div >
     );
